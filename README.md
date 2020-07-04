@@ -1,2 +1,2 @@
-# PursuitCapstone
-Pursuit Capstone 6.4
+# WeRise
+## Pursuit 6.4 Capstone Project
