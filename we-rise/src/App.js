@@ -34,6 +34,7 @@ const WeRiseApp = () => {
   }, []);
 
   return (
+
     <>
       <GlobalStyle />
         { currentUser ? <NavBar /> : null }
