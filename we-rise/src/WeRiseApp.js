@@ -4,10 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import firebase from './Utilities/firebase'
 import { setCurrentUser } from './features/Authentication/authenticationSlice'
-import { getFirebaseIdToken } from './utilitron/firebaseFunctions'
+import { getFirebaseIdToken } from './Utilities/firebaseFunctions'
 
 import NavBar from './features/BaseComponents/NavBar'
 import { PublicRoute, ProtectedRoute } from './features/Authentication/AuthRouting'
+
+import { ThemeProvider } from '@material-ui/core/styles';
+import CSSBaseline from '@material-ui/core/CssBaseline';
+import { theme } from './styling/ThemeProvider'
 
 
 const WeRiseApp = () => {
@@ -34,8 +38,8 @@ const WeRiseApp = () => {
 
   return (
 
-    <>
-
+    <ThemeProvider theme={theme}>
+        <CSSBaseline />
         { currentUser ? <NavBar /> : null }
         <Switch>
           <PublicRoute exact path="/">
@@ -47,7 +51,7 @@ const WeRiseApp = () => {
           <ProtectedRoute path="/Messaging">
           </ProtectedRoute>
         </Switch>
-    </>
+    </ThemeProvider>
   )
 }
 
