@@ -8,7 +8,7 @@ import { getFirebaseIdToken } from './utilitron/firebaseFunctions'
 
 import GlobalStyle from './styling/GlobalStyle'
 import NavBar from './features/NavBar/Navbar'
-import { PublicRoute, ProtectedRoute } from './utilitron/AuthRouting'
+import { PublicRoute, ProtectedRoute } from './features/Authentication/AuthRouting'
 
 
 const WeRiseApp = () => {
