@@ -6,6 +6,7 @@
     "@date-io/core": "^2.7.0",
     "@date-io/luxon": "^2.7.0",
     "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@material-ui/pickers": "^3.2.10",
     "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
@@ -18,6 +19,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "redux-logger": "^3.0.6",
     "typeface-audiowide": "0.0.72"
