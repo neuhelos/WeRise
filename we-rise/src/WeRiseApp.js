@@ -2,13 +2,16 @@ import React, { useEffect } from 'react';
 import { Switch } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import firebase from './utilitron/firebase'
+import firebase from './Utilities/firebase'
 import { setCurrentUser } from './features/Authentication/authenticationSlice'
-import { getFirebaseIdToken } from './utilitron/firebaseFunctions'
+import { getFirebaseIdToken } from './Utilities/firebaseFunctions'
 
-import GlobalStyle from './styling/GlobalStyle'
-import NavBar from './features/NavBar/Navbar'
-import { PublicRoute, ProtectedRoute } from './utilitron/AuthRouting'
+import NavBar from './features/BaseComponents/NavBar'
+import { PublicRoute, ProtectedRoute } from './features/Authentication/AuthRouting'
+
+import { ThemeProvider } from '@material-ui/core/styles';
+import CSSBaseline from '@material-ui/core/CssBaseline';
+import { theme } from './styling/ThemeProvider'
 
 
 const WeRiseApp = () => {
@@ -35,18 +38,20 @@ const WeRiseApp = () => {
 
   return (
 
-    <>
-      <GlobalStyle />
+    <ThemeProvider theme={theme}>
+        <CSSBaseline />
         { currentUser ? <NavBar /> : null }
         <Switch>
           <PublicRoute exact path="/">
           </PublicRoute>
-          <ProtectedRoute path="/">
+          <ProtectedRoute path="/CommunityDashboard">
           </ProtectedRoute>
-          <ProtectedRoute path="/">
+          <ProtectedRoute path="/Profile">
+          </ProtectedRoute>
+          <ProtectedRoute path="/Messaging">
           </ProtectedRoute>
         </Switch>
-    </>
+    </ThemeProvider>
   )
 }
 
