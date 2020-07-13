@@ -6,7 +6,7 @@ export const PublicRoute = ({children, ...rest}) => {
     const currentUser = useSelector( state => state.currentUserSession )
 
     return (
-        <Route {...rest} render={ () => !currentUser ? children : <Redirect to="/jobboard"/>} />
+        <Route {...rest} render={ () => !currentUser ? children : <Redirect to="/"/>} />
     )
 }
 
