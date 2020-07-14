@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { signup } from '../../Utilities/firebaseFunctions';
+import { storage } from '../../firebase'
 
 
 const CommunityDashboard = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [image, setImage] = useState(null)
+    const [UploadPic, setUploadPic] = useState(null)
 
 
     const handleSubmit = async (e) => {
@@ -13,12 +15,41 @@ const CommunityDashboard = () => {
 
         try {
              await signup(email, password);
-
         }
         catch (err){
             console.log(err)
         }
     }
+
+    const handleClick = (e) => {
+        if(e.target.files[0]){
+            setImage(e.target.files[0]);
+        }
+      };
+  
+      const handleupload = () => {
+        const uploadTask = storage.ref(`image/${image.name}`).put(image);
+        uploadTask.on(
+          "state_changed",
+          snapshot => {},
+          error => {
+            console.log(error);
+          },
+          () => {
+            storage
+            .ref("image")
+            .child(image.name)
+            .getDownloadURL()
+            .then(url => {
+                setUploadPic(url)
+            })
+          }
+        )
+      }
+  
+      console.log("image: ", image);
+  
+
 
 
     return (
@@ -37,6 +68,10 @@ const CommunityDashboard = () => {
             <button>signUp</button>
         </form>
 
+        <input  type = "file" onChange = {handleClick} />
+        <button onClick={handleupload}>Upload</button>
+
+        <img src = {UploadPic}  width="500" height="400"/>
         </div>
     )
 }

@@ -1,10 +1,6 @@
 import firebase from '../firebase'
 
-export const logout = () => {
-    firebase.auth().signOut()
-    localStorage.removeItem("currentUserID");
-    localStorage.removeItem("pageId");
-};
+export const logout = () =>  firebase.auth().signOut()
 
 export const login = (email, password) => firebase.auth().signInWithEmailAndPassword(email,password)
 

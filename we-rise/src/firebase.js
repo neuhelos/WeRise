@@ -1,5 +1,6 @@
 import app from 'firebase/app'
 import 'firebase/auth';
+import 'firebase/storage';
 
 
 const config = {
@@ -15,4 +16,9 @@ const config = {
 console.log(app)
 
 app.initializeApp(config);
-export default app;
+
+const storage = app.storage();
+
+export {
+    storage, app as default
+}
