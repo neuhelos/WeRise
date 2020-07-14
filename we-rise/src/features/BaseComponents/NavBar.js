@@ -19,12 +19,13 @@ const useStyles = makeStyles((theme) => ({
     grow: {
     flexGrow: 1,
   },
-//   title: {
-//     display: 'none',
-//     [theme.breakpoints.up('sm')]: {
-//       display: 'block',
-//     },
-//   },
+  title: {
+    fontFamily: 'audiowide'
+    // display: 'none',
+    // [theme.breakpoints.up('sm')]: {
+    //   display: 'block',
+    // },
+  },
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {

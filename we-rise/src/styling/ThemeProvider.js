@@ -6,7 +6,7 @@ export const theme = createMuiTheme({
             '@global': {
                 html: {
                     fontSize: '16px',
-                    fontFamily: 'Roboto, sans-serif',
+                    fontFamily: 'audiowide',
                     margin: 0,
                     padding: 0,
                     height: '100vh',
@@ -15,13 +15,10 @@ export const theme = createMuiTheme({
                     fontSize: '1rem',
                     fontWeight: 400,
                     lineHeight: '1.5rem',
+                    backgroundColor: '#121212',
+                    color: '#FFFFFF'
                 }
             },
         },
     },
-    palette: {
-        primary: {
-            main: "#3f51b5",
-        }
-    }
 });
