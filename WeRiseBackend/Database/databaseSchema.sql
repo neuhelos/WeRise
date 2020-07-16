@@ -1,3 +1,7 @@
+-- DROP DATABASE IF EXISTS database_db;
+-- CREATE DATABASE database_db;
+
+-- \c database_db;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS createdWorkshops;
 DROP TABLE IF EXISTS registeredWorkshops;
@@ -33,7 +37,7 @@ endTime TIMESTAMP
 CREATE TABLE registeredWorkshops(
 id SERIAL PRIMARY KEY,
 user_id INT REFERENCES users(id) ON DELETE SET NULL,
-workshop_id INT REFERENCES createdWorkshops(id) ON DELETE SET NULL,
+workshop_id INT REFERENCES createdWorkshops(id) ON DELETE SET NULL
 );
 
 CREATE TABLE videoChat(
@@ -57,5 +61,5 @@ CREATE TABLE directMessages(
 id SERIAL PRIMARY KEY,
 senderId INT REFERENCES users(id) ON DELETE SET NULL,
 recieverId INT REFERENCES users(id) ON DELETE SET NULL,
-body VARCHAR,
+body VARCHAR
 );
