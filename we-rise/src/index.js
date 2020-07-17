@@ -7,6 +7,8 @@ import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
+import 'typeface-audiowide'
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>

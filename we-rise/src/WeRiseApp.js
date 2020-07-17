@@ -14,7 +14,7 @@ import InstantMessagingPage from './features/Pages/MessagingPage'
 import { PublicRoute, ProtectedRoute } from './features/Authentication/AuthRouting'
 
 import { ThemeProvider } from '@material-ui/core/styles';
-import CSSBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { theme } from './styling/ThemeProvider'
 
 
@@ -44,7 +44,7 @@ const WeRiseApp = () => {
   return (
 
     <ThemeProvider theme={theme}>
-        <CSSBaseline />
+        <CssBaseline />
         { currentUser ? <NavBar /> : null }
         <Switch>
           <PublicRoute exact path="/">
