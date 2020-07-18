@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
+import { signOut } from '../../Utilities/firebaseFunctions'
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,6 +12,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Dashboard from '@material-ui/icons/Dashboard';
 import MailIcon from '@material-ui/icons/Mail';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip'
 
@@ -52,32 +55,37 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = () => {
+
   const classes = useStyles();
-  
+
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const mobileMenuId = 'primary-menu-mobile';
-
+  
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  
 
-
-    const history = useHistory()
-    const navMessaging = () => {
+  const history = useHistory()
+  const navMessaging = () => {
         history.push("/Messaging")
-    }
-    const navProfile = () => {
+      }
+      const navProfile = () => {
         history.push("/Profile")
-    }
+      }
     const navDashboard = () => {
-        history.push("/CommunityDashboard")
+      history.push("/CommunityDashboard")
+    }
+    const signout = () => {
+      signOut()
+      history.push("/")
     }
 
-  return (
-    <div className={classes.grow}>
+    return (
+      <div className={classes.grow}>
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Typography className={classes.title} variant="h1" noWrap>
@@ -110,6 +118,11 @@ const NavBar = () => {
             <Tooltip title="Add Workshop">
               <IconButton className={classes.iconButton}  edge="end" aria-label="Add Workshop" onClick={""} color="inherit" >
                 <AddBoxIcon style={{ fontSize: 60 }} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Sign Out">
+              <IconButton className={classes.iconButton}  edge="end" aria-label="Sign Out" onClick={""} color="inherit" >
+                <ExitToAppIcon style={{ fontSize: 60 }} />
               </IconButton>
             </Tooltip>
           </div>

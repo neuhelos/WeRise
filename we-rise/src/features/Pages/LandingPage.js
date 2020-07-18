@@ -1,10 +1,19 @@
 import React from 'react'
 
+
+
+import PublicNavBar from '../BaseComponents/PublicNavBar'
+
+
 const LandingPage = () => {
+    
+    
+    
+    
     return (
-        <div>
-            Landing Page
-        </div>
+        <>
+            <PublicNavBar />
+        </>
     )
 }
 
