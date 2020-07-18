@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentUser } from './features/Authentication/AuthenticationSlice'
 //import { getFirebaseIdToken } from './Utilities/firebaseFunctions'
 
-import NavBar from './features/BaseComponents/NavBar'
+import AuthNavBar from './features/BaseComponents/AuthNavBar'
+import PublicNavBar from './features/BaseComponents/PublicNavBar'
 import LandingPage from './features/Pages/LandingPage'
 import CommunityDashboardPage from './features/Pages/CommunityDashboard'
 import UserProfilePage from './features/Pages/UserProfilePage'
@@ -45,7 +46,8 @@ const WeRiseApp = () => {
 
     <ThemeProvider theme={theme}>
         <CssBaseline />
-        { currentUser ? <NavBar /> : null }
+        { !currentUser ? <PublicNavBar /> : null }
+        { currentUser ? <AuthNavBar /> : null }
         <Switch>
           <PublicRoute exact path="/">
             <LandingPage />
