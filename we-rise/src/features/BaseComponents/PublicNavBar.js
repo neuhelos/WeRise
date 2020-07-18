@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     button: {
         fontFamily: 'audiowide',
         width: '30%',
-        margin: theme.spacing(1),
+        margin: theme.spacing(2),
         backgroundColor: 'white',
         color: '#FF07FB'
     },

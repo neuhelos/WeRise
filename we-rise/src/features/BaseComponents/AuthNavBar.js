@@ -5,6 +5,7 @@ import { signOut } from '../../Utilities/firebaseFunctions'
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Modal from '@material-ui/core/Modal'
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
@@ -84,6 +85,11 @@ const NavBar = () => {
       history.push("/")
     }
 
+    const [open , setOpen] = useState(false)
+    const toggleModal = () => {
+        setOpen(!open)
+    }
+
     return (
       <div className={classes.grow}>
       <AppBar position="static" className={classes.root}>
@@ -140,6 +146,12 @@ const NavBar = () => {
         </Toolbar>
       </AppBar>
       <MobileNavMenu  mobileMenuId={mobileMenuId} mobileMoreAnchorEl={mobileMoreAnchorEl} handleMobileMenuClose={handleMobileMenuClose}/>
+    
+      <Modal open={open} toggleModal={toggleModal}>
+        
+      </Modal>
+
+
     </div>
   );
 }
