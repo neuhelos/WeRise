@@ -8,4 +8,4 @@ const PostWorkshop = () => {
     )
 }
 
-export default AddWorkshop;
+export default PostWorkshop;

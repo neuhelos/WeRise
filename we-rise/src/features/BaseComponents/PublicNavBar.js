@@ -13,8 +13,29 @@ import SignInModal from '../Authentication/SignInModal'
 const useStyles = makeStyles((theme) => ({
     root: {
         background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
+        //backgroundSize: '600% 600%',
+        //animationName: 'navBarGradient',
+        //overflow: 'hidden',
+        // '-webkit-animation': 'navBarGradient 12s ease infinite',
+        // '-moz-animation': 'navBarGradient 12s ease infinite',
+        //animation: '$navBarGradient 12s ease infinite',
+        // '@-webkit-keyframes navBarGradient': {
+        //     '0%': {backgroundPosition: '0% 10%'},
+        //     '50%': {backgroundPosition: '100% 91%'},
+        //     '100%': {backgroundPosition: '0% 10%'},
+        // },
+        // '@-moz-keyframes navBarGradient': {
+        //     '0%': {backgroundPosition:'0% 10%'},
+        //     '50%': {backgroundPosition:'100% 91%'},
+        //     '100%': {backgroundPosition:'0% 10%'},
+        // },
+        // '@keyframes navBarGradient': {
+        //     '0%': {backgroundPosition:'0% 10%' },
+        //     '50%': {backgroundPosition:'100% 91%'},
+        //     '100%': {backgroundPosition:'0% 10%'},
+        // },
         flexGrow: 1,
-    },
+        }, 
     button: {
         fontFamily: 'audiowide',
         width: '30%',

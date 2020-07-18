@@ -2,18 +2,27 @@ import app from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/storage';
 
+const {
+    REACT_APP_APIKEY,
+    REACT_APP_AUTHDOMAIN,
+    REACT_APP_DATABASEURL,
+    REACT_APP_PROJECTID,
+    REACT_APP_STORAGEBUCKET,
+    REACT_APP_MESSAGINGSENDERID,
+    REACT_APP_APPID,
+    REACT_APP_MEASUREMENTID,
+} = process.env;
 
-const config = {
-    apiKey: "AIzaSyARiJtWLiAbrxpzoR0R0aS6Rbbgezrd23c",
-    authDomain: "werise-c999a.firebaseapp.com",
-    databaseURL: "https://werise-c999a.firebaseio.com",
-    projectId: "werise-c999a",
-    storageBucket: "werise-c999a.appspot.com",
-    messagingSenderId: "380465617476",
-    appId: "1:380465617476:web:f4c400d82859af6531fa11",
-    measurementId: "G-XB82BWRN86"
-}
-console.log(app)
+const config = { 
+    apiKey: REACT_APP_APIKEY,
+    authDomain: REACT_APP_AUTHDOMAIN,
+    databaseURL: REACT_APP_DATABASEURL,
+    projectId: REACT_APP_PROJECTID,
+    storageBucket: REACT_APP_STORAGEBUCKET,
+    messagingSenderId: REACT_APP_MESSAGINGSENDERID,
+    appId: REACT_APP_APPID,
+    measurementId: REACT_APP_MEASUREMENTID 
+    }
 
 app.initializeApp(config);
 
