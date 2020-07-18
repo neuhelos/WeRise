@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import { signOut } from '../../Utilities/firebaseFunctions'
@@ -17,6 +17,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip'
 
+import PostWorkshop from '../PostWorkshop/PostWorkshop'
 import MobileNavMenu from './MobileNavMenu'
 
 const useStyles = makeStyles((theme) => ({
@@ -148,7 +149,7 @@ const NavBar = () => {
       <MobileNavMenu  mobileMenuId={mobileMenuId} mobileMoreAnchorEl={mobileMoreAnchorEl} handleMobileMenuClose={handleMobileMenuClose}/>
     
       <Modal open={open} toggleModal={toggleModal}>
-        
+        <PostWorkshop handleCloseModal={toggleModal} />
       </Modal>
 
 
