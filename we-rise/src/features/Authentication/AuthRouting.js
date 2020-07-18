@@ -4,7 +4,7 @@ import {Route, Redirect} from 'react-router-dom'
 
 export const PublicRoute = ({children, ...rest}) => { 
     //const currentUser = useSelector( state => state.currentUserSession )
-    const currentUser = 1
+    const currentUser = 0
 
     return (
         <Route {...rest} render={ () => !currentUser ? children : <Redirect to="/CommunityDashboard"/>} />
@@ -13,7 +13,7 @@ export const PublicRoute = ({children, ...rest}) => {
 
 export const ProtectedRoute = ({children, ...rest}) => { 
     //const currentUser = useSelector( state => state.currentUserSession )
-    const currentUser = 1
+    const currentUser = 0
 
     return (
         <Route {...rest} render={ () => currentUser ? children : <Redirect to="/"/>} />

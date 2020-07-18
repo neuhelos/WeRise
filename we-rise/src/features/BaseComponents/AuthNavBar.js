@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
+import { signOut } from '../../Utilities/firebaseFunctions'
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Modal from '@material-ui/core/Modal'
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
@@ -10,9 +13,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Dashboard from '@material-ui/icons/Dashboard';
 import MailIcon from '@material-ui/icons/Mail';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip'
 
+import PostWorkshop from '../PostWorkshop/PostWorkshop'
 import MobileNavMenu from './MobileNavMenu'
 
 const useStyles = makeStyles((theme) => ({
@@ -52,32 +57,42 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = () => {
+
   const classes = useStyles();
-  
+
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const mobileMenuId = 'primary-menu-mobile';
-
+  
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  
 
-
-    const history = useHistory()
-    const navMessaging = () => {
+  const history = useHistory()
+  const navMessaging = () => {
         history.push("/Messaging")
-    }
-    const navProfile = () => {
+      }
+      const navProfile = () => {
         history.push("/Profile")
-    }
+      }
     const navDashboard = () => {
-        history.push("/CommunityDashboard")
+      history.push("/CommunityDashboard")
+    }
+    const signout = () => {
+      signOut()
+      history.push("/")
     }
 
-  return (
-    <div className={classes.grow}>
+    const [open , setOpen] = useState(false)
+    const toggleModal = () => {
+        setOpen(!open)
+    }
+
+    return (
+      <div className={classes.grow}>
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Typography className={classes.title} variant="h1" noWrap>
@@ -112,6 +127,11 @@ const NavBar = () => {
                 <AddBoxIcon style={{ fontSize: 60 }} />
               </IconButton>
             </Tooltip>
+            <Tooltip title="Sign Out">
+              <IconButton className={classes.iconButton}  edge="end" aria-label="Sign Out" onClick={""} color="inherit" >
+                <ExitToAppIcon style={{ fontSize: 60 }} />
+              </IconButton>
+            </Tooltip>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
@@ -127,6 +147,12 @@ const NavBar = () => {
         </Toolbar>
       </AppBar>
       <MobileNavMenu  mobileMenuId={mobileMenuId} mobileMoreAnchorEl={mobileMoreAnchorEl} handleMobileMenuClose={handleMobileMenuClose}/>
+    
+      <Modal open={open} toggleModal={toggleModal}>
+        <PostWorkshop handleCloseModal={toggleModal} />
+      </Modal>
+
+
     </div>
   );
 }
