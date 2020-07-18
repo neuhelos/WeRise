@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     //   display: 'block',
     // },
   },
+  iconButton: {
+    margin: theme.spacing(1)
+  },
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
@@ -83,12 +86,12 @@ const NavBar = () => {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Tooltip title="Dashboard">
-              <IconButton edge="start" color="inherit" onClick={navDashboard}>
+              <IconButton className={classes.iconButton} edge="start" color="inherit" onClick={navDashboard}>
                   <Dashboard style={{ fontSize: 60 }} />
               </IconButton>
             </Tooltip>
             <Tooltip title="Instant Messaging">
-              <IconButton aria-label="show 4 new mails" color="inherit" onClick={navMessaging} >
+              <IconButton className={classes.iconButton}  aria-label="show 4 new mails" color="inherit" onClick={navMessaging} >
                 <Badge badgeContent={4} color="secondary" classes={{ badge: classes.badges }}>
                   <MailIcon style={{ fontSize: 60 }} />
                 </Badge>
@@ -100,12 +103,12 @@ const NavBar = () => {
               </Badge>
             </IconButton> */}
             <Tooltip title="Profile">
-              <IconButton aria-label="account of current user" onClick={navProfile} color="inherit" >
+              <IconButton className={classes.iconButton}  aria-label="account of current user" onClick={navProfile} color="inherit" >
                 <AccountCircle style={{ fontSize: 60 }} />
               </IconButton>
             </Tooltip>
             <Tooltip title="Add Workshop">
-              <IconButton edge="end" aria-label="Add Workshop" onClick={""} color="inherit" >
+              <IconButton className={classes.iconButton}  edge="end" aria-label="Add Workshop" onClick={""} color="inherit" >
                 <AddBoxIcon style={{ fontSize: 60 }} />
               </IconButton>
             </Tooltip>

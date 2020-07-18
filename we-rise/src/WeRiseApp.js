@@ -22,7 +22,7 @@ import { theme } from './styling/ThemeProvider'
 const WeRiseApp = () => {
 
   //const currentUser = useSelector( state => state.currentUserSession )
-  const currentUser = 0
+  const currentUser = 1
 
   const dispatch = useDispatch()
 
