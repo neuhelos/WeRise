@@ -1,4 +1,4 @@
-import firebase from '../firebase'
+import firebase from './firebase'
 
 export const signOut = () =>  firebase.auth().signOut()
 
@@ -6,4 +6,4 @@ export const signIn = (email, password) => firebase.auth().signInWithEmailAndPas
 
 export const signUp = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password)
 
-export const getfirebaseIdToken = () => firebase.auth().currentUser.getIdToken(false);
+export const getFirebaseIdToken = () => firebase.auth().currentUser.getIdToken(false);

@@ -1,4 +1,4 @@
-import app from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/storage';
 
@@ -13,6 +13,7 @@ const {
     REACT_APP_MEASUREMENTID,
 } = process.env;
 
+
 const config = { 
     apiKey: REACT_APP_APIKEY,
     authDomain: REACT_APP_AUTHDOMAIN,
@@ -22,12 +23,12 @@ const config = {
     messagingSenderId: REACT_APP_MESSAGINGSENDERID,
     appId: REACT_APP_APPID,
     measurementId: REACT_APP_MEASUREMENTID 
-    }
+}
 
-app.initializeApp(config);
+firebase.initializeApp(config);
 
-const storage = app.storage();
+const storage = firebase.storage();
 
 export {
-    storage, app as default
+    storage, firebase as default
 }
