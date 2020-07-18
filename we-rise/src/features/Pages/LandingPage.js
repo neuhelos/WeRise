@@ -8,8 +8,6 @@ import PublicNavBar from '../BaseComponents/PublicNavBar'
 const LandingPage = () => {
     
     
-    
-    
     return (
         <>
             <PublicNavBar />

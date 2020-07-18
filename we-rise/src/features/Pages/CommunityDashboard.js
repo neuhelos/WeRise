@@ -5,7 +5,7 @@ const CommunityDashboard = () => {
 
     return (
         <div>
-            CommunityDashboard
+            
         </div>
     )
 }
