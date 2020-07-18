@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom'
+import { signIn } from '../../Utilities/firebaseFunctions'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -38,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         }, 
     button: {
         fontFamily: 'audiowide',
-        width: '30%',
+        width: '20%',
         margin: theme.spacing(2),
         backgroundColor: 'white',
         color: '#FF07FB'
@@ -46,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     title: {
         fontFamily: 'audiowide',
         flexGrow: 1,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '3rem',
+          },
     },
 }));
 
@@ -62,19 +67,26 @@ const PublicNavBar = () => {
         setOpenSignUp(!openSignUp)
     }
 
+    const history = useHistory()
+    const handleGuestSignIn = async () => {
+        await signIn("guest@werise.org","weriseguest");
+        history.push("/CommunityDashboard")
+    }
+
     return (
         <AppBar className={classes.root} position="static">
             <Toolbar>
                 <Grid container spacing={2}>
-                    <Grid item xs={8}>
+                    <Grid item xs={5}>
                         <Typography className={classes.title} variant="h1" noWrap>
                             WeRise
                         </Typography>
                     </Grid>
 
-                    <Grid container item xs={4} direction="row" justify="flex-end" alignItems="center">
+                    <Grid container item xs={7} direction="row" justify="flex-end" alignItems="center">
                         <Button className={classes.button} variant='contained' size="large" onClick={toggleSignInModal}>SignIn</Button>
                         <Button className={classes.button} variant='contained' size="large" onClick={toggleSignUpModal}>SignUp</Button>
+                        <Button className={classes.button} variant='contained' size="large" onClick={handleGuestSignIn}>Guest</Button>
                     </Grid>
                 </Grid>
 
