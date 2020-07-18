@@ -11,6 +11,7 @@ import LandingPage from './features/Pages/LandingPage'
 import CommunityDashboardPage from './features/Pages/CommunityDashboard'
 import UserProfilePage from './features/Pages/UserProfilePage'
 import InstantMessagingPage from './features/Pages/MessagingPage'
+import Footer from './features/BaseComponents/Footer'
 import { PublicRoute, ProtectedRoute } from './features/Authentication/AuthRouting'
 
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -59,6 +60,7 @@ const WeRiseApp = () => {
             <InstantMessagingPage />
           </ProtectedRoute>
         </Switch>
+        <Footer />
     </ThemeProvider>
   )
 }

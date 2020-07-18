@@ -6,12 +6,13 @@ export const theme = createMuiTheme({
             '@global': {
                 html: {
                     fontSize: '16px',
-                    fontFamily: 'audiowide',
                     margin: 0,
                     padding: 0,
                     height: '100vh',
                 },
                 body: {
+                    height: '100%',
+                    fontFamily: 'audiowide',
                     fontSize: '1rem',
                     fontWeight: 400,
                     lineHeight: '1.5rem',

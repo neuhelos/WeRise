@@ -21,10 +21,10 @@ import PostWorkshop from '../PostWorkshop/PostWorkshop'
 import MobileNavMenu from './MobileNavMenu'
 
 const useStyles = makeStyles((theme) => ({
-    root: {
+  root: {
         background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
     },
-    grow: {
+  grow: {
     flexGrow: 1,
   },
   title: {
@@ -92,23 +92,23 @@ const NavBar = () => {
     }
 
     return (
-      <div className={classes.grow}>
+      <>
       <AppBar position="static" className={classes.root}>
         <Toolbar>
-          <Typography className={classes.title} variant="h1" noWrap>
+          <Typography className={classes.title} variant="h2" noWrap>
             WeRise
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Tooltip title="Dashboard">
               <IconButton className={classes.iconButton} edge="start" color="inherit" onClick={navDashboard}>
-                  <Dashboard style={{ fontSize: 60 }} />
+                  <Dashboard style={{ fontSize: 50 }} />
               </IconButton>
             </Tooltip>
             <Tooltip title="Instant Messaging">
               <IconButton className={classes.iconButton}  aria-label="show 4 new mails" color="inherit" onClick={navMessaging} >
                 <Badge badgeContent={4} color="secondary" classes={{ badge: classes.badges }}>
-                  <MailIcon style={{ fontSize: 60 }} />
+                  <MailIcon style={{ fontSize: 50 }} />
                 </Badge>
               </IconButton>
             </Tooltip>
@@ -119,17 +119,17 @@ const NavBar = () => {
             </IconButton> */}
             <Tooltip title="Profile">
               <IconButton className={classes.iconButton}  aria-label="account of current user" onClick={navProfile} color="inherit" >
-                <AccountCircle style={{ fontSize: 60 }} />
+                <AccountCircle style={{ fontSize: 50 }} />
               </IconButton>
             </Tooltip>
             <Tooltip title="Add Workshop">
               <IconButton className={classes.iconButton}  edge="end" aria-label="Add Workshop" onClick={""} color="inherit" >
-                <AddBoxIcon style={{ fontSize: 60 }} />
+                <AddBoxIcon style={{ fontSize: 50 }} />
               </IconButton>
             </Tooltip>
             <Tooltip title="Sign Out">
               <IconButton className={classes.iconButton}  edge="end" aria-label="Sign Out" onClick={""} color="inherit" onClick={signout}>
-                <ExitToAppIcon style={{ fontSize: 60 }} />
+                <ExitToAppIcon style={{ fontSize: 50 }} />
               </IconButton>
             </Tooltip>
           </div>
@@ -153,7 +153,7 @@ const NavBar = () => {
       </Modal>
 
 
-    </div>
+    </>
   );
 }
 
