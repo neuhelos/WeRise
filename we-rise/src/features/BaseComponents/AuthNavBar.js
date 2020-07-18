@@ -128,7 +128,7 @@ const NavBar = () => {
               </IconButton>
             </Tooltip>
             <Tooltip title="Sign Out">
-              <IconButton className={classes.iconButton}  edge="end" aria-label="Sign Out" onClick={""} color="inherit" >
+              <IconButton className={classes.iconButton}  edge="end" aria-label="Sign Out" onClick={""} color="inherit" onClick={signout}>
                 <ExitToAppIcon style={{ fontSize: 60 }} />
               </IconButton>
             </Tooltip>

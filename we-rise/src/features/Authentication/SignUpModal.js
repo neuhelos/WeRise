@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { signUp } from '../../Utilities/firebaseFunctions';
-import { storage } from '../../firebase'
+import { storage } from '../../Utilities/firebase'
 
 
 const SignUpModal = () => {
