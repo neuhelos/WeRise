@@ -15,8 +15,19 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
-    paper: {
+    container: {
+        height: '100%',
+    },
+    gridItem: {
+        margin: theme.spacing(0.5),
         width: '100%',
+        justify: 'center'
+    },
+    paper: {
+        width: '75%',
+        padding: theme.spacing(1),
+        backgroundColor: '#282828',
+        color: 'white'
     }
 }))
 
@@ -27,30 +38,30 @@ const CommunityDashboard = () => {
 
     return (
         <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
-            <Grid container item direction="column" justify="center" alignItems="center" xs={8}>
-                <Grid>
+            <Grid container item className={classes.container} direction="column" justify="start" alignItems="center" spacing={4} xs={7}>
+                <Grid container item className={classes.gridItem} justify="center" >
                     <Paper className={classes.paper}>
                         <WorkshopSearchBar />
                     </Paper>
                 </Grid>
-                <Grid item>
+                <Grid container item className={classes.gridItem} justify="center" >
                     <Paper className={classes.paper}>
                         <WorkshopFilterBar />
                     </Paper>
                 </Grid>
-                <Grid item>
+                <Grid container item className={classes.gridItem} justify="center" >
                     <Paper className={classes.paper}>
                         <WorkshopFeed />
                     </Paper>
                 </Grid>
             </Grid>
-            <Grid container item direction="column" justify="center" alignItems="center" xs={4}>
-                <Grid item>
+            <Grid container className={classes.container} item direction="column" justify="start" alignItems="center" spacing={4} xs={5}>
+                <Grid container item className={classes.gridItem} justify="center" >
                     <Paper className={classes.paper}>
                         <UserWorkshopAgenda />
                     </Paper>
                 </Grid>
-                <Grid item>
+                <Grid container item className={classes.gridItem} justify="center" >
                     <Paper className={classes.paper}>
                         <RecentlyPostedWorkshops />
                     </Paper>
