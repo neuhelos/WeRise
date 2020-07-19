@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         [theme.breakpoints.down('sm')]: {
             fontSize: '3rem',
-          },
+        },
     },
 }));
 
