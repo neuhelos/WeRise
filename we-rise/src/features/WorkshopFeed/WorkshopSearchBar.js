@@ -14,7 +14,9 @@ const useStyles = makeStyles( (theme) => ({
         width: '100%',
     },
     font: {
-        fontFamily: 'audiowide'
+        fontFamily: 'audiowide',
+        fontSize: '1rem',
+        color: 'white'
     }
 }))
 
@@ -27,9 +29,10 @@ const WorkshopSearchBar = () => {
             <InputLabel htmlFor="input-with-icon-adornment" className={classes.font}>Search Workshops</InputLabel>
             <Input
             className={classes.font}
+            type="search"
             id="input-with-icon-adornment"
             variant = "filled"
-            placeholder="Search By Workshop Title, Description or Skills"
+            placeholder="Search By Title, Description or Skills"
             startAdornment={
                 <InputAdornment position="start">
                 <SearchIcon />

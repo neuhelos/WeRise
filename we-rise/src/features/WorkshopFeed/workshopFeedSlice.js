@@ -31,45 +31,21 @@ export const fetchWorkshopSearch = createAsyncThunk(
     }
 )
 
-export const fetchWorkshopByCategory = createAsyncThunk(
-    'post/fetchWorkshopByCategory',
-    async (category) => {
-        try {
-            const res = await axios.get(`${apiURL}/workshops/category`, {
-                category: category
-            })
-            return res.payload
-        } catch (error) {
-            throw Error(error)
-        }
-    }
-)
-
-export const fetchWorkshopByDate = createAsyncThunk(
-    'post/fetchWorkshopByDate',
-    async (date) => {
-        try {
-            const res = await axios.get(`${apiURL}/workshops/date`, {
-                startDate: date.start,
-                endDate: date.end
-            })
-            return res.payload
-        } catch (error) {
-            throw Error(error)
-        }
-    }
-)
 
 export const workshopFeedSlice = createSlice( {
     name: "workshopFeed",
     initialState: [],
     reducers: {
+        categoryFilter: (state, action) => {
+            return state.filter( workshop => workshop.category === action.payload)
+        },
+        dateFilter: (state, action) => {
+            return state.filter( workshop => workshop.date >= action.payload.startDate && workshop.date <= action.payload.endDate )
+        }
     },
     extraReducers: {
         [fetchUpcomingWorkshops.fulfilled]: (state, action) => action.payload,
         [fetchWorkshopSearch.fulfilled] : (state, action) => action.payload,
-        [fetchWorkshopByCategory.fulfilled] : (state, action) => action.payload,
-        [fetchWorkshopByDate.fulfilled] : (state, action) => action.payload
     }
 })
 
