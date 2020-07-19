@@ -16,10 +16,8 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     paper: {
-        width: '75%',
+        width: '100%',
     }
-
-
 }))
 
 
@@ -29,31 +27,31 @@ const CommunityDashboard = () => {
 
     return (
         <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
-            <Grid container item direction="column" justify="center" alignItems="center" xs={6}>
-                <Grid item xs={5}>
+            <Grid container item direction="column" justify="center" alignItems="center" xs={8}>
+                <Grid>
                     <Paper className={classes.paper}>
                         <WorkshopSearchBar />
                     </Paper>
                 </Grid>
                 <Grid item>
-                    <Paper>
+                    <Paper className={classes.paper}>
                         <WorkshopFilterBar />
                     </Paper>
                 </Grid>
                 <Grid item>
-                    <Paper>
+                    <Paper className={classes.paper}>
                         <WorkshopFeed />
                     </Paper>
                 </Grid>
             </Grid>
-            <Grid container item direction="column" justify="center" alignItems="center" xs={6}>
+            <Grid container item direction="column" justify="center" alignItems="center" xs={4}>
                 <Grid item>
-                    <Paper>
+                    <Paper className={classes.paper}>
                         <UserWorkshopAgenda />
                     </Paper>
                 </Grid>
                 <Grid item>
-                    <Paper>
+                    <Paper className={classes.paper}>
                         <RecentlyPostedWorkshops />
                     </Paper>
                 </Grid>
