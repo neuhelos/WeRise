@@ -21,7 +21,7 @@ CREATE TABLE users(
     instagram VARCHAR,
     facebook VARCHAR,
     twitter VARCHAR,
-    linkedin VARCHAR
+    linkedIn VARCHAR
 );
 
 CREATE TABLE createdWorkshops(
