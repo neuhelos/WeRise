@@ -6,7 +6,7 @@ const WorkshopFilterBar = () => {
     return (
         <div>
             FILTER BAR
-            <FilterDateRangePicker />
+            {/* <FilterDateRangePicker /> */}
         </div>
     )
 }
