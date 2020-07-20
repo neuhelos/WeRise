@@ -53,7 +53,7 @@ const deleteWorkshop = async (req, res) => {
 };
 const searchWorkshop = async (req, res) => {
   try {
-    let search = await db.any("SELECT body FROM hashtags WHERE body LIKE '#%'");
+    let search = await db.any("SELECT body FROM description WHERE body LIKE $1");
     res.status(200).json({
       status: "Success",
       message: "Found workshop",
@@ -83,28 +83,49 @@ const getAllWorkshops = async (req, res) => {
     });
   }
 };
-const editWorkshop = async (req, res)=>{
-  if(req.body.id){
-    try {
-      let update = `
-      UPDATE workshops
-      SET id=$1
-      WHERE id=$2`
-      await db.none(update, [req.body.id, res.params.id])
-      res.status(201).json({
-        status: "success",
-        message: 'User updated'
+const editWorkshop=async(req, res,next)=>{
+  try {
+    let update = await db.one(
+      `UPDATE createdWorkshops SET date= '${req.body.date}', startTime=${req.body.startTime}', endTime = ${req.body.endTime}' WHERE id=${req.params.id} RETURNING *  `
+    
+      );
+      res.status(200).json({
+        status: 'success',
+        message: 'workshop updated',
+        payload: update
       })
-      
-    } catch (error) {
-      res.status(404).json({
-        status: 'error', 
-        message: 'cannot be updated'
-      })
-      
-    }
-  }else{
-//still working on what else can be edited 
+    
+  } catch (error) {
+    res.status(404).json({
+      status: error,
+      message: 'could not be updated',
+      payload: null,
+    })
+    next(error)
+  }
+}
+const searchWorkshopByDate = async(req, res, next)=>{
+  try {
+    let searchByDate= await db.any(
+      `SELECT DISTINCT date,
+      ARRAY_AGG(createdWorkshops.id) AS id,
+      ARRAY_AGG(createdWorkshops.user_id) AS user_id,
+      ARRAY_AGG(createdWorkshops.title) AS title,
+      ARRAY_AGG(createdWorkshops.description) AS description,
+      ARRAY_AGG(createdWorkshops.date) AS date,
+      ARRAY_AGG(createdWorkshops.startTime) AS startTime,
+      ARRAY_AGG(createdWorkshops.endTime) AS endTime
+      FROM createdWorkshops
+      `
+    );
+    res.status(200).json({
+      status: 'success',
+      message: 'retrieved all workshops from date',
+      payload:  searchByDate
+    })
+    
+  } catch (error) {
+    
   }
 }
 module.exports = {
@@ -112,6 +133,7 @@ module.exports = {
   getWorkshop,
   deleteWorkshop,
   getAllWorkshops,
-  // editWorkshop,
+  editWorkshop,
   searchWorkshop,
+  searchWorkshopByDate
 };
