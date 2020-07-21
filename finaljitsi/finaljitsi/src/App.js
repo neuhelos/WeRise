@@ -8,13 +8,13 @@ const App = () => (
   <>
     <h2>My First Meeting!</h2>
     <Jitsi roomName={roomName} displayName={userFullName} />
-    {/* <Jitsi containerStyle={{ width: '1200px', height: '800px' }}></Jitsi> */}
+   
   </>
 )
 export default App
 // import React, { useState } from 'react'
 // import Jitsi from 'react-jitsi'
-// import Loader from './Components/Loader'
+// import Loader from './Components/loader'
  
 // const App = () => {
  
@@ -29,7 +29,7 @@ export default App
 //         roomName={roomName}
 //         displayName={displayName}
 //         password={password}
-//         // loadingComponent={Loader}
+//         loadingComponent={Loader}
 //         onAPILoad={JitsiMeetAPI => console.log('Good Morning everyone!')}
 //       />)
 //     : (
