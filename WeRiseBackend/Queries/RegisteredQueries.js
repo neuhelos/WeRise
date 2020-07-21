@@ -3,7 +3,8 @@ import database from '../Database/database';
 const getRegisteredWorkshop = async (req, res, next) => {
     try {
       let workshop = await db.any(
-        "SELECT ",
+          "SELECT ",
+        //TITLE,IMAGE, DATE, START TIME END TIME, USER
         req.params.id
       );
       res.status(200).json({
@@ -19,6 +20,7 @@ const getRegisteredWorkshop = async (req, res, next) => {
       });
     }
   };
+  
 
   module.exports = {
     getRegisteredWorkshop,

@@ -31,7 +31,8 @@ title VARCHAR(280),
 descriptions VARCHAR,
 date DATE,
 startTime TIMESTAMP,
-endTime TIMESTAMP
+endTime TIMESTAMP,
+workshop_image VARCHAR
 );
 
 CREATE TABLE registeredWorkshops(
