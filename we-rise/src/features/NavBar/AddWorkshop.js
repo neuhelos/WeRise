@@ -12,6 +12,7 @@ const AddWorkshop = () => {
         <Container maxWidth="sm">
             <TextField id="filled-basic" label="Title" variant="filled" />
         <CategoryDropdown />
+        
       </Container>
     )
 }
