@@ -2,8 +2,17 @@ const db = require("../Database/database");
 const createWorkshop = async (req, res) => {
   try {
     let newWorkshop = await db.one(
-      "INSERT INTO createdWorkshops (id, user_id, title, descriptions, date, starTime, endTime, workshop_image) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING * ",
-      [req.body.id, req.body.user_id, req.body.title, req.body.description, req.body.date, req.body.startTime, req.body.endTime, req.body.workshop_image]
+      "INSERT INTO createdWorkshops (id, user_id, title, descriptions, date, starTime, endTime, workshop_image) VALUES(${id},${user_id},${title},${descriptions},${date},${startTime},${endTime},${workshop_image}) RETURNING * ",
+      [
+        req.body.id,
+        req.body.user_id,
+        req.body.title,
+        req.body.description,
+        req.body.date,
+        req.body.startTime,
+        req.body.endTime,
+        req.body.workshop_image
+      ]
     );
     res.status(200).json({
       status: "success",
@@ -53,7 +62,9 @@ const deleteWorkshop = async (req, res) => {
 };
 const searchWorkshop = async (req, res) => {
   try {
-    let search = await db.any("SELECT title FROM createdWorkshops WHERE title LIKE $1");
+    let search = await db.any(
+      "SELECT title FROM createdWorkshops WHERE title LIKE $1"
+    );
     res.status(200).json({
       status: "Success",
       message: "Found workshop",
@@ -83,30 +94,28 @@ const getAllWorkshops = async (req, res) => {
     });
   }
 };
-const editWorkshop=async(req, res,next)=>{
+const editWorkshop = async (req, res, next) => {
   try {
     let update = await db.one(
       `UPDATE createdWorkshops SET date= '${req.body.date}', startTime=${req.body.startTime}', endTime = ${req.body.endTime}' WHERE id=${req.params.id} RETURNING *  `
-    
-      );
-      res.status(200).json({
-        status: 'success',
-        message: 'workshop updated',
-        payload: update
-      })
-    
+    );
+    res.status(200).json({
+      status: "success",
+      message: "workshop updated",
+      payload: update,
+    });
   } catch (error) {
     res.status(404).json({
       status: error,
-      message: 'could not be updated',
+      message: "could not be updated",
       payload: null,
-    })
-    next(error)
+    });
+    next(error);
   }
-}
-const searchWorkshopByDate = async(req, res, next)=>{
+};
+const searchWorkshopByDate = async (req, res, next) => {
   try {
-    let searchByDate= await db.any(
+    let searchByDate = await db.any(
       `SELECT DISTINCT date,
       ARRAY_AGG(createdWorkshops.id) AS id,
       ARRAY_AGG(createdWorkshops.user_id) AS user_id,
@@ -119,15 +128,12 @@ const searchWorkshopByDate = async(req, res, next)=>{
       `
     );
     res.status(200).json({
-      status: 'success',
-      message: 'retrieved all workshops from date',
-      payload:  searchByDate
-    })
-    
-  } catch (error) {
-    
-  }
-}
+      status: "success",
+      message: "retrieved all workshops from date",
+      payload: searchByDate,
+    });
+  } catch (error) {}
+};
 module.exports = {
   createWorkshop,
   getWorkshop,
@@ -135,5 +141,5 @@ module.exports = {
   getAllWorkshops,
   editWorkshop,
   searchWorkshop,
-  searchWorkshopByDate
+  searchWorkshopByDate,
 };
