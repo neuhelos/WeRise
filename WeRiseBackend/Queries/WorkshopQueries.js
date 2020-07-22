@@ -17,7 +17,7 @@ const createWorkshop = async (req, res) => {
     res.status(200).json({
       status: "success",
       message: "A new workshop was created",
-      payload: newWorkshop,
+      payload: newWorkshop
     });
   } catch (err) {
     res.status(404).json({
@@ -36,13 +36,13 @@ const getWorkshop = async (req, res, next) => {
     res.status(200).json({
       status: "success",
       message: "All workshops for one user",
-      payload: workshop,
+      payload: workshop
     });
   } catch (err) {
     res.status(404).json({
       status: err,
       message: "There are no workshop found for the specified user",
-      payload: null,
+      payload: null
     });
   }
 };
@@ -51,12 +51,12 @@ const deleteWorkshop = async (req, res) => {
     await db.none("DELETE FROM createdWorkshops WHERE id = $1", req.params.id);
     res.status(200).json({
       status: "success",
-      message: "The workshop is deleted",
+      message: "The workshop is deleted"
     });
   } catch (err) {
     res.status(404).json({
       status: err,
-      message: "The workshop was not deleted",
+      message: "The workshop was not deleted"
     });
   }
 };
@@ -68,13 +68,13 @@ const searchWorkshop = async (req, res) => {
     res.status(200).json({
       status: "Success",
       message: "Found workshop",
-      payload: search,
+      payload: search
     });
   } catch (err) {
     res.status(404).json({
       status: err,
       message: "Could not find workshop",
-      payload: null,
+      payload: null
     });
   }
 };
@@ -84,13 +84,13 @@ const getAllWorkshops = async (req, res) => {
     res.status(200).json({
       status: "Success",
       message: "Found all workshop",
-      payload: search,
+      payload: search
     });
   } catch (err) {
     res.status(404).json({
       status: err,
       message: "Could not find all workshop",
-      payload: null,
+      payload: null
     });
   }
 };
@@ -102,13 +102,13 @@ const editWorkshop = async (req, res, next) => {
     res.status(200).json({
       status: "success",
       message: "workshop updated",
-      payload: update,
+      payload: update
     });
   } catch (error) {
     res.status(404).json({
       status: error,
       message: "could not be updated",
-      payload: null,
+      payload: null
     });
     next(error);
   }
@@ -130,7 +130,7 @@ const searchWorkshopByDate = async (req, res, next) => {
     res.status(200).json({
       status: "success",
       message: "retrieved all workshops from date",
-      payload: searchByDate,
+      payload: searchByDate
     });
   } catch (error) {}
 };
@@ -141,5 +141,5 @@ module.exports = {
   getAllWorkshops,
   editWorkshop,
   searchWorkshop,
-  searchWorkshopByDate,
+  searchWorkshopByDate
 };
