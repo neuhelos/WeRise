@@ -10,10 +10,10 @@
     "express": "^4.17.1",
     "pg-promise": "^10.5.8"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "devDependencies": {},
   "keywords": [],
   "author": "",
   "license": "ISC"
