@@ -5,7 +5,6 @@ import { signOut } from '../../Utilities/firebaseFunctions'
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Modal from '@material-ui/core/Modal'
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
@@ -17,6 +16,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip'
 
+import Modal from '../BaseComponents/Modal'
 import AddWorkshop from './AddWorkshop'
 import MobileNavMenu from './MobileNavMenu'
 
@@ -105,13 +105,13 @@ const NavBar = () => {
                   <Dashboard style={{ fontSize: 50 }} />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Instant Messaging">
+            {/* <Tooltip title="Instant Messaging">
               <IconButton className={classes.iconButton}  aria-label="show 4 new mails" color="inherit" onClick={navMessaging} >
                 <Badge badgeContent={4} color="secondary" classes={{ badge: classes.badges }}>
                   <MailIcon style={{ fontSize: 50 }} />
                 </Badge>
               </IconButton>
-            </Tooltip>
+            </Tooltip> */}
             {/* <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon style={{ fontSize: 60 }} />
@@ -123,7 +123,7 @@ const NavBar = () => {
               </IconButton>
             </Tooltip>
             <Tooltip title="Add Workshop">
-              <IconButton className={classes.iconButton}  edge="end" aria-label="Add Workshop" onClick={""} color="inherit" >
+              <IconButton className={classes.iconButton}  edge="end" aria-label="Add Workshop" onClick={toggleModal} color="inherit" >
                 <AddBoxIcon style={{ fontSize: 50 }} />
               </IconButton>
             </Tooltip>
