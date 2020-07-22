@@ -3,7 +3,7 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 
-import PublicNavBar from '../BaseComponents/PublicNavBar'
+import PublicNavBar from '../NavBar/PublicNavBar'
 
 
 const useStyles = makeStyles((theme) => ({

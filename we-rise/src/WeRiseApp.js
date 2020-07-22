@@ -6,7 +6,7 @@ import firebase from './Utilities/firebase'
 import { setCurrentUser } from './features/Authentication/AuthenticationSlice'
 import { getFirebaseIdToken } from './Utilities/firebaseFunctions'
 
-import AuthNavBar from './features/BaseComponents/AuthNavBar'
+import AuthNavBar from './features/NavBar/AuthNavBar'
 import LandingPage from './features/Pages/LandingPage'
 import CommunityDashboardPage from './features/Pages/CommunityDashboard'
 import UserProfilePage from './features/Pages/UserProfilePage'

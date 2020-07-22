@@ -13,11 +13,12 @@ const SignInModal = () => {
 
         try {
             await signIn(email, password)
-            // history.push("/loggedin/tweet")
+            history.push("/CommunityDashboard")
 
         }
         catch (err){
             console.log(err)
+            alert(err.message)
         }
     }
 
