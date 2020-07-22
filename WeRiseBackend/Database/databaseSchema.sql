@@ -79,3 +79,11 @@ VALUES
 ('2', '3', 'Intro to cardio', 'exercise', '08/12/2020', 400, 500, 'jpeg'),
 ('3', '1', 'Intro rollplay', 'acting', '11/12/2020', 800, 900, 'jpeg')
 ;
+
+INSERT INTO registeredWorkshops
+(user_id, workshop_id)
+VALUES
+('2', '3'),
+('3', '1'),
+('1', '2')
+;
