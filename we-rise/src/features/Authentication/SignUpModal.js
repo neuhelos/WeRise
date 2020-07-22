@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { signUp } from '../../Utilities/firebaseFunctions';
 import { storage } from '../../Utilities/firebase'
+import { useHistory} from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -13,7 +14,7 @@ const SignUpModal = () => {
     const [lastName, setLastName] = useState("")
     const [bio, setBio] = useState("")
     const [socialmedia, setSocailMedia] = useState("")
-    
+    const history = useHistory();
    
 
 
@@ -22,6 +23,7 @@ const SignUpModal = () => {
 
         try {
              await signUp(email, password);
+             history.push("/CommunityDashboard")
           //    let res =  await axios.post(`${API}/users`, {
           //     firstName: firstName,
           //     lastName: lastName,
@@ -35,6 +37,8 @@ const SignUpModal = () => {
         }
         catch (err){
             console.log(err)
+            alert(err.message)
+            return(<p>{err.message}</p>)
         }
     }
 
