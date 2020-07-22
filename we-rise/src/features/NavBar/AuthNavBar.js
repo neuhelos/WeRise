@@ -17,7 +17,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip'
 
-import PostWorkshop from '../PostWorkshop/PostWorkshop'
+import AddWorkshop from './AddWorkshop'
 import MobileNavMenu from './MobileNavMenu'
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +60,7 @@ const NavBar = () => {
 
   const classes = useStyles();
 
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const mobileMenuId = 'primary-menu-mobile';
   
   const handleMobileMenuClose = () => {
@@ -149,9 +149,8 @@ const NavBar = () => {
       <MobileNavMenu  mobileMenuId={mobileMenuId} mobileMoreAnchorEl={mobileMoreAnchorEl} handleMobileMenuClose={handleMobileMenuClose}/>
     
       <Modal open={open} toggleModal={toggleModal}>
-        <PostWorkshop handleCloseModal={toggleModal} />
+        <AddWorkshop handleCloseModal={toggleModal} />
       </Modal>
-
 
     </>
   );
