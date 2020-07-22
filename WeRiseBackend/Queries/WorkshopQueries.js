@@ -2,13 +2,22 @@ const db = require("../Database/database");
 const createWorkshop = async (req, res) => {
   try {
     let newWorkshop = await db.one(
-      "INSERT INTO pictures (picture, user_id) VALUES($1, $2) RETURNING id",
-      [req.body.image, req.params.id]
+      "INSERT INTO createdWorkshops (id, user_id, title, descriptions, date, starTime, endTime, workshop_image) VALUES(${id},${user_id},${title},${descriptions},${date},${startTime},${endTime},${workshop_image}) RETURNING * ",
+      [
+        req.body.id,
+        req.body.user_id,
+        req.body.title,
+        req.body.description,
+        req.body.date,
+        req.body.startTime,
+        req.body.endTime,
+        req.body.workshop_image
+      ]
     );
     res.status(200).json({
       status: "success",
       message: "A new workshop was created",
-      payload: newWorkshop,
+      payload: newWorkshop
     });
   } catch (err) {
     res.status(404).json({
@@ -21,92 +30,92 @@ const createWorkshop = async (req, res) => {
 const getWorkshop = async (req, res, next) => {
   try {
     let workshop = await db.any(
-      "SELECT p.id, p.picture, COUNT(v.picture_id) AS total_votes FROM pictures p JOIN users u ON u.id = p.user_id JOIN votes v ON v.picture_id = p.id GROUP BY p.picture, p.id, u.id HAVING u.id = $1",
-      req.params.id
+      "SELECT * FROM createdWorkshop WHERE id =$1",
+      [req.params.id]
     );
     res.status(200).json({
       status: "success",
       message: "All workshops for one user",
-      payload: workshop,
+      payload: workshop
     });
   } catch (err) {
     res.status(404).json({
       status: err,
       message: "There are no workshop found for the specified user",
-      payload: null,
+      payload: null
     });
   }
 };
 const deleteWorkshop = async (req, res) => {
   try {
-    await db.none("DELETE FROM users WHERE id = $1", req.params.id);
+    await db.none(`DELETE FROM createdWorkshop WHERE id = ${req.params.id} RETURNING *`);
     res.status(200).json({
       status: "success",
-      message: "The workshop is deleted",
+      message: "The workshop is deleted"
     });
   } catch (err) {
     res.status(404).json({
       status: err,
-      message: "The workshop was not deleted",
+      message: "The workshop was not deleted"
     });
   }
 };
 const searchWorkshop = async (req, res) => {
   try {
-    let search = await db.any("SELECT body FROM description WHERE body LIKE $1");
+    let search = await db.any(
+      "SELECT title FROM createdWorkshops WHERE title LIKE $1"
+    );
     res.status(200).json({
       status: "Success",
       message: "Found workshop",
-      payload: search,
+      payload: search
     });
   } catch (err) {
     res.status(404).json({
       status: err,
       message: "Could not find workshop",
-      payload: null,
+      payload: null
     });
   }
 };
 const getAllWorkshops = async (req, res) => {
   try {
-    let search = await db.any("SELECT *");
+    let search = await db.any("SELECT * from createdWorkshops");
     res.status(200).json({
       status: "Success",
       message: "Found all workshop",
-      payload: search,
+      payload: search
     });
   } catch (err) {
     res.status(404).json({
       status: err,
       message: "Could not find all workshop",
-      payload: null,
+      payload: null
     });
   }
 };
-const editWorkshop=async(req, res,next)=>{
+const editWorkshop = async (req, res, next) => {
   try {
     let update = await db.one(
       `UPDATE createdWorkshops SET date= '${req.body.date}', startTime=${req.body.startTime}', endTime = ${req.body.endTime}' WHERE id=${req.params.id} RETURNING *  `
-    
-      );
-      res.status(200).json({
-        status: 'success',
-        message: 'workshop updated',
-        payload: update
-      })
-    
+    );
+    res.status(200).json({
+      status: "success",
+      message: "workshop updated",
+      payload: update
+    });
   } catch (error) {
     res.status(404).json({
       status: error,
-      message: 'could not be updated',
-      payload: null,
-    })
-    next(error)
+      message: "could not be updated",
+      payload: null
+    });
+    next(error);
   }
-}
-const searchWorkshopByDate = async(req, res, next)=>{
+};
+const searchWorkshopByDate = async (req, res, next) => {
   try {
-    let searchByDate= await db.any(
+    let searchByDate = await db.any(
       `SELECT DISTINCT date,
       ARRAY_AGG(createdWorkshops.id) AS id,
       ARRAY_AGG(createdWorkshops.user_id) AS user_id,
@@ -119,15 +128,12 @@ const searchWorkshopByDate = async(req, res, next)=>{
       `
     );
     res.status(200).json({
-      status: 'success',
-      message: 'retrieved all workshops from date',
-      payload:  searchByDate
-    })
-    
-  } catch (error) {
-    
-  }
-}
+      status: "success",
+      message: "retrieved all workshops from date",
+      payload: searchByDate
+    });
+  } catch (error) {}
+};
 module.exports = {
   createWorkshop,
   getWorkshop,

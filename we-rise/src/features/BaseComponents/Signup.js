@@ -16,6 +16,7 @@ const Signup = () => {
 
         try {
              await signup(email, password);
+             
         }
         catch (err){
             console.log(err)
