@@ -2,8 +2,8 @@ const db = require("../Database/database");
 const createWorkshop = async (req, res) => {
   try {
     let newWorkshop = await db.one(
-      "INSERT INTO pictures (picture, user_id) VALUES($1, $2) RETURNING id",
-      [req.body.image, req.params.id]
+      "INSERT INTO createdWorkshops (id, user_id, title, descriptions, date, starTime, endTime, workshop_image) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING * ",
+      [req.body.id, req.body.user_id, req.body.title, req.body.description, req.body.date, req.body.startTime, req.body.endTime, req.body.workshop_image]
     );
     res.status(200).json({
       status: "success",
@@ -21,7 +21,7 @@ const createWorkshop = async (req, res) => {
 const getWorkshop = async (req, res, next) => {
   try {
     let workshop = await db.any(
-      "SELECT p.id, p.picture, COUNT(v.picture_id) AS total_votes FROM pictures p JOIN users u ON u.id = p.user_id JOIN votes v ON v.picture_id = p.id GROUP BY p.picture, p.id, u.id HAVING u.id = $1",
+      "SELECT * FROM createdWorkshops WHERE id=$1 ",
       req.params.id
     );
     res.status(200).json({
@@ -39,7 +39,7 @@ const getWorkshop = async (req, res, next) => {
 };
 const deleteWorkshop = async (req, res) => {
   try {
-    await db.none("DELETE FROM users WHERE id = $1", req.params.id);
+    await db.none("DELETE FROM createdWorkshops WHERE id = $1", req.params.id);
     res.status(200).json({
       status: "success",
       message: "The workshop is deleted",
@@ -53,7 +53,7 @@ const deleteWorkshop = async (req, res) => {
 };
 const searchWorkshop = async (req, res) => {
   try {
-    let search = await db.any("SELECT body FROM description WHERE body LIKE $1");
+    let search = await db.any("SELECT title FROM createdWorkshops WHERE title LIKE $1");
     res.status(200).json({
       status: "Success",
       message: "Found workshop",
@@ -69,7 +69,7 @@ const searchWorkshop = async (req, res) => {
 };
 const getAllWorkshops = async (req, res) => {
   try {
-    let search = await db.any("SELECT *");
+    let search = await db.any("SELECT * from createdWorkshops");
     res.status(200).json({
       status: "Success",
       message: "Found all workshop",

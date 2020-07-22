@@ -4,7 +4,7 @@ const createUser = async (req, res, next) => {
   try {
       let newUser = await db.one(
           'INSERT INTO users(firstName, lastName, password, email, user_pic, bio, instagram, facebook, twitter, linkedIn) VALUES(${firstName}${lastName}${password}${email}${user_pic}${bio}${instagram}${facebook}${twitter}${linkedIn}) RETURNING *',
-         req.body 
+         [req.body.firstName, req.body.lastName, req.body.password, req.body.email, req.body.user_pic ]
       );
       res.status(200).json({
           status: 'success',
@@ -35,9 +35,9 @@ const deleteUser = async (req, res, next) => {
 };
 const getUser = async (req, res, next) => {
   try {
-    let user = await db.one(
-      "SELECT  * FROM users WHERE firstName =$1 ",
-      req.params.firstName
+    let user = await db.any(
+      "SELECT  * FROM users WHERE id =$1 ",
+      req.params.id
     );
     res.status(200).json({
       status: "success",
