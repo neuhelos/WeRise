@@ -68,9 +68,25 @@ const getUser = async (req, res) => {
     });
   }
 };
-
+const getAllUsers = async (req, res) => {
+  try {
+    let search = await db.any("SELECT * from users");
+    res.status(200).json({
+      status: "Success",
+      message: "Found all users",
+      payload: search
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: err,
+      message: "Could not find all users",
+      payload: null
+    });
+  }
+};
 module.exports = {
   createUser,
   deleteUser,
-  getUser
+  getUser,
+  getAllUsers
 };
