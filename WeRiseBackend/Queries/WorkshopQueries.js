@@ -30,8 +30,8 @@ const createWorkshop = async (req, res) => {
 const getWorkshop = async (req, res, next) => {
   try {
     let workshop = await db.any(
-      "SELECT * FROM createdWorkshops WHERE id=$1 ",
-      req.params.id
+      "SELECT * FROM createdWorkshop WHERE id =$1",
+      [req.params.id]
     );
     res.status(200).json({
       status: "success",
@@ -48,7 +48,7 @@ const getWorkshop = async (req, res, next) => {
 };
 const deleteWorkshop = async (req, res) => {
   try {
-    await db.none("DELETE FROM createdWorkshops WHERE id = $1", req.params.id);
+    await db.none(`DELETE FROM createdWorkshop WHERE id = ${req.params.id} RETURNING *`);
     res.status(200).json({
       status: "success",
       message: "The workshop is deleted"

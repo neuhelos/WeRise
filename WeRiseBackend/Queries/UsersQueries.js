@@ -1,6 +1,6 @@
 const db = require("../Database/database");
 
-const createUser = async (req, res, next) => {
+const createUser = async (req, res) => {
   try {
     let newUser = await db.one(
       'INSERT INTO users(id, firstName, lastName, password, email, user_pic, bio, instagram, facebook, twitter, linkedIn) VALUES(${firstName}${lastName}${password}${email}${user_pic}${bio}${instagram}${facebook}${twitter}${linkedIn}) RETURNING *',
@@ -34,9 +34,9 @@ const createUser = async (req, res, next) => {
     });
   }
 };
-const deleteUser = async (req, res, next) => {
+const deleteUser = async (req, res) => {
   try {
-    await db.none('DELETE FROM  users WHERE id = $1', req.params.id);
+    await db.none(`DELETE FROM users WHERE id = ${req.params.id} RETURNING *`);
     res.status(200).json({
       status: "success",
       message: "user deleted"
@@ -48,11 +48,12 @@ const deleteUser = async (req, res, next) => {
     });
   }
 };
-const getUser = async (req, res, next) => {
+const getUser = async (req, res) => {
   try {
     let user = await db.any(
-      'SELECT  * FROM users WHERE id =$1 ',
-      req.params.id
+      "SELECT * FROM users WHERE id =$1", [
+        req.params.id,
+      ]
     );
     res.status(200).json({
       status: "success",
