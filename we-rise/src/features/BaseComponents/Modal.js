@@ -12,10 +12,14 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
     },
     paper: {
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: '#F5F5F5',
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        padding: theme.spacing(3),
         outlineColor: '#36386D',
+        width: '50%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 }));
 

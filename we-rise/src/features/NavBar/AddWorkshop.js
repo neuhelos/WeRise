@@ -14,15 +14,21 @@ import { useInput, useSelect } from '../../Utilities/CustomHookery'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    '& > * + *': {
-      marginTop: theme.spacing(3),
+        '& * + *': {
+            marginTop: theme.spacing(1)
+        },
+        width: '100%',
+        '& *': {
+            fontFamily: 'audiowide'
+        }
     },
+    input: {
+        width: '100%',
     },
-  }));
+    dateTimePicker : {
+        width: '100%',
+    }
+}));
 
 
 const AddWorkshop = () => {
@@ -46,15 +52,15 @@ const AddWorkshop = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <Grid container display="flex" direction="row" justify="center" alignItems="center" maxWidth="sm">
-                <TextField id="filled-basic" label="Workshop Title" variant="filled" {...title}/>
+        <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
+            <form onSubmit={handleSubmit}>
+                <TextField className={classes.input} id="filled-basic" label="Workshop Title" variant="filled" {...title}/>
                 <CategoryDropdown category={category}/>
-                <TextField id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
+                <TextField className={classes.input} id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
                 <MuiPickersUtilsProvider utils={LuxonUtils}>
-                    <DateTimePicker value={selectedDate} disablePast onChange={handleDateChange} label="Date and Start Time"/>
+                    <DateTimePicker className={classes.dateTimePicker} value={selectedDate} disablePast onChange={handleDateChange} label="Workshop Date and Start Time"/>
                 </MuiPickersUtilsProvider>
-                <Autocomplete multiple id="tags-filled" options={[]} defaultValue={""} freeSolo
+                <Autocomplete className={classes.input} multiple id="tags-filled" options={[]} defaultValue={""} freeSolo
                     onChange={handleSkillsTagsChange}
                     renderTags={(value, getTagProps) =>
                         value.map((option, index) => (
@@ -66,8 +72,8 @@ const AddWorkshop = () => {
                     )}
                 />
                 <Button variant="contained" color="primary"> SUBMIT </Button>
-            </Grid>
-        </form>
+            </form>
+        </Grid>
     )
 }
 

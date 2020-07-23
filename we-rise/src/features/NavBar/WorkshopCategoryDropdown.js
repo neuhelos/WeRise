@@ -9,8 +9,7 @@ import { useSelect } from '../../Utilities/CustomHookery'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+    width: '100%',
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -33,7 +32,7 @@ const CategoryDropdown = ({category}) => {
     return (
 
         <FormControl variant="filled" className={classes.formControl}>
-        <InputLabel id="select-filled-label">Category</InputLabel>
+        <InputLabel id="select-filled-label">Workshop Category</InputLabel>
         <Select labelId="select-filled-label" id="select-filled" {...category} >
             <MenuItem value=""><em>Select a Category</em></MenuItem>
             <MenuItem value={"Cooking&Baking"}>Cooking & Baking</MenuItem>
