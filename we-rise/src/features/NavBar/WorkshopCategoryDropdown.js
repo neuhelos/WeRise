@@ -33,7 +33,7 @@ const CategoryDropdown = () => {
             {...select}
         >
             <MenuItem value="">
-            <em>None</em>
+            <em>Select Category</em>
             </MenuItem>
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
