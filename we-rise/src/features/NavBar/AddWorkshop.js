@@ -36,7 +36,11 @@ const AddWorkshop = () => {
 
 
     const [selectedDate, handleDateChange] = useState(new Date());
+    const [skills, setSkills] = useState([])
 
+    const handleSkillsTagsChange = (event, values) => {
+        setSkills(values)
+    }
 
     return (
         <Grid container maxWidth="sm">
@@ -46,7 +50,8 @@ const AddWorkshop = () => {
             <MuiPickersUtilsProvider utils={LuxonUtils}>
                 <DateTimePicker value={selectedDate} disablePast onChange={handleDateChange} label="Date and Start Time"/>
             </MuiPickersUtilsProvider>
-            <Autocomplete multiple id="tags-filled" options={""} defaultValue={""} freeSolo
+            <Autocomplete multiple id="tags-filled" options={[]} defaultValue={""} freeSolo
+                onChange={handleSkillsTagsChange}
                 renderTags={(value, getTagProps) =>
                     value.map((option, index) => (
                         <Chip variant="outlined" label={option} {...getTagProps({ index })} />
