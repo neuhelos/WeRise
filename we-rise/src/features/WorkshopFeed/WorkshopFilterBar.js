@@ -34,7 +34,9 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'audiowide',
     },
     button: {
-        fontFamily: 'audiowide'
+        fontFamily: 'audiowide',
+        width: '50%',
+        height: '3rem'
     },
     formControl: {
         margin: theme.spacing(1),
@@ -42,10 +44,15 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 300,
         backgroundColor: '#F5F5F5',
         borderRadius: '2px',
+        width: '50%'
     },
     select: {
-        textAlign: 'left',
         fontFamily: 'audiowide',
+    },
+    inputLabel: {
+        width: '100%',
+        fontFamily: 'audiowide',
+        textAlign: 'center'
     }
 }))
 
@@ -75,10 +82,10 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
     return (
         <>
 
-        <Grid>
-            <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal}> Select Date Range </Button>
+        <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
+            <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal} size='large'> Select Date Range </Button>
             <FormControl className={classes.formControl}>
-                <InputLabel className={classes.select} id="multiple-select-label">Filter Categories</InputLabel>
+                <InputLabel className={classes.inputLabel} id="multiple-select-label">Filter Categories</InputLabel>
                 <Select
                 className={classes.select}
                 labelId="multiple-select"
@@ -86,7 +93,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 multiple
                 value={selectCategories}
                 onChange={handleSelectChange}
-                input={<Input />}
+                input={<Input style={{textAlign: 'center' }}/>}
                 renderValue={(selected) => selected.length > 1 ? "Multiple Categories" : selected[0]}
                 MenuProps={MenuProps}
                 >

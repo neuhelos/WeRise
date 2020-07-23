@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         justify: 'center'
     },
     paper: {
-        width: '75%',
+        width: '90%',
         padding: theme.spacing(1),
         backgroundColor: '#282828',
         color: 'white'
