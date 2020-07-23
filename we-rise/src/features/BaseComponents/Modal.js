@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const WeRiseModal = ( {children, open, toggleModal} ) => {
+const WeRiseModal = ( {children, open, toggleModal, ...props} ) => {
     const classes = useStyles();
     
     return (

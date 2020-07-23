@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 
+import { makeStyles } from '@material-ui/core/styles'
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'
-import { makeStyles } from '@material-ui/core/styles'
 
 import { DateRange } from 'react-date-range';
 import Grid from '@material-ui/core/Grid'
@@ -19,21 +19,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const WorkshopFilterBar = () => {
+const WorkshopFilterBar = ({dateRange, handleDateChange}) => {
     
+    const handleChange = handleDateChange
+
+ 
     const classes = useStyles()
-
-    const [dateRange, setDateRange] = useState([
-        {
-        startDate: new Date(),
-        endDate: null,
-        key: 'selection'
-        }
-    ]);
-
-    const handleDateChange = (item) => {
-        setDateRange([item.selection])
-    }
 
     const [open , setOpen] = useState(false)
     const toggleModal = () => {
@@ -50,7 +41,7 @@ const WorkshopFilterBar = () => {
         <Modal open={open} toggleModal={toggleModal}>
             <DateRange
                 editableDateInputs={true}
-                onChange={handleDateChange}
+                onChange={handleChange}
                 moveRangeOnFirstSelection={false}
                 ranges={dateRange}
                 handleCloseModal={toggleModal}

@@ -5,8 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
 import WorkshopFeed from '../WorkshopFeed/WorkshopFeed'
-import WorkshopSearchBar from '../WorkshopFeed/WorkshopSearchBar'
-import WorkshopFilterBar from '../WorkshopFeed/WorkshopFilterBar'
+import WorkshopFeedSearchForm from '../WorkshopFeed/WorkshopFeedSearchForm'
 
 import UserWorkshopAgenda from '../UserWorkshopsAgenda/UserWorkshopsAgenda'
 import RecentlyPostedWorkshops from '../RecentlyPostedWorkshops/RecentlyPostedWorkshops'
@@ -41,12 +40,7 @@ const CommunityDashboard = () => {
             <Grid container item className={classes.container} direction="column" justify="start" alignItems="center" spacing={4} xs={7}>
                 <Grid container item className={classes.gridItem} justify="center" >
                     <Paper className={classes.paper}>
-                        <WorkshopSearchBar />
-                    </Paper>
-                </Grid>
-                <Grid container item className={classes.gridItem} justify="center" >
-                    <Paper className={classes.paper}>
-                        <WorkshopFilterBar />
+                        <WorkshopFeedSearchForm />
                     </Paper>
                 </Grid>
                 <Grid container item className={classes.gridItem} justify="center" >
