@@ -21,6 +21,11 @@ const CategoryDropdown = ({category}) => {
     
     const classes = useStyles();
 
+    const categoriesList = categories.map( category => {
+      return <MenuItem value={category.value}>{category.name}</MenuItem>
+    })
+
+
     return (
 
         <FormControl variant="filled" className={classes.formControl}>
@@ -30,6 +35,7 @@ const CategoryDropdown = ({category}) => {
             <MenuItem value={"Cooking&Baking"}>Cooking & Baking</MenuItem>
             <MenuItem value={"Coding&Programming"}>Coding & Programming</MenuItem>
             <MenuItem value={"Home Improvement"}>Home Improvement</MenuItem>
+            {categoriesList}
         </Select>
         </FormControl>
     )
