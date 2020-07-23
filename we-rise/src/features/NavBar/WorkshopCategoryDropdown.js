@@ -25,17 +25,11 @@ const CategoryDropdown = ({category}) => {
 
         <FormControl variant="filled" className={classes.formControl}>
         <InputLabel id="select-filled-label">Category</InputLabel>
-        <Select
-            labelId="select-filled-label"
-            id="select-filled"
-            {...category}
-        >
-            <MenuItem value="">
-            <em>Select Category</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+        <Select labelId="select-filled-label" id="select-filled" {...category} >
+            <MenuItem value=""><em>Select a Category</em></MenuItem>
+            <MenuItem value={"Cooking&Baking"}>Cooking & Baking</MenuItem>
+            <MenuItem value={"Coding&Programming"}>Coding & Programming</MenuItem>
+            <MenuItem value={"Home Improvement"}>Home Improvement</MenuItem>
         </Select>
         </FormControl>
     )

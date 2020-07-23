@@ -41,23 +41,25 @@ const AddWorkshop = () => {
 
     return (
         <Grid container maxWidth="sm">
-            <TextField id="filled-basic" label="Workshop Title" variant="filled" {...title}/>
-            <CategoryDropdown category={category}/>
-            <TextField id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
-            <MuiPickersUtilsProvider utils={LuxonUtils}>
-                <DateTimePicker value={selectedDate} disablePast onChange={handleDateChange} label="Date and Start Time"/>
-            </MuiPickersUtilsProvider>
-            <Autocomplete multiple id="tags-filled" options={[]} defaultValue={""} freeSolo
-                onChange={handleSkillsTagsChange}
-                renderTags={(value, getTagProps) =>
-                    value.map((option, index) => (
-                        <Chip variant="outlined" label={option} {...getTagProps({ index })} />
-                    ))
-                }
-                renderInput={(params) => (
-                <TextField {...params} variant="filled" label="freeSolo" placeholder="Favorites" />
-                )}
-            />
+            <form onSubmit={handleSubmit}>
+                <TextField id="filled-basic" label="Workshop Title" variant="filled" {...title}/>
+                <CategoryDropdown category={category}/>
+                <TextField id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
+                <MuiPickersUtilsProvider utils={LuxonUtils}>
+                    <DateTimePicker value={selectedDate} disablePast onChange={handleDateChange} label="Date and Start Time"/>
+                </MuiPickersUtilsProvider>
+                <Autocomplete multiple id="tags-filled" options={[]} defaultValue={""} freeSolo
+                    onChange={handleSkillsTagsChange}
+                    renderTags={(value, getTagProps) =>
+                        value.map((option, index) => (
+                            <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                        ))
+                    }
+                    renderInput={(params) => (
+                    <TextField {...params} variant="filled" label="freeSolo" placeholder="Favorites" />
+                    )}
+                />
+            </form>
         </Grid>
     )
 }
