@@ -20,7 +20,9 @@ const WorkshopFeedSearchForm = () => {
     const handleDateChange = (item) => {
         setDateRange([item.selection])
     }
+    
 
+    debugger
     const [selectCategories, setSelectCategories] = useState([]);
     const handleSelectChange = (event) => {
         setSelectCategories(event.target.value);
@@ -38,6 +40,7 @@ const WorkshopFeedSearchForm = () => {
         <form onSubmit={handleSubmit}>
             <SearchBar searchQuery={searchQuery} />
             <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange}/>
+            
         </form>
     )
 }

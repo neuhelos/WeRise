@@ -9,6 +9,7 @@ import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
 
+import Dropzone from '../BaseComponents/FileDropzone'
 import CategoryDropdown from './WorkshopCategoryDropdown'
 import { useInput, useSelect } from '../../Utilities/CustomHookery'
 
@@ -71,6 +72,7 @@ const AddWorkshop = () => {
                     <TextField {...params} variant="filled" label="Workshop Skills" placeholder="Enter Skills Taught" />
                     )}
                 />
+                <Dropzone />
                 <Button variant="contained" color="primary"> SUBMIT </Button>
             </form>
         </Grid>
