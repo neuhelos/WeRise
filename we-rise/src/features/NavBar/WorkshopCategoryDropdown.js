@@ -17,11 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CategoryDropdown = () => {
+const CategoryDropdown = ({category}) => {
     
     const classes = useStyles();
-
-    const select = useSelect("")
 
     return (
 
@@ -30,7 +28,7 @@ const CategoryDropdown = () => {
         <Select
             labelId="select-filled-label"
             id="select-filled"
-            {...select}
+            {...category}
         >
             <MenuItem value="">
             <em>Select Category</em>

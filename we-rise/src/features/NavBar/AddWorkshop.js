@@ -28,12 +28,9 @@ const AddWorkshop = () => {
 
     const classes = useStyles();
 
-    const [value, setValue] = React.useState('Controlled');
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
+    const title = useInput("")
+    const description = useInput("")
+    const category = useSelect("")
 
     const [selectedDate, handleDateChange] = useState(new Date());
     const [skills, setSkills] = useState([])
@@ -44,9 +41,9 @@ const AddWorkshop = () => {
 
     return (
         <Grid container maxWidth="sm">
-            <TextField id="filled-basic" label="Workshop Title" variant="filled" />
-            <CategoryDropdown />
-            <TextField id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" />
+            <TextField id="filled-basic" label="Workshop Title" variant="filled" {...title}/>
+            <CategoryDropdown category={category}/>
+            <TextField id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
             <MuiPickersUtilsProvider utils={LuxonUtils}>
                 <DateTimePicker value={selectedDate} disablePast onChange={handleDateChange} label="Date and Start Time"/>
             </MuiPickersUtilsProvider>
