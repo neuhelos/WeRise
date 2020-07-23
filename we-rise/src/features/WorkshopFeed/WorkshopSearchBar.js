@@ -20,7 +20,7 @@ const useStyles = makeStyles( (theme) => ({
     }
 }))
 
-const WorkshopSearchBar = () => {
+const WorkshopSearchBar = ({searchQuery}) => {
 
     const classes = useStyles()
 
@@ -38,6 +38,7 @@ const WorkshopSearchBar = () => {
                 <SearchIcon />
                 </InputAdornment>
             }
+            {...searchQuery}
             />
         </FormControl>
     )
