@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Button from '@material-ui/core/Button';
 
 import CategoryDropdown from './WorkshopCategoryDropdown'
 import { useInput, useSelect } from '../../Utilities/CustomHookery'
@@ -39,9 +40,14 @@ const AddWorkshop = () => {
         setSkills(values)
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault()
+
+    }
+
     return (
-        <Grid container maxWidth="sm">
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+            <Grid container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
                 <TextField id="filled-basic" label="Workshop Title" variant="filled" {...title}/>
                 <CategoryDropdown category={category}/>
                 <TextField id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
@@ -56,11 +62,12 @@ const AddWorkshop = () => {
                         ))
                     }
                     renderInput={(params) => (
-                    <TextField {...params} variant="filled" label="freeSolo" placeholder="Favorites" />
+                    <TextField {...params} variant="filled" label="Workshop Skills" placeholder="Enter Skills Taught" />
                     )}
                 />
-            </form>
-        </Grid>
+                <Button variant="contained" color="primary"> SUBMIT </Button>
+            </Grid>
+        </form>
     )
 }
 

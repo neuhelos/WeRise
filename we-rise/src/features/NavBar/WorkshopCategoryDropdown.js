@@ -17,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const categories = [
+  {name: "", value: ""}
+]
+
 const CategoryDropdown = ({category}) => {
     
     const classes = useStyles();

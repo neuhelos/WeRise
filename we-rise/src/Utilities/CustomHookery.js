@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
-export const useInput = (initialValue, validationType) => {
+export const useInput = (initialValue) => {
     const [value, setValue] = useState(initialValue)
 
     const handleChange = (event) => {
@@ -12,7 +12,7 @@ export const useInput = (initialValue, validationType) => {
         setValue("")
     }
 
-    return {value, validationType: validationType, onChange: handleChange, clearinput}
+    return {value, onChange: handleChange, clearinput}
 }
 
 export const useSelect = (initialValue) => {
