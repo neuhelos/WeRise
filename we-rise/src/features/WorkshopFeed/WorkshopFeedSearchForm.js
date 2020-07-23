@@ -21,14 +21,23 @@ const WorkshopFeedSearchForm = () => {
         setDateRange([item.selection])
     }
 
+    const [selectCategories, setSelectCategories] = useState([]);
+    const handleSelectChange = (event) => {
+        setSelectCategories(event.target.value);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault()
+        // searchQuery
+        // dateRange
+        // selectCategories
+        
     }
     
     return (
         <form onSubmit={handleSubmit}>
             <SearchBar searchQuery={searchQuery} />
-            <FilterBar dateRange={dateRange} handleDateChange={handleDateChange}/>
+            <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange}/>
         </form>
     )
 }
