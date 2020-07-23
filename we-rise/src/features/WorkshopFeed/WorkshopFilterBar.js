@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 
-import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'
@@ -58,16 +57,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
+    'Workshop1',
+    'Workshop2',
+    'Workshop3',
+    'Workshop4'
   ];
 
 const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange}) => {
@@ -78,12 +71,22 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
     const toggleModal = () => {
         setOpen(!open)
     }
-    
+
+    const dateConverter = (date) => {
+        let day = date.getDate()
+        let month = date.getMonth()
+        let year = date.getFullYear()
+        return `${month}-${day}-${year}`
+    }
+
+    const buttonDateRangeLabel = !dateRange[0].endDate ? 
+        "Select Date Range" : `${dateConverter(dateRange[0].startDate)} thru ${dateConverter(dateRange[0].endDate)}`
+
     return (
         <>
 
         <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
-            <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal} size='large'> Select Date Range </Button>
+            <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal} size='small'>{buttonDateRangeLabel}</Button>
             <FormControl className={classes.formControl}>
                 <InputLabel className={classes.inputLabel} id="multiple-select-label">Filter Categories</InputLabel>
                 <Select
