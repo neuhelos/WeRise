@@ -47,7 +47,7 @@ const AddWorkshop = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <Grid container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
+            <Grid container display="flex" direction="row" justify="center" alignItems="center" maxWidth="sm">
                 <TextField id="filled-basic" label="Workshop Title" variant="filled" {...title}/>
                 <CategoryDropdown category={category}/>
                 <TextField id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
