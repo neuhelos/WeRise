@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
 import { DateTimePicker } from "@material-ui/pickers";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import LuxonUtils from '@date-io/luxon'
@@ -13,6 +15,7 @@ import Typography from '@material-ui/core/Typography'
 import Dropzone from '../BaseComponents/FileDropzone'
 import CategoryDropdown from './WorkshopCategoryDropdown'
 import { useInput, useSelect } from '../../Utilities/CustomHookery'
+import { apiURL } from '../../Utilities/apiURL'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,6 +41,8 @@ const AddWorkshop = () => {
 
     const classes = useStyles();
 
+    const currentUser = useSelector( state => state.currentUserSession )
+
     const title = useInput("")
     const description = useInput("")
     const category = useSelect("")
@@ -55,15 +60,17 @@ const AddWorkshop = () => {
         setWorkshopImage(imageFile)
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        // title.value
-        // description.value
-        // category.value
-        // workshopImage
-        // skills.forEach
-        // selectedDate - date and time
-
+        let res = await axios.post(`${apiURL}/workshops`, {
+            user_id: currentUser.uid,
+            title: title.value,
+            description: title.value,
+            date: selectedDate,
+            startTime: selectedDate.getTime(),
+            endTime: null,
+            workshop_image: 'url'
+        })
     }
 
     return (

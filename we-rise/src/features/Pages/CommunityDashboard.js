@@ -13,6 +13,10 @@ import RecentlyPostedWorkshops from '../RecentlyPostedWorkshops/RecentlyPostedWo
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
+            flexWrap: 'nowrap'
+        }
     },
     container: {
         height: '100%',
@@ -37,7 +41,7 @@ const CommunityDashboard = () => {
 
     return (
         <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
-            <Grid container item className={classes.container} direction="column" justify="start" alignItems="center" spacing={4} xs={7}>
+            <Grid container item className={classes.container} direction="column" justify="start" alignItems="center" spacing={4} sm={12} md={7}>
                 <Grid container item className={classes.gridItem} justify="center" >
                     <Paper className={classes.paper}>
                         <WorkshopFeedSearchForm />
@@ -49,7 +53,7 @@ const CommunityDashboard = () => {
                     </Paper>
                 </Grid>
             </Grid>
-            <Grid container className={classes.container} item direction="column" justify="start" alignItems="center" spacing={4} xs={5}>
+            <Grid container className={classes.container} item direction="column" justify="start" alignItems="center" spacing={4} sm={12} md={5}>
                 <Grid container item className={classes.gridItem} justify="center" >
                     <Paper className={classes.paper}>
                         <UserWorkshopAgenda />
