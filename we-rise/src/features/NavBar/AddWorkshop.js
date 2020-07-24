@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography'
 
 import Dropzone from '../BaseComponents/FileDropzone'
 import CategoryDropdown from './WorkshopCategoryDropdown'
@@ -20,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
         },
         width: '100%',
         '& *': {
-            fontFamily: 'audiowide'
+            fontFamily: 'audiowide',
+            textAlign: 'center'
         }
     },
     input: {
@@ -67,7 +69,8 @@ const AddWorkshop = () => {
     return (
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
             <form onSubmit={handleSubmit}>
-                <TextField className={classes.input} id="filled-basic" label="Workshop Title" variant="filled" {...title}/>
+                <Typography variant="h4">Create Your Workshop</Typography>
+                <TextField className={classes.input} id="filled-basic" label="Workshop Title" placeholder="Enter Workshop Title" variant="filled" {...title}/>
                 <CategoryDropdown category={category}/>
                 <TextField className={classes.input} id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
                 <MuiPickersUtilsProvider utils={LuxonUtils}>
@@ -81,7 +84,7 @@ const AddWorkshop = () => {
                         ))
                     }
                     renderInput={(params) => (
-                    <TextField {...params} variant="filled" label="Workshop Skills" placeholder="Enter Skills Taught" />
+                    <TextField {...params} variant="filled" label="Workshop Skills" placeholder="Enter One or More Skills & Press Enter" />
                     )}
                 />
                 <Dropzone handleImageChange={handleImageChange} />
