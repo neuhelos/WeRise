@@ -18,6 +18,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import { categories } from '../BaseComponents/WorkshopCategories'
 
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {

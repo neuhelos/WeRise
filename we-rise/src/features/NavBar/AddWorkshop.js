@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const AddWorkshop = () => {
+const AddWorkshop = ({handleCloseModal}) => {
 
     const classes = useStyles();
 
@@ -62,6 +62,7 @@ const AddWorkshop = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        handleCloseModal()
         let res = await axios.post(`${apiURL}/workshops`, {
             user_id: currentUser.uid,
             title: title.value,
@@ -76,7 +77,7 @@ const AddWorkshop = () => {
     return (
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
             <form onSubmit={handleSubmit}>
-                <Typography variant="h4">Create Your Workshop</Typography>
+                <Typography variant="h6">Create Your Workshop</Typography>
                 <TextField className={classes.input} id="filled-basic" label="Workshop Title" placeholder="Enter Workshop Title" variant="filled" {...title}/>
                 <CategoryDropdown category={category}/>
                 <TextField className={classes.input} id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
@@ -95,7 +96,7 @@ const AddWorkshop = () => {
                     )}
                 />
                 <Dropzone handleImageChange={handleImageChange} />
-                <Button variant="contained" color="primary"> SUBMIT </Button>
+                <Button variant="contained" color="primary" type="submit"> SUBMIT </Button>
             </form>
         </Grid>
     )
