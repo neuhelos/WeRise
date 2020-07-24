@@ -1,11 +1,11 @@
 export const categories = [
     "Art & Design",
-    "Arts & Crafts"
+    "Arts & Crafts",
     "Business & Finance",
     "Beauty & Fashion",
     "Community Organizing & Activism",
-    "Creative Writing & Literature"
-    "Dance & Music"
+    "Creative Writing & Literature",
+    "Dance & Music",
     "Engineering (Auto, Robotics, etc)",
     "Family, Parenting & Relationships",
     "Film, Photography & Theatre",
