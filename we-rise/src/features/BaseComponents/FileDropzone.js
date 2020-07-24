@@ -1,25 +1,19 @@
 import React, {Component} from 'react'
-import {DropzoneAreaBase} from 'material-ui-dropzone'
+import { DropzoneArea } from 'material-ui-dropzone'
 
-class Dropzone extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      files: []
-    };
-  }
-  handleChange(files){
-    this.setState({
-      files: files
-    });
-  }
-  render(){
+
+const Dropzone = ({handleImageChange}) => {
+
     return (
-      <DropzoneAreaBase
-        onChange={this.handleChange.bind(this)}
-        />
+
+        <DropzoneArea
+            acceptedFiles={['image/*']}
+            onChange={handleImageChange}
+            dropzoneText={"Select Your Workshop Image"}
+            filesLimit={1}
+            previewGridProps={{container: {justify: 'center'}}}
+            />
     )
-  }
 }
 
 export default Dropzone
