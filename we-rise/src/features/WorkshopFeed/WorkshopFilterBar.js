@@ -80,7 +80,9 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
     }
 
     const buttonDateRangeLabel = !dateRange[0].endDate ? 
-        "Select Date Range" : `${dateConverter(dateRange[0].startDate)} thru ${dateConverter(dateRange[0].endDate)}`
+        "Select Date Range" : 
+        `${dateConverter(dateRange[0].startDate)} thru 
+        ${dateConverter(dateRange[0].endDate)}`
 
     return (
         <>
