@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        overflow: 'scroll'
     },
     paper: {
         backgroundColor: '#F5F5F5',

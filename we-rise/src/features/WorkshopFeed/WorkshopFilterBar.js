@@ -16,6 +16,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 
+import { categories } from '../BaseComponents/WorkshopCategories'
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -55,14 +56,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-
-const names = [
-    'Workshop1',
-    'Workshop2',
-    'Workshop3',
-    'Workshop4'
-  ];
-
 const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange}) => {
 
     const classes = useStyles()
@@ -80,7 +73,9 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
     }
 
     const buttonDateRangeLabel = !dateRange[0].endDate ? 
-        "Select Date Range" : `${dateConverter(dateRange[0].startDate)} thru ${dateConverter(dateRange[0].endDate)}`
+        "Select Date Range" : 
+        `${dateConverter(dateRange[0].startDate)} thru 
+        ${dateConverter(dateRange[0].endDate)}`
 
     return (
         <>
@@ -100,10 +95,10 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 renderValue={(selected) => selected.length > 1 ? "Multiple Categories" : selected[0]}
                 MenuProps={MenuProps}
                 >
-                {names.map((name) => (
-                    <MenuItem key={name} value={name}>
-                    <Checkbox checked={selectCategories.indexOf(name) > -1} />
-                    <ListItemText primary={name}/>
+                {categories.map((category) => (
+                    <MenuItem key={category} value={category}>
+                    <Checkbox checked={selectCategories.indexOf(category) > -1} />
+                    <ListItemText primary={category}/>
                     </MenuItem>
                 ))}
                 </Select>
