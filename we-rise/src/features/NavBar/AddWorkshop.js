@@ -57,6 +57,9 @@ const AddWorkshop = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        
+        
+        
         // title.value
         // description.value
         // category.value

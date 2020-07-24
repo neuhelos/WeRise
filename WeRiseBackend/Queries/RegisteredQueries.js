@@ -18,6 +18,7 @@ const getRegisteredWorkshop = async (req, res, next) => {
       });
     }
   };
+  
   const fetchAllRegisteredWorkshop = async (req, res, next)=>{
     try {
       const registered = await db.any(
@@ -40,6 +41,7 @@ const getRegisteredWorkshop = async (req, res, next) => {
     }
   }
   
+
 
   module.exports = {
     getRegisteredWorkshop, fetchAllRegisteredWorkshop
