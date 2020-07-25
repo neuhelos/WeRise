@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid'
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import LuxonUtils from '@date-io/luxon'
@@ -17,6 +18,7 @@ import Dropzone from '../BaseComponents/FileDropzone'
 import CategoryDropdown from './WorkshopCategoryDropdown'
 import { useInput, useSelect } from '../../Utilities/CustomHookery'
 import { apiURL } from '../../Utilities/apiURL'
+import { storage } from '../../Utilities/firebase'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -73,21 +75,54 @@ const AddWorkshop = ({handleCloseModal}) => {
     }
 
     const handleImageChange = (imageFile) => {
-        setWorkshopImage(imageFile)
+       if(imageFile[0]){
+        handleupload(imageFile[0])
+       }
+        
     }
+
+    const handleupload = (imageFile) => {
+        const uploadTask = storage.ref(`Workshop/${imageFile.name}`).put(imageFile);
+        uploadTask.on(
+          "state_changed",
+          snapshot => {},
+          error => {
+            console.log(error);
+          },
+          () => {
+            storage
+            .ref("Workshop")
+            .child(imageFile.name)
+            .getDownloadURL()
+            .then(url => {
+                setWorkshopImage(url)
+                console.log(url)
+            })
+          }
+        )
+      }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        handleCloseModal()
+
         let res = await axios.post(`${apiURL}/workshops`, {
+            id: uuidv4(),
             user_id: currentUser.uid,
             title: title.value,
             description: title.value,
             date: selectedDate,
-            startTime: "",
-            endTime: "",
-            workshop_image: 'url'
+            startTime: time[0],
+            endTime: time[1],
+            workshop_image: workshopImage
         })
+
+        let skill = skills.forEach( async (skill) => {
+            let resSkills = await axios.post(`${apiURL}/workshopSkills`, {
+                workshop_Id: res.id,
+                skill: skill.toLowerCase()
+            })
+        })
+        handleCloseModal()
     }
 
     return (
