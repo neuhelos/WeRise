@@ -7,6 +7,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import LuxonUtils from '@date-io/luxon'
 import TimeRangePicker from '@wojtekmaj/react-timerange-picker'
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
@@ -14,6 +15,9 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography'
 import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 import Dropzone from '../BaseComponents/FileDropzone'
 import CategoryDropdown from './WorkshopCategoryDropdown'
@@ -31,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
             border: 'none',
         },
     },
+    container: {
+        marginBottom: theme.spacing(1)
+    },
     input: {
         width: '100%',
         fontFamily: 'audiowide',
@@ -38,10 +45,14 @@ const useStyles = makeStyles((theme) => ({
     },
     datePicker : {
         fontFamily: 'audiowide',
-        width: '100%',
+        width: '50%',
         backgroundColor: 'rgba(0, 0, 0, 0.09)',
         borderRadius: '4px',
-        marginBottom: theme.spacing(1)
+        paddingTop: theme.spacing(1)
+    },
+    participants : {
+        width: '50%',
+        margin: theme.spacing(1)
     },
     inputLabel: {
         padding: theme.spacing(1),
@@ -64,6 +75,8 @@ const AddWorkshop = ({handleCloseModal}) => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [time, setTime] = useState(['', '']);
 
+    const [participants, setParticipants] = useState(0)
+
     const [skills, setSkills] = useState([])
 
     const [workshopImage, setWorkshopImage,] = useState(null)
@@ -74,6 +87,10 @@ const AddWorkshop = ({handleCloseModal}) => {
     
     const handleTimeChange = (time) => {
         setTime(time)
+    }
+
+    const handleParticipantsChange = (event) => {
+        setParticipants(event.target.value)
     }
 
     const handleSkillsTagsChange = (event, values) => {
@@ -130,7 +147,7 @@ const AddWorkshop = ({handleCloseModal}) => {
         let skill = skills.forEach( async (skill) => {
             let resSkills = await axios.post(`${apiURL}/workshopSkills`, {
                 workshop_Id: res.id,
-                skill: skill.toLowerCase()
+                skill: skills.toLowerCase()
             })
         })
         handleCloseModal()
@@ -144,26 +161,45 @@ const AddWorkshop = ({handleCloseModal}) => {
                 <CategoryDropdown className={classes.input} category={category}/>
                 <TextField className={classes.input} id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
                 <MuiPickersUtilsProvider utils={LuxonUtils}>
-                    <KeyboardDatePicker className={classes.datePicker}
-                        disablePast
-                        label="Workshop Date"
-                        format="MM/dd/yyyy" 
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change date',
-                        }}
-                    />
                     <InputLabel className={classes.inputLabel} id="timerangepicker">Workshop Time</InputLabel>
-                    <span>From<TimeRangePicker
-                        labelId="timerangepicker"
-                        onChange={handleTimeChange}
-                        value={time}
-                        disableClock
-                        hourPlaceholder="hh"
-                        minutePlaceholder="mm"
-                        rangeDivider="To"
-                    /></span>
+                    <Container className={classes.container} > 
+                        <span>From<TimeRangePicker
+                            labelId="timerangepicker"
+                            onChange={handleTimeChange}
+                            value={time}
+                            disableClock
+                            hourPlaceholder="hh"
+                            minutePlaceholder="mm"
+                            rangeDivider="To"
+                        /></span>
+                    </Container>
+                    <Grid container className={classes.container} display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap' >
+                        <KeyboardDatePicker className={classes.datePicker}
+                            disablePast
+                            label="Workshop Date"
+                            format="MM/dd/yyyy" 
+                            value={selectedDate}
+                            onChange={handleDateChange}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                        <FormControl variant="filled" className={classes.participants}>
+                            <InputLabel id="participants">Max # of Participants</InputLabel>
+                            <Select
+                            labelId="participants"
+                            id="number-of-participants"
+                            value={participants}
+                            onChange={handleParticipantsChange}
+                            >
+                            <MenuItem value={1}>1</MenuItem>
+                            <MenuItem value={2}>2</MenuItem>
+                            <MenuItem value={3}>3</MenuItem>
+                            <MenuItem value={4}>4</MenuItem>
+                            <MenuItem value={5}>5</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
                 </MuiPickersUtilsProvider>
                 <Autocomplete className={classes.input} multiple id="tags-filled" options={[]} defaultValue={""} freeSolo
                     style={{marginTop: '0.5rem'}}
