@@ -18,6 +18,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import { categories } from '../BaseComponents/WorkshopCategories'
 
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -36,14 +37,15 @@ const useStyles = makeStyles((theme) => ({
     button: {
         fontFamily: 'audiowide',
         width: '50%',
-        height: '3rem'
+        height: '3rem',
+        margin: theme.spacing(1)
     },
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
         maxWidth: 300,
         backgroundColor: '#F5F5F5',
-        borderRadius: '2px',
+        borderRadius: '4px',
         width: '50%'
     },
     select: {
@@ -56,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange}) => {
+const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange, buttonLabelChange }) => {
 
     const classes = useStyles()
 
@@ -69,13 +71,14 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
         let day = date.getDate()
         let month = date.getMonth()
         let year = date.getFullYear()
-        return `${month}-${day}-${year}`
+        return `${month+1}-${day}-${year}`
     }
 
-    const buttonDateRangeLabel = !dateRange[0].endDate ? 
+    const buttonDateRangeLabel = !buttonLabelChange ? 
         "Select Date Range" : 
         `${dateConverter(dateRange[0].startDate)} thru 
         ${dateConverter(dateRange[0].endDate)}`
+
 
     return (
         <>
@@ -95,9 +98,13 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 renderValue={(selected) => selected.length > 1 ? "Multiple Categories" : selected[0]}
                 MenuProps={MenuProps}
                 >
+                <MenuItem key={'all'} value={'All Categories'}>
+                    <Checkbox checked={selectCategories.indexOf('All Categories') > -1} />
+                    <ListItemText primary={'All'}/>
+                    </MenuItem>
                 {categories.map((category) => (
                     <MenuItem key={category} value={category}>
-                    <Checkbox checked={selectCategories.indexOf(category) > -1} />
+                    <Checkbox checked={ selectCategories.indexOf('All Categories') > -1 || selectCategories.indexOf(category) > -1}/>
                     <ListItemText primary={category}/>
                     </MenuItem>
                 ))}
