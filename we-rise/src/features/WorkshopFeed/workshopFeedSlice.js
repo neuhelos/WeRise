@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { APIURL } from '../../utilities/apiURL'
+import { apiURL } from '../../Utilities/apiURL'
 
 
 export const fetchUpcomingWorkshops = createAsyncThunk(
