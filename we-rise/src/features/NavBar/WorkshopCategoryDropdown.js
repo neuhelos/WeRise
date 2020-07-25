@@ -10,10 +10,8 @@ import { categories } from '../BaseComponents/WorkshopCategories'
 const useStyles = makeStyles((theme) => ({
   formControl: {
     width: '100%',
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+    marginBottom: theme.spacing(1)
+  }
 }));
 
 

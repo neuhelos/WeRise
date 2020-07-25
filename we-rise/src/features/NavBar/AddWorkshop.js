@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
-import { DateTimePicker } from "@material-ui/pickers";
+import { KeyboardDatePicker } from "@material-ui/pickers";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import LuxonUtils from '@date-io/luxon'
+import TimeRangePicker from '@wojtekmaj/react-timerange-picker'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,20 +20,25 @@ import { apiURL } from '../../Utilities/apiURL'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        '& * + *': {
-            marginTop: theme.spacing(1)
-        },
         width: '100%',
         '& *': {
             fontFamily: 'audiowide',
-            textAlign: 'center'
-        }
+            textAlign: 'center',
+            outlineColor: '#36386D',
+            border: 'none',
+        },
     },
     input: {
         width: '100%',
+        fontFamily: 'audiowide',
+        marginBottom: theme.spacing(1)
     },
-    dateTimePicker : {
+    datePicker : {
+        fontFamily: 'audiowide',
         width: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.09)',
+        borderRadius: '4px',
+        marginBottom: theme.spacing(1)
     }
 }));
 
@@ -47,10 +53,20 @@ const AddWorkshop = ({handleCloseModal}) => {
     const description = useInput("")
     const category = useSelect("")
 
-    const [selectedDate, handleDateChange] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [time, setTime] = useState(['', '']);
+
     const [skills, setSkills] = useState([])
 
     const [workshopImage, setWorkshopImage,] = useState(null)
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
+    
+    const handleTimeChange = (time) => {
+        setTime(time)
+    }
 
     const handleSkillsTagsChange = (event, values) => {
         setSkills(values)
@@ -68,8 +84,8 @@ const AddWorkshop = ({handleCloseModal}) => {
             title: title.value,
             description: title.value,
             date: selectedDate,
-            startTime: selectedDate.getTime(),
-            endTime: null,
+            startTime: "",
+            endTime: "",
             workshop_image: 'url'
         })
     }
@@ -79,12 +95,30 @@ const AddWorkshop = ({handleCloseModal}) => {
             <form onSubmit={handleSubmit}>
                 <Typography variant="h6">Create Your Workshop</Typography>
                 <TextField className={classes.input} id="filled-basic" label="Workshop Title" placeholder="Enter Workshop Title" variant="filled" {...title}/>
-                <CategoryDropdown category={category}/>
+                <CategoryDropdown className={classes.input} category={category}/>
                 <TextField className={classes.input} id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
                 <MuiPickersUtilsProvider utils={LuxonUtils}>
-                    <DateTimePicker className={classes.dateTimePicker} value={selectedDate} disablePast onChange={handleDateChange} label="Workshop Date and Start Time"/>
+                <KeyboardDatePicker className={classes.datePicker}
+                    disablePast
+                    label="Workshop Date"
+                    format="MM/dd/yyyy" 
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                        'aria-label': 'change date',
+                    }}
+                />
+                <span>From<TimeRangePicker
+                    onChange={handleTimeChange}
+                    value={time}
+                    disableClock
+                    hourPlaceholder="hh"
+                    minutePlaceholder="mm"
+                    rangeDivider="To"
+                /></span>
                 </MuiPickersUtilsProvider>
                 <Autocomplete className={classes.input} multiple id="tags-filled" options={[]} defaultValue={""} freeSolo
+                    style={{marginTop: '0.5rem'}}
                     onChange={handleSkillsTagsChange}
                     renderTags={(value, getTagProps) =>
                         value.map((option, index) => (
@@ -92,7 +126,7 @@ const AddWorkshop = ({handleCloseModal}) => {
                         ))
                     }
                     renderInput={(params) => (
-                    <TextField {...params} variant="filled" label="Workshop Skills" placeholder="Enter One or More Skills & Press Enter" />
+                    <TextField {...params} variant="filled" label="Workshop Skills" placeholder="Enter a Skill and Press Enter" />
                     )}
                 />
                 <Dropzone handleImageChange={handleImageChange} />

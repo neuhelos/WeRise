@@ -58,7 +58,7 @@ const WorkshopFeedSearchForm = () => {
             <SearchBar searchQuery={searchQuery} />
             <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
                 <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange}/>
-                <Button className={classes.button} variant="contained" color="primary">SUBMIT</Button>
+                <Button className={classes.button} type="submit" variant="contained" color="primary">SUBMIT</Button>
             </Grid>
         </form>
     )

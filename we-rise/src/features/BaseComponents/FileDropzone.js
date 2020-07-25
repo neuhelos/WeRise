@@ -7,8 +7,9 @@ const theme = createMuiTheme({
     overrides: {
         MuiDropzoneArea: {
             root: {
-                minHeight: '150px',
+                minHeight: '100px',
                 backgroundColor: '#F5F5F5',
+                marginBottom: '0.5rem'
             },
             text: {
                 fontSize: '1rem'
@@ -19,15 +20,13 @@ const theme = createMuiTheme({
 
 const Dropzone = ({handleImageChange}) => {
 
-    //const classes = useStyles()
-
     return (
 
         <MuiThemeProvider theme={theme}>
             <DropzoneArea
                 acceptedFiles={['image/*']}
                 onChange={handleImageChange}
-                dropzoneText={"Select Your Workshop Image"}
+                dropzoneText={"Drop or Select Your Workshop Image"}
                 filesLimit={1}
                 previewGridProps={{container: {justify: 'center'}}}
             />
