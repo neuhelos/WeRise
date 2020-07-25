@@ -8,7 +8,6 @@ import axios from 'axios'
 const SignUpModal = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [image, setImage] = useState(null)
     const [UploadPic, setUploadPic] = useState("https://www.dts.edu/wp-content/uploads/sites/6/2018/04/Blank-Profile-Picture.jpg")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -33,7 +32,6 @@ const SignUpModal = () => {
           //     bio : bio,
           //     socialMedia: socialMedia
           // })
-
         }
         catch (err){
             console.log(err)
@@ -44,11 +42,11 @@ const SignUpModal = () => {
 
     const handleClick = (e) => {
         if(e.target.files[0]){
-            setImage(e.target.files[0]);
+          handleupload(e.target.files[0]);
         }
       };
   
-      const handleupload = () => {
+      const handleupload = (image) => {
         const uploadTask = storage.ref(`image/${image.name}`).put(image);
         uploadTask.on(
           "state_changed",
@@ -103,7 +101,6 @@ const SignUpModal = () => {
         </form>
 
         Profile Picture: <input  type = "file" onChange = {handleClick} />
-        <button onClick={handleupload}>Upload</button>
 
         {/* <img src = {UploadPic}  width="500" height="400"/> */}
         </div>
