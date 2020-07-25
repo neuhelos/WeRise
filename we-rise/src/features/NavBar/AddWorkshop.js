@@ -133,24 +133,24 @@ const AddWorkshop = ({handleCloseModal}) => {
                 <CategoryDropdown className={classes.input} category={category}/>
                 <TextField className={classes.input} id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
                 <MuiPickersUtilsProvider utils={LuxonUtils}>
-                <KeyboardDatePicker className={classes.datePicker}
-                    disablePast
-                    label="Workshop Date"
-                    format="MM/dd/yyyy" 
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                    }}
-                />
-                <span>From<TimeRangePicker
-                    onChange={handleTimeChange}
-                    value={time}
-                    disableClock
-                    hourPlaceholder="hh"
-                    minutePlaceholder="mm"
-                    rangeDivider="To"
-                /></span>
+                    <KeyboardDatePicker className={classes.datePicker}
+                        disablePast
+                        label="Workshop Date"
+                        format="MM/dd/yyyy" 
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
+                    />
+                    <span>From<TimeRangePicker
+                        onChange={handleTimeChange}
+                        value={time}
+                        disableClock
+                        hourPlaceholder="hh"
+                        minutePlaceholder="mm"
+                        rangeDivider="To"
+                    /></span>
                 </MuiPickersUtilsProvider>
                 <Autocomplete className={classes.input} multiple id="tags-filled" options={[]} defaultValue={""} freeSolo
                     style={{marginTop: '0.5rem'}}

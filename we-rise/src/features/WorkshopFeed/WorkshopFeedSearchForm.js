@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         fontFamily: 'audiowide',
-        height: '3rem'
+        height: '3rem',
+        margin: theme.spacing(1)
     }
 }))
 
@@ -32,32 +33,41 @@ const WorkshopFeedSearchForm = () => {
         key: 'selection'
         }
     ]);
-
     const handleDateChange = (item) => {
+        console.log(item)
         setDateRange([item.selection])
     }
-    
-
     
     const [selectCategories, setSelectCategories] = useState([]);
     const handleSelectChange = (event) => {
         setSelectCategories(event.target.value);
     };
 
-
     const handleSubmit = (event) => {
         event.preventDefault()
         // searchQuery
         // dateRange
-        // selectCategories
-        
+        // selectCategories        
+    }
+
+    const handleFilterClear = () => {
+        searchQuery.clearinput()
+        setDateRange([{
+            startDate: new Date(),
+            endDate: null,
+            key: 'selection'
+            }]
+        )
+        setSelectCategories([])
     }
     
+
     return (
         <form onSubmit={handleSubmit}>
             <SearchBar searchQuery={searchQuery} />
             <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
                 <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange}/>
+                <Button className={classes.button} variant="contained" color="primary" onClick={handleFilterClear}>RESET</Button>
                 <Button className={classes.button} type="submit" variant="contained" color="primary">SUBMIT</Button>
             </Grid>
         </form>
