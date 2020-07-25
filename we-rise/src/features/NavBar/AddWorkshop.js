@@ -15,7 +15,8 @@ import Typography from '@material-ui/core/Typography'
 import Dropzone from '../BaseComponents/FileDropzone'
 import CategoryDropdown from './WorkshopCategoryDropdown'
 import { useInput, useSelect } from '../../Utilities/CustomHookery'
-import { apiURL } from '../../Utilities/apiURL'
+import { APIURL } from '../../Utilities/apiURL'
+import { storage } from '../../Utilities/firebase'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,8 +58,32 @@ const AddWorkshop = ({handleCloseModal}) => {
     }
 
     const handleImageChange = (imageFile) => {
-        setWorkshopImage(imageFile)
+       if(imageFile[0]){
+        handleupload(imageFile[0])
+       }
+        
     }
+
+    const handleupload = (imageFile) => {
+        const uploadTask = storage.ref(`Workshop/${imageFile.name}`).put(imageFile);
+        uploadTask.on(
+          "state_changed",
+          snapshot => {},
+          error => {
+            console.log(error);
+          },
+          () => {
+            storage
+            .ref("Workshop")
+            .child(imageFile.name)
+            .getDownloadURL()
+            .then(url => {
+                setWorkshopImage(url)
+                console.log(url)
+            })
+          }
+        )
+      }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -70,7 +95,7 @@ const AddWorkshop = ({handleCloseModal}) => {
             date: selectedDate,
             startTime: selectedDate.getTime(),
             endTime: null,
-            workshop_image: 'url'
+            workshop_image: workshopImage
         })
     }
 
