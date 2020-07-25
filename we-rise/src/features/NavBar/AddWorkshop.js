@@ -132,21 +132,22 @@ const AddWorkshop = ({handleCloseModal}) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-
+        let id = uuidv4()
         let res = await axios.post(`${apiURL}/workshops`, {
-            id: uuidv4(),
+            id: id,
             user_id: currentUser.uid,
             title: title.value,
             description: title.value,
             date: selectedDate,
             startTime: new Date(selectedDate.getFullYear(),selectedDate.getMonth(),selectedDate.getDate(),timeParser(time[0])[0], timeParser(time[0])[1]),
             endTime: new Date(selectedDate.getFullYear(),selectedDate.getMonth(),selectedDate.getDate(),timeParser(time[1])[0], timeParser(time[1])[1]),
+            participants: participants,
             workshop_image: workshopImage
         })
 
         let skill = skills.forEach( async (skill) => {
             let resSkills = await axios.post(`${apiURL}/workshopSkills`, {
-                workshop_Id: res.id,
+                workshop_Id: id,
                 skill: skills.toLowerCase()
             })
         })

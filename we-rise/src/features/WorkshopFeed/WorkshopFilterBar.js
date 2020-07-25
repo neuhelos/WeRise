@@ -86,7 +86,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
         <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
             <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal} size='small'>{buttonDateRangeLabel}</Button>
             <FormControl className={classes.formControl}>
-                <InputLabel className={classes.inputLabel} id="multiple-select-label">Filter Categories</InputLabel>
+                <InputLabel className={classes.inputLabel} id="multiple-select-label">Categories</InputLabel>
                 <Select
                 className={classes.select}
                 labelId="multiple-select"
@@ -95,7 +95,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 value={selectCategories}
                 onChange={handleSelectChange}
                 input={<Input style={{textAlign: 'center' }}/>}
-                renderValue={(selected) => selected.length > 1 ? "Multiple Categories" : selected[0]}
+                renderValue={(selected) => selected.length > 1 ? "Multiple" : selected[0]}
                 MenuProps={MenuProps}
                 >
                 <MenuItem key={'all'} value={'All Categories'}>
