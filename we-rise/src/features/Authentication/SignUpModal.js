@@ -12,7 +12,9 @@ const SignUpModal = () => {
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [bio, setBio] = useState("")
-    const [socialmedia, setSocailMedia] = useState("")
+    const [instagram, setInstagram] = useState("")
+    const [facebook, setFacebook] = useState("")
+    const [linkedin, setLinkedin] = useState("")
     const history = useHistory();
    
 
@@ -21,17 +23,22 @@ const SignUpModal = () => {
         e.preventDefault();
 
         try {
-             await signUp(email, password);
+             let resSignup = await signUp(email, password);
              history.push("/CommunityDashboard")
-          //    let res =  await axios.post(`${API}/users`, {
-          //     firstName: firstName,
-          //     lastName: lastName,
-          //     password: password,
-          //     email: email,
-          //     user_pic: UploadPic,
-          //     bio : bio,
-          //     socialMedia: socialMedia
-          // })
+
+             let res =  await axios.post(`http://localhost:3001/users`, {
+              id: resSignup.user.uid,
+              firstName: firstName,
+              lastName: lastName,
+              email: email,
+              user_pic: UploadPic,
+              bio : bio,
+              // instagram: instagram,
+              // facebook: facebook,
+              // twitter:null,
+              // linkedin: linkedin
+          })
+   
         }
         catch (err){
             console.log(err)
@@ -94,8 +101,12 @@ const SignUpModal = () => {
             <textarea required id = 'bio' placeholder = 'Bio' type = "text"  value = {bio} onChange = {(e) => {
                 setBio(e.currentTarget.value)}} />
 
-            <input  id = 'socailMedia' placeholder = 'socail Media' type = "text"  value = {socialmedia} onChange = {(e) => {
-                setSocailMedia(e.currentTarget.value)}} />
+            <input  id = 'instagram' placeholder = 'instagram' type = "text"  value = {instagram} onChange = {(e) => {
+                setInstagram(e.currentTarget.value)}} />
+            <input  id = 'Facebook' placeholder = 'Facebook' type = "text"  value = {facebook} onChange = {(e) => {
+                setFacebook(e.currentTarget.value)}} />
+            <input  id = 'linkedin' placeholder = 'linkedin' type = "text"  value = {linkedin} onChange = {(e) => {
+                setLinkedin(e.currentTarget.value)}} />
             
             <button>signUp</button>
         </form>
