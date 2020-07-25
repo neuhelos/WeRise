@@ -32,13 +32,15 @@ const WorkshopFeedSearchForm = () => {
     const [dateRange, setDateRange] = useState([
         {
         startDate: new Date(),
-        endDate: null,
+        endDate: new Date(),
         key: 'selection'
         }
     ]);
+    const [buttonLabelChange, setButtonLabelChange] = useState(false)
     const handleDateChange = (item) => {
         console.log(item)
         setDateRange([item.selection])
+        setButtonLabelChange(true)
     }
     
     const [selectCategories, setSelectCategories] = useState([]);
@@ -60,11 +62,12 @@ const WorkshopFeedSearchForm = () => {
         searchQuery.clearinput()
         setDateRange([{
             startDate: new Date(),
-            endDate: null,
+            endDate: new Date(),
             key: 'selection'
             }]
         )
         setSelectCategories([])
+        setButtonLabelChange(false)
     }
     
 
@@ -72,9 +75,9 @@ const WorkshopFeedSearchForm = () => {
         <form onSubmit={handleSubmit}>
             <SearchBar searchQuery={searchQuery} />
             <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
-                <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange}/>
-                <Button className={classes.button} variant="contained" color="primary" onClick={handleSearchClear}>RESET</Button>
-                <Button className={classes.button} type="submit" variant="contained" color="primary">SUBMIT</Button>
+                <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange} buttonLabelChange={buttonLabelChange}/>
+                <Button className={classes.button} variant="contained" color="primary" size='small' onClick={handleSearchClear}>RESET</Button>
+                <Button className={classes.button} type="submit" variant="contained" color="primary" size='small'>SUBMIT</Button>
             </Grid>
         </form>
     )

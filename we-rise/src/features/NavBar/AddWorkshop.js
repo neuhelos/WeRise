@@ -13,6 +13,7 @@ import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography'
+import InputLabel from '@material-ui/core/InputLabel';
 
 import Dropzone from '../BaseComponents/FileDropzone'
 import CategoryDropdown from './WorkshopCategoryDropdown'
@@ -41,6 +42,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'rgba(0, 0, 0, 0.09)',
         borderRadius: '4px',
         marginBottom: theme.spacing(1)
+    },
+    inputLabel: {
+        padding: theme.spacing(1),
+        backgroundColor: 'rgba(0, 0, 0, 0.09)',
+        borderRadius: '4px',
     }
 }));
 
@@ -143,7 +149,9 @@ const AddWorkshop = ({handleCloseModal}) => {
                             'aria-label': 'change date',
                         }}
                     />
+                    <InputLabel className={classes.inputLabel} id="timerangepicker">Workshop Time</InputLabel>
                     <span>From<TimeRangePicker
+                        labelId="timerangepicker"
                         onChange={handleTimeChange}
                         value={time}
                         disableClock

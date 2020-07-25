@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange}) => {
+const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange, buttonLabelChange }) => {
 
     const classes = useStyles()
 
@@ -74,7 +74,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
         return `${month+1}-${day}-${year}`
     }
 
-    const buttonDateRangeLabel = !dateRange[0].endDate ? 
+    const buttonDateRangeLabel = !buttonLabelChange ? 
         "Select Date Range" : 
         `${dateConverter(dateRange[0].startDate)} thru 
         ${dateConverter(dateRange[0].endDate)}`
