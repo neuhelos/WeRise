@@ -1,31 +1,18 @@
-const db = require("../Database/database");
+const database = require("../Database/database");
 
 const createUser = async (req, res) => {
   try {
-    let newUser = await db.one(
-      'INSERT INTO users(id, firstName, lastName, password, email, user_pic, bio, instagram, facebook, twitter, linkedIn) VALUES(${firstName}${lastName}${password}${email}${user_pic}${bio}${instagram}${facebook}${twitter}${linkedIn}) RETURNING *',
-      [
-        req.body.id,
-        req.body.firstName,
-        req.body.lastName,
-        req.body.password,
-        req.body.email,
-        req.body.user_pic,
-        req.body.bio,
-        req.body.instagram,
-        req.body.facebook,
-        req.body.twitter,
-        req.body.linkedIn
-
-
-
-      ]
-    );
+    const {
+      id, firstName, lastName, email, user_pic, bio, password
+    } = req.body
+    let newUser = await database.one(`INSERT INTO users(id, firstName, lastName, user_pic, bio, password) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`, [id, firstName, lastName, bio, password, email, user_pic ]);
     res.status(200).json({
       status: "success",
       message: "new user created",
       payload: newUser
     });
+    
+    
   } catch (error) {
     res.status(404).json({
       status: error,
@@ -36,7 +23,7 @@ const createUser = async (req, res) => {
 };
 const deleteUser = async (req, res) => {
   try {
-    await db.none(`DELETE FROM users WHERE id = ${req.params.id} RETURNING *`);
+    await database.none(`DELETE FROM users WHERE id = ${req.params.id} RETURNING *`);
     res.status(200).json({
       status: "success",
       message: "user deleted"
@@ -50,7 +37,7 @@ const deleteUser = async (req, res) => {
 };
 const getUser = async (req, res) => {
   try {
-    let user = await db.any(
+    let user = await database.any(
       "SELECT * FROM users WHERE id =$1", [
         req.params.id,
       ]
@@ -70,7 +57,7 @@ const getUser = async (req, res) => {
 };
 const getAllUsers = async (req, res) => {
   try {
-    let search = await db.any("SELECT * from users");
+    let search = await database.any("SELECT * from users");
     res.status(200).json({
       status: "Success",
       message: "Found all users",

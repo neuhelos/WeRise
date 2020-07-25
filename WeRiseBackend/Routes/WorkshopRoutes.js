@@ -8,10 +8,10 @@ const {
   searchWorkshopByDate
 } = require("../Queries/WorkshopQueries");
 workshops.post("/", createWorkshop);
-workshops.get("/:username", getWorkshop);
+workshops.get("/:id", getWorkshop);
 workshops.delete("/:id", deleteWorkshop);
 workshops.get("/", getAllWorkshops);
-workshops.patch("/:id", editWorkshop);
+workshops.put("/:id", editWorkshop);
 workshops.get('/search/', searchWorkshopByDate)
 
 module.exports = workshops;
