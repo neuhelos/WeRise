@@ -125,10 +125,7 @@ const AddWorkshop = ({handleCloseModal}) => {
         )
       }
 
-    const timeParser = (time) => {
-        let timeHourMinutes = time.split(':')
-        return timeHourMinutes
-    }
+    const timeParser = (time) => time.split(':')
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -146,7 +143,7 @@ const AddWorkshop = ({handleCloseModal}) => {
         })
 
         let skill = skills.forEach( async (skill) => {
-            let resSkills = await axios.post(`${apiURL}/workshopSkills`, {
+            let res = await axios.post(`${apiURL}/workshopSkills`, {
                 workshop_Id: id,
                 skill: skills.toLowerCase()
             })

@@ -9,7 +9,8 @@ import SearchBar from './WorkshopSearchBar'
 import FilterBar from './WorkshopFilterBar'
 import { useInput } from '../../Utilities/CustomHookery'
 
-import fetchWorkshopSearch from './workshopFeedSlice'
+import { fetchWorkshopSearch } from './workshopFeedSlice'
+import { categories } from '../BaseComponents/WorkshopCategories'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,6 +49,14 @@ const WorkshopFeedSearchForm = () => {
         setSelectCategories(event.target.value);
     };
 
+    const selectAllCategories = () => {
+        setSelectCategories([...categories])
+    }
+
+    const clearSelectCategories = () => {
+        setSelectCategories([])
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
         dispatch(fetchWorkshopSearch({
@@ -66,7 +75,7 @@ const WorkshopFeedSearchForm = () => {
             key: 'selection'
             }]
         )
-        setSelectCategories([])
+        clearSelectCategories()
         setButtonLabelChange(false)
     }
     
@@ -75,7 +84,7 @@ const WorkshopFeedSearchForm = () => {
         <form onSubmit={handleSubmit}>
             <SearchBar searchQuery={searchQuery} />
             <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
-                <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange} buttonLabelChange={buttonLabelChange}/>
+                <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange} buttonLabelChange={buttonLabelChange} selectAllCategories={selectAllCategories} clearSelectCategories={clearSelectCategories}/>
                 <Button className={classes.button} variant="contained" color="primary" size='small' onClick={handleSearchClear}>RESET</Button>
                 <Button className={classes.button} type="submit" variant="contained" color="primary" size='small'>SUBMIT</Button>
             </Grid>

@@ -33,6 +33,8 @@ const MenuProps = {
 const useStyles = makeStyles((theme) => ({
     root: {
         fontFamily: 'audiowide',
+        margin: theme.spacing(1),
+        outline: 'none'
     },
     button: {
         fontFamily: 'audiowide',
@@ -58,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange, buttonLabelChange }) => {
+const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange, buttonLabelChange, selectAllCategories, clearSelectCategories }) => {
 
     const classes = useStyles()
 
@@ -80,6 +82,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
         ${dateConverter(dateRange[0].endDate)}`
 
 
+
     return (
         <>
 
@@ -98,16 +101,16 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 renderValue={(selected) => selected.length > 1 ? "Multiple" : selected[0]}
                 MenuProps={MenuProps}
                 >
-                <MenuItem key={'all'} value={'All Categories'}>
-                    <Checkbox checked={selectCategories.indexOf('All Categories') > -1} />
-                    <ListItemText primary={'All'}/>
-                    </MenuItem>
-                {categories.map((category) => (
-                    <MenuItem key={category} value={category}>
-                    <Checkbox checked={ selectCategories.indexOf('All Categories') > -1 || selectCategories.indexOf(category) > -1}/>
-                    <ListItemText primary={category}/>
-                    </MenuItem>
-                ))}
+                    <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>
+                        <Button variant="contained" color="primary" onClick={selectAllCategories} size='small'>All</Button>
+                        <Button variant="contained" color="primary" onClick={clearSelectCategories} size='small'>Clear</Button>
+                    </Grid>
+                    {categories.map((category) => (
+                        <MenuItem key={category} value={category} >
+                            <Checkbox checked={ selectCategories.indexOf(category) > -1  }/>
+                            <ListItemText primary={category}/>
+                        </MenuItem>
+                    ))}
                 </Select>
             </FormControl>
         </Grid>
