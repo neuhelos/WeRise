@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useDispatch } from 'react-redux'
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -8,6 +9,7 @@ import SearchBar from './WorkshopSearchBar'
 import FilterBar from './WorkshopFilterBar'
 import { useInput } from '../../Utilities/CustomHookery'
 
+import fetchWorkshopSearch from './workshopFeedSlice'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 const WorkshopFeedSearchForm = () => {
     
+    const dispatch = useDispatch()
     const classes = useStyles();
 
     const searchQuery = useInput("")
@@ -45,12 +48,15 @@ const WorkshopFeedSearchForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        // searchQuery
-        // dateRange
-        // selectCategories        
+        dispatch(fetchWorkshopSearch({
+            search: searchQuery.value,
+            categories: selectCategories,
+            dateRange: dateRange
+        }))
+        handleSearchClear()
     }
 
-    const handleFilterClear = () => {
+    const handleSearchClear = () => {
         searchQuery.clearinput()
         setDateRange([{
             startDate: new Date(),
@@ -67,7 +73,7 @@ const WorkshopFeedSearchForm = () => {
             <SearchBar searchQuery={searchQuery} />
             <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
                 <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange}/>
-                <Button className={classes.button} variant="contained" color="primary" onClick={handleFilterClear}>RESET</Button>
+                <Button className={classes.button} variant="contained" color="primary" onClick={handleSearchClear}>RESET</Button>
                 <Button className={classes.button} type="submit" variant="contained" color="primary">SUBMIT</Button>
             </Grid>
         </form>

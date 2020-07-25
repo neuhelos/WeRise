@@ -1,9 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-//import { APIURL } from '../../utilitron/APIURL'
+import { APIURL } from '../../utilities/apiURL'
 
-const apiURL = APIURL()
 
 export const fetchUpcomingWorkshops = createAsyncThunk(
     'post/fetchUpcomingWorkshops',
@@ -22,7 +21,7 @@ export const fetchWorkshopSearch = createAsyncThunk(
     async (search) => {
         try {
             const res = await axios.get(`${apiURL}/workshops/search`, {
-                search: search
+                
             })
             return res.payload
         } catch (error) {

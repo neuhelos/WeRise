@@ -79,6 +79,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
         `${dateConverter(dateRange[0].startDate)} thru 
         ${dateConverter(dateRange[0].endDate)}`
 
+
     return (
         <>
 
@@ -97,9 +98,13 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 renderValue={(selected) => selected.length > 1 ? "Multiple Categories" : selected[0]}
                 MenuProps={MenuProps}
                 >
+                <MenuItem key={'all'} value={'All Categories'}>
+                    <Checkbox checked={selectCategories.indexOf('All Categories') > -1} />
+                    <ListItemText primary={'All'}/>
+                    </MenuItem>
                 {categories.map((category) => (
                     <MenuItem key={category} value={category}>
-                    <Checkbox checked={selectCategories.indexOf(category) > -1} />
+                    <Checkbox checked={ selectCategories.indexOf('All Categories') > -1 || selectCategories.indexOf(category) > -1}/>
                     <ListItemText primary={category}/>
                     </MenuItem>
                 ))}
