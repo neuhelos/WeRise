@@ -5,39 +5,31 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-import { useSelect } from '../../Utilities/CustomHookery'
+import { categories } from '../BaseComponents/WorkshopCategories'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+    width: '100%',
+    marginBottom: theme.spacing(1)
+  }
 }));
 
-const CategoryDropdown = () => {
+
+const CategoryDropdown = ({category}) => {
     
     const classes = useStyles();
 
-    const select = useSelect("")
+    const categoriesList = categories.map( category => {
+      return <MenuItem value={category}>{category}</MenuItem>
+    })
 
     return (
 
         <FormControl variant="filled" className={classes.formControl}>
-        <InputLabel id="select-filled-label">Category</InputLabel>
-        <Select
-            labelId="select-filled-label"
-            id="select-filled"
-            {...select}
-        >
-            <MenuItem value="">
-            <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+        <InputLabel id="select-filled-label">Workshop Category</InputLabel>
+        <Select labelId="select-filled-label" id="select-filled" {...category} >
+            <MenuItem value=""><em>Select a Category</em></MenuItem>
+            {categoriesList}
         </Select>
         </FormControl>
     )

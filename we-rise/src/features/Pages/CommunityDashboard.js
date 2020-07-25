@@ -5,8 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
 import WorkshopFeed from '../WorkshopFeed/WorkshopFeed'
-import WorkshopSearchBar from '../WorkshopFeed/WorkshopSearchBar'
-import WorkshopFilterBar from '../WorkshopFeed/WorkshopFilterBar'
+import WorkshopFeedSearchForm from '../WorkshopFeed/WorkshopFeedSearchForm'
 
 import UserWorkshopAgenda from '../UserWorkshopsAgenda/UserWorkshopsAgenda'
 import RecentlyPostedWorkshops from '../RecentlyPostedWorkshops/RecentlyPostedWorkshops'
@@ -14,6 +13,10 @@ import RecentlyPostedWorkshops from '../RecentlyPostedWorkshops/RecentlyPostedWo
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
+            flexWrap: 'nowrap'
+        }
     },
     container: {
         height: '100%',
@@ -24,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         justify: 'center'
     },
     paper: {
-        width: '75%',
+        width: '90%',
         padding: theme.spacing(1),
         backgroundColor: '#282828',
         color: 'white'
@@ -38,15 +41,10 @@ const CommunityDashboard = () => {
 
     return (
         <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
-            <Grid container item className={classes.container} direction="column" justify="start" alignItems="center" spacing={4} xs={7}>
+            <Grid container item className={classes.container} direction="column" justify="start" alignItems="center" spacing={4} sm={12} md={7}>
                 <Grid container item className={classes.gridItem} justify="center" >
                     <Paper className={classes.paper}>
-                        <WorkshopSearchBar />
-                    </Paper>
-                </Grid>
-                <Grid container item className={classes.gridItem} justify="center" >
-                    <Paper className={classes.paper}>
-                        <WorkshopFilterBar />
+                        <WorkshopFeedSearchForm />
                     </Paper>
                 </Grid>
                 <Grid container item className={classes.gridItem} justify="center" >
@@ -55,7 +53,7 @@ const CommunityDashboard = () => {
                     </Paper>
                 </Grid>
             </Grid>
-            <Grid container className={classes.container} item direction="column" justify="start" alignItems="center" spacing={4} xs={5}>
+            <Grid container className={classes.container} item direction="column" justify="start" alignItems="center" spacing={4} sm={12} md={5}>
                 <Grid container item className={classes.gridItem} justify="center" >
                     <Paper className={classes.paper}>
                         <UserWorkshopAgenda />

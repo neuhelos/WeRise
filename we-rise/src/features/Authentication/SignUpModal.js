@@ -8,7 +8,6 @@ import axios from 'axios'
 const SignUpModal = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [image, setImage] = useState(null)
     const [UploadPic, setUploadPic] = useState("https://www.dts.edu/wp-content/uploads/sites/6/2018/04/Blank-Profile-Picture.jpg")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -26,6 +25,7 @@ const SignUpModal = () => {
         try {
              let resSignup = await signUp(email, password);
              history.push("/CommunityDashboard")
+
              let res =  await axios.post(`http://localhost:3001/users`, {
               id: resSignup.user.uid,
               firstName: firstName,
@@ -38,7 +38,7 @@ const SignUpModal = () => {
               // twitter:null,
               // linkedin: linkedin
           })
-              debugger
+   
         }
         catch (err){
             console.log(err)
@@ -49,11 +49,11 @@ const SignUpModal = () => {
 
     const handleClick = (e) => {
         if(e.target.files[0]){
-            setImage(e.target.files[0]);
+          handleupload(e.target.files[0]);
         }
       };
   
-      const handleupload = () => {
+      const handleupload = (image) => {
         const uploadTask = storage.ref(`image/${image.name}`).put(image);
         uploadTask.on(
           "state_changed",
@@ -112,7 +112,6 @@ const SignUpModal = () => {
         </form>
 
         Profile Picture: <input  type = "file" onChange = {handleClick} />
-        <button onClick={handleupload}>Upload</button>
 
         {/* <img src = {UploadPic}  width="500" height="400"/> */}
         </div>

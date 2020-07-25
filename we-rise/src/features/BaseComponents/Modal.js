@@ -10,16 +10,31 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        // overflow: 'scroll',
+        top: '1rem'
+        
+    },
+    paperContainer: {
+        backgroundColor: '#A3A3A3',
+        padding: theme.spacing(3),
+        width: '50%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        outlineColor: '#36386D',
     },
     paper: {
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: '#F5F5F5',
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
-        outlineColor: '#36386D',
+        padding: theme.spacing(3),
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 }));
 
-const WeRiseModal = ( {children, open, toggleModal} ) => {
+const WeRiseModal = ( {children, open, toggleModal, ...props} ) => {
     const classes = useStyles();
     
     return (
@@ -37,7 +52,9 @@ const WeRiseModal = ( {children, open, toggleModal} ) => {
             }}
         >
             <Fade in={open}>
-                <Paper className={classes.paper}>{children}</Paper>
+                <Paper className={classes.paperContainer}>
+                    <Paper className={classes.paper}>{children}</Paper>
+                </Paper>
             </Fade>
         </Modal>
 

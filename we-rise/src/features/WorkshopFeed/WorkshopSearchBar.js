@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles';
+
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -20,7 +21,7 @@ const useStyles = makeStyles( (theme) => ({
     }
 }))
 
-const WorkshopSearchBar = () => {
+const WorkshopSearchBar = ({searchQuery}) => {
 
     const classes = useStyles()
 
@@ -38,6 +39,7 @@ const WorkshopSearchBar = () => {
                 <SearchIcon />
                 </InputAdornment>
             }
+            {...searchQuery}
             />
         </FormControl>
     )
