@@ -45,14 +45,14 @@ const useStyles = makeStyles((theme) => ({
     },
     datePicker : {
         fontFamily: 'audiowide',
-        width: '50%',
+        width: '60%',
         backgroundColor: 'rgba(0, 0, 0, 0.09)',
         borderRadius: '4px',
         paddingTop: theme.spacing(1)
     },
     participants : {
-        width: '50%',
-        margin: theme.spacing(1)
+        width: '40%',
+        marginLeft: theme.spacing(1)
     },
     inputLabel: {
         padding: theme.spacing(1),
@@ -185,7 +185,7 @@ const AddWorkshop = ({handleCloseModal}) => {
                             }}
                         />
                         <FormControl variant="filled" className={classes.participants}>
-                            <InputLabel id="participants">Max # of Participants</InputLabel>
+                            <InputLabel id="participants">Max Participants</InputLabel>
                             <Select
                             labelId="participants"
                             id="number-of-participants"
