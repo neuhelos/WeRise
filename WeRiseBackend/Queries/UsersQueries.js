@@ -2,19 +2,21 @@ const database = require("../Database/database");
 
 const createUser = async (req, res) => {
   try {
-    const {
-      id, firstName, lastName, email, user_pic, bio, password
-    } = req.body
-    let newUser = await database.one(`INSERT INTO users(id, firstName, lastName, user_pic, bio, password) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`, [id, firstName, lastName, bio, password, email, user_pic ]);
+    // const {
+    //   id, firstName, lastName, email, user_pic, bio, password
+    // } = req.body
+    let newUser = await database.one('INSERT INTO users(id, email, firstName, lastName, user_pic, bio, password) VALUES (${id}, ${email}, ${firstName}, ${lastName}, ${user_pic}, ${bio}, ${password}) RETURNING *', req.body);
     res.status(200).json({
       status: "success",
       message: "new user created",
       payload: newUser
     });
     
-    
+
   } catch (error) {
-    res.status(404).json({
+    console.log(error)
+    res.status(500).json({
+      
       status: error,
       message: "user cannot be created, try again",
       payload: null
@@ -23,7 +25,7 @@ const createUser = async (req, res) => {
 };
 const deleteUser = async (req, res) => {
   try {
-    await database.none(`DELETE FROM users WHERE id = ${req.params.id} RETURNING *`);
+    await database.none('DELETE FROM users WHERE id = $1 RETURNING *', req.params.id);
     res.status(200).json({
       status: "success",
       message: "user deleted"
