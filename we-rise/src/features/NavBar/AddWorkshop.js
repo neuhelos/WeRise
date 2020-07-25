@@ -108,6 +108,11 @@ const AddWorkshop = ({handleCloseModal}) => {
         )
       }
 
+    const timeParser = (time) => {
+        let timeHourMinutes = time.split(':')
+        return timeHourMinutes
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault()
 
@@ -117,8 +122,8 @@ const AddWorkshop = ({handleCloseModal}) => {
             title: title.value,
             description: title.value,
             date: selectedDate,
-            startTime: time[0],
-            endTime: time[1],
+            startTime: new Date(selectedDate.getFullYear(),selectedDate.getMonth(),selectedDate.getDate(),timeParser(time[0])[0], timeParser(time[0])[1]),
+            endTime: new Date(selectedDate.getFullYear(),selectedDate.getMonth(),selectedDate.getDate(),timeParser(time[1])[0], timeParser(time[1])[1]),
             workshop_image: workshopImage
         })
 
