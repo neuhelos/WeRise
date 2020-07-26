@@ -14,7 +14,6 @@ CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     firstName text NOT NULL,
     lastName text NOT NULL,
-    password VARCHAR,
     email VARCHAR UNIQUE,
     user_pic VARCHAR,
     bio VARCHAR,
@@ -29,7 +28,7 @@ id SERIAL PRIMARY KEY,
 user_id INT REFERENCES users(id),
 title VARCHAR(280),
 descriptions VARCHAR,
-date DATE,
+date VARCHAR,
 startTime VARCHAR,
 endTime VARCHAR,
 workshop_image VARCHAR
@@ -75,9 +74,9 @@ VALUES
 INSERT INTO createdWorkshops
 (id, user_id, title, descriptions, date, startTime, endTime, workshop_image)
 VALUES
-('1', '2', 'Intro to SQL', 'tech', '03/12/2020', 300, 400, 'jpeg'),
-('2', '3', 'Intro to cardio', 'exercise', '08/12/2020', 400, 500, 'jpeg'),
-('3', '1', 'Intro rollplay', 'acting', '11/12/2020', 800, 900, 'jpeg')
+('1', '2', 'Intro to SQL', 'tech', '03/12/2020', '300', '400', 'jpeg'),
+('2', '3', 'Intro to cardio', 'exercise', '08/12/2020', '400', '500', 'jpeg'),
+('3', '1', 'Intro rollplay', 'acting', '11/12/2020', '800', '900', 'jpeg')
 ;
 
 INSERT INTO registeredWorkshops
