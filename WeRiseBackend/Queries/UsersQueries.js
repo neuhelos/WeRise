@@ -5,7 +5,7 @@ const createUser = async (req, res) => {
     // const {
     //   id, firstName, lastName, email, user_pic, bio, password
     // } = req.body
-    let newUser = await database.one('INSERT INTO users(id, email, firstName, lastName, user_pic, bio, password) VALUES (${id}, ${email}, ${firstName}, ${lastName}, ${user_pic}, ${bio}, ${password}) RETURNING *', req.body);
+    let newUser = await database.one('INSERT INTO users(id, email, firstn, lastn, user_pic, bio) VALUES (${id}, ${email}, ${firstn}, ${lastn}, ${user_pic}, ${bio}) RETURNING *', req.body);
     res.status(200).json({
       status: "success",
       message: "new user created",
@@ -33,7 +33,7 @@ const deleteUser = async (req, res) => {
   } catch (error) {
     res.status(404).json({
       status: error,
-      message: "user cannot ve deleted, try again",
+      message: "user cannot be deleted, try again",
     });
   }
 };
