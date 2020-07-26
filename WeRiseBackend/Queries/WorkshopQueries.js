@@ -1,7 +1,7 @@
 const database = require("../Database/database");
 const createWorkshop = async (req, res) => {
   try {
-    let newWorkshop = await database.one('INSERT INTO createdWorkshops(id, user_id, title, description, date, startTime, endTime, workshop_image) VALUES(${1}, ${2}, ${3}, ${4}, ${5}, ${6}, ${7}, ${8}) RETURNING *', req.body);
+    let newWorkshop = await database.one('INSERT INTO createdWorkshops(id, title, category, descriptions, date, start_time, end_time, workshop_image) VALUES(${id}, ${title}, ${descriptions}, ${category}, ${date}, ${start_time}, ${end_time}, ${workshop_image}) RETURNING *', req.body);
     res.status(200).json({
       status: "success",
       message: "A new workshop was created",
