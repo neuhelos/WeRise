@@ -1,5 +1,4 @@
 import React from "react";
-import {createSlice} from '@reduxjs/toolkit';
 import {apiURL} from '../../Utilities/apiURL';
 import {getFirebaseIdToken} from '../../Utilities/firebaseFunctions';
 import {AuthSlice} from '../Authentication/AuthenticationSlice';
@@ -16,18 +15,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {},
 }));
 
-export const userSlice = createSlice({
-  name: 'user',
-  initialState: null,
-  reducers: {
-    receiveUser: {
-      reducer: (state, action)=> action.payload
-    }, 
-    logout: {
-      reducer: (state) =>null
-    }
-  }
-})
+
 const UserProfilePage = (user) => async(dispatch)=>{
 try{
   if(user){
@@ -54,5 +42,5 @@ try{
     </Grid>
   );
 };
-export const {receiveUser} =userSlice.actions
-export default UserProfilePage.reducer;
+
+export default UserProfilePage;
