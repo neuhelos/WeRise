@@ -33,6 +33,8 @@ const MenuProps = {
 const useStyles = makeStyles((theme) => ({
     root: {
         fontFamily: 'audiowide',
+        margin: theme.spacing(1),
+        outline: 'none'
     },
     button: {
         fontFamily: 'audiowide',
@@ -58,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange, buttonLabelChange }) => {
+const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange, buttonLabelChange, selectAllCategories, clearSelectCategories }) => {
 
     const classes = useStyles()
 
@@ -80,13 +82,14 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
         ${dateConverter(dateRange[0].endDate)}`
 
 
+
     return (
         <>
 
         <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
             <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal} size='small'>{buttonDateRangeLabel}</Button>
             <FormControl className={classes.formControl}>
-                <InputLabel className={classes.inputLabel} id="multiple-select-label">Filter Categories</InputLabel>
+                <InputLabel className={classes.inputLabel} id="multiple-select-label">Categories</InputLabel>
                 <Select
                 className={classes.select}
                 labelId="multiple-select"
@@ -95,19 +98,19 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 value={selectCategories}
                 onChange={handleSelectChange}
                 input={<Input style={{textAlign: 'center' }}/>}
-                renderValue={(selected) => selected.length > 1 ? "Multiple Categories" : selected[0]}
+                renderValue={(selected) => selected.length > 1 ? "Multiple" : selected[0]}
                 MenuProps={MenuProps}
                 >
-                <MenuItem key={'all'} value={'All Categories'}>
-                    <Checkbox checked={selectCategories.indexOf('All Categories') > -1} />
-                    <ListItemText primary={'All'}/>
-                    </MenuItem>
-                {categories.map((category) => (
-                    <MenuItem key={category} value={category}>
-                    <Checkbox checked={ selectCategories.indexOf('All Categories') > -1 || selectCategories.indexOf(category) > -1}/>
-                    <ListItemText primary={category}/>
-                    </MenuItem>
-                ))}
+                    <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>
+                        <Button variant="contained" color="primary" onClick={selectAllCategories} size='small'>All</Button>
+                        <Button variant="contained" color="primary" onClick={clearSelectCategories} size='small'>Clear</Button>
+                    </Grid>
+                    {categories.map((category) => (
+                        <MenuItem key={category} value={category} >
+                            <Checkbox checked={ selectCategories.indexOf(category) > -1  }/>
+                            <ListItemText primary={category}/>
+                        </MenuItem>
+                    ))}
                 </Select>
             </FormControl>
         </Grid>

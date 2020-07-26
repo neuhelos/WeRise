@@ -45,14 +45,14 @@ const useStyles = makeStyles((theme) => ({
     },
     datePicker : {
         fontFamily: 'audiowide',
-        width: '50%',
+        width: '60%',
         backgroundColor: 'rgba(0, 0, 0, 0.09)',
         borderRadius: '4px',
         paddingTop: theme.spacing(1)
     },
     participants : {
-        width: '50%',
-        margin: theme.spacing(1)
+        width: '40%',
+        marginLeft: theme.spacing(1)
     },
     inputLabel: {
         padding: theme.spacing(1),
@@ -125,28 +125,26 @@ const AddWorkshop = ({handleCloseModal}) => {
         )
       }
 
-    const timeParser = (time) => {
-        let timeHourMinutes = time.split(':')
-        return timeHourMinutes
-    }
+    const timeParser = (time) => time.split(':')
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-
+        let id = uuidv4()
         let res = await axios.post(`${apiURL}/workshops`, {
-            id: uuidv4(),
+            id: id,
             user_id: currentUser.uid,
             title: title.value,
             description: title.value,
             date: selectedDate,
             startTime: new Date(selectedDate.getFullYear(),selectedDate.getMonth(),selectedDate.getDate(),timeParser(time[0])[0], timeParser(time[0])[1]),
             endTime: new Date(selectedDate.getFullYear(),selectedDate.getMonth(),selectedDate.getDate(),timeParser(time[1])[0], timeParser(time[1])[1]),
+            participants: participants,
             workshop_image: workshopImage
         })
 
         let skill = skills.forEach( async (skill) => {
-            let resSkills = await axios.post(`${apiURL}/workshopSkills`, {
-                workshop_Id: res.id,
+            let res = await axios.post(`${apiURL}/workshopSkills`, {
+                workshop_Id: id,
                 skill: skills.toLowerCase()
             })
         })
@@ -185,7 +183,7 @@ const AddWorkshop = ({handleCloseModal}) => {
                             }}
                         />
                         <FormControl variant="filled" className={classes.participants}>
-                            <InputLabel id="participants">Max # of Participants</InputLabel>
+                            <InputLabel id="participants">Max Participants</InputLabel>
                             <Select
                             labelId="participants"
                             id="number-of-participants"
