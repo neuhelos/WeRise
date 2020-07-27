@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        // overflow: 'scroll',
+        overflow: 'scroll',
         top: '1rem'
         
     },

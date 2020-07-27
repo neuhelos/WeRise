@@ -212,7 +212,7 @@ const AddWorkshop = ({handleCloseModal}) => {
                     <TextField {...params} variant="filled" label="Workshop Skills" placeholder="Enter a Skill and Press Enter" />
                     )}
                 />
-                <Dropzone handleImageChange={handleImageChange} />
+                <Dropzone handleImageChange={handleImageChange} dropzoneText={"Drop or Select Your Workshop Image"}/>
                 <Button variant="contained" color="primary" type="submit"> SUBMIT </Button>
             </form>
         </Grid>

@@ -18,7 +18,7 @@ const theme = createMuiTheme({
     }
 })
 
-const Dropzone = ({handleImageChange}) => {
+const Dropzone = ({ handleImageChange, dropzoneText }) => {
 
     return (
 
@@ -26,7 +26,7 @@ const Dropzone = ({handleImageChange}) => {
             <DropzoneArea
                 acceptedFiles={['image/*']}
                 onChange={handleImageChange}
-                dropzoneText={"Drop or Select Your Workshop Image"}
+                dropzoneText={dropzoneText}
                 filesLimit={1}
                 previewGridProps={{container: {justify: 'center'}}}
             />
