@@ -13,12 +13,11 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     container: {
-        padding: theme.spacing(2),
-        height: '100%',
     },
     paper: {
         backgroundColor: '#282828',
         padding: theme.spacing(2),
+        margin: theme.spacing(2),
     },
     media: {
         width: '30rem',
@@ -31,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '4px',
         border: 'solid 10px #282828',
         padding: theme.spacing(1),
+        margin: theme.spacing(2),
     }
 }))
 
@@ -42,13 +42,13 @@ const LandingPage = () => {
         <Grid container className={classes.root} display="flex" direction="column" wrap='nowrap'>
             <PublicNavBar />
             <Grid container item className={classes.container} display="flex" direction="row" justify='space-evenly' alignItems='center' wrap='nowrap' sm={12}>
-                <Grid container className={classes.container} item justify='flex-end' alignItems='center' sm={12} md={6}>
+                <Grid container item justify='flex-end' alignItems='center' sm={12} md={6}>
                     <video className={classes.video} loop='loop' autoPlay='autoplay' muted>
                         <source src={SloganVideoSource} type="video/mp4"/>
                         Your browser does not support this video.
                     </video>
                 </Grid>
-                <Grid container className={classes.container} item justify='flex-start' alignItems='center' sm={12} md={6}>
+                <Grid container item justify='flex-start' alignItems='center' sm={12} md={6}>
                     <Paper className={classes.paper}>
                         <img className={classes.media} src={VideoChatGif} alt="Video Chat"/>
                     </Paper>
