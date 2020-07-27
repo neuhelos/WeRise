@@ -30,7 +30,6 @@ export const fetchWorkshopSearch = createAsyncThunk(
     }
 )
 
-
 export const workshopFeedSlice = createSlice( {
     name: "workshopFeed",
     initialState: [],
