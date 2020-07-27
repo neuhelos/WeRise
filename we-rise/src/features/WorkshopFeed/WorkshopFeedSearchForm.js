@@ -9,7 +9,7 @@ import SearchBar from './WorkshopSearchBar'
 import FilterBar from './WorkshopFilterBar'
 import { useInput } from '../../Utilities/CustomHookery'
 
-import { fetchWorkshopSearch } from './workshopFeedSlice'
+import { fetchWorkshopSearch, fetchUpcomingWorkshops } from './workshopFeedSlice'
 import { categories } from '../BaseComponents/WorkshopCategories'
 
 const useStyles = makeStyles((theme) => ({
@@ -76,6 +76,7 @@ const WorkshopFeedSearchForm = () => {
         )
         clearSelectCategories()
         setButtonLabelChange(false)
+        dispatch(fetchUpcomingWorkshops())
     }
 
     const handleSubmit = (event) => {
