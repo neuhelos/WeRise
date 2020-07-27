@@ -17,10 +17,18 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'audiowide',
         width: '100%'
     },
-    button: {
+    buttonReset: {
         fontFamily: 'audiowide',
         height: '3rem',
-        margin: theme.spacing(1)
+        margin: theme.spacing(1),
+        backgroundColor: '#FF0F7B'
+    },
+    buttonSubmit: {
+        fontFamily: 'audiowide',
+        height: '3rem',
+        margin: theme.spacing(1),
+        backgroundColor: '#F89B29',
+        color: '#FFFFFF'
     }
 }))
 
@@ -86,8 +94,8 @@ const WorkshopFeedSearchForm = () => {
             <SearchBar searchQuery={searchQuery} />
             <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
                 <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange} buttonLabelChange={buttonLabelChange} selectAllCategories={selectAllCategories} clearSelectCategories={clearSelectCategories}/>
-                <Button className={classes.button} variant="contained" color="primary" size='small' onClick={handleSearchClear}>RESET</Button>
-                <Button className={classes.button} type="submit" variant="contained" color="primary" size='small'>SUBMIT</Button>
+                <Button className={classes.buttonReset} variant="contained" color="primary" size='small' onClick={handleSearchClear}>RESET</Button>
+                <Button className={classes.buttonSubmit} type="submit" variant="contained" color="primary" size='small'>SUBMIT</Button>
             </Grid>
         </form>
     )
