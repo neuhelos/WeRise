@@ -56,17 +56,7 @@ const WorkshopFeedSearchForm = () => {
     const clearSelectCategories = () => {
         setSelectCategories([])
     }
-
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        dispatch(fetchWorkshopSearch({
-            search: searchQuery.value,
-            categories: selectCategories,
-            dateRange: dateRange
-        }))
-        handleSearchClear()
-    }
-
+    
     const handleSearchClear = () => {
         searchQuery.clearinput()
         setDateRange([{
@@ -77,6 +67,16 @@ const WorkshopFeedSearchForm = () => {
         )
         clearSelectCategories()
         setButtonLabelChange(false)
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        dispatch(fetchWorkshopSearch({
+            search: searchQuery.value,
+            categories: selectCategories,
+            dateRange: dateRange
+        }))
+        handleSearchClear()
     }
     
 
