@@ -15,13 +15,16 @@ import ShareIcon from '@material-ui/icons/Share';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
+        display: 'flex',
+        flexDirection: 'row'
+    },
+    header: {
+        width: '60%'
     },
     media: {
-        height: 200,
-        width: '100%',
+        height: '100%',
+        width: '40%',
         padding: theme.spacing(1),
-        display: 'flex',
-        justifyContent: 'center'
         //paddingTop: '56.25%', // 16:9
     },
     avatar: {
@@ -37,22 +40,23 @@ const WorkshopFeedCard = ( {} ) => {
     
     const classes = useStyles();
 
-    const dateTime = 'July 26 2020 7PM-8PM'
+    const date = 'Sep 26 2020'
+    const time = '7PM-8PM'
     
     const workshop = {
         facilitator: "Nilber Remon",
-        title: "CSS Savvy",
+        title: "CSS Savvy Forever Bitches",
         category: "Technology, Coding & Programming",
-        image: ""
+        image: "https://pbs.twimg.com/profile_images/953234447335411712/9PmvG_hz_400x400.jpg"
     }
    
 
     return (
         <Card className={classes.root}>
             <CardHeader
-            className={classes.root}
+            className={classes.header}
             avatar={
-                <Avatar aria-label="recipe" className={classes.avatar} src={""} alt={workshop.facilitator}/>
+                <Avatar aria-label="facilitator" className={classes.avatar} src={""} alt={workshop.facilitator}/>
             }
             title= {
                 <Typography className={classes.text}>{workshop.title}</Typography>
@@ -60,15 +64,15 @@ const WorkshopFeedCard = ( {} ) => {
             subheader = {
                 <>
                 <Typography className={classes.text}>{workshop.facilitator}</Typography>
-                <Typography className={classes.text}>{dateTime}</Typography>
-                <Typography className={classes.text}>{workshop.category}</Typography>
+                <Typography className={classes.text}>{date}</Typography>
+                <Typography className={classes.text}>{time}</Typography>
                 </>
             }
             />
             <CardMedia
             className={classes.media}
-            image="https://p14cdn4static.sharpschool.com/UserFiles/Servers/Server_494023/Image/Caulin/workshops.jpg"
-            title="Paella dish"
+            image={workshop.image}
+            title={workshop.title}
             />
         </Card>
     );
