@@ -37,7 +37,7 @@ const WorkshopFeed = () => {
 
     return (
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
-            <WorkshopFeedCard />
+            {workshops}
         </Grid>
     )
 }

@@ -8,23 +8,21 @@ import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
+import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     header: {
         width: '60%'
     },
     media: {
-        height: '100%',
         width: '40%',
-        padding: theme.spacing(1),
         //paddingTop: '56.25%', // 16:9
     },
     avatar: {
@@ -33,48 +31,48 @@ const useStyles = makeStyles((theme) => ({
     },
     text: {
         fontFamily:'audiowide'
+    },
+    paper: {
+        width: '100%',
+        backgroundColor: '#666666',
+        padding: theme.spacing(1)
     }
     }));
 
-const WorkshopFeedCard = ( {} ) => {
+const WorkshopFeedCard = ( { workshop } ) => {
     
     const classes = useStyles();
 
-    const date = 'Sep 26 2020'
-    const time = '7PM-8PM'
-    
-    const workshop = {
-        facilitator: "Nilber Remon",
-        title: "CSS Savvy Forever Bitches",
-        category: "Technology, Coding & Programming",
-        image: "https://pbs.twimg.com/profile_images/953234447335411712/9PmvG_hz_400x400.jpg"
-    }
-   
+    const date = `${workshop.date.getMonth()+1}-${workshopdate.getDate()}-${workshop.getFullYear()}`
+    const time = `@${workshop.date.getHours()}:${workshop.date.getMinutes}`
 
     return (
-        <Card className={classes.root}>
-            <CardHeader
-            className={classes.header}
-            avatar={
-                <Avatar aria-label="facilitator" className={classes.avatar} src={""} alt={workshop.facilitator}/>
-            }
-            title= {
-                <Typography className={classes.text}>{workshop.title}</Typography>
-            }
-            subheader = {
-                <>
-                <Typography className={classes.text}>{workshop.facilitator}</Typography>
-                <Typography className={classes.text}>{date}</Typography>
-                <Typography className={classes.text}>{time}</Typography>
-                </>
-            }
-            />
-            <CardMedia
-            className={classes.media}
-            image={workshop.image}
-            title={workshop.title}
-            />
-        </Card>
+        <Paper className={classes.paper}>
+            <Card className={classes.root}>
+                <CardHeader
+                className={classes.header}
+                avatar={
+                    <Avatar aria-label="facilitator" className={classes.avatar} src={""} alt={workshop.facilitator}/>
+                }
+                title= {
+                    <Typography className={classes.text}>{workshop.title}</Typography>
+                }
+                subheader = {
+                    <>
+                    <Typography className={classes.text}>{workshop.facilitator}</Typography>
+                    <Typography className={classes.text}>{date}</Typography>
+                    <Typography className={classes.text}>{time}</Typography>
+                    <Typography className={classes.text}>{workshop.category}</Typography>
+                    </>
+                }
+                />
+                <CardMedia
+                className={classes.media}
+                image={workshop.image}
+                title={workshop.title}
+                />
+            </Card>
+        </Paper>
     );
 }
 
