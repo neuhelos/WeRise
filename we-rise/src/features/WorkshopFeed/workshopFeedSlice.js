@@ -21,7 +21,7 @@ export const fetchWorkshopSearch = createAsyncThunk(
     async (search) => {
         try {
             const res = await axios.get(`${apiURL}/workshops/search`, {
-                
+                search
             })
             return res.payload
         } catch (error) {
@@ -30,17 +30,10 @@ export const fetchWorkshopSearch = createAsyncThunk(
     }
 )
 
-
 export const workshopFeedSlice = createSlice( {
     name: "workshopFeed",
     initialState: [],
     reducers: {
-        categoryFilter: (state, action) => {
-            return state.filter( workshop => workshop.category === action.payload)
-        },
-        dateFilter: (state, action) => {
-            return state.filter( workshop => workshop.date >= action.payload.startDate && workshop.date <= action.payload.endDate )
-        }
     },
     extraReducers: {
         [fetchUpcomingWorkshops.fulfilled]: (state, action) => action.payload,

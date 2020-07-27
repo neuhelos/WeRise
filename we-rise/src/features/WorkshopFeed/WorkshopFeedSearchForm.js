@@ -15,11 +15,20 @@ import { categories } from '../BaseComponents/WorkshopCategories'
 const useStyles = makeStyles((theme) => ({
     root: {
         fontFamily: 'audiowide',
+        width: '100%'
     },
-    button: {
+    buttonReset: {
         fontFamily: 'audiowide',
         height: '3rem',
-        margin: theme.spacing(1)
+        margin: theme.spacing(1),
+        backgroundColor: '#FF0F7B'
+    },
+    buttonSubmit: {
+        fontFamily: 'audiowide',
+        height: '3rem',
+        margin: theme.spacing(1),
+        backgroundColor: '#F89B29',
+        color: '#FFFFFF'
     }
 }))
 
@@ -56,17 +65,7 @@ const WorkshopFeedSearchForm = () => {
     const clearSelectCategories = () => {
         setSelectCategories([])
     }
-
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        dispatch(fetchWorkshopSearch({
-            search: searchQuery.value,
-            categories: selectCategories,
-            dateRange: dateRange
-        }))
-        handleSearchClear()
-    }
-
+    
     const handleSearchClear = () => {
         searchQuery.clearinput()
         setDateRange([{
@@ -78,15 +77,25 @@ const WorkshopFeedSearchForm = () => {
         clearSelectCategories()
         setButtonLabelChange(false)
     }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        dispatch(fetchWorkshopSearch({
+            search: searchQuery.value,
+            categories: selectCategories,
+            dateRange: dateRange
+        }))
+        handleSearchClear()
+    }
     
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.root}>
             <SearchBar searchQuery={searchQuery} />
             <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
                 <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange} buttonLabelChange={buttonLabelChange} selectAllCategories={selectAllCategories} clearSelectCategories={clearSelectCategories}/>
-                <Button className={classes.button} variant="contained" color="primary" size='small' onClick={handleSearchClear}>RESET</Button>
-                <Button className={classes.button} type="submit" variant="contained" color="primary" size='small'>SUBMIT</Button>
+                <Button className={classes.buttonReset} variant="contained" color="primary" size='small' onClick={handleSearchClear}>RESET</Button>
+                <Button className={classes.buttonSubmit} type="submit" variant="contained" color="primary" size='small'>SUBMIT</Button>
             </Grid>
         </form>
     )

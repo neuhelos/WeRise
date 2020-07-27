@@ -40,7 +40,9 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'audiowide',
         width: '50%',
         height: '3rem',
-        margin: theme.spacing(1)
+        margin: theme.spacing(1),
+        background: '#36386D'
+
     },
     formControl: {
         margin: theme.spacing(1),
