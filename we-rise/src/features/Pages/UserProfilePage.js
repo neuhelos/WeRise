@@ -6,7 +6,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { setCurrentUser } from "../Authentication/AuthenticationSlice";
-
+import Card from '@material-ui/core/Card'
+import CardHeader from '@material-ui/core/CardHeader'
+import CardMedia from '@material-ui/core/CardMedia'
+import CardContent from '@material-ui/core/CardContent'
+import Avatar from '@material-ui/core/Avatar'
+import Typography from '@material-ui/core/Typography'
 const API = apiURL();
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,8 +32,24 @@ const UserProfilePage = () => {
 //   let displayUser = currentUser.map((user) => {});
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
       User Profile
+      <Card className='Container'/>
+      <CardHeader title="My Profile"
+      subheader='User Name'
+      />
+      <CardMedia
+      className = {classes.media}
+      image="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+      title='profilePic'
+      />
+      <CardContent>
+
+          <Typography>
+              this holds the bio 
+          </Typography>
+          </CardContent>
+
       <UserWorkshopAgenda />
     </Grid>
   );
