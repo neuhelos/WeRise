@@ -151,7 +151,7 @@ const SignUpModal = () => {
                   ))
               }
               renderInput={(params) => (
-              <TextField {...params} variant="filled" label="Your Skills" placeholder="Enter a Skill and Press Enter" />
+              <TextField {...params} variant="filled" label="Your Skills & Interests" placeholder="Enter Skill/Interest and Press Enter" />
               )}
           />
           
