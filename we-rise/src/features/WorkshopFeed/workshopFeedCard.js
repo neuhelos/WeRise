@@ -43,7 +43,7 @@ const WorkshopFeedCard = ( { workshop } ) => {
     
     const classes = useStyles();
 
-    const date = `${workshop.date.getMonth()+1}-${workshopdate.getDate()}-${workshop.getFullYear()}`
+    const date = `${workshop.date.getMonth()+1}-${workshop.date.getDate()}-${workshop.getFullYear()}`
     const time = `@${workshop.date.getHours()}:${workshop.date.getMinutes}`
 
     return (
