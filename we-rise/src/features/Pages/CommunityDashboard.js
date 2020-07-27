@@ -19,18 +19,21 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     container: {
-        height: '100%',
+        flexGrow: 1,
     },
     gridItem: {
         margin: theme.spacing(0.5),
         width: '100%',
-        justify: 'center'
     },
     paper: {
         width: '90%',
-        padding: theme.spacing(1),
+        padding: theme.spacing(2),
+        margin: theme.spacing(2),
         backgroundColor: '#282828',
-        color: 'white'
+        color: 'white',
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: 'center'
     }
 }))
 
@@ -41,29 +44,25 @@ const CommunityDashboard = () => {
 
     return (
         <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
-            <Grid container item className={classes.container} direction="column" justify="start" alignItems="center" spacing={4} sm={12} md={7}>
-                <Grid container item className={classes.gridItem} justify="center" >
+            <Grid container item direction="column" justify="start" alignItems="center" sm={12} md={7}>
+                {/* <Grid container item className={classes.gridItem} justify="center" alignItems="center" > */}
                     <Paper className={classes.paper}>
                         <WorkshopFeedSearchForm />
                     </Paper>
-                </Grid>
-                <Grid container item className={classes.gridItem} justify="center" >
+                {/* </Grid> */}
+                {/* <Grid container item  className={classes.gridItem} direction="column" justify="center" alignItems="center"  > */}
                     <Paper className={classes.paper}>
                         <WorkshopFeed />
                     </Paper>
-                </Grid>
+                {/* </Grid> */}
             </Grid>
-            <Grid container className={classes.container} item direction="column" justify="start" alignItems="center" spacing={4} sm={12} md={5}>
-                <Grid container item className={classes.gridItem} justify="center" >
+            <Grid container item direction="column" justify="start" alignItems="center" sm={12} md={5}>
                     <Paper className={classes.paper}>
                         <UserWorkshopAgenda />
                     </Paper>
-                </Grid>
-                <Grid container item className={classes.gridItem} justify="center" >
                     <Paper className={classes.paper}>
                         <RecentlyPostedWorkshops />
                     </Paper>
-                </Grid>
             </Grid>
         </Grid>
     )

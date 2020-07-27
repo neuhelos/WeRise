@@ -15,6 +15,7 @@ import { categories } from '../BaseComponents/WorkshopCategories'
 const useStyles = makeStyles((theme) => ({
     root: {
         fontFamily: 'audiowide',
+        width: '100%'
     },
     button: {
         fontFamily: 'audiowide',
@@ -81,7 +82,7 @@ const WorkshopFeedSearchForm = () => {
     
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.root}>
             <SearchBar searchQuery={searchQuery} />
             <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
                 <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange} buttonLabelChange={buttonLabelChange} selectAllCategories={selectAllCategories} clearSelectCategories={clearSelectCategories}/>
