@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
         //     '50%': {backgroundPosition:'100% 91%'},
         //     '100%': {backgroundPosition:'0% 10%'},
         // },
-        flexGrow: 1,
         }, 
     button: {
         fontFamily: 'audiowide',

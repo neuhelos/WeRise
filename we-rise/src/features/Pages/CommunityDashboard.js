@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 
 import WorkshopFeed from '../WorkshopFeed/WorkshopFeed'
 import WorkshopFeedSearchForm from '../WorkshopFeed/WorkshopFeedSearchForm'
@@ -18,19 +19,37 @@ const useStyles = makeStyles((theme) => ({
             flexWrap: 'nowrap'
         }
     },
-    container: {
+    gridSection: {
+        padding: theme.spacing(1),
         height: '100%',
-    },
-    gridItem: {
-        margin: theme.spacing(0.5),
         width: '100%',
-        justify: 'center'
     },
     paper: {
         width: '90%',
-        padding: theme.spacing(1),
+        padding: theme.spacing(2),
+        margin: theme.spacing(2),
         backgroundColor: '#282828',
-        color: 'white'
+        color: 'white',
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: 'center',
+    },
+    paperWrapper: {
+        width: '90%',
+        padding: theme.spacing(1),
+        margin: theme.spacing(1),
+        backgroundColor: '#282828',
+    },
+    paperTitle: {
+        width: '100%',
+        backgroundColor: '#666666',
+        color: '#FFFFFF',
+        padding: theme.spacing(1),
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    text: {
+        fontFamily: 'audiowide'
     }
 }))
 
@@ -41,29 +60,36 @@ const CommunityDashboard = () => {
 
     return (
         <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
-            <Grid container item className={classes.container} direction="column" justify="start" alignItems="center" spacing={4} sm={12} md={7}>
-                <Grid container item className={classes.gridItem} justify="center" >
-                    <Paper className={classes.paper}>
-                        <WorkshopFeedSearchForm />
+            <Grid className={classes.gridSection} container item direction="column" justify="start" alignItems="center" sm={12} md={7}>
+                <Paper className={classes.paperWrapper}>
+                    <Paper className={classes.paperTitle}>
+                        <Typography className={classes.text} variant='h5'>WORKSHOPS</Typography>
                     </Paper>
-                </Grid>
-                <Grid container item className={classes.gridItem} justify="center" >
-                    <Paper className={classes.paper}>
-                        <WorkshopFeed />
-                    </Paper>
-                </Grid>
+                </Paper>
+                <Paper className={classes.paper}>
+                    <WorkshopFeedSearchForm />
+                </Paper>
+                <Paper className={classes.paper}>
+                    <WorkshopFeed />
+                </Paper>
             </Grid>
-            <Grid container className={classes.container} item direction="column" justify="start" alignItems="center" spacing={4} sm={12} md={5}>
-                <Grid container item className={classes.gridItem} justify="center" >
-                    <Paper className={classes.paper}>
-                        <UserWorkshopAgenda />
+            <Grid className={classes.gridSection}  container item direction="column" justify="start" alignItems="center" sm={12} md={5}>
+                <Paper className={classes.paperWrapper}>
+                    <Paper className={classes.paperTitle}>
+                        <Typography className={classes.text} variant='h7'>My Workshops</Typography>
                     </Paper>
-                </Grid>
-                <Grid container item className={classes.gridItem} justify="center" >
-                    <Paper className={classes.paper}>
-                        <RecentlyPostedWorkshops />
+                </Paper>
+                <Paper className={classes.paper}>
+                    <UserWorkshopAgenda />
+                </Paper>
+                <Paper className={classes.paperWrapper}>
+                    <Paper className={classes.paperTitle}>
+                        <Typography className={classes.text} variant='h7'>Recently Posted</Typography>
                     </Paper>
-                </Grid>
+                </Paper>
+                <Paper className={classes.paper}>
+                    <RecentlyPostedWorkshops />
+                </Paper>
             </Grid>
         </Grid>
     )

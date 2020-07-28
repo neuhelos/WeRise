@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS database_db;
-CREATE DATABASE database_db;
+-- DROP DATABASE IF EXISTS database_db;
+-- CREATE DATABASE database_db;
 
-\c database_db;
+-- \c database_db;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS createdWorkshops;
 DROP TABLE IF EXISTS registeredWorkshops;
@@ -33,6 +33,7 @@ start_time VARCHAR,
 end_time VARCHAR,
 category VARCHAR,
 workshop_img VARCHAR
+
 );
 
 CREATE TABLE registeredWorkshops(

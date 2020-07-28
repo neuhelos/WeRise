@@ -1,4 +1,3 @@
-export const APIURL = () => {
-    return window.location.hostname === "localhost"
-        ? "http://localhost:3000" : "";
+export const apiURL = () => {
+    return window.location.hostname === "localhost" ? "http://localhost:3001" : "";
     };

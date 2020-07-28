@@ -1,44 +1,68 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
-import { DateTimePicker } from "@material-ui/pickers";
+import { v4 as uuidv4 } from 'uuid'
+import { KeyboardDatePicker } from "@material-ui/pickers";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import LuxonUtils from '@date-io/luxon'
+import TimeRangePicker from '@wojtekmaj/react-timerange-picker'
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography'
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 import Dropzone from '../BaseComponents/FileDropzone'
 import CategoryDropdown from './WorkshopCategoryDropdown'
 import { useInput, useSelect } from '../../Utilities/CustomHookery'
-import { APIURL } from '../../Utilities/apiURL'
+import { apiURL } from '../../Utilities/apiURL'
 import { storage } from '../../Utilities/firebase'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        '& * + *': {
-            marginTop: theme.spacing(1)
-        },
         width: '100%',
         '& *': {
             fontFamily: 'audiowide',
-            textAlign: 'center'
-        }
+            textAlign: 'center',
+            outlineColor: '#36386D',
+            border: 'none',
+        },
+    },
+    container: {
+        marginBottom: theme.spacing(1)
     },
     input: {
         width: '100%',
+        fontFamily: 'audiowide',
+        marginBottom: theme.spacing(1)
     },
-    dateTimePicker : {
-        width: '100%',
+    datePicker : {
+        fontFamily: 'audiowide',
+        width: '60%',
+        backgroundColor: 'rgba(0, 0, 0, 0.09)',
+        borderRadius: '4px',
+        paddingTop: theme.spacing(1)
+    },
+    participants : {
+        width: '40%',
+        marginLeft: theme.spacing(1)
+    },
+    inputLabel: {
+        padding: theme.spacing(1),
+        backgroundColor: 'rgba(0, 0, 0, 0.09)',
+        borderRadius: '4px',
     }
 }));
 
 
-const AddWorkshop = () => {
+const AddWorkshop = ({handleCloseModal}) => {
 
     const classes = useStyles();
 
@@ -48,10 +72,26 @@ const AddWorkshop = () => {
     const description = useInput("")
     const category = useSelect("")
 
-    const [selectedDate, handleDateChange] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [time, setTime] = useState(['', '']);
+
+    const [participants, setParticipants] = useState(0)
+
     const [skills, setSkills] = useState([])
 
     const [workshopImage, setWorkshopImage,] = useState(null)
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
+    
+    const handleTimeChange = (time) => {
+        setTime(time)
+    }
+
+    const handleParticipantsChange = (event) => {
+        setParticipants(event.target.value)
+    }
 
     const handleSkillsTagsChange = (event, values) => {
         setSkills(values)
@@ -85,30 +125,83 @@ const AddWorkshop = () => {
         )
       }
 
+    const timeParser = (time) => time.split(':')
+
     const handleSubmit = async (event) => {
         event.preventDefault()
-        let res = await axios.post(`${APIURL}/workshops`, {
+        let id = uuidv4()
+        let res = await axios.post(`${apiURL}/workshops`, {
+            id: id,
             user_id: currentUser.uid,
             title: title.value,
             description: title.value,
             date: selectedDate,
-            startTime: selectedDate.getTime(),
-            endTime: null,
+            startTime: new Date(selectedDate.getFullYear(),selectedDate.getMonth(),selectedDate.getDate(),timeParser(time[0])[0], timeParser(time[0])[1]),
+            endTime: new Date(selectedDate.getFullYear(),selectedDate.getMonth(),selectedDate.getDate(),timeParser(time[1])[0], timeParser(time[1])[1]),
+            participants: participants,
             workshop_image: workshopImage
         })
+
+        let skill = skills.forEach( async (skill) => {
+            let res = await axios.post(`${apiURL}/workshopSkills`, {
+                workshop_Id: id,
+                user_id: currentUser.uid,
+                skill: skill.toLowerCase()
+            })
+        })
+        handleCloseModal()
     }
 
     return (
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
             <form onSubmit={handleSubmit}>
-                <Typography variant="h4">Create Your Workshop</Typography>
+                <Typography variant="h6">Create Your Workshop</Typography>
                 <TextField className={classes.input} id="filled-basic" label="Workshop Title" placeholder="Enter Workshop Title" variant="filled" {...title}/>
-                <CategoryDropdown category={category}/>
+                <CategoryDropdown className={classes.input} category={category}/>
                 <TextField className={classes.input} id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
                 <MuiPickersUtilsProvider utils={LuxonUtils}>
-                    <DateTimePicker className={classes.dateTimePicker} value={selectedDate} disablePast onChange={handleDateChange} label="Workshop Date and Start Time"/>
+                    <InputLabel className={classes.inputLabel} id="timerangepicker">Workshop Time</InputLabel>
+                    <Container className={classes.container} > 
+                        <span>From<TimeRangePicker
+                            labelId="timerangepicker"
+                            onChange={handleTimeChange}
+                            value={time}
+                            disableClock
+                            hourPlaceholder="hh"
+                            minutePlaceholder="mm"
+                            rangeDivider="To"
+                        /></span>
+                    </Container>
+                    <Grid container className={classes.container} display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap' >
+                        <KeyboardDatePicker className={classes.datePicker}
+                            disablePast
+                            label="Workshop Date"
+                            format="MM/dd/yyyy" 
+                            value={selectedDate}
+                            onChange={handleDateChange}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                        <FormControl variant="filled" className={classes.participants}>
+                            <InputLabel id="participants">Max Participants</InputLabel>
+                            <Select
+                            labelId="participants"
+                            id="number-of-participants"
+                            value={participants}
+                            onChange={handleParticipantsChange}
+                            >
+                            <MenuItem value={1}>1</MenuItem>
+                            <MenuItem value={2}>2</MenuItem>
+                            <MenuItem value={3}>3</MenuItem>
+                            <MenuItem value={4}>4</MenuItem>
+                            <MenuItem value={5}>5</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
                 </MuiPickersUtilsProvider>
                 <Autocomplete className={classes.input} multiple id="tags-filled" options={[]} defaultValue={""} freeSolo
+                    style={{marginTop: '0.5rem'}}
                     onChange={handleSkillsTagsChange}
                     renderTags={(value, getTagProps) =>
                         value.map((option, index) => (
@@ -116,11 +209,11 @@ const AddWorkshop = () => {
                         ))
                     }
                     renderInput={(params) => (
-                    <TextField {...params} variant="filled" label="Workshop Skills" placeholder="Enter One or More Skills & Press Enter" />
+                    <TextField {...params} variant="filled" label="Workshop Skills" placeholder="Enter a Skill and Press Enter" />
                     )}
                 />
-                <Dropzone handleImageChange={handleImageChange} />
-                <Button variant="contained" color="primary"> SUBMIT </Button>
+                <Dropzone handleImageChange={handleImageChange} dropzoneText={"Drop or Select Your Workshop Image"}/>
+                <Button variant="contained" color="primary" type="submit"> SUBMIT </Button>
             </form>
         </Grid>
     )

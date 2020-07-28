@@ -18,6 +18,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import { categories } from '../BaseComponents/WorkshopCategories'
 
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -32,18 +33,23 @@ const MenuProps = {
 const useStyles = makeStyles((theme) => ({
     root: {
         fontFamily: 'audiowide',
+        margin: theme.spacing(1),
+        outline: 'none'
     },
     button: {
         fontFamily: 'audiowide',
         width: '50%',
-        height: '3rem'
+        height: '3rem',
+        margin: theme.spacing(1),
+        background: '#36386D'
+
     },
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
         maxWidth: 300,
         backgroundColor: '#F5F5F5',
-        borderRadius: '2px',
+        borderRadius: '4px',
         width: '50%'
     },
     select: {
@@ -56,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange}) => {
+const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange, buttonLabelChange, selectAllCategories, clearSelectCategories }) => {
 
     const classes = useStyles()
 
@@ -69,13 +75,15 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
         let day = date.getDate()
         let month = date.getMonth()
         let year = date.getFullYear()
-        return `${month}-${day}-${year}`
+        return `${month+1}-${day}-${year}`
     }
 
-    const buttonDateRangeLabel = !dateRange[0].endDate ? 
+    const buttonDateRangeLabel = !buttonLabelChange ? 
         "Select Date Range" : 
         `${dateConverter(dateRange[0].startDate)} thru 
         ${dateConverter(dateRange[0].endDate)}`
+
+
 
     return (
         <>
@@ -83,7 +91,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
         <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
             <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal} size='small'>{buttonDateRangeLabel}</Button>
             <FormControl className={classes.formControl}>
-                <InputLabel className={classes.inputLabel} id="multiple-select-label">Filter Categories</InputLabel>
+                <InputLabel className={classes.inputLabel} id="multiple-select-label">Categories</InputLabel>
                 <Select
                 className={classes.select}
                 labelId="multiple-select"
@@ -92,15 +100,19 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 value={selectCategories}
                 onChange={handleSelectChange}
                 input={<Input style={{textAlign: 'center' }}/>}
-                renderValue={(selected) => selected.length > 1 ? "Multiple Categories" : selected[0]}
+                renderValue={(selected) => selected.length > 1 ? "Multiple" : selected[0]}
                 MenuProps={MenuProps}
                 >
-                {categories.map((category) => (
-                    <MenuItem key={category} value={category}>
-                    <Checkbox checked={selectCategories.indexOf(category) > -1} />
-                    <ListItemText primary={category}/>
-                    </MenuItem>
-                ))}
+                    <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>
+                        <Button variant="contained" color="primary" onClick={selectAllCategories} size='small'>All</Button>
+                        <Button variant="contained" color="primary" onClick={clearSelectCategories} size='small'>Clear</Button>
+                    </Grid>
+                    {categories.map((category) => (
+                        <MenuItem key={category} value={category} >
+                            <Checkbox checked={ selectCategories.indexOf(category) > -1  }/>
+                            <ListItemText primary={category}/>
+                        </MenuItem>
+                    ))}
                 </Select>
             </FormControl>
         </Grid>

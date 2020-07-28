@@ -1,18 +1,36 @@
-import React, {Component} from 'react'
+import React from 'react'
 import { DropzoneArea } from 'material-ui-dropzone'
 
+import { makeStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-const Dropzone = ({handleImageChange}) => {
+const theme = createMuiTheme({
+    overrides: {
+        MuiDropzoneArea: {
+            root: {
+                minHeight: '100px',
+                backgroundColor: '#F5F5F5',
+                marginBottom: '0.5rem'
+            },
+            text: {
+                fontSize: '1rem'
+            }
+        }
+    }
+})
+
+const Dropzone = ({ handleImageChange, dropzoneText }) => {
 
     return (
 
-        <DropzoneArea
-            acceptedFiles={['image/*']}
-            onChange={handleImageChange}
-            dropzoneText={"Select Your Workshop Image"}
-            filesLimit={1}
-            previewGridProps={{container: {justify: 'center'}}}
+        <MuiThemeProvider theme={theme}>
+            <DropzoneArea
+                acceptedFiles={['image/*']}
+                onChange={handleImageChange}
+                dropzoneText={dropzoneText}
+                filesLimit={1}
+                previewGridProps={{container: {justify: 'center'}}}
             />
+        </MuiThemeProvider>
     )
 }
 
