@@ -49,6 +49,7 @@ const deleteWorkshop = async (req, res) => {
     });
   }
 };
+
 const searchWorkshop = async (req, res) => {
   try {
     let search = await database.any(
