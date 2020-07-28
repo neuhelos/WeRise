@@ -9,7 +9,7 @@ const searchWorkshops = async (req, res) => {
     //     categoriesQuery = 
     // }
     console.log(req.body)
-    let categories = req.body.categories.map( category => `createdWorkshops.category = ${category}`)
+    let categories = req.body.categories.map( category => `created_workshops.category = ${category}`)
     let categoriesQuery = categories.join('OR')
     
     // let searchQuery
@@ -19,9 +19,9 @@ const searchWorkshops = async (req, res) => {
 
     try {
         let search = await database.any(
-        `SELECT * FROM createdworkshops JOIN workshopskills ON createdworkshops.id = workshopskills.workshop_id WHERE ${categoriesQuery} AND 
-        WHERE createdworkshops.title LIKE %$1% AND WHERE createdWorkshops.description LIKE %${1}% AND WHERE workshopskills.skills LIKE %$1% AND
-        WHERE createdworkshops.start_time >= $2 AND createdworkshops.date <= $3 ORDER BY createdworkshops.start_time DESC`,
+        `SELECT * FROM created_workshops JOIN workshop_skills ON created_workshops.id = workshop_skills.workshop_id WHERE ${categoriesQuery} AND 
+        WHERE created_workshops.title LIKE %$1% AND WHERE created_workshops.descriptions LIKE %${1}% AND WHERE workshop_skills.skills LIKE %$1% AND
+        WHERE created_workshops.start_time >= $2 AND created_workshops.date <= $3 ORDER BY created_workshops.start_time DESC`,
         [req.body.search, req.body.dateRange[0].startDate, req.body.dateRange[0].endDate]
         );
         res.status(200).json({
