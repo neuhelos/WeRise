@@ -78,15 +78,15 @@ const SignUpModal = () => {
 
             let res =  await axios.post(`http://localhost:3001/users`, {
             id: resSignup.user.uid,
-            firstName: firstName,
-            lastName: lastName,
+            firstName: firstName.value,
+            lastName: lastName.value,
             email: email,
             user_pic: uploadPic,
             bio : bio,
-            // instagram: instagram,
-            // facebook: facebook,
-            // twitter:null,
-            // linkedin: linkedin
+            instagram: instagram.value,
+            facebook: facebook.value,
+            twitter: twitter.value,
+            linkedin: linkedin.value
         })
 
       }

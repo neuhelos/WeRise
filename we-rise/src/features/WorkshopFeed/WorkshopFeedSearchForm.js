@@ -48,7 +48,6 @@ const WorkshopFeedSearchForm = () => {
     ]);
     const [buttonLabelChange, setButtonLabelChange] = useState(false)
     const handleDateChange = (item) => {
-        console.log(item)
         setDateRange([item.selection])
         setButtonLabelChange(true)
     }
@@ -66,7 +65,7 @@ const WorkshopFeedSearchForm = () => {
         setSelectCategories([])
     }
     
-    const handleSearchClear = () => {
+    const handleSearchReset = () => {
         searchQuery.clearinput()
         setDateRange([{
             startDate: new Date(),
@@ -83,10 +82,9 @@ const WorkshopFeedSearchForm = () => {
         event.preventDefault()
         dispatch(fetchWorkshopSearch({
             search: searchQuery.value,
-            categories: selectCategories,
+            categories: selectCategories, 
             dateRange: dateRange
-        }))
-        handleSearchClear()
+        }))   
     }
     
 
@@ -95,7 +93,7 @@ const WorkshopFeedSearchForm = () => {
             <SearchBar searchQuery={searchQuery} />
             <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
                 <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange} buttonLabelChange={buttonLabelChange} selectAllCategories={selectAllCategories} clearSelectCategories={clearSelectCategories}/>
-                <Button className={classes.buttonReset} variant="contained" color="primary" size='small' onClick={handleSearchClear}>RESET</Button>
+                <Button className={classes.buttonReset} variant="contained" color="primary" size='small' onClick={handleSearchReset}>RESET</Button>
                 <Button className={classes.buttonSubmit} type="submit" variant="contained" color="primary" size='small'>SUBMIT</Button>
             </Grid>
         </form>
