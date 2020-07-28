@@ -79,7 +79,8 @@ VALUES
 ('abc5', 'James', 'lee', 'abc5@gmail','jpeg', 'hi im abc5'),
 ('abc6', 'Joey', 'Chestnut', 'abc6@gmail','jpeg', 'hi im abc6'),
 ('abc7', 'abc', '7', 'abc7@gmail','jpeg', 'hi im abc7'),
-('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev','https://www.aceshowbiz.com/images/photo/drake.jpg', 'hi im the demo account!');
+('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev','https://www.aceshowbiz.com/images/photo/drake.jpg', 'hi im the demo account!'),
+('E093QRw1swaW4KCQUON44IU2gcy2', 'Guest', 'Account', 'guest@werise.org','https://www.aceshowbiz.com/images/photo/drake.jpg', 'hi im the Guest account!');
 
 INSERT INTO created_workshops
 (id, user_id, title, descriptions, date, start_time, end_time, category, workshop_img)
@@ -99,7 +100,12 @@ VALUES
 ('1', '2'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', '2'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', '3'),
-('ilFicLgXB5O9utKaS8WCn4UaQh53', '5')
+('ilFicLgXB5O9utKaS8WCn4UaQh53', '5'),
+('E093QRw1swaW4KCQUON44IU2gcy2', '2'),
+('E093QRw1swaW4KCQUON44IU2gcy2', '3'),
+('E093QRw1swaW4KCQUON44IU2gcy2', '4'),
+('E093QRw1swaW4KCQUON44IU2gcy2', '1'),
+('E093QRw1swaW4KCQUON44IU2gcy2', '5')
 ;
 
 INSERT INTO workshop_skills
@@ -108,3 +114,4 @@ VALUES
 ('1', '1', 'sql'),
 ('2', '2', 'aerobics'),
 ('3','5','dance')
+

@@ -3,6 +3,8 @@ import { signUp } from '../../Utilities/firebaseFunctions';
 import { storage } from '../../Utilities/firebase'
 import { useHistory} from 'react-router-dom'
 import axios from 'axios'
+import { apiURL } from '../../Utilities/apiURL'
+
 
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField'
@@ -72,6 +74,7 @@ const SignUpModal = ( ) => {
   }
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
 
     try {
@@ -91,9 +94,9 @@ const SignUpModal = ( ) => {
       })
       
       skills.forEach( async (skill) => {
-        let res = await axios.post(`${apiURL}/userSkills`, {
-          user_id: resSignup.user.uid,
-          skill: skill.toLowerCase()
+          let res = await axios.post(`${apiURL}/usersSkills`, {
+              user_id: resSignup.user.uid,
+              skills: skill.toLowerCase()
         })
       })
     } catch (err){
@@ -129,6 +132,8 @@ const SignUpModal = ( ) => {
           }
         )
       }
+
+     
 
       console.log("image: ", uploadPic);
 
