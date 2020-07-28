@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
-import { APIURL } from '../../Utilities/apiURL'
+import { apiURL } from '../../Utilities/apiURL'
 
 const UserWorkshopsAgenda = () => {
     const [workshops, setWorkshops] = useState([]);
     const currentUser = useSelector( state => state.currentUserSession.uid )
     const myworkshops = async() => {
         try{
-            let res = await axios.get(`${APIURL}/registered/${2}`)
+            let res = await axios.get(`${apiURL}/registered/${2}`)
             setWorkshops(res.data.payload)
             debugger
       } catch (err){
