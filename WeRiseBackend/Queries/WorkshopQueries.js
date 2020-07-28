@@ -86,7 +86,7 @@ const getAllWorkshops = async (req, res) => {
 const editWorkshop = async (req, res, next) => {
   try {
     let update = await database.one(
-      `UPDATE createdWorkshops SET date= '${req.body.date}', startTime=${req.body.startTime}', endTime = ${req.body.endTime}' WHERE id=${req.params.id} RETURNING *  `
+      `UPDATE created_workshops SET date= '${req.body.date}', startTime=${req.body.startTime}', endTime = ${req.body.endTime}' WHERE id=${req.params.id} RETURNING *  `
     );
     res.status(200).json({
       status: "success",
@@ -106,14 +106,14 @@ const searchWorkshopByDate = async (req, res, next) => {
   try {
     let searchByDate = await database.any(
       `SELECT DISTINCT date,
-      ARRAY_AGG(createdWorkshops.id) AS id,
-      ARRAY_AGG(createdWorkshops.user_id) AS user_id,
-      ARRAY_AGG(createdWorkshops.title) AS title,
-      ARRAY_AGG(createdWorkshops.description) AS description,
-      ARRAY_AGG(createdWorkshops.date) AS date,
-      ARRAY_AGG(createdWorkshops.startTime) AS startTime,
-      ARRAY_AGG(createdWorkshops.endTime) AS endTime
-      FROM createdWorkshops
+      ARRAY_AGG(created_workshops.id) AS id,
+      ARRAY_AGG(created_workshops.user_id) AS user_id,
+      ARRAY_AGG(created_workshops.title) AS title,
+      ARRAY_AGG(created_workshops.description) AS description,
+      ARRAY_AGG(created_workshops.date) AS date,
+      ARRAY_AGG(created_workshops.startTime) AS startTime,
+      ARRAY_AGG(created_workshops.endTime) AS endTime
+      FROM created_workshops
       `
     );
     res.status(200).json({
