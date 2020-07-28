@@ -34,13 +34,14 @@ const UserProfilePage = () => {
   const fetchUser = async()=>{
       try{
           let res = await axios.get(`${API}/users/`)
+          debugger
             console.log(setProfile(res.data.payload))
             //setProfile(res.data.payload.currentUser)
-            setFirstn(res.data.payload[0].firstn)
-            setLastn(res.data.payload[0].lastn)
-            setEmail(res.data.payload[0].email)
-            setBio(res.data.payload[0].bio)
-            setPic(res.data.payload[0].user_pic)
+            setFirstn(res.data.payload[10].firstn)
+            setLastn(res.data.payload[10].lastn)
+            setEmail(res.data.payload[10].email)
+            setBio(res.data.payload[10].bio)
+            setPic(res.data.payload[10].user_pic)
       }catch{
 
       }
@@ -60,7 +61,7 @@ useEffect(()=>{
       />
       <CardMedia
       className = {classes.media}
-      image="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+      image={pic}
     
       />
       <CardContent>
@@ -69,6 +70,17 @@ useEffect(()=>{
               
               {bio}
           </Typography>
+
+          <h2>{firstn}</h2>
+          <h2>{lastn}</h2>
+          <img src={pic}></img>
+          <h3> 
+              {email}   
+          </h3>
+          <h3>
+              {bio}
+          </h3>
+
           </CardContent>
 
       <UserWorkshopAgenda />
