@@ -1,7 +1,7 @@
 const database = require("../Database/database");
 const createWorkshop = async (req, res) => {
   try {
-    let newWorkshop = await database.one('INSERT INTO createdworkshops(id, title, category, descriptions, date, start_time, end_time, workshop_image) VALUES(${id}, ${title}, ${descriptions}, ${category}, ${date}, ${start_time}, ${end_time}, ${workshop_image}) RETURNING *', req.body);
+    let newWorkshop = await database.one('INSERT INTO created_workshops(id, title, category, descriptions, date, start_time, end_time, workshop_image) VALUES(${id}, ${title}, ${descriptions}, ${category}, ${date}, ${start_time}, ${end_time}, ${workshop_image}) RETURNING *', req.body);
     res.status(200).json({
       status: "success",
       message: "A new workshop was created",
@@ -19,7 +19,7 @@ const createWorkshop = async (req, res) => {
 const getWorkshop = async (req, res) => {
   try {
     let workshop = await database.any(
-      "SELECT * FROM createdworkshops WHERE id = $1",
+      "SELECT * FROM created_workshop WHERE id =$1",
       req.params.id
     );
     res.status(200).json({
@@ -37,7 +37,7 @@ const getWorkshop = async (req, res) => {
 };
 const deleteWorkshop = async (req, res) => {
   try {
-    await database.none(`DELETE FROM createdworkshops WHERE id = ${req.params.id} RETURNING *`);
+    await database.none(`DELETE FROM created_workshop WHERE id = ${req.params.id} RETURNING *`);
     res.status(200).json({
       status: "success",
       message: "The workshop is deleted"
@@ -53,7 +53,7 @@ const deleteWorkshop = async (req, res) => {
 const searchWorkshop = async (req, res) => {
   try {
     let search = await database.any(
-      "SELECT * FROM createdworkshops WHERE title=$1", title.req.params
+      "SELECT * FROM created_workshops WHERE title=$1", title.req.params
     );
     res.status(200).json({
       status: "Success",
@@ -70,7 +70,7 @@ const searchWorkshop = async (req, res) => {
 };
 const getAllWorkshops = async (req, res) => {
   try {
-    let search = await database.any("SELECT * from createdworkshops");
+    let search = await database.any("SELECT * from created_workshops");
     res.status(200).json({
       status: "Success",
       message: "Found all workshop",
@@ -87,7 +87,7 @@ const getAllWorkshops = async (req, res) => {
 const editWorkshop = async (req, res, next) => {
   try {
     let update = await database.one(
-      `UPDATE createdworkshops SET date= '${req.body.date}', startTime=${req.body.startTime}', endTime = ${req.body.endTime}' WHERE id=${req.params.id} RETURNING *  `
+      `UPDATE created_workshops SET date= '${req.body.date}', startTime=${req.body.startTime}', endTime = ${req.body.endTime}' WHERE id=${req.params.id} RETURNING *  `
     );
     res.status(200).json({
       status: "success",
@@ -103,28 +103,27 @@ const editWorkshop = async (req, res, next) => {
     next(error);
   }
 };
-// const searchWorkshopByDate = async (req, res, next) => {
-//   try {
-//     let searchByDate = await database.any(
-//       `SELECT DISTINCT date,
-//       ARRAY_AGG(createdWorkshops.id) AS id,
-//       ARRAY_AGG(createdWorkshops.user_id) AS user_id,
-//       ARRAY_AGG(createdWorkshops.title) AS title,
-//       ARRAY_AGG(createdWorkshops.description) AS description,
-//       ARRAY_AGG(createdWorkshops.date) AS date,
-//       ARRAY_AGG(createdWorkshops.startTime) AS startTime,
-//       ARRAY_AGG(createdWorkshops.endTime) AS endTime
-//       FROM createdWorkshops
-//       `
-//     );
-//     res.status(200).json({
-//       status: "success",
-//       message: "retrieved all workshops from date",
-//       payload: searchByDate
-//     });
-//   } catch (error) {}
-// };
-
+const searchWorkshopByDate = async (req, res, next) => {
+  try {
+    let searchByDate = await database.any(
+      `SELECT DISTINCT date,
+      ARRAY_AGG(created_workshops.id) AS id,
+      ARRAY_AGG(created_workshops.user_id) AS user_id,
+      ARRAY_AGG(created_workshops.title) AS title,
+      ARRAY_AGG(created_workshops.description) AS description,
+      ARRAY_AGG(created_workshops.date) AS date,
+      ARRAY_AGG(created_workshops.startTime) AS startTime,
+      ARRAY_AGG(created_workshops.endTime) AS endTime
+      FROM created_workshops
+      `
+    );
+    res.status(200).json({
+      status: "success",
+      message: "retrieved all workshops from date",
+      payload: searchByDate
+    });
+  } catch (error) {}
+};
 module.exports = {
   createWorkshop,
   getWorkshop,

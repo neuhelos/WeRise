@@ -2,7 +2,7 @@ const db = require('../Database/database');
 
 const getRegisteredWorkshop = async (req, res, next) => {
     try {
-      let workshop = await db.any("SELECT registeredworkshops.id, createdworkshops.title, createdworkshops.date, createdworkshops.start_time, createdworkshops.end_time FROM registeredworkshops INNER JOIN createdworkshops ON registeredworkshops.workshop_id = createdworkshops.id WHERE registeredworkshops.user_id = $1 ORDER BY registeredworkshops.id DESC",
+      let workshop = await db.any("SELECT registered_workshops.id, created_workshops.title, created_workshops.date, created_workshops.start_time, created_workshops.end_time FROM registered_workshops INNER JOIN created_workshops ON registered_workshops.workshop_id = created_workshops.id WHERE registered_workshops.user_id = $1 ORDER BY registered_workshops.id DESC",
       [
         req.params.id,
       ]);
@@ -46,7 +46,7 @@ const getRegisteredWorkshop = async (req, res, next) => {
   const getAllRegistered = async (req, res, next)=>{
     try {
       const registered = await db.any(
-        'SELECT registeredworkshops.workshop_id, users.firstn, users.lastn FROM registeredworkshops INNER JOIN users ON registeredworkshops.user_id = users.id WHERE registeredworkshops.workshop_id = $1 ORDER BY registeredworkshops.id DESC', 
+        'SELECT registered_workshops.workshop_id, users.firstn, users.lastn FROM registered_workshops INNER JOIN users ON registered_workshops.user_id = users.id WHERE registered_workshops.workshop_id = $1 ORDER BY registered_workshops.id DESC', 
         [req.params.id]
       );
       res.json({
@@ -67,7 +67,7 @@ const getRegisteredWorkshop = async (req, res, next) => {
 
   const deleteRegistration = async (req, res) => {
     try {
-      await db.none(`DELETE FROM registeredworkshops WHERE id = ${req.params.id} RETURNING *`);
+      await db.none(`DELETE FROM registered_workshops WHERE id = ${req.params.id} RETURNING *`);
       res.status(200).json({
         status: "success",
         message: "The workshop is deleted"
@@ -82,7 +82,7 @@ const getRegisteredWorkshop = async (req, res, next) => {
 
   const createRegistration = async (req, res, next) => {
     try {
-        let registration = await db.one('INSERT INTO registeredworkshops (user_id, workshop_id) VALUES( ${user_id}, ${workshop_id},) RETURNING *', req.body);
+        let registration = await db.one('INSERT INTO registered_workshops (user_id, workshop_id) VALUES( ${user_id}, ${workshop_id},) RETURNING *', req.body);
         res.status(200).json({
             status: "success",
             message: "created a new Registration",

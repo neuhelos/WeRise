@@ -8,7 +8,7 @@ const UserWorkshopsAgenda = () => {
     const currentUser = useSelector( state => state.currentUserSession.uid )
     const myworkshops = async() => {
         try{
-            let res = await axios.get(`${apiURL()}/registered/${2}`)
+            let res = await axios.get(`${apiURL}/registered/${2}`)
             setWorkshops(res.data.payload)
             debugger
       } catch (err){

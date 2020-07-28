@@ -3,12 +3,12 @@ CREATE DATABASE we_rise;
 
 \c we_rise;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS createdWorkshops;
-DROP TABLE IF EXISTS registeredWorkshops;
-DROP TABLE IF EXISTS videoChat;
-DROP TABLE IF EXISTS workshopSkills;
-DROP TABLE IF EXISTS usersSkills;
-DROP TABLE IF EXISTS directMessages;
+DROP TABLE IF EXISTS created_workshops;
+DROP TABLE IF EXISTS registered_workshops;
+DROP TABLE IF EXISTS video_chat;
+DROP TABLE IF EXISTS workshop_skills;
+DROP TABLE IF EXISTS users_skills;
+DROP TABLE IF EXISTS direct_messages;
 
 CREATE TABLE users(
     id VARCHAR PRIMARY KEY,
@@ -23,7 +23,7 @@ CREATE TABLE users(
     linkedIn VARCHAR
 );
 
-CREATE TABLE createdworkshops(
+CREATE TABLE created_workshops(
 id VARCHAR PRIMARY KEY,
 user_id VARCHAR REFERENCES users(id),
 title VARCHAR(280),
@@ -36,30 +36,30 @@ workshop_img VARCHAR
 
 );
 
-CREATE TABLE registeredworkshops(
+CREATE TABLE registered_workshops(
 id SERIAL PRIMARY KEY,
 user_id VARCHAR REFERENCES users(id) ON DELETE SET NULL,
-workshop_id VARCHAR REFERENCES createdWorkshops(id) ON DELETE SET NULL
+workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL
 );
 
-CREATE TABLE videochat(
+CREATE TABLE video_chat(
 id SERIAL PRIMARY KEY,
-workshop_id VARCHAR REFERENCES createdWorkshops(id) ON DELETE SET NULL,
+workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL,
 url VARCHAR
 );
-CREATE TABLE userskills(
+CREATE TABLE users_skills(
 id SERIAL PRIMARY KEY,
 user_id VARCHAR REFERENCES users(id) ON DELETE SET NULL,
 skills VARCHAR
 );
 
-CREATE TABLE workshopskills(
+CREATE TABLE workshop_skills(
 id SERIAL PRIMARY KEY,
-workshop_id VARCHAR REFERENCES createdWorkshops(id) ON DELETE SET NULL,
+workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL,
 skills VARCHAR
 );
 
-CREATE TABLE directmessages(
+CREATE TABLE direct_messages(
 id SERIAL PRIMARY KEY,
 senderId VARCHAR REFERENCES users(id) ON DELETE SET NULL,
 recieverId VARCHAR REFERENCES users(id) ON DELETE SET NULL,
@@ -81,7 +81,7 @@ VALUES
 ('abc7', 'abc', '7', 'abc7@gmail','jpeg', 'hi im abc7'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev','https://www.aceshowbiz.com/images/photo/drake.jpg', 'hi im the demo account!');
 
-INSERT INTO createdworkshops
+INSERT INTO created_workshops
 (id, user_id, title, descriptions, date, start_time, end_time, workshop_img)
 VALUES
 ('1', '2', 'Intro to SQL', 'tech', '03/12/2020', '300', '400', 'jpeg'),
@@ -91,7 +91,7 @@ VALUES
 ('5', 'abc1', 'Intro Dance', 'Dance', '11/24/2020', '800', '900', 'jpeg')
 ;
 
-INSERT INTO registeredworkshops
+INSERT INTO registered_workshops
 (user_id, workshop_id)
 VALUES
 ('2', '3'),
