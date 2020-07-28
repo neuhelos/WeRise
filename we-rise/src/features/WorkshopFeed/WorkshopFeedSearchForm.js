@@ -9,7 +9,7 @@ import SearchBar from './WorkshopSearchBar'
 import FilterBar from './WorkshopFilterBar'
 import { useInput } from '../../Utilities/CustomHookery'
 
-import { fetchWorkshopSearch, fetchUpcomingWorkshops } from './WorkshopFeedSlice'
+import { fetchWorkshopSearch, fetchUpcomingWorkshops } from './workshopFeedSlice'
 import { categories } from '../BaseComponents/WorkshopCategories'
 
 const useStyles = makeStyles((theme) => ({
