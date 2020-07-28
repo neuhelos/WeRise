@@ -1,14 +1,15 @@
 const registered = require("express").Router();
 const {
-  getWorkshop,
-  deleteWorkshop,
+  getRegisteredWorkshop,
+  deleteRegistration,
   getAllRegistered,
-  editWorkshop,
-} = require("../Queries/WorkshopQueries");
+  createRegistration
+} = require("../Queries/RegisteredQueries");
 
-registered.get("/:id", getWorkshop);
-registered.delete("/:id", deleteWorkshop);
-// registered.get("/all", getAllRegistered)
-// registered.patch("/:id", editWorkshop);
+registered.get("/:id", getRegisteredWorkshop);
+registered.delete("/:id", deleteRegistration);
+registered.get("/all/:id", getAllRegistered);
+registered.post("/", createRegistration);
+
 
 module.exports = registered;
