@@ -19,25 +19,25 @@ const createWorkshop = async (req, res) => {
 const getWorkshop = async (req, res) => {
   try {
     let workshop = await database.any(
-      "SELECT * FROM created_workshop WHERE id =$1",
+      "SELECT * FROM created_workshops WHERE id =$1",
       req.params.id
     );
     res.status(200).json({
       status: "success",
-      message: "All workshops for one user",
+      message: "Workshop Found",
       payload: workshop
     });
   } catch (err) {
     res.status(404).json({
       status: err,
-      message: "There are no workshop found for the specified user",
+      message: "No Workshop Found",
       payload: null
     });
   }
 };
 const deleteWorkshop = async (req, res) => {
   try {
-    await database.none(`DELETE FROM created_workshop WHERE id = ${req.params.id} RETURNING *`);
+    await database.none(`DELETE FROM created_workshops WHERE id = ${req.params.id} RETURNING *`);
     res.status(200).json({
       status: "success",
       message: "The workshop is deleted"
