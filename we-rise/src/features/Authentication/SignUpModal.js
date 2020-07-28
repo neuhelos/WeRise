@@ -23,15 +23,14 @@ const SignUpModal = () => {
         try {
              await signUp(email, password);
              history.push("/CommunityDashboard")
-          //    let res =  await axios.post(`${API}/users`, {
-          //     firstName: firstName,
-          //     lastName: lastName,
-          //     password: password,
-          //     email: email,
-          //     user_pic: UploadPic,
-          //     bio : bio,
-          //     socialMedia: socialMedia
-          // })
+             let res =  await axios.post(`${API}/users`, {
+              firstn: firstName,
+              lastn: lastName,
+              email: email,
+              user_pic: UploadPic,
+              bio : bio,
+              // socialMedia: socialMedia
+          })
         }
         catch (err){
             console.log(err)
