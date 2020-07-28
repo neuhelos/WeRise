@@ -82,13 +82,13 @@ VALUES
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev','https://www.aceshowbiz.com/images/photo/drake.jpg', 'hi im the demo account!');
 
 INSERT INTO created_workshops
-(id, user_id, title, descriptions, date, start_time, end_time, workshop_img)
+(id, user_id, title, descriptions, date, start_time, end_time, category, workshop_img)
 VALUES
-('1', '2', 'Intro to SQL', 'tech', '03/12/2020', '300', '400', 'jpeg'),
-('2', '3', 'Intro to cardio', 'exercise', '08/12/2020', '400', '500', 'jpeg'),
-('3', 'abc1', 'Intro rollplay', 'acting', '11/12/2020', '800', '900', 'jpeg'),
-('4', 'abc1', 'Intro Coding', 'code', '11/15/2020', '800', '900', 'jpeg'),
-('5', 'abc1', 'Intro Dance', 'Dance', '11/24/2020', '800', '900', 'jpeg')
+('1', '2', 'Intro to SQL', 'tech', '03/12/2020', '300', '400', 'Technology, Coding & Programming','jpeg'),
+('2', '3', 'Cardio Workout', 'exercise', '08/12/2020', '400', '500', 'Health, Fitness & Wellness', 'jpeg'),
+('3', 'abc1', 'Drama Therapy in COVID Times', 'acting', '11/12/2020', '800', '900', 'Film, Photography & Theatre','jpeg'),
+('4', 'abc1', 'Javascript Coding', 'Code', '11/15/2020', '800', '900','Technology, Coding & Programming', 'jpeg'),
+('5', 'abc1', 'Vogue Dancing', 'Dance', '11/24/2020', '800', '900', 'Dance & Music','jpeg')
 ;
 
 INSERT INTO registered_workshops
