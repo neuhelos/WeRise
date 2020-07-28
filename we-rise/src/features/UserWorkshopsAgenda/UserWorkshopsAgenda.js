@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
+
 const UserWorkshopsAgenda = () => {
     const [workshops, setWorkshops] = useState([]);
     const currentUser = useSelector( state => state.currentUserSession.uid );
@@ -24,7 +25,9 @@ const UserWorkshopsAgenda = () => {
 
     const myworkshops = async() => {
         try{
+
             let res = await axios.get(`${apiURL()}/registered/${currentUser}`)
+
             setWorkshops(res.data.payload)
             debugger
       } catch (err){

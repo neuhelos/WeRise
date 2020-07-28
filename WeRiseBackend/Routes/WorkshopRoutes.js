@@ -5,13 +5,15 @@ const {
   deleteWorkshop,
   getAllWorkshops,
   editWorkshop,
-  searchWorkshopByDate
 } = require("../Queries/WorkshopQueries");
+
+const { searchWorkshops } = require("../Queries/WorkshopSearchQuery")
+
 workshops.post("/", createWorkshop);
 workshops.get("/:id", getWorkshop);
 workshops.delete("/:id", deleteWorkshop);
 workshops.get("/", getAllWorkshops);
 workshops.put("/:id", editWorkshop);
-workshops.get('/search/', searchWorkshopByDate)
+workshops.get('/search/', searchWorkshops)
 
 module.exports = workshops;
