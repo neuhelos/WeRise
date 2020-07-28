@@ -1,14 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
-import { APIURL } from '../../Utilities/apiURL'
+import { apiURL } from '../../Utilities/apiURL'
+
+import RegWorkCard from './regWorkCard'
+
+import { makeStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        fontFamily: 'audiowide',
+        width: '100%'
+    },
+}))
 
 const UserWorkshopsAgenda = () => {
     const [workshops, setWorkshops] = useState([]);
-    const currentUser = useSelector( state => state.currentUserSession.uid )
+    const currentUser = useSelector( state => state.currentUserSession.uid );
+    const classes = useStyles();
+
+
     const myworkshops = async() => {
         try{
-            let res = await axios.get(`${APIURL}/registered/${2}`)
+            let res = await axios.get(`${apiURL()}/registered/${currentUser}`)
             setWorkshops(res.data.payload)
             debugger
       } catch (err){
@@ -21,20 +37,22 @@ const UserWorkshopsAgenda = () => {
         myworkshops();
         
     }, []);
+
+    let workshopsReq = workshops.map(workshop => {
+        return <RegWorkCard key={workshop.id} id={workshop.id} workshop={workshop}/>
+    })
     
 
     return (
-        <div>
-                {workshops.map(workshop => {
-                    return <li id={workshop}>{workshop.title} {workshop.date} {workshop.starttime} - {workshop.endtime} </li>
-                })}
-            {/* <ul>
-                <li>Math Work Shop</li>
-                <li>StemLab Work Shop</li>
-                <li>Photoshop Work Shop</li>
-                <li>How to make veggie Pizza Work Shop</li>
-            </ul> */}
-        </div>
+        <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
+            {workshopsReq}
+        </Grid>
+        // <div>
+        //         {workshops.map(workshop => {
+        //             return <li id={workshop}>{workshop.title} {workshop.date} {workshop.starttime} - {workshop.endtime} </li>
+        //         })}
+          
+        // </div>
     )
 }
 

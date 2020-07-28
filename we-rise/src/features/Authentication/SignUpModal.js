@@ -3,6 +3,8 @@ import { signUp } from '../../Utilities/firebaseFunctions';
 import { storage } from '../../Utilities/firebase'
 import { useHistory} from 'react-router-dom'
 import axios from 'axios'
+import { apiURL } from '../../Utilities/apiURL'
+
 
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField'
@@ -77,7 +79,7 @@ const SignUpModal = () => {
             let resSignup = await signUp(email, password);
             history.push("/CommunityDashboard")
 
-            let res =  await axios.post(`http://localhost:3001/users`, {
+            let res =  await axios.post(`${apiURL()}/users`, {
             id: resSignup.user.uid,
             firstName: firstName.value,
             lastName: lastName.value,
@@ -89,6 +91,13 @@ const SignUpModal = () => {
             twitter: twitter.value,
             linkedin: linkedin.value
         })
+
+       skills.forEach( async (skill) => {
+          let res = await axios.post(`${apiURL}/usersSkills`, {
+              user_id: resSignup.user.uid,
+              skills: skill.toLowerCase()
+          })
+      })
 
       }
       catch (err){
@@ -123,6 +132,8 @@ const SignUpModal = () => {
           }
         )
       }
+
+     
 
       console.log("image: ", uploadPic);
 
