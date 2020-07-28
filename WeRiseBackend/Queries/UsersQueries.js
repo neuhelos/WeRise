@@ -1,38 +1,30 @@
 const db = require("../Database/database");
 
-const createUser = async (req, res) => {
+const createUser = async (req, res, next) => {
   try {
+    console.log(req.body)
     let newUser = await db.one(
-      'INSERT INTO users(id, firstName, lastName, password, email, user_pic, bio, instagram, facebook, twitter, linkedIn) VALUES(${firstName}${lastName}${password}${email}${user_pic}${bio}${instagram}${facebook}${twitter}${linkedIn}) RETURNING *',
-      [
-        req.body.id,
-        req.body.firstName,
-        req.body.lastName,
-        req.body.password,
-        req.body.email,
-        req.body.user_pic,
-        req.body.bio,
-        req.body.instagram,
-        req.body.facebook,
-        req.body.twitter,
-        req.body.linkedIn
-
-
-
-      ]
+     "INSERT INTO users (id, firstn, lastn, email, bio, user_pic) " +
+     "VALUES (${id}, ${firstn}, ${lastn}, ${email}, ${bio}, ${user_pic}) " +
+     "RETURNING *", req.body 
     );
-    res.status(200).json({
-      status: "success",
-      message: "new user created",
+    res.json({
+      status: "Success",
+      message: "New User",
       payload: newUser
-    });
+
+    })
   } catch (error) {
+    console.log(error, "Hey now")
     res.status(404).json({
-      status: error,
+      status: "Error",
       message: "user cannot be created, try again",
-      payload: null
+      payload: error
     });
+    
+    next();
   }
+  
 };
 const deleteUser = async (req, res) => {
   try {
