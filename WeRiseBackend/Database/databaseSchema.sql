@@ -1,7 +1,7 @@
--- DROP DATABASE IF EXISTS database_db;
--- CREATE DATABASE database_db;
+DROP DATABASE IF EXISTS we_rise;
+CREATE DATABASE we_rise;
 
--- \c database_db;
+\c we_rise;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS createdWorkshops;
 DROP TABLE IF EXISTS registeredWorkshops;
@@ -23,7 +23,7 @@ CREATE TABLE users(
     linkedIn VARCHAR
 );
 
-CREATE TABLE createdWorkshops(
+CREATE TABLE createdworkshops(
 id VARCHAR PRIMARY KEY,
 user_id VARCHAR REFERENCES users(id),
 title VARCHAR(280),
@@ -36,30 +36,30 @@ workshop_img VARCHAR
 
 );
 
-CREATE TABLE registeredWorkshops(
+CREATE TABLE registeredworkshops(
 id SERIAL PRIMARY KEY,
 user_id VARCHAR REFERENCES users(id) ON DELETE SET NULL,
 workshop_id VARCHAR REFERENCES createdWorkshops(id) ON DELETE SET NULL
 );
 
-CREATE TABLE videoChat(
+CREATE TABLE videochat(
 id SERIAL PRIMARY KEY,
 workshop_id VARCHAR REFERENCES createdWorkshops(id) ON DELETE SET NULL,
 url VARCHAR
 );
-CREATE TABLE usersSkills(
+CREATE TABLE userskills(
 id SERIAL PRIMARY KEY,
 user_id VARCHAR REFERENCES users(id) ON DELETE SET NULL,
 skills VARCHAR
 );
 
-CREATE TABLE workshopSkills(
+CREATE TABLE workshopskills(
 id SERIAL PRIMARY KEY,
 workshop_id VARCHAR REFERENCES createdWorkshops(id) ON DELETE SET NULL,
 skills VARCHAR
 );
 
-CREATE TABLE directMessages(
+CREATE TABLE directmessages(
 id SERIAL PRIMARY KEY,
 senderId VARCHAR REFERENCES users(id) ON DELETE SET NULL,
 recieverId VARCHAR REFERENCES users(id) ON DELETE SET NULL,
@@ -81,7 +81,7 @@ VALUES
 ('abc7', 'abc', '7', 'abc7@gmail','jpeg', 'hi im abc7'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev','https://www.aceshowbiz.com/images/photo/drake.jpg', 'hi im the demo account!');
 
-INSERT INTO createdWorkshops
+INSERT INTO createdworkshops
 (id, user_id, title, descriptions, date, start_time, end_time, workshop_img)
 VALUES
 ('1', '2', 'Intro to SQL', 'tech', '03/12/2020', '300', '400', 'jpeg'),
@@ -91,7 +91,7 @@ VALUES
 ('5', 'abc1', 'Intro Dance', 'Dance', '11/24/2020', '800', '900', 'jpeg')
 ;
 
-INSERT INTO registeredWorkshops
+INSERT INTO registeredworkshops
 (user_id, workshop_id)
 VALUES
 ('2', '3'),
