@@ -8,7 +8,6 @@ export const fetchUpcomingWorkshops = createAsyncThunk(
     'post/fetchUpcomingWorkshops',
     async () => {
         try {
-            console.log(`${apiURL()}/workshops`)
             const res = await axios.get(`${apiURL()}/workshops`)
             return res.payload
         } catch (error) {

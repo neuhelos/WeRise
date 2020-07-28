@@ -49,6 +49,7 @@ const deleteWorkshop = async (req, res) => {
     });
   }
 };
+
 const searchWorkshop = async (req, res) => {
   try {
     let search = await database.any(
@@ -128,7 +129,5 @@ module.exports = {
   getWorkshop,
   deleteWorkshop,
   getAllWorkshops,
-  editWorkshop,
-  searchWorkshop,
-  searchWorkshopByDate
+  editWorkshop
 };

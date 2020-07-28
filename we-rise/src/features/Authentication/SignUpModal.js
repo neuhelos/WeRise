@@ -15,6 +15,7 @@ import Divider from '@material-ui/core/Divider'
 
 import Dropzone from '../BaseComponents/FileDropzone'
 import { useInput } from '../../Utilities/CustomHookery'
+import { apiURL } from '../../Utilities/apiURL'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const SignUpModal = () => {
+const SignUpModal = ( ) => {
 
     
   const classes = useStyles()
@@ -71,31 +72,36 @@ const SignUpModal = () => {
   }
 
   const handleSubmit = async (e) => {
-      e.preventDefault();
+    e.preventDefault();
 
-      try {
-            let resSignup = await signUp(email, password);
-            history.push("/CommunityDashboard")
-
-            let res =  await axios.post(`http://localhost:3001/users`, {
-            id: resSignup.user.uid,
-            firstName: firstName.value,
-            lastName: lastName.value,
-            email: email,
-            user_pic: uploadPic,
-            bio : bio,
-            instagram: instagram.value,
-            facebook: facebook.value,
-            twitter: twitter.value,
-            linkedin: linkedin.value
+    try {
+      let resSignup = await signUp(email, password);
+      
+      let res =  await axios.post(`${apiURL()}/users`, {
+        id: resSignup.user.uid,
+        firstName: firstName.value,
+        lastName: lastName.value,
+        email: email,
+        user_pic: uploadPic,
+        bio : bio.value,
+        instagram: instagram.value,
+        facebook: facebook.value,
+        twitter: twitter.value,
+        linkedin: linkedin.value
+      })
+      
+      skills.forEach( async (skill) => {
+        let res = await axios.post(`${apiURL}/userSkills`, {
+          user_id: resSignup.user.uid,
+          skill: skill.toLowerCase()
         })
-
-      }
-      catch (err){
-          console.log(err)
-          alert(err.message)
-          return(<p>{err.message}</p>)
-      }
+      })
+    } catch (err){
+      console.log(err)
+      alert(err.message)
+      return(<p>{err.message}</p>)
+    }
+    history.push("/CommunityDashboard")
   }
 
   const handleClick = (e) => {

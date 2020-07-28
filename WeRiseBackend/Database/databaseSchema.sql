@@ -1,7 +1,7 @@
--- DROP DATABASE IF EXISTS database_db;
--- CREATE DATABASE database_db;
+DROP DATABASE IF EXISTS we_rise;
+CREATE DATABASE we_rise;
 
--- \c database_db;
+\c we_rise;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS created_workshops;
 DROP TABLE IF EXISTS registered_workshops;
