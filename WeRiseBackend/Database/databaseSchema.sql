@@ -105,6 +105,6 @@ VALUES
 INSERT INTO workshop_skills
 (id, workshop_id, skills)
 VALUES
-('1', '1', 'sql')
-('2', '2', 'aerobics')
+('1', '1', 'sql'),
+('2', '2', 'aerobics'),
 ('3','5','dance')
