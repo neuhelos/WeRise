@@ -8,7 +8,8 @@ export const fetchUpcomingWorkshops = createAsyncThunk(
     'post/fetchUpcomingWorkshops',
     async () => {
         try {
-            const res = await axios.get(`${apiURL}/workshops`)
+            console.log(`${apiURL()}/workshops`)
+            const res = await axios.get(`${apiURL()}/workshops`)
             return res.payload
         } catch (error) {
             throw Error(error)
@@ -20,7 +21,7 @@ export const fetchWorkshopSearch = createAsyncThunk(
     'post/fetchWorkshopSearch',
     async (search) => {
         try {
-            const res = await axios.get(`${apiURL}/workshops/search`, {
+            const res = await axios.get(`${apiURL()}/workshops/search`, {
                 search
             })
             return res.payload

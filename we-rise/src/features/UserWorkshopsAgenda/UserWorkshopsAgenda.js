@@ -24,7 +24,7 @@ const UserWorkshopsAgenda = () => {
     return (
         <div>
                 {workshops.map(workshop => {
-                    return <li>{workshop.title} {workshop.date} {workshop.starttime} - {workshop.endtime} </li>
+                    return <li id={workshop}>{workshop.title} {workshop.date} {workshop.starttime} - {workshop.endtime} </li>
                 })}
             {/* <ul>
                 <li>Math Work Shop</li>
