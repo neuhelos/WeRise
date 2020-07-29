@@ -17,7 +17,7 @@ import Divider from '@material-ui/core/Divider'
 
 import Dropzone from '../BaseComponents/FileDropzone'
 import { useInput } from '../../Utilities/CustomHookery'
-import { apiURL } from '../../Utilities/apiURL'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {

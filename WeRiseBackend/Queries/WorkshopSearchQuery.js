@@ -18,8 +18,8 @@ const searchWorkshops = async (req, res) => {
 
     try {
         let search = await database.any(
-        `SELECT * FROM created_workshops JOIN workshop_skills ON created_workshops.id = workshop_skills.workshop_id WHERE ${categoriesQuery} AND 
-        (created_workshops.title LIKE %$1% OR created_workshops.descriptions LIKE %${1}% OR workshop_skills.skills LIKE %$1%) AND
+        `SELECT * FROM created_workshops JOIN workshop_skills ON created_workshops.id = workshop_skills.workshop_id WHERE (${categoriesQuery}) AND 
+        (created_workshops.title LIKE '%$1%' OR created_workshops.descriptions LIKE '%$1%' OR workshop_skills.skills LIKE '%$1%') AND
         (created_workshops.start_time >= $2 AND created_workshops.date <= $3) ORDER BY created_workshops.start_time DESC`,
         [req.body.search, req.body.dateRange[0].startDate, req.body.dateRange[0].endDate]
         );

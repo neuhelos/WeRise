@@ -24,46 +24,46 @@ CREATE TABLE users(
 );
 
 CREATE TABLE created_workshops(
-id VARCHAR PRIMARY KEY,
-user_id VARCHAR REFERENCES users(id),
-title VARCHAR(280),
-descriptions VARCHAR,
-date VARCHAR,
-start_time VARCHAR,
-end_time VARCHAR,
-category VARCHAR,
-workshop_img VARCHAR
-
+    id VARCHAR PRIMARY KEY,
+    posted TIMESTAMPTZ DEFAULT NOW(),
+    user_id VARCHAR REFERENCES users(id),
+    title VARCHAR(280),
+    descriptions VARCHAR,
+    start_time TIMESTAMPTZ NOT NULL,
+    end_time TIMESTAMPTZ NOT NULL,
+    category VARCHAR,
+    workshop_img VARCHAR
 );
 
 CREATE TABLE registered_workshops(
-id SERIAL PRIMARY KEY,
-user_id VARCHAR REFERENCES users(id) ON DELETE SET NULL,
-workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR REFERENCES users(id) ON DELETE SET NULL,
+    workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL
 );
 
 CREATE TABLE video_chat(
-id SERIAL PRIMARY KEY,
-workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL,
-url VARCHAR
+    id SERIAL PRIMARY KEY,
+    workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL,
+    url VARCHAR
 );
+
 CREATE TABLE users_skills(
-id SERIAL PRIMARY KEY,
-user_id VARCHAR REFERENCES users(id) ON DELETE SET NULL,
-skills VARCHAR
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR REFERENCES users(id) ON DELETE SET NULL,
+    skills VARCHAR
 );
 
 CREATE TABLE workshop_skills(
-id SERIAL PRIMARY KEY,
-workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL,
-skills VARCHAR
+    id SERIAL PRIMARY KEY,
+    workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL,
+    skills VARCHAR
 );
 
 CREATE TABLE direct_messages(
-id SERIAL PRIMARY KEY,
-senderId VARCHAR REFERENCES users(id) ON DELETE SET NULL,
-recieverId VARCHAR REFERENCES users(id) ON DELETE SET NULL,
-body VARCHAR
+    id SERIAL PRIMARY KEY,
+    senderId VARCHAR REFERENCES users(id) ON DELETE SET NULL,
+    recieverId VARCHAR REFERENCES users(id) ON DELETE SET NULL,
+    body VARCHAR
 );
 
 INSERT INTO users
@@ -83,14 +83,13 @@ VALUES
 ('E093QRw1swaW4KCQUON44IU2gcy2', 'Guest', 'Account', 'guest@werise.org','https://www.aceshowbiz.com/images/photo/drake.jpg', 'hi im the Guest account!');
 
 INSERT INTO created_workshops
-(id, user_id, title, descriptions, date, start_time, end_time, category, workshop_img)
+(id, posted, user_id, title, descriptions, start_time, end_time, category, workshop_img)
 VALUES
-('1', '2', 'Intro to SQL', 'tech', '03/12/2020', '300', '400', 'Technology, Coding & Programming','jpeg'),
-('2', '3', 'Cardio Workout', 'exercise', '08/12/2020', '400', '500', 'Health, Fitness & Wellness', 'jpeg'),
-('3', 'abc1', 'Drama Therapy in COVID Times', 'acting', '11/12/2020', '800', '900', 'Film, Photography & Theatre','jpeg'),
-('4', 'abc1', 'Javascript Coding', 'Code', '11/15/2020', '800', '900','Technology, Coding & Programming', 'jpeg'),
-('5', 'abc1', 'Vogue Dancing', 'Dance', '11/24/2020', '800', '900', 'Dance & Music','jpeg')
-;
+('1', '2020-05-22 10:00-04', '2', 'Intro to SQL', 'tech', '2020-08-22 10:00-04', '2020-08-22 12:00-04', 'Technology, Coding & Programming','jpeg'),
+('2', '2020-06-22 15:00-04', '3', 'Cardio Workout', 'exercise', '2020-09-22 15:00-04', '2020-09-22 16:00-04' , 'Health, Fitness & Wellness', 'jpeg'),
+('3', '2020-06-23 18:00-04', 'abc1', 'Drama Therapy in COVID Times', 'acting', '2020-09-23 18:00-04', '2020-09-23 19:00-04' , 'Film, Photography & Theatre','jpeg'),
+('4', '2020-07-01 17:00-04', 'abc1', 'Javascript Coding', 'Code', '2020-10-01 17:00-04', '2020-10-01 18:00-04' ,'Technology, Coding & Programming', 'jpeg'),
+('5', '2020-08-16 16:00-04', 'abc1', 'Vogue Dancing', 'Dance', '2020-10-16 16:00-04', '2020-10-16 17:00-04', 'Dance & Music','jpeg');
 
 INSERT INTO registered_workshops
 (user_id, workshop_id)
@@ -105,13 +104,19 @@ VALUES
 ('E093QRw1swaW4KCQUON44IU2gcy2', '3'),
 ('E093QRw1swaW4KCQUON44IU2gcy2', '4'),
 ('E093QRw1swaW4KCQUON44IU2gcy2', '1'),
-('E093QRw1swaW4KCQUON44IU2gcy2', '5')
-;
+('E093QRw1swaW4KCQUON44IU2gcy2', '5');
+
+INSERT INTO users_skills
+(user_id, skills)
+VALUES
+('E093QRw1swaW4KCQUON44IU2gcy2', 'javascript'),
+('E093QRw1swaW4KCQUON44IU2gcy2', 'cooking cajun'),
+('E093QRw1swaW4KCQUON44IU2gcy2', 'ballet');
 
 INSERT INTO workshop_skills
-(id, workshop_id, skills)
+(workshop_id, skills)
 VALUES
-('1', '1', 'sql'),
-('2', '2', 'aerobics'),
-('3','5','dance')
+('1', 'sql'),
+('2', 'aerobics'),
+('5','dance');
 
