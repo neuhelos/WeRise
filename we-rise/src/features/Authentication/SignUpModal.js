@@ -77,8 +77,6 @@ const SignUpModal = () => {
 
       try {
             let resSignup = await signUp(email, password);
-            history.push("/CommunityDashboard")
-
             let res =  await axios.post(`${apiURL()}/users`, {
             id: resSignup.user.uid,
             firstName: firstName.value,
@@ -98,7 +96,7 @@ const SignUpModal = () => {
               skills: skill.toLowerCase()
           })
       })
-
+        history.push("/CommunityDashboard")
       }
       catch (err){
           console.log(err)

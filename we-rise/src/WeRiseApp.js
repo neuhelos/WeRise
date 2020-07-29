@@ -9,6 +9,7 @@ import { getFirebaseIdToken } from './Utilities/firebaseFunctions'
 import AuthNavBar from './features/NavBar/AuthNavBar'
 import LandingPage from './features/Pages/LandingPage'
 import CommunityDashboardPage from './features/Pages/CommunityDashboard'
+import VideoConference from './features/Pages/videoConference'
 import UserProfilePage from './features/Pages/UserProfilePage'
 import InstantMessagingPage from './features/Pages/MessagingPage'
 import Footer from './features/BaseComponents/Footer'
@@ -52,6 +53,9 @@ const WeRiseApp = () => {
           </PublicRoute>
           <ProtectedRoute path="/CommunityDashboard">
             <CommunityDashboardPage />
+          </ProtectedRoute>
+          <ProtectedRoute path="/videoConference">
+            <VideoConference />
           </ProtectedRoute>
           <ProtectedRoute path="/Profile">
             <UserProfilePage />
