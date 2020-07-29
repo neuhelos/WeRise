@@ -46,10 +46,12 @@ const WorkshopFeedSearchForm = () => {
         key: 'selection'
         }
     ]);
+
     const [buttonLabelChange, setButtonLabelChange] = useState(false)
     const handleDateChange = (item) => {
         setDateRange([item.selection])
         setButtonLabelChange(true)
+        console.log(dateRange)
     }
     
     const [selectCategories, setSelectCategories] = useState([]);
@@ -57,6 +59,24 @@ const WorkshopFeedSearchForm = () => {
         setSelectCategories(event.target.value);
     };
 
+    const dateFormatter = (selectDate) => {
+        const pad = (value) => value.length === 1 ? value + '0' : value
+        
+        let currentTime = new Date()
+        
+        let year = selectDate.getFullYear()
+        let month = selectDate.getMonth() + 1
+        month = pad(month)
+        let date = selectDate.getDate()
+        date = pad(date)
+        let hours = currentTime.getHours() - (currentTime.getTimezoneOffset()/60)
+        hours = pad(hours)
+        let minutes = currentTime.getMinutes()
+        minutes = pad(minutes)
+        
+        return `${year}-${month}-${date} ${hours}:${minutes}`;
+    }
+    
     const selectAllCategories = () => {
         setSelectCategories([...categories])
     }
@@ -83,7 +103,8 @@ const WorkshopFeedSearchForm = () => {
         dispatch(fetchWorkshopSearch({
             search: searchQuery.value,
             categories: selectCategories, 
-            dateRange: dateRange
+            startDate: dateFormatter(dateRange[0].startDate),
+            endDate: dateFormatter(dateRange[0].endDate)
         }))   
     }
     
