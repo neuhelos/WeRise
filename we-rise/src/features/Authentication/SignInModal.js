@@ -2,9 +2,37 @@ import React, { useState } from 'react'
 import { useHistory} from 'react-router-dom'
 import { signIn } from '../../Utilities/firebaseFunctions'
 
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField'
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+import { useInput } from '../../Utilities/CustomHookery'
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '100%',
+        '& *': {
+            fontFamily: 'audiowide',
+            textAlign: 'center',
+            outlineColor: '#36386D',
+            border: 'none',
+        },
+    },
+    input: {
+        width: '100%',
+        fontFamily: 'audiowide',
+        marginBottom: theme.spacing(1)
+    },
+  }));
+
 const SignInModal = () => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    
+    const classes = useStyles()
+
+    const email = useInput("")
+    const password = useInput("")
+    
     const history = useHistory();
 
 
@@ -12,7 +40,7 @@ const SignInModal = () => {
         e.preventDefault();
 
         try {
-            await signIn(email, password)
+            await signIn(email.value, password.value)
             history.push("/CommunityDashboard")
 
         }
@@ -24,19 +52,13 @@ const SignInModal = () => {
 
 
     return (
-        <div>
-           <form onSubmit = {handleSubmit}>
-
-            <input id = 'email' placeholder = 'Email' value = {email} onChange = {(e) => {
-                setEmail(e.currentTarget.value)
-            }}/>
-                <br/>
-            <input id = 'password' placeholder = 'Password' type = "password"  value = {password} onChange = {(e) => {
-                setPassword(e.currentTarget.value)}} autoComplete = "on" />
-                <br/>
-            <button>Login</button>
+        <form className={classes.root} onSubmit = {handleSubmit}>
+            <Grid container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
+                <TextField className={classes.input} id="email" label="Email" placeholder="Enter Your Email" variant="filled" {...email}/>
+                <TextField className={classes.input} id="password" type="password" label="Password" placeholder="Enter Your Password" variant="filled" {...password}/>
+                <Button variant="contained" color="primary" type="submit"> SIGN IN </Button>
+            </Grid>
         </form>
-        </div>
     )
 }
 
