@@ -59,7 +59,7 @@ const WorkshopFeedSearchForm = () => {
         setSelectCategories(event.target.value);
     };
 
-    const pad = (value) => value.length === 1 ? value + '0' : value
+    const pad = (value) => value.length === 1 ? '0' + value : value
     const dateTimeFormatter = (selectDate) => {
         
         let currentTime = new Date()
@@ -69,12 +69,13 @@ const WorkshopFeedSearchForm = () => {
         month = pad(month)
         let date = selectDate.getDate()
         date = pad(date)
-        let hours = currentTime.getHours() + (currentTime.getTimezoneOffset()/60)
+        let hours = currentTime.getHours()
         hours = pad(hours)
         let minutes = currentTime.getMinutes()
         minutes = pad(minutes)
-        
-        return `${year}-${month}-${date} ${hours}:${minutes}`;
+        let timezone = (currentTime.getTimezoneOffset())/60
+        timezone = pad(timezone)
+        return `${year}-${month}-${date} ${hours}:${minutes}-${timezone}`;
     }
 
     const dateFormatter = (selectDate) => {

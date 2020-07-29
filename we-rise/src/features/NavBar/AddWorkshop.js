@@ -85,9 +85,8 @@ const AddWorkshop = ({handleCloseModal}) => {
         setSelectedDate(date);
     };
 
-    const dateFormatter = (selectedDate) => {
-        const pad = (value) => value.length === 1 ? value + '0' : value
-        
+    const pad = (value) => value.length === 1 ? '0' + value : value
+    const dateFormatter = (selectedDate) => {    
         let year = selectedDate.year
         let month = selectedDate.month
         month = pad(month)
