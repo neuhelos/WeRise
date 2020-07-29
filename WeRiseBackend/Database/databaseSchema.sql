@@ -71,10 +71,10 @@ INSERT INTO users
 (id, firstn, lastn,  email, user_pic, bio)
 VALUES
 ('1', 'Jay', 'Jones', 'jayjones@pursuit.org','http://localhost:3000/JohnJay.jpeg', '6.4 Pursuit Fellow'),
-('2', 'Deja', 'Flynn', 'dejaflynn@pursuit.org', 'http://localhost:3000/DejaFlynn', '6.4 Pursuit Fellow'),
+('2', 'Deja', 'Flynn', 'dejaflynn@pursuit.org', 'http://localhost:3000/DejaFlynn.jpeg', '6.4 Pursuit Fellow'),
 ('3', 'Nilber', 'Remon', 'nilberremon@pursuit.org', 'http://localhost:3000/NilberRemonCroppedCircle.png', '6.4 Pursuit Fellow'),
 ('4', 'Uduakabasi', 'Abasiurua', 'uduakabasiabasiurua@pursuit.org','https://ca.slack-edge.com/TCVA3PF24-UN3UXSZMY-e20128673daa-512', '6.4 Pursuit Fellow'),
-('5', 'Danielle', 'Cherry', 'daniellecherry@pursuit.org','http://localhost:3000/DanielleCherry', '6.4 Pursuit Fellow'),
+('5', 'Danielle', 'Cherry', 'daniellecherry@pursuit.org','http://localhost:3000/DanielleCherry.png', '6.4 Pursuit Fellow'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev','https://www.aceshowbiz.com/images/photo/drake.jpg', 'Hi im the Demo Account!'),
 ('E093QRw1swaW4KCQUON44IU2gcy2', 'Guest', 'Account', 'guest@werise.org','https://www.aceshowbiz.com/images/photo/drake.jpg', 'Hi im the Guest Account!');
 

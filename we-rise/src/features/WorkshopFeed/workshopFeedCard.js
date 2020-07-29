@@ -20,10 +20,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#F5F5F5'
     },
     header: {
-        width: '60%'
+        width: '50%'
     },
     media: {
-        width: '40%',
+        width: '50%',
         //paddingTop: '56.25%', // 16:9
     },
     avatar: {
@@ -54,7 +54,7 @@ const WorkshopFeedCard = ( { workshop } ) => {
                 <CardHeader
                 className={classes.header}
                 avatar={
-                    <Avatar aria-label="facilitator" className={classes.avatar} src={""} alt={workshop.firstn.toUpperCase()}/>
+                    <Avatar aria-label="facilitator" className={classes.avatar} src={workshop.user_pic} alt={workshop.firstn.toUpperCase()}/>
                 }
                 title= {
                     <Typography className={classes.text}>{workshop.title}</Typography>
@@ -70,7 +70,7 @@ const WorkshopFeedCard = ( { workshop } ) => {
                 />
                 <CardMedia
                 className={classes.media}
-                image={workshop.image}
+                image={workshop.workshop_img}
                 title={workshop.title}
                 />
             </Card>
