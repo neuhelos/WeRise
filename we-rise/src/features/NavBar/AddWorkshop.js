@@ -86,11 +86,13 @@ const AddWorkshop = ({handleCloseModal}) => {
     };
 
     const dateFormatter = (selectedDate) => {
+        const pad = (value) => value.length === 1 ? value + '0' : value
+        
         let year = selectedDate.year
         let month = selectedDate.month
-        month = month.length === 1 ? '0' + month : month
+        month = pad(month)
         let date = selectedDate.day
-        date = date.length === 1 ? '0' + date : date
+        date = pad(date)
         return `${year}-${month}-${date}`;
     }
 
