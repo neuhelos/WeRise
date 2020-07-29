@@ -9,7 +9,7 @@ export const fetchUpcomingWorkshops = createAsyncThunk(
     async () => {
         try {
             const res = await axios.get(`${apiURL()}/workshops`)
-            return res.payload
+            return res.data.payload
         } catch (error) {
             throw Error(error)
         }
@@ -23,7 +23,7 @@ export const fetchWorkshopSearch = createAsyncThunk(
             const res = await axios.get(`${apiURL()}/workshops/search`, {
                 search
             })
-            return res.payload
+            return res.data.payload
         } catch (error) {
             throw Error(error)
         }

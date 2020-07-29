@@ -116,7 +116,11 @@ const WorkshopFeedSearchForm = () => {
             categories: selectCategories, 
             startDate: dateTimeFormatter(dateRange[0].startDate),
             endDate: dateFormatter(dateRange[0].endDate)
-        }))   
+        }))
+        console.log({search: searchQuery.value,
+            categories: selectCategories, 
+            startDate: dateTimeFormatter(dateRange[0].startDate),
+            endDate: dateFormatter(dateRange[0].endDate)})   
     }
     
 
