@@ -20,10 +20,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#F5F5F5'
     },
     header: {
-        width: '60%'
+        width: '50%'
     },
     media: {
-        width: '40%',
+        width: '50%',
         //paddingTop: '56.25%', // 16:9
     },
     avatar: {
