@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -11,6 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import Paper from '@material-ui/core/Paper'
+
+import Modal from '../BaseComponents/Modal'
+import WorkshopRegistration from './WorkshopRegistration'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,19 +41,29 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#666666',
         padding: theme.spacing(1),
         marginBottom: theme.spacing(1),
+        '&:hover': {
+            cursor: 'pointer',
+            border: '2px solid  #FF0F7B'
+        }
     }
     }));
 
-const WorkshopFeedCard = ( { workshop } ) => {
+const WorkshopFeedCard = ( props ) => {
     
     const classes = useStyles();
+    const { workshop } = props
 
     const date = `${new Date(workshop.start_time).getMonth()+1}-${new Date(workshop.start_time).getDate()}-${new Date(workshop.start_time).getFullYear()}`
     const startTime = `@${new Date(workshop.start_time).getHours()}:${new Date(workshop.start_time).getMinutes()}0`
 
+    const [open , setOpen] = useState(false)
+    const toggleModal = () => {
+        setOpen(!open)
+    }
+
     return (
         <Paper className={classes.paper}>
-            <Card className={classes.root}>
+            <Card className={classes.root} onClick={toggleModal}>
                 <CardHeader
                 className={classes.header}
                 avatar={
@@ -74,6 +87,11 @@ const WorkshopFeedCard = ( { workshop } ) => {
                 title={workshop.title}
                 />
             </Card>
+
+            <Modal open={open} toggleModal={toggleModal}>
+                <WorkshopRegistration handleCloseModal={toggleModal} {...props} />
+            </Modal>
+
         </Paper>
     );
 }
