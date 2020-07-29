@@ -54,7 +54,7 @@ const WorkshopFeedCard = ( { workshop } ) => {
                 <CardHeader
                 className={classes.header}
                 avatar={
-                    <Avatar aria-label="facilitator" className={classes.avatar} src={""} alt={workshop.firstn.toUpperCase()}/>
+                    <Avatar aria-label="facilitator" className={classes.avatar} src={workshop.user_pic} alt={workshop.firstn.toUpperCase()}/>
                 }
                 title= {
                     <Typography className={classes.text}>{workshop.title}</Typography>
@@ -70,7 +70,7 @@ const WorkshopFeedCard = ( { workshop } ) => {
                 />
                 <CardMedia
                 className={classes.media}
-                image={workshop.image}
+                image={workshop.workshop_img}
                 title={workshop.title}
                 />
             </Card>
