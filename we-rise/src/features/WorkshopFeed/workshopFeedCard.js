@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
+        backgroundColor: '#F5F5F5'
     },
     header: {
         width: '60%'
@@ -35,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         width: '100%',
         backgroundColor: '#666666',
-        padding: theme.spacing(1)
+        padding: theme.spacing(1),
+        marginBottom: theme.spacing(1),
     }
     }));
 
@@ -43,8 +45,8 @@ const WorkshopFeedCard = ( { workshop } ) => {
     
     const classes = useStyles();
 
-    const date = `${workshop.date.getMonth()+1}-${workshop.date.getDate()}-${workshop.getFullYear()}`
-    const time = `@${workshop.date.getHours()}:${workshop.date.getMinutes}`
+    const date = `${new Date(workshop.start_time).getMonth()+1}-${new Date(workshop.start_time).getDate()}-${new Date(workshop.start_time).getFullYear()}`
+    const startTime = `@${new Date(workshop.start_time).getHours()}:${new Date(workshop.start_time).getMinutes()}0`
 
     return (
         <Paper className={classes.paper}>
@@ -52,16 +54,16 @@ const WorkshopFeedCard = ( { workshop } ) => {
                 <CardHeader
                 className={classes.header}
                 avatar={
-                    <Avatar aria-label="facilitator" className={classes.avatar} src={""} alt={workshop.facilitator}/>
+                    <Avatar aria-label="facilitator" className={classes.avatar} src={""} alt={workshop.firstn.toUpperCase()}/>
                 }
                 title= {
                     <Typography className={classes.text}>{workshop.title}</Typography>
                 }
                 subheader = {
                     <>
-                    <Typography className={classes.text}>{workshop.facilitator}</Typography>
+                    <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography>
                     <Typography className={classes.text}>{date}</Typography>
-                    <Typography className={classes.text}>{time}</Typography>
+                    <Typography className={classes.text}>{startTime}</Typography>
                     <Typography className={classes.text}>{workshop.category}</Typography>
                     </>
                 }
