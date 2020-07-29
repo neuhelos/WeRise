@@ -81,11 +81,11 @@ VALUES
 INSERT INTO created_workshops
 (id, posted, user_id, title, descriptions, start_time, end_time, category, participants, workshop_img)
 VALUES
-('1', '2020-05-22 10:00-04', '2', 'Intro to SQL', 'tech', '2020-08-22 10:00-04', '2020-08-22 12:00-04', 'Technology, Coding & Programming',  4, 'jpeg'),
-('2', '2020-06-22 15:00-04', '1', 'Cardio Workout', 'exercise', '2020-09-22 15:00-04', '2020-09-22 16:00-04' , 'Health, Fitness & Wellness', 5, 'jpeg'),
-('3', '2020-06-23 18:00-04', '5', 'Drama Therapy in COVID Times', 'acting', '2020-09-23 18:00-04', '2020-09-23 19:00-04' , 'Film, Photography & Theatre', 3, 'jpeg'),
-('4', '2020-07-01 17:00-04', '4', 'Javascript Coding', 'Code', '2020-10-01 17:00-04', '2020-10-01 18:00-04' ,'Technology, Coding & Programming', 2, 'jpeg'),
-('5', '2020-08-16 16:00-04', '3', 'Vogue Dancing', 'Dance', '2020-10-16 16:00-04', '2020-10-16 17:00-04', 'Dance & Music', 5,'jpeg');
+('1', '2020-05-22 10:00-04', '2', 'SQL Tutorial', 'An Intro to Mastering SQL', '2020-08-22 10:00-04', '2020-08-22 12:00-04', 'Technology, Coding & Programming',  4, 'https://lh3.googleusercontent.com/ZWYWjkdD41Rrw8r7tNjTvOePzGOVpq-zSk1yAD3wv4iWjUSgKzw_QVHgehPevnaotRo'),
+('2', '2020-06-22 15:00-04', '1', 'Get Your Cardio On', 'Burn those Love Handles and Get Fit in Quarantine', '2020-09-22 15:00-04', '2020-09-22 16:00-04' , 'Health, Fitness & Wellness', 5, 'https://legacy.travelnoire.com/wp-content/uploads/2019/10/Canva-African-American-Woman-Covered-in-Sweat-from-Boxing-Punching-Bag-Taking-off-Gloves.jpg'),
+('3', '2020-06-23 18:00-04', '5', 'Drama Therapy in COVID Times', 'Express Yourself while Socially Distancing', '2020-09-23 18:00-04', '2020-09-23 19:00-04' , 'Film, Photography & Theatre', 3, 'https://www.marinshakespeare.org/wp-content/uploads/2018/10/Ariel-DSC_0749.jpg'),
+('4', '2020-07-01 17:00-04', '4', 'I Love Javascript', 'Start Your Coding Journey with a Bit of JS Basics', '2020-10-01 17:00-04', '2020-10-01 18:00-04' ,'Technology, Coding & Programming', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRkILRijL6r1-ctV9uojAyUxg21EZLwjWOMAg&usqp=CAU'),
+('5', '2020-08-16 16:00-04', '3', 'Werq it Vogue', 'Learn how to burn the runway with your vogue moves', '2020-10-16 16:00-04', '2020-10-16 17:00-04', 'Dance & Music', 5,'https://i2.wp.com/nypost.com/wp-content/uploads/sites/2/2019/06/21a.mjheaderta_rr.jpg?quality=80&strip=all&ssl=1');
 
 INSERT INTO registered_workshops
 (user_id, workshop_id)
