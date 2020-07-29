@@ -32,6 +32,7 @@ CREATE TABLE created_workshops(
     start_time TIMESTAMPTZ NOT NULL,
     end_time TIMESTAMPTZ NOT NULL,
     category VARCHAR,
+    participants INT,
     workshop_img VARCHAR
 );
 
@@ -69,27 +70,22 @@ CREATE TABLE direct_messages(
 INSERT INTO users
 (id, firstn, lastn,  email, user_pic, bio)
 VALUES
-('1', 'stan', 'lee', 'stan@gmail','jpeg', 'hi im stan'),
-('2', 'nats', 'lee', 'nats@gmail','jpeg', 'hi im nats'),
-('3', 'ants', 'lee', 'ants@gmail','jpeg', 'hi im ants'),
-('abc1', 'Rob', 'lee', 'aabc1@gmail','jpeg', 'hi im abc1'),
-('abc2', 'Jacob', 'lee', 'abc2@gmail','jpeg', 'hi im abc2'),
-('abc3', 'Mandy', 'lee', 'abc3@gmail','jpeg', 'hi im abc3'),
-('abc4', 'Percy', 'lee', 'abc4@gmail','jpeg', 'hi im abc4'),
-('abc5', 'James', 'lee', 'abc5@gmail','jpeg', 'hi im abc5'),
-('abc6', 'Joey', 'Chestnut', 'abc6@gmail','jpeg', 'hi im abc6'),
-('abc7', 'abc', '7', 'abc7@gmail','jpeg', 'hi im abc7'),
-('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev','https://www.aceshowbiz.com/images/photo/drake.jpg', 'hi im the demo account!'),
-('E093QRw1swaW4KCQUON44IU2gcy2', 'Guest', 'Account', 'guest@werise.org','https://www.aceshowbiz.com/images/photo/drake.jpg', 'hi im the Guest account!');
+('1', 'Jay', 'Jones', 'jayjones@pursuit.org','http://localhost:3000/JohnJay.jpeg', '6.4 Pursuit Fellow'),
+('2', 'Deja', 'Flynn', 'dejaflynn@pursuit.org', 'http://localhost:3000/DejaFlynn', '6.4 Pursuit Fellow'),
+('3', 'Nilber', 'Remon', 'nilberremon@pursuit.org', 'http://localhost:3000/NilberRemonCroppedCircle.png', '6.4 Pursuit Fellow'),
+('4', 'Uduakabasi', 'Abasiurua', 'uduakabasiabasiurua@pursuit.org','https://ca.slack-edge.com/TCVA3PF24-UN3UXSZMY-e20128673daa-512', '6.4 Pursuit Fellow'),
+('5', 'Danielle', 'Cherry', 'daniellecherry@pursuit.org','http://localhost:3000/DanielleCherry', '6.4 Pursuit Fellow'),
+('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev','https://www.aceshowbiz.com/images/photo/drake.jpg', 'Hi im the Demo Account!'),
+('E093QRw1swaW4KCQUON44IU2gcy2', 'Guest', 'Account', 'guest@werise.org','https://www.aceshowbiz.com/images/photo/drake.jpg', 'Hi im the Guest Account!');
 
 INSERT INTO created_workshops
-(id, posted, user_id, title, descriptions, start_time, end_time, category, workshop_img)
+(id, posted, user_id, title, descriptions, start_time, end_time, category, participants, workshop_img)
 VALUES
-('1', '2020-05-22 10:00-04', '2', 'Intro to SQL', 'tech', '2020-08-22 10:00-04', '2020-08-22 12:00-04', 'Technology, Coding & Programming','jpeg'),
-('2', '2020-06-22 15:00-04', '3', 'Cardio Workout', 'exercise', '2020-09-22 15:00-04', '2020-09-22 16:00-04' , 'Health, Fitness & Wellness', 'jpeg'),
-('3', '2020-06-23 18:00-04', 'abc1', 'Drama Therapy in COVID Times', 'acting', '2020-09-23 18:00-04', '2020-09-23 19:00-04' , 'Film, Photography & Theatre','jpeg'),
-('4', '2020-07-01 17:00-04', 'abc1', 'Javascript Coding', 'Code', '2020-10-01 17:00-04', '2020-10-01 18:00-04' ,'Technology, Coding & Programming', 'jpeg'),
-('5', '2020-08-16 16:00-04', 'abc1', 'Vogue Dancing', 'Dance', '2020-10-16 16:00-04', '2020-10-16 17:00-04', 'Dance & Music','jpeg');
+('1', '2020-05-22 10:00-04', '2', 'SQL Tutorial', 'An Intro to Mastering SQL', '2020-08-22 10:00-04', '2020-08-22 12:00-04', 'Technology, Coding & Programming',  4, 'https://lh3.googleusercontent.com/ZWYWjkdD41Rrw8r7tNjTvOePzGOVpq-zSk1yAD3wv4iWjUSgKzw_QVHgehPevnaotRo'),
+('2', '2020-06-22 15:00-04', '1', 'Get Your Cardio On', 'Burn those Love Handles and Get Fit in Quarantine', '2020-09-22 15:00-04', '2020-09-22 16:00-04' , 'Health, Fitness & Wellness', 5, 'https://legacy.travelnoire.com/wp-content/uploads/2019/10/Canva-African-American-Woman-Covered-in-Sweat-from-Boxing-Punching-Bag-Taking-off-Gloves.jpg'),
+('3', '2020-06-23 18:00-04', '5', 'Drama Therapy in COVID Times', 'Express Yourself while Socially Distancing', '2020-09-23 18:00-04', '2020-09-23 19:00-04' , 'Film, Photography & Theatre', 3, 'https://www.marinshakespeare.org/wp-content/uploads/2018/10/Ariel-DSC_0749.jpg'),
+('4', '2020-07-01 17:00-04', '4', 'I Love Javascript', 'Start Your Coding Journey with a Bit of JS Basics', '2020-10-01 17:00-04', '2020-10-01 18:00-04' ,'Technology, Coding & Programming', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRkILRijL6r1-ctV9uojAyUxg21EZLwjWOMAg&usqp=CAU'),
+('5', '2020-08-16 16:00-04', '3', 'Werq it Vogue', 'Learn how to burn the runway with your vogue moves', '2020-10-16 16:00-04', '2020-10-16 17:00-04', 'Dance & Music', 5,'https://i2.wp.com/nypost.com/wp-content/uploads/sites/2/2019/06/21a.mjheaderta_rr.jpg?quality=80&strip=all&ssl=1');
 
 INSERT INTO registered_workshops
 (user_id, workshop_id)
