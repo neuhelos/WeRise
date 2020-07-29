@@ -48,9 +48,10 @@ const useStyles = makeStyles((theme) => ({
     }
     }));
 
-const WorkshopFeedCard = ( { workshop } ) => {
+const WorkshopFeedCard = ( props ) => {
     
     const classes = useStyles();
+    const { workshop } = props
 
     const date = `${new Date(workshop.start_time).getMonth()+1}-${new Date(workshop.start_time).getDate()}-${new Date(workshop.start_time).getFullYear()}`
     const startTime = `@${new Date(workshop.start_time).getHours()}:${new Date(workshop.start_time).getMinutes()}0`
@@ -88,7 +89,7 @@ const WorkshopFeedCard = ( { workshop } ) => {
             </Card>
 
             <Modal open={open} toggleModal={toggleModal}>
-                <WorkshopRegistration handleCloseModal={toggleModal} />
+                <WorkshopRegistration handleCloseModal={toggleModal} {...props} />
             </Modal>
 
         </Paper>
