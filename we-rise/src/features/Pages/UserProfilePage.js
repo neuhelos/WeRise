@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 const UserProfilePage = () => {
   const classes = useStyles();
   const currentUser = useSelector((state) => state.currentUserSession.uid);
+  
   const [profile, setProfile] = useState([]);
   const [firstn, setFirstn] = useState("");
   const [lastn, setLastn] = useState("");
@@ -37,11 +38,11 @@ const UserProfilePage = () => {
       debugger;
       console.log(setProfile(res.data.payload));
       //setProfile(res.data.payload.currentUser)
-      setFirstn(res.data.payload[10].firstn);
-      setLastn(res.data.payload[10].lastn);
-      setEmail(res.data.payload[10].email);
-      setBio(res.data.payload[10].bio);
-      setPic(res.data.payload[10].user_pic);
+      setFirstn(res.data.payload[6].firstn);
+      setLastn(res.data.payload[6].lastn);
+      setEmail(res.data.payload[6].email);
+      setBio(res.data.payload[6].bio);
+      setPic(res.data.payload[6].user_pic);
     } catch {}
   };
   useEffect(() => {
