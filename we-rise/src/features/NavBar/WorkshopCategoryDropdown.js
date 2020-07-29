@@ -20,7 +20,7 @@ const CategoryDropdown = ({category}) => {
     const classes = useStyles();
 
     const categoriesList = categories.map( category => {
-      return <MenuItem value={category}>{category}</MenuItem>
+      return <MenuItem key={category} value={category}>{category}</MenuItem>
     })
 
     return (

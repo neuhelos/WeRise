@@ -78,7 +78,7 @@ const SignUpModal = ( ) => {
     e.preventDefault();
 
     try {
-      let resSignup = await signUp(email, password);
+      let resSignup = await signUp(email.value, password.value);
       
       let res =  await axios.post(`${apiURL()}/users`, {
         id: resSignup.user.uid,
@@ -163,7 +163,7 @@ const SignUpModal = ( ) => {
                   ))
               }
               renderInput={(params) => (
-              <TextField {...params} variant="filled" label="Your Skills & Interests" placeholder="Enter Skill/Interest and Press Enter" />
+              <TextField {...params} variant="filled" label="Your Skills" placeholder="Enter a Skill You'd Like to Share & Press Enter" />
               )}
           />
           

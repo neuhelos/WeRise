@@ -75,7 +75,7 @@ const AddWorkshop = ({handleCloseModal}) => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [time, setTime] = useState(['', '']);
 
-    const [participants, setParticipants] = useState(0)
+    const [participants, setParticipants] = useState(1)
 
     const [skills, setSkills] = useState([])
 
@@ -84,7 +84,17 @@ const AddWorkshop = ({handleCloseModal}) => {
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
-    
+
+    const pad = (value) => value.length === 1 ? '0' + value : value
+    const dateFormatter = (selectedDate) => {    
+        let year = selectedDate.year
+        let month = selectedDate.month
+        month = pad(month)
+        let date = selectedDate.day
+        date = pad(date)
+        return `${year}-${month}-${date}`;
+    }
+
     const handleTimeChange = (time) => {
         setTime(time)
     }
@@ -107,25 +117,23 @@ const AddWorkshop = ({handleCloseModal}) => {
     const handleupload = (imageFile) => {
         const uploadTask = storage.ref(`Workshop/${imageFile.name}`).put(imageFile);
         uploadTask.on(
-          "state_changed",
-          snapshot => {},
-          error => {
+            "state_changed",
+            snapshot => {},
+            error => {
             console.log(error);
-          },
-          () => {
-            storage
-            .ref("Workshop")
-            .child(imageFile.name)
-            .getDownloadURL()
-            .then(url => {
-                setWorkshopImage(url)
-                console.log(url)
-            })
-          }
+            },
+            () => {
+                storage
+                .ref("Workshop")
+                .child(imageFile.name)
+                .getDownloadURL()
+                .then(url => {
+                    setWorkshopImage(url)
+                    console.log(url)
+                })
+            }
         )
-      }
-
-    const timeParser = (time) => time.split(':')
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -134,11 +142,10 @@ const AddWorkshop = ({handleCloseModal}) => {
             id: id,
             user_id: currentUser.uid,
             title: title.value,
-            description: title.value,
-            date: selectedDate,
-            startTime: new Date(selectedDate.getFullYear(),selectedDate.getMonth(),selectedDate.getDate(),timeParser(time[0])[0], timeParser(time[0])[1]),
-            endTime: new Date(selectedDate.getFullYear(),selectedDate.getMonth(),selectedDate.getDate(),timeParser(time[1])[0], timeParser(time[1])[1]),
-            participants: participants,
+            description: description.value,
+            startTime: `${dateFormatter(selectedDate)} ${time[0]}`,
+            endTime: `${dateFormatter(selectedDate)} ${time[1]}`,
+            //participants: participants,
             workshop_image: workshopImage
         })
 
@@ -161,14 +168,14 @@ const AddWorkshop = ({handleCloseModal}) => {
                 <MuiPickersUtilsProvider utils={LuxonUtils}>
                     <InputLabel className={classes.inputLabel} id="timerangepicker">Workshop Time</InputLabel>
                     <Container className={classes.container} > 
-                        <span>From<TimeRangePicker
+                        <span>From:<TimeRangePicker
                             labelId="timerangepicker"
                             onChange={handleTimeChange}
                             value={time}
                             disableClock
                             hourPlaceholder="hh"
                             minutePlaceholder="mm"
-                            rangeDivider="To"
+                            rangeDivider="To:"
                         /></span>
                     </Container>
                     <Grid container className={classes.container} display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap' >
