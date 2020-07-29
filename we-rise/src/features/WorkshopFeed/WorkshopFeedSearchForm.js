@@ -59,8 +59,8 @@ const WorkshopFeedSearchForm = () => {
         setSelectCategories(event.target.value);
     };
 
-    const dateFormatter = (selectDate) => {
-        const pad = (value) => value.length === 1 ? value + '0' : value
+    const pad = (value) => value.length === 1 ? value + '0' : value
+    const dateTimeFormatter = (selectDate) => {
         
         let currentTime = new Date()
         
@@ -69,12 +69,22 @@ const WorkshopFeedSearchForm = () => {
         month = pad(month)
         let date = selectDate.getDate()
         date = pad(date)
-        let hours = currentTime.getHours() - (currentTime.getTimezoneOffset()/60)
+        let hours = currentTime.getHours() + (currentTime.getTimezoneOffset()/60)
         hours = pad(hours)
         let minutes = currentTime.getMinutes()
         minutes = pad(minutes)
         
         return `${year}-${month}-${date} ${hours}:${minutes}`;
+    }
+
+    const dateFormatter = (selectDate) => {
+        let year = selectDate.getFullYear()
+        let month = selectDate.getMonth() + 1
+        month = pad(month)
+        let date = selectDate.getDate()
+        date = pad(date)
+
+        return `${year}-${month}-${date} 23:59`;
     }
     
     const selectAllCategories = () => {
@@ -103,7 +113,7 @@ const WorkshopFeedSearchForm = () => {
         dispatch(fetchWorkshopSearch({
             search: searchQuery.value,
             categories: selectCategories, 
-            startDate: dateFormatter(dateRange[0].startDate),
+            startDate: dateTimeFormatter(dateRange[0].startDate),
             endDate: dateFormatter(dateRange[0].endDate)
         }))   
     }
