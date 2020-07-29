@@ -70,7 +70,7 @@ const searchWorkshop = async (req, res) => {
 };
 const getAllWorkshops = async (req, res) => {
   try {
-    let search = await database.any("SELECT * FROM created_workshops JOIN users ON created_workshops.user_id = users.id");
+    let search = await database.any("SELECT * FROM created_workshops JOIN users ON created_workshops.user_id = users.id ORDER BY created_workshops.start_time");
     res.status(200).json({
       status: "Success",
       message: "Found all workshop",
