@@ -9,12 +9,12 @@ import Jitsi from 'react-jitsi'
           
             return (
               <>
-                <h2>WeRise Workshops</h2>
+                <h2>Intro To Dance</h2>
                 <Jitsi
                   domain="meet.jit.si"
                   onAPILoad={handleAPI}
                   roomName={"jitseexx123"}
-                  displayName={"demo"}
+                  displayName={"Intro to Dance with Jay Jones"}
                   interfaceConfig={interfaceConfig}
                   config={config}
                 />

@@ -55,7 +55,7 @@ const VideoConference = () => {
    
     return (
         <div>
-            <h1>Hey Now Welcome to the Workshop</h1>
+            <h1>Welcome to the Workshop</h1>
             <Jiti></Jiti>
         </div>
     )
