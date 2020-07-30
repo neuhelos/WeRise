@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
+import myWorkshopModal from './myWorkshopModal'
+import { useHistory} from 'react-router-dom'
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -11,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import Paper from '@material-ui/core/Paper'
+import Modal from '../BaseComponents/Modal'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,10 +44,30 @@ const useStyles = makeStyles((theme) => ({
     }));
 
 const RegWorkCard = ( { workshop } ) => {
+    const [openMyWorkshop , setMyWorkshop] = useState(false);
+    const history = useHistory();
+
+    const toggleMyworkshopModal = () => {
+        setMyWorkshop(!openMyWorkshop)
+    }
+
+    const workshopsModal = () => {
+        debugger
+        history.push("/videoConference")
+       return (
+    <Modal open={openMyWorkshop} toggleModal={toggleMyworkshopModal}>
+        <myWorkshopModal />
+    </Modal>
+    
+       ) 
+    }
+
+
+
     
     const classes = useStyles();
     return (
-        <Paper className={classes.paper}>
+        <Paper onClick={workshopsModal} className={classes.paper}>
             <Card className={classes.root}>
                 <CardHeader
                 className={classes.header}
