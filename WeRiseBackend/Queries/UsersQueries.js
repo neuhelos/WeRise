@@ -43,6 +43,7 @@ const deleteUser = async (req, res) => {
 };
 const getUser = async (req, res) => {
   try {
+    console.log(req.params.id)
     let user = await database.any(
       "SELECT * FROM users WHERE id =$1", [
         req.params.id,

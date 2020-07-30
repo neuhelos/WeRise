@@ -142,10 +142,9 @@ const AddWorkshop = ({handleCloseModal}) => {
             workshop_image: workshopImage
         })
 
-        let skill = skills.forEach( async (skill) => {
+        skills.forEach( async (skill) => {
             let res = await axios.post(`${apiURL}/workshopSkills`, {
                 workshop_Id: id,
-                user_id: currentUser.uid,
                 skill: skill.toLowerCase()
             })
         })

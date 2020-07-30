@@ -1,14 +1,14 @@
--- DROP DATABASE IF EXISTS database_db;
--- CREATE DATABASE database_db;
+DROP DATABASE IF EXISTS we_rise;
+CREATE DATABASE we_rise;
 
--- \c database_db;
+\c we_rise;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS createdWorkshops;
-DROP TABLE IF EXISTS registeredWorkshops;
-DROP TABLE IF EXISTS videoChat;
-DROP TABLE IF EXISTS workshopSkills;
-DROP TABLE IF EXISTS usersSkills;
-DROP TABLE IF EXISTS directMessages;
+DROP TABLE IF EXISTS created_workshops;
+DROP TABLE IF EXISTS registered_workshops;
+DROP TABLE IF EXISTS video_chat;
+DROP TABLE IF EXISTS workshop_skills;
+DROP TABLE IF EXISTS users_skills;
+DROP TABLE IF EXISTS direct_messages;
 
 CREATE TABLE users(
     id VARCHAR PRIMARY KEY,
@@ -23,7 +23,7 @@ CREATE TABLE users(
     linkedIn VARCHAR
 );
 
-CREATE TABLE createdWorkshops(
+CREATE TABLE created_workshops(
 id VARCHAR PRIMARY KEY,
 user_id VARCHAR REFERENCES users(id),
 title VARCHAR(280),
@@ -36,30 +36,30 @@ workshop_img VARCHAR
 
 );
 
-CREATE TABLE registeredWorkshops(
+CREATE TABLE registered_workshops(
 id SERIAL PRIMARY KEY,
 user_id VARCHAR REFERENCES users(id) ON DELETE SET NULL,
-workshop_id VARCHAR REFERENCES createdWorkshops(id) ON DELETE SET NULL
+workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL
 );
 
-CREATE TABLE videoChat(
+CREATE TABLE video_chat(
 id SERIAL PRIMARY KEY,
-workshop_id VARCHAR REFERENCES createdWorkshops(id) ON DELETE SET NULL,
+workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL,
 url VARCHAR
 );
-CREATE TABLE usersSkills(
+CREATE TABLE users_skills(
 id SERIAL PRIMARY KEY,
 user_id VARCHAR REFERENCES users(id) ON DELETE SET NULL,
 skills VARCHAR
 );
 
-CREATE TABLE workshopSkills(
+CREATE TABLE workshop_skills(
 id SERIAL PRIMARY KEY,
-workshop_id VARCHAR REFERENCES createdWorkshops(id) ON DELETE SET NULL,
+workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL,
 skills VARCHAR
 );
 
-CREATE TABLE directMessages(
+CREATE TABLE direct_messages(
 id SERIAL PRIMARY KEY,
 senderId VARCHAR REFERENCES users(id) ON DELETE SET NULL,
 recieverId VARCHAR REFERENCES users(id) ON DELETE SET NULL,
@@ -82,17 +82,17 @@ VALUES
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev','https://www.aceshowbiz.com/images/photo/drake.jpg', 'hi im the demo account!'),
 ('E093QRw1swaW4KCQUON44IU2gcy2', 'Guest', 'Account', 'guest@werise.org','https://www.aceshowbiz.com/images/photo/drake.jpg', 'hi im the Guest account!');
 
-INSERT INTO createdWorkshops
-(id, user_id, title, descriptions, date, start_time, end_time, workshop_img)
+INSERT INTO created_workshops
+(id, user_id, title, descriptions, date, start_time, end_time, category, workshop_img)
 VALUES
-('1', '2', 'Intro to SQL', 'tech', '03/12/2020', '300', '400', 'jpeg'),
-('2', '3', 'Intro to cardio', 'exercise', '08/12/2020', '400', '500', 'jpeg'),
-('3', 'abc1', 'Intro rollplay', 'acting', '11/12/2020', '800', '900', 'jpeg'),
-('4', 'abc1', 'Intro Coding', 'code', '11/15/2020', '800', '900', 'jpeg'),
-('5', 'abc1', 'Intro Dance', 'Dance', '11/24/2020', '800', '900', 'jpeg')
+('1', '2', 'Intro to SQL', 'tech', '03/12/2020', '300', '400', 'Technology, Coding & Programming','jpeg'),
+('2', '3', 'Cardio Workout', 'exercise', '08/12/2020', '400', '500', 'Health, Fitness & Wellness', 'jpeg'),
+('3', 'abc1', 'Drama Therapy in COVID Times', 'acting', '11/12/2020', '800', '900', 'Film, Photography & Theatre','jpeg'),
+('4', 'abc1', 'Javascript Coding', 'Code', '11/15/2020', '800', '900','Technology, Coding & Programming', 'jpeg'),
+('5', 'abc1', 'Vogue Dancing', 'Dance', '11/24/2020', '800', '900', 'Dance & Music','jpeg')
 ;
 
-INSERT INTO registeredWorkshops
+INSERT INTO registered_workshops
 (user_id, workshop_id)
 VALUES
 ('2', '3'),
@@ -107,3 +107,11 @@ VALUES
 ('E093QRw1swaW4KCQUON44IU2gcy2', '1'),
 ('E093QRw1swaW4KCQUON44IU2gcy2', '5')
 ;
+
+INSERT INTO workshop_skills
+(id, workshop_id, skills)
+VALUES
+('1', '1', 'sql'),
+('2', '2', 'aerobics'),
+('3','5','dance')
+
