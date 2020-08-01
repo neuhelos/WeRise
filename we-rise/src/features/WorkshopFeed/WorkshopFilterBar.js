@@ -83,7 +83,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
         `${dateConverter(dateRange[0].startDate)} thru 
         ${dateConverter(dateRange[0].endDate)}`
 
-
+    const today = new Date()
 
     return (
         <>
@@ -125,6 +125,10 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 ranges={dateRange}
                 handleCloseModal={toggleModal}
                 minDate={new Date()}
+                shownDate={new Date()}
+                scroll={{ enabled: true }}
+                startDatePlaceholder="Start Date"
+                endDatePlaceholder="End Date"
             />
         </Modal>
         </>

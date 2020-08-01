@@ -42,7 +42,7 @@ const WorkshopFeedSearchForm = () => {
     const [dateRange, setDateRange] = useState([
         {
         startDate: new Date(),
-        endDate: new Date(),
+        endDate: null,
         key: 'selection'
         }
     ]);
@@ -102,7 +102,7 @@ const WorkshopFeedSearchForm = () => {
         searchQuery.clearinput()
         setDateRange([{
             startDate: new Date(),
-            endDate: new Date(),
+            endDate: null,
             key: 'selection'
             }]
         )
@@ -111,7 +111,7 @@ const WorkshopFeedSearchForm = () => {
         dispatch(fetchUpcomingWorkshops())
     }
 
-    let categories = selectCategories.join(' OR ')
+    let categories = selectCategories.length ? selectCategories.join(' OR ') : ""
     
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -120,11 +120,7 @@ const WorkshopFeedSearchForm = () => {
             categories: categories, 
             startDate: startDateFormatter(dateRange[0].startDate),
             endDate: endDateFormatter(dateRange[0].endDate)
-        }))
-        console.log({search: searchQuery.value,
-            categories: selectCategories, 
-            startDate: startDateFormatter(dateRange[0].startDate),
-            endDate: endDateFormatter(dateRange[0].endDate)})   
+        })) 
     }
     
 
