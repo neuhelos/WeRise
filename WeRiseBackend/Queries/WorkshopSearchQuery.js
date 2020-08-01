@@ -34,7 +34,7 @@ const searchWorkshops = async (req, res) => {
         }
     };
 
-    if(!req.body.categories && !req.body.search){ //DateRange Only
+    if(!req.body.categories && !req.body.search && req.body.endDate){ //DateRange Only
         try {
             let search = await database.any(
             `SELECT * FROM created_workshops JOIN users ON created_workshops.user_id = users.id
@@ -56,7 +56,7 @@ const searchWorkshops = async (req, res) => {
         }
     }
     
-    if(!req.body.search){ //DateRange & Categories
+    if(!req.body.search && req.body.endDate && req.body.categories){ //DateRange & Categories
         try {
             let categoriesArray = req.body.categories.split(" OR ");
             let categories = categoriesArray.map(
@@ -85,7 +85,7 @@ const searchWorkshops = async (req, res) => {
         }
     }
 
-    if(!req.body.endDate && !req.body.categories){ //Search Only
+    if(!req.body.endDate && !req.body.categories && req.body.search){ //Search Only
         try{
             let search = await database.any(
             `SELECT * FROM created_workshops JOIN workshop_skills ON created_workshops.id = workshop_skills.workshop_id
@@ -108,9 +108,8 @@ const searchWorkshops = async (req, res) => {
         }
     }
 
-    if(!req.body.search && !req.body.endDate){ //Categories Only
+    if(!req.body.search && !req.body.endDate && req.body.categories){ //Categories Only
         try {
-            console.log(req.body)
             let categoriesArray = req.body.categories.split(" OR ");
             let categories = categoriesArray.map(
                 (category) => `created_workshops.category = '${category}' `

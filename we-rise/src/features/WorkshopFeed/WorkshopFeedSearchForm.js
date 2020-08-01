@@ -79,15 +79,19 @@ const WorkshopFeedSearchForm = () => {
     }
 
     const endDateFormatter = (selectDate) => {
-        let currentTime = new Date()
-        let year = selectDate.getFullYear()
-        let month = selectDate.getMonth() + 1
-        month = pad(month)
-        let date = selectDate.getDate()
-        date = pad(date)
-        let timezone = (currentTime.getTimezoneOffset())/60
-        timezone = pad(timezone)
-        return `${year}-${month}-${date} 23:59-${timezone}`;
+        if(selectDate){
+            let currentTime = new Date()
+            let year = selectDate.getFullYear()
+            let month = selectDate.getMonth() + 1
+            month = pad(month)
+            let date = selectDate.getDate()
+            date = pad(date)
+            let timezone = (currentTime.getTimezoneOffset())/60
+            timezone = pad(timezone)
+            return `${year}-${month}-${date} 23:59-${timezone}`
+        } else {
+            return null
+        }
     }
     
     const selectAllCategories = () => {
