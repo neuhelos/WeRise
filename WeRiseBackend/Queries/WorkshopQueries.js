@@ -18,8 +18,8 @@ const createWorkshop = async (req, res) => {
 };
 const getWorkshop = async (req, res) => {
   try {
-    let workshop = await database.any(
-      "SELECT * FROM created_workshops WHERE id =$1",
+    let workshop = await database.one(
+      "SELECT * FROM created_workshops WHERE id = $1",
       req.params.id
     );
     res.status(200).json({

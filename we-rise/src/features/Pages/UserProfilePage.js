@@ -35,7 +35,7 @@ const UserProfilePage = () => {
   const fetchUser = async () => {
     try {
       let res = await axios.get(`${API}/users/`);
-      debugger;
+     
       console.log(setProfile(res.data.payload));
       //setProfile(res.data.payload.currentUser)
       setFirstn(res.data.payload[6].firstn);

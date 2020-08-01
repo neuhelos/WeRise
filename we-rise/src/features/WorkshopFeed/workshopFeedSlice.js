@@ -20,9 +20,9 @@ export const fetchWorkshopSearch = createAsyncThunk(
     'post/fetchWorkshopSearch',
     async (search) => {
         try {
-            const res = await axios.get(`${apiURL()}/workshops/search`, {
+            const res = await axios.post(`${apiURL()}/workshops/search`,
                 search
-            })
+            )
             return res.data.payload
         } catch (error) {
             throw Error(error)

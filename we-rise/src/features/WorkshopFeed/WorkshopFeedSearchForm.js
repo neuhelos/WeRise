@@ -59,8 +59,8 @@ const WorkshopFeedSearchForm = () => {
         setSelectCategories(event.target.value);
     };
 
-    const pad = (value) => value.length === 1 ? '0' + value : value
-    const dateTimeFormatter = (selectDate) => {
+    const pad = (value) => value.toString().length === 1 ? `0${value}` : value
+    const startDateFormatter = (selectDate) => {
         
         let currentTime = new Date()
         
@@ -78,14 +78,16 @@ const WorkshopFeedSearchForm = () => {
         return `${year}-${month}-${date} ${hours}:${minutes}-${timezone}`;
     }
 
-    const dateFormatter = (selectDate) => {
+    const endDateFormatter = (selectDate) => {
+        let currentTime = new Date()
         let year = selectDate.getFullYear()
         let month = selectDate.getMonth() + 1
         month = pad(month)
         let date = selectDate.getDate()
         date = pad(date)
-
-        return `${year}-${month}-${date} 23:59`;
+        let timezone = (currentTime.getTimezoneOffset())/60
+        timezone = pad(timezone)
+        return `${year}-${month}-${date} 23:59-${timezone}`;
     }
     
     const selectAllCategories = () => {
@@ -109,18 +111,20 @@ const WorkshopFeedSearchForm = () => {
         dispatch(fetchUpcomingWorkshops())
     }
 
+    let categories = selectCategories.join(' OR ')
+    
     const handleSubmit = (event) => {
         event.preventDefault()
         dispatch(fetchWorkshopSearch({
             search: searchQuery.value,
-            categories: selectCategories, 
-            startDate: dateTimeFormatter(dateRange[0].startDate),
-            endDate: dateFormatter(dateRange[0].endDate)
+            categories: categories, 
+            startDate: startDateFormatter(dateRange[0].startDate),
+            endDate: endDateFormatter(dateRange[0].endDate)
         }))
         console.log({search: searchQuery.value,
             categories: selectCategories, 
-            startDate: dateTimeFormatter(dateRange[0].startDate),
-            endDate: dateFormatter(dateRange[0].endDate)})   
+            startDate: startDateFormatter(dateRange[0].startDate),
+            endDate: endDateFormatter(dateRange[0].endDate)})   
     }
     
 
