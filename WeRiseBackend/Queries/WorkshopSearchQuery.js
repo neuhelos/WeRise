@@ -2,7 +2,7 @@ const database = require("../Database/database");
 
 const searchWorkshops = async (req, res) => {
     
-    if(req.body.search && req.body.categories && req.body.startDate){
+    if(req.body.search && req.body.categories && req.body.endDate){
         try {
             let categoriesArray = req.body.categories.split(" OR ");
             let categories = categoriesArray.map(
@@ -85,7 +85,7 @@ const searchWorkshops = async (req, res) => {
         }
     }
 
-    if(!req.body.startDate && !req.body.categories){ //Search Only
+    if(!req.body.endDate && !req.body.categories){ //Search Only
         try{
             let search = await database.any(
             `SELECT * FROM created_workshops JOIN workshop_skills ON created_workshops.id = workshop_skills.workshop_id
@@ -108,7 +108,7 @@ const searchWorkshops = async (req, res) => {
         }
     }
 
-    if(!req.body.search && !req.body.startDate){ //Categories Only
+    if(!req.body.search && !req.body.endDate){ //Categories Only
         try {
             console.log(req.body)
             let categoriesArray = req.body.categories.split(" OR ");
