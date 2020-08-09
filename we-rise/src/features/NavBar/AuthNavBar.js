@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   iconButton: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    //filter: 'drop-shadow(1px 2px 3px #36386D)'
   },
   sectionDesktop: {
     display: 'none',

@@ -1,4 +1,4 @@
-const workshops = require("express").Router();
+const workshops = require("express").Router()
 const {
   createWorkshop,
   getWorkshop,
@@ -10,10 +10,10 @@ const {
 const { searchWorkshops } = require("../Queries/WorkshopSearchQuery")
 
 workshops.post("/", createWorkshop);
+workshops.post("/search", searchWorkshops)
 workshops.get("/:id", getWorkshop);
 workshops.delete("/:id", deleteWorkshop);
 workshops.get("/", getAllWorkshops);
 workshops.put("/:id", editWorkshop);
-workshops.get('/search/', searchWorkshops)
 
 module.exports = workshops;

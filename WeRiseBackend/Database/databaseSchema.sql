@@ -103,16 +103,18 @@ VALUES
 ('E093QRw1swaW4KCQUON44IU2gcy2', '5');
 
 INSERT INTO users_skills
-(user_id, skills)
+(id, user_id, skills)
 VALUES
-('E093QRw1swaW4KCQUON44IU2gcy2', 'javascript'),
-('E093QRw1swaW4KCQUON44IU2gcy2', 'cooking cajun'),
-('E093QRw1swaW4KCQUON44IU2gcy2', 'ballet');
+('1','E093QRw1swaW4KCQUON44IU2gcy2', 'javascript'),
+('2','E093QRw1swaW4KCQUON44IU2gcy2', 'cooking cajun'),
+('3','E093QRw1swaW4KCQUON44IU2gcy2', 'ballet');
 
 INSERT INTO workshop_skills
-(workshop_id, skills)
+(id, workshop_id, skills)
 VALUES
-('1', 'sql'),
-('2', 'aerobics'),
-('5','dance');
+('1','1', 'sql'),
+('2','2', 'aerobics'),
+('3','5','dance'),
+('4', '3', 'acting'),
+('5', '4', 'programming')
 
