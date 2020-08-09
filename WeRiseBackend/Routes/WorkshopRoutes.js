@@ -10,7 +10,7 @@ const {
 const { searchWorkshops } = require("../Queries/WorkshopSearchQuery")
 
 workshops.post("/", createWorkshop);
-workshops.post('/search', searchWorkshops)
+workshops.post("/search", searchWorkshops)
 workshops.get("/:id", getWorkshop);
 workshops.delete("/:id", deleteWorkshop);
 workshops.get("/", getAllWorkshops);
