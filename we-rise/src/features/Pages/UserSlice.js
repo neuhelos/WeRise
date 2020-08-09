@@ -7,18 +7,7 @@ import { apiURL } from '../../Utilities/apiURL';
 const API = apiURL()
 
 
-// export const userSlice = createSlice({
-//         name: "user",
-//         initialState: null,
-//         reducers: {
-//             receivedUser: {
-//                 reducer: (state, action) => action.payload
-//             },
-//             logout: {
-//                 reducer: (state) => null
-//             }
-//         }
-//     })
+
     
 export const searchUsers = createAsyncThunk(
     'post/searchUsers',

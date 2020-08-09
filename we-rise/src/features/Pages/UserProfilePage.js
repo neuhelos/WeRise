@@ -34,16 +34,17 @@ const UserProfilePage = () => {
   const API = apiURL();
   const fetchUser = async () => {
     try {
-      let res = await axios.get(`${API}/users/`);
-      debugger;
-      console.log(setProfile(res.data.payload));
-      //setProfile(res.data.payload.currentUser)
-      setFirstn(res.data.payload[6].firstn);
-      setLastn(res.data.payload[6].lastn);
-      setEmail(res.data.payload[6].email);
-      setBio(res.data.payload[6].bio);
-      setPic(res.data.payload[6].user_pic);
-    } catch {}
+      let res = await axios.get(`${API}/users/${currentUser}`);
+      console.log(setProfile(res.data.payload[0]));
+      setProfile(res.data.payload[0])
+      setFirstn(res.data.payload[0].firstn);
+      setLastn(res.data.payload[0].lastn);
+      setEmail(res.data.payload[0].email);
+      setBio(res.data.payload[0].bio);
+      setPic(res.data.payload[0].user_pic);
+    } catch(error) {
+      console.log(error)
+    }
   };
   useEffect(() => {
     fetchUser();
