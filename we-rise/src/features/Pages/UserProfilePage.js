@@ -13,7 +13,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-
+import '../../styling/UserProfilePage.css'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -51,6 +51,8 @@ const UserProfilePage = () => {
   }, []);
 
   return (
+    
+    <div className='userProfile'>
     <Grid
       container
       className={classes.root}
@@ -60,22 +62,24 @@ const UserProfilePage = () => {
       justify="center"
       alignItems="center"
       wrap="nowrap"
-    >
-      User Profile
+      
+      >
+    
       <Card className="Container" />
-      <CardHeader title={firstn} subheader="User Name" />
+      <CardHeader title={firstn, lastn} subheader="User Name" />
       <CardMedia className={classes.media} image={pic} />
-      <CardContent>
-        <Typography>{bio}</Typography>
-
+      <CardContent value={firstn, lastn} image={pic}>
+      <Avatar alt='profilePic' src={pic} className={classes.large}></Avatar>
         <h2>{firstn}</h2>
         <h2>{lastn}</h2>
         <img src={pic}></img>
         <h3>{email}</h3>
-        <h3>{bio}</h3>
+        <Typography>{bio}</Typography>
+        {/* <h3>{bio}</h3> */}
       </CardContent>
-      <UserWorkshopAgenda />
     </Grid>
+      <UserWorkshopAgenda />
+      </div>
   );
 };
 
