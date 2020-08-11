@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import myWorkshopModal from './myWorkshopModal'
+// import WorkshopRegistration from './WorkshopRegistration'
 import { useHistory} from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,6 +16,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import Paper from '@material-ui/core/Paper'
 import Modal from '../BaseComponents/Modal'
+import MyWorkshopModal from './myWorkshopModal';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -53,22 +55,24 @@ const RegWorkCard = ( { workshop } ) => {
 
     const workshopsModal = () => {
         debugger
-        history.push("/videoConference")
+        // history.push("/videoConference")
        return (
     <Modal open={openMyWorkshop} toggleModal={toggleMyworkshopModal}>
         <myWorkshopModal />
     </Modal>
-    
        ) 
     }
-
+    const [open , setOpen] = useState(false)
+    const toggleModal = () => {
+        setOpen(!open)
+    }
 
 
     
     const classes = useStyles();
     return (
-        <Paper onClick={workshopsModal} className={classes.paper}>
-            <Card className={classes.root}>
+        <Paper  className={classes.paper}>
+            <Card className={classes.root} onClick={toggleModal}>
                 <CardHeader
                 className={classes.header}
                 avatar={
@@ -79,9 +83,9 @@ const RegWorkCard = ( { workshop } ) => {
                 }
                 subheader = {
                     <>
-                    <Typography className={classes.text}>{workshop.date}</Typography>
-                    {/* <Typography className={classes.text}>{workshop.start_time}</Typography>
-                    <Typography className={classes.text}>{workshop.end_time}</Typography> */}
+                    {/* <Typography className={classes.text}>{workshop.date}</Typography> */}
+                    <Typography className={classes.text}>{workshop.start_time}</Typography>
+                    {/* <Typography className={classes.text}>{workshop.end_time}</Typography> */}
                     </>
                 }
                 />
@@ -91,6 +95,12 @@ const RegWorkCard = ( { workshop } ) => {
                 title={workshop.title}
                 />
             </Card>
+
+            <Modal open={open} toggleModal={toggleModal}>
+                {/* <WorkshopRegistration handleCloseModal={toggleModal} {...workshop} /> */}
+                <MyWorkshopModal handleCloseModal={toggleModal} workshop={workshop}/>
+            </Modal>
+
         </Paper>
     );
 }

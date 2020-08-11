@@ -2,7 +2,7 @@ const db = require('../Database/database');
 
 const getRegisteredWorkshop = async (req, res, next) => {
     try {
-      let workshop = await db.any("SELECT registered_workshops.id, created_workshops.title, created_workshops.date, created_workshops.start_time, created_workshops.end_time FROM registered_workshops INNER JOIN created_workshops ON registered_workshops.workshop_id = created_workshops.id WHERE registered_workshops.user_id = $1 ORDER BY registered_workshops.id DESC",
+      let workshop = await db.any("SELECT registered_workshops.id, created_workshops.title, created_workshops.start_time, firstn, lastn, USER_pic FROM registered_workshops INNER JOIN created_workshops ON registered_workshops.workshop_id = created_workshops.id JOIN users ON created_workshops.user_id = users.id  WHERE registered_workshops.user_id = $1 ORDER BY registered_workshops.id DESC",
       [
         req.params.id,
       ]);
@@ -12,6 +12,7 @@ const getRegisteredWorkshop = async (req, res, next) => {
         payload: workshop,
       });
     } catch (err) {
+      console.log(err);
       res.status(404).json({
         status: err,
         message: "There are no workshop found for the specified user",
