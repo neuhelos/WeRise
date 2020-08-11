@@ -12,11 +12,11 @@ const searchWorkshops = async (req, res) => {
             search = await database.any(
                 `SELECT * FROM created_workshops LEFT JOIN workshop_skills ON created_workshops.id = workshop_skills.workshop_id
                 JOIN users ON created_workshops.user_id = users.id
-                WHERE ($1) AND (created_workshops.title ILIKE $2 OR created_workshops.descriptions ILIKE $2
-                OR workshop_skills.skills ILIKE $2) AND
-                (created_workshops.start_time >= $3 AND created_workshops.end_time <= $4) 
+                WHERE (${categoriesQuery}) AND (created_workshops.title ILIKE $1 OR created_workshops.descriptions ILIKE $1
+                OR workshop_skills.skills ILIKE $1) AND
+                (created_workshops.start_time >= $2 AND created_workshops.end_time <= $3) 
                 ORDER BY created_workshops.start_time`,
-                [categoriesQuery, `%${req.body.search}%`, req.body.startDate, req.body.endDate]
+                [`%${req.body.search}%`, req.body.startDate, req.body.endDate]
             );
         };
         if(req.body.search && !req.body.categories && req.body.endDate){ //Search & DateRange
@@ -34,19 +34,19 @@ const searchWorkshops = async (req, res) => {
             search = await database.any(
                 `SELECT * FROM created_workshops LEFT JOIN workshop_skills ON created_workshops.id = workshop_skills.workshop_id
                 JOIN users ON created_workshops.user_id = users.id
-                WHERE ($1) AND created_workshops.start_time >= $2 AND created_workshops.end_time <= $3) 
+                WHERE (${categoriesQuery}) AND created_workshops.start_time >= $1 AND created_workshops.end_time <= $2) 
                 ORDER BY created_workshops.start_time`,
-                [categoriesQuery, req.body.startDate, req.body.endDate]
+                [req.body.startDate, req.body.endDate]
             );
         }
         if(req.body.search && req.body.categories && !req.body.endDate){ //Search & Categories
             search = await database.any(
                 `SELECT * FROM created_workshops LEFT JOIN workshop_skills ON created_workshops.id = workshop_skills.workshop_id
                 JOIN users ON created_workshops.user_id = users.id
-                WHERE ($1) AND (created_workshops.title ILIKE $2 OR created_workshops.descriptions ILIKE $2
-                OR workshop_skills.skills ILIKE $2)
+                WHERE (${categoriesQuery}) AND (created_workshops.title ILIKE $1 OR created_workshops.descriptions ILIKE $1
+                OR workshop_skills.skills ILIKE $1)
                 ORDER BY created_workshops.start_time`,
-                [categoriesQuery, `%${req.body.search}%`]
+                [`%${req.body.search}%`]
             );
         };
         if(!req.body.endDate && !req.body.categories && req.body.search){ //Search Only
@@ -70,9 +70,8 @@ const searchWorkshops = async (req, res) => {
         }
         if(!req.body.search && !req.body.endDate && req.body.categories){ //Categories Only
             search = await database.any(
-                `SELECT * FROM created_workshops LEFT JOIN users ON created_workshops.user_id = users.id WHERE $1
-                ORDER BY created_workshops.start_time`,
-                [categoriesQuery]
+                `SELECT * FROM created_workshops LEFT JOIN users ON created_workshops.user_id = users.id WHERE ${categoriesQuery}
+                ORDER BY created_workshops.start_time`
             );
             }
         res.status(200).json({
@@ -81,6 +80,7 @@ const searchWorkshops = async (req, res) => {
             payload: search,
         })
     } catch (error) {
+        console.log(error)
         res.status(404).json({
             status: error,
             message: "No Workshops Found",
