@@ -82,15 +82,15 @@ const SignUpModal = ( ) => {
       
       let res =  await axios.post(`${apiURL()}/users`, {
         id: resSignup.user.uid,
-        firstName: firstName.value,
-        lastName: lastName.value,
+        firstn: firstName.value,
+        lastn: lastName.value,
         email: email,
         user_pic: uploadPic,
         bio : bio.value,
-        instagram: instagram.value,
-        facebook: facebook.value,
-        twitter: twitter.value,
-        linkedin: linkedin.value
+        // instagram: instagram.value,
+        // facebook: facebook.value,
+        // twitter: twitter.value,
+        // linkedin: linkedin.value
       })
       
       skills.forEach( async (skill) => {

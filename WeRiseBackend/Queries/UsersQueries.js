@@ -4,7 +4,7 @@ const createUser = async (req, res, next) => {
   try {
 
     console.log(req.body)
-    let newUser = await db.one(
+    let newUser = await database.one(
      "INSERT INTO users (id, firstn, lastn, email, bio, user_pic) " +
      "VALUES (${id}, ${firstn}, ${lastn}, ${email}, ${bio}, ${user_pic}) " +
      "RETURNING *", req.body 
