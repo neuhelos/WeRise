@@ -82,21 +82,19 @@ const getRegisteredWorkshop = async (req, res, next) => {
 
   const createRegistration = async (req, res, next) => {
     try {
-        let registration = await db.one('INSERT INTO registered_workshops (user_id, workshop_id) VALUES( ${user_id}, ${workshop_id},) RETURNING *', req.body);
+        let registration = await db.one('INSERT INTO registered_workshops (user_id, workshop_id) VALUES( ${user_id}, ${workshop_id} ) RETURNING *', req.body);
         res.status(200).json({
-            status: "success",
-            message: "created a new Registration",
+            status: "Success",
+            message: "Successful Workshop Registration",
             payload: registration
         })
-    } catch (err){
-        console.log(err)
-        console.log("Hey now",req.body)
+    } catch (error){
+        console.log(error)
         res.status(400).json({
             status: "Error",
             message: "Error",
-            payload: err
+            payload: error
         })
-        next()  
     }
 }
 
