@@ -1,14 +1,15 @@
 const database = require("../Database/database");
+
 const createWorkshop = async (req, res) => {
   try {
-    let newWorkshop = await database.one('INSERT INTO created_workshops(id, title, category, descriptions, date, start_time, end_time, workshop_image) VALUES(${id}, ${title}, ${descriptions}, ${category}, ${date}, ${start_time}, ${end_time}, ${workshop_image}) RETURNING *', req.body);
+    let newWorkshop = await database.one('INSERT INTO created_workshops(id, user_id, title, descriptions, start_time, end_time, category, participants, workshop_img) VALUES(${id}, ${user_id}, ${title}, ${description}, ${start_time}, ${end_time}, ${category}, ${participants}, ${workshop_img}) RETURNING *', req.body);
     res.status(200).json({
       status: "success",
       message: "A new workshop was created",
       payload: newWorkshop
     });
   } catch (err) {
- 
+    console.log(err)
     res.status(404).json({
       status: err,
       message: "Workshop was not created",

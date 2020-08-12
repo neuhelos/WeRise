@@ -85,12 +85,12 @@ const AddWorkshop = ({handleCloseModal}) => {
         setSelectedDate(date);
     };
 
-    const pad = (value) => value.length === 1 ? '0' + value : value
+    const pad = (value) => value.toString() === 1 ? '0' + value : value
     const dateFormatter = (selectedDate) => {    
-        let year = selectedDate.year
-        let month = selectedDate.month
+        let year = selectedDate.getFullYear()
+        let month = selectedDate.getMonth() + 1
         month = pad(month)
-        let date = selectedDate.day
+        let date = selectedDate.getDate()
         date = pad(date)
         return `${year}-${month}-${date}`;
     }
@@ -138,23 +138,29 @@ const AddWorkshop = ({handleCloseModal}) => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         let id = uuidv4()
-        let res = await axios.post(`${apiURL}/workshops`, {
-            id: id,
-            user_id: currentUser.uid,
-            title: title.value,
-            description: description.value,
-            startTime: `${dateFormatter(selectedDate)} ${time[0]}`,
-            endTime: `${dateFormatter(selectedDate)} ${time[1]}`,
-            //participants: participants,
-            workshop_image: workshopImage
-        })
+        try {
+            let res = await axios.post(`${apiURL()}/workshops`, {
+                id: id,
+                user_id: currentUser.uid,
+                title: title.value,
+                description: description.value,
+                start_time: `${dateFormatter(selectedDate)} ${time[0]}`,
+                end_time: `${dateFormatter(selectedDate)} ${time[1]}`,
+                category: category.value,
+                participants: participants,
+                workshop_img: workshopImage
+            })
+        } catch (error) {
+            throw Error(error)
+        }
 
         skills.forEach( async (skill) => {
-            let res = await axios.post(`${apiURL}/workshopSkills`, {
+            let res = await axios.post(`${apiURL()}/workshopSkills`, {
                 workshop_Id: id,
                 skill: skill.toLowerCase()
             })
         })
+        debugger
         handleCloseModal()
     }
 

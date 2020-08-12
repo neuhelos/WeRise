@@ -19,7 +19,6 @@ const email = (from, to, subject, content) => {
 }
 
 const sendEmail = async (req, res, next) => {
-    console.log(req.body)
     try {
         await email(req.body.from, req.body.to, req.body.subject, req.body.content)
         res.status(200).json({
