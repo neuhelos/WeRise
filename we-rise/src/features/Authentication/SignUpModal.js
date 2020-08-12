@@ -154,7 +154,7 @@ const SignUpModal = ( ) => {
             <Divider className={classes.divider} orientation="vertical" flexItem />
             <TextField id="password" type="password" label="Password" placeholder="Enter a Secure Password" variant="filled" {...password}/>
           </Grid>
-          <TextField className={classes.input} id="bio" label="Short Bio" placeholder="Tell Folx About Yourself" variant="filled" multiline {...bio}/>
+          <TextField className={classes.input} id="bio" label="Short Bio" placeholder="Tell Folx About Yourself" variant="filled" multiline rows={2} {...bio}/>
           <Autocomplete className={classes.input} multiple id="userSkills" options={[]} defaultValue={""} freeSolo
               onChange={handleSkillsTagsChange}
               renderTags={(value, getTagProps) =>

@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
+
+import { apiURL } from '../../Utilities/apiURL'
+import { useInput } from '../../Utilities/CustomHookery'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField'
 import clsx from 'clsx';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -61,6 +67,11 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
     },
+    input: {
+      width: '100%',
+      fontFamily: 'audiowide',
+      marginBottom: theme.spacing(1)
+  },
 }))
 
 const ColorlibConnector = withStyles({
@@ -110,13 +121,12 @@ function ColorlibStepIcon(props) {
 }
 
 function getSteps() {
-  return ['Details', 'Register', 'Confirm'];
+  return ['Details', 'Register', 'Confirmation'];
 }
 
 
-const WorkshopRegistration = ({ workshop }) => {
+const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
     
-    const workshopDetails = workshop
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     const steps = getSteps();
@@ -129,37 +139,89 @@ const WorkshopRegistration = ({ workshop }) => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleReset = () => {
-    setActiveStep(0);
-    };
-
     const workshopImage = workshop.workshop_img
 
     const WorkshopDescription = () => {
         
         return (
             <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
-                <Typography variant='h4'>{workshopDetails.title}</Typography>
-                <Typography variant='h6'>Facilitator: {`${workshopDetails.firstn} ${workshopDetails.lastn}`}</Typography>
-                <Typography variant='h10'>Description: {workshopDetails.descriptions}</Typography>
-                <img className={classes.image} src={workshopImage} alt="workshopDetails.title"/>
-                <Button variant="contained" color="primary" type="submit"> REGISTER FOR THIS WORKSHOP </Button>
+                <Typography variant='h4'>{workshop.title}</Typography>
+                <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
+                <Typography variant='body1'>Description: {workshop.descriptions}</Typography>
+                <img className={classes.image} src={workshopImage} alt={workshop.title}/>
+                <Button variant="contained" color="primary" onClick={handleNext}> JOIN THE WORKSHOP </Button>
             </Grid>
         )
     }
 
-    function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <WorkshopDescription />
-    case 1:
-      return 'What is an ad group anyways?';
-    case 2:
-      return 'This is the bit I really care about!';
-    default:
-      return 'Unknown step';
-  }
-}
+
+  
+    
+
+    const WorkshopRegistration = () => {
+
+        const currentUser = useSelector( state => state.currentUserSession )
+
+        const message = useInput("")
+
+        const handleSubmit = (event) => {
+            event.preventDefault()
+            try {
+
+                let registration = axios.post(`${apiURL()}/registered`, {
+                    user_id: currentUser.uid,
+                    workshop_id: workshop.id
+                })
+
+                let facilitatorEmail = axios.post(`${apiURL()}/email`, {
+                    to: 'nilberremon@gmail.com',
+                    from: 'WeRiseFacilitator@werise.org',
+                    subject: 'WeRise - A User Registered for Your Workshop',
+                    content: message.value
+                })
+            } catch (error) {
+                throw Error(error)
+            }
+            handleNext()
+        }
+
+        return (
+            <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">                
+                <form onSubmit={handleSubmit}>
+                    <Typography variant='h6'>Introduce Yourself to the Facilitator</Typography>
+                    <TextField id="message" className={classes.input} label="Your Message" placeholder="Tell the Facilitator About Your Interest in the Workshop" variant="filled" multiline rows={10} {...message} required />
+                    <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center">
+                        <Button variant="contained" color="primary" onClick={handleBack}> BACK </Button>
+                        <Button variant="contained" color="primary" type="submit"> REGISTER </Button>
+                    </Grid> 
+                </form>
+            </Grid>
+        )
+    }
+
+    const WorkshopConfirmation = () => {
+
+        return (
+            <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
+                <Typography variant='h6'>Registration Complete</Typography>
+                <Typography variant='body1'>Thank you for Registering for {workshop.title}</Typography>
+                <Button variant="contained" color="primary" onClick={handleCloseModal}> CLOSE </Button>
+            </Grid>
+        )
+    }
+
+    const getStepContent = (step) => {
+        switch (step) {
+            case 0:
+            return <WorkshopDescription />
+            case 1:
+            return <WorkshopRegistration />
+            case 2:
+            return <WorkshopConfirmation />
+            default:
+            return 'Unknown step';
+        }
+    }
 
     return (
         <div className={classes.root}>
@@ -169,36 +231,8 @@ const WorkshopRegistration = ({ workshop }) => {
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
           </Step>
         ))}
-      </Stepper>
-        <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-            <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
-                Back
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
+        </Stepper>
+        <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
     </div>
     )
 }

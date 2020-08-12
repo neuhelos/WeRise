@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true }))
 
 const workshopsRoutes = require("./Routes/WorkshopRoutes");
-const registered = require("./Routes/RegisterWorks");
+const registered = require("./Routes/RegisteredWorkshopRoutes");
 const users = require("./Routes/Users");
 const userSkills = require("./Routes/userSkills");
 const recentPosted = require("./Routes/recentPosted");
