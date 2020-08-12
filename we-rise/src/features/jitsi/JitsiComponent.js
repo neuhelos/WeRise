@@ -6,15 +6,15 @@ import Jitsi from 'react-jitsi'
             const handleAPI = JitsiMeetAPI => {
               JitsiMeetAPI.executeCommand("toggleVideo");
             };
-          
+            let workshopTitle = sessionStorage.getItem("workshopTitle");
             return (
               <>
-                <h2>Intro To Dance</h2>
+                <h2>{workshopTitle}</h2>
                 <Jitsi classname ="videoComponent"
                   domain="meet.jit.si"
                   onAPILoad={handleAPI}
                   roomName={"jitseexx123"}
-                  displayName={"Intro to Dance with Jay Jones"}
+                  displayName={workshopTitle}
                   interfaceConfig={interfaceConfig}
                   config={config}
                 />

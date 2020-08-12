@@ -136,26 +136,35 @@ const AddWorkshop = ({handleCloseModal}) => {
     }
 
     const handleSubmit = async (event) => {
-        event.preventDefault()
-        let id = uuidv4()
-        let res = await axios.post(`${apiURL}/workshops`, {
-            id: id,
-            user_id: currentUser.uid,
-            title: title.value,
-            description: description.value,
-            startTime: `${dateFormatter(selectedDate)} ${time[0]}`,
-            endTime: `${dateFormatter(selectedDate)} ${time[1]}`,
-            //participants: participants,
-            workshop_image: workshopImage
-        })
+        event.preventDefault();
+        let id = uuidv4();
+        let posted = new Date().toLocaleString();
+            try {
+                let res = await axios.post(`${apiURL}/workshops`, {
+                id: id,
+                posted: posted,
+                user_id: currentUser.uid,
+                title: title.value,
+                descriptions: description.value,
+                startTime: `${dateFormatter(selectedDate)} ${time[0]}`,
+                endTime: `${dateFormatter(selectedDate)} ${time[1]}`,
+                category: category,
+                participants: participants,
+                workshop_image: workshopImage
+                })
 
-        skills.forEach( async (skill) => {
-            let res = await axios.post(`${apiURL}/workshopSkills`, {
-                workshop_Id: id,
-                skill: skill.toLowerCase()
-            })
-        })
-        handleCloseModal()
+                skills.forEach( async (skill) => {
+                    let res = await axios.post(`${apiURL}/workshopSkills`, {
+                        workshop_Id: id,
+                        skill: skill.toLowerCase()
+                    })
+                })
+            } catch (err){
+                console.log(err)
+                alert(err.message)
+                
+            }
+        handleCloseModal();
     }
 
     return (
