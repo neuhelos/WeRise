@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { apiURL } from "../../Utilities/apiURL";
 import UserWorkshopAgenda from "../UserWorkshopsAgenda/UserWorkshopsAgenda";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { setCurrentUser } from "../Authentication/AuthenticationSlice";
@@ -13,18 +13,36 @@ import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-
+import "../../styling/UserProfilePage.css";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    width: "100%"
   },
-  paper: {},
+  paper: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 500,
+    backgroundColor: 'grey'
+ 
+  },
+  text: {
+    fontFamily: "audiowide",
+    fontSize: 18,
+    color: 'white',
+   
+  },
+  avatar: {
+    width: theme.spacing(15),
+    height: theme.spacing(15),
+  },
+ 
 }));
 
 const UserProfilePage = () => {
   const classes = useStyles();
   const currentUser = useSelector((state) => state.currentUserSession.uid);
-  
+
   const [profile, setProfile] = useState([]);
   const [firstn, setFirstn] = useState("");
   const [lastn, setLastn] = useState("");
@@ -34,47 +52,66 @@ const UserProfilePage = () => {
   const API = apiURL();
   const fetchUser = async () => {
     try {
-      let res = await axios.get(`${API}/users/`);
-     
-      console.log(setProfile(res.data.payload));
-      //setProfile(res.data.payload.currentUser)
-      setFirstn(res.data.payload[6].firstn);
-      setLastn(res.data.payload[6].lastn);
-      setEmail(res.data.payload[6].email);
-      setBio(res.data.payload[6].bio);
-      setPic(res.data.payload[6].user_pic);
-    } catch {}
+      let res = await axios.get(`${API}/users/${currentUser}`);
+      console.log(setProfile(res.data.payload[0]));
+      setProfile(res.data.payload[0]);
+      setFirstn(res.data.payload[0].firstn);
+      setLastn(res.data.payload[0].lastn);
+      setEmail(res.data.payload[0].email);
+      setBio(res.data.payload[0].bio);
+      setPic(res.data.payload[0].user_pic);
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     fetchUser();
   }, []);
 
   return (
-    <Grid
-      container
-      className={classes.root}
-      container
-      display="flex"
-      direction="column"
-      justify="center"
-      alignItems="center"
-      wrap="nowrap"
-    >
-      User Profile
-      <Card className="Container" />
-      <CardHeader title={firstn} subheader="User Name" />
-      <CardMedia className={classes.media} image={pic} />
-      <CardContent>
-        <Typography>{bio}</Typography>
+    <div className="userProfile">
+       <Paper className={classes.paper}>
 
-        <h2>{firstn}</h2>
-        <h2>{lastn}</h2>
-        <img src={pic}></img>
-        <h3>{email}</h3>
-        <h3>{bio}</h3>
-      </CardContent>
+      <Grid
+        container
+        className={classes.root}
+        container
+        display="flex"
+        direction="column"
+        justify="left"
+        alignItems="left"
+        wrap="nowrap"
+        
+        
+        >
+        <Card className="Container" />
+        <CardHeader
+          className={classes.header}
+          avatar={
+            <Avatar aria-label="user" className={classes.avatar} src={pic} />
+          }
+          title={
+            <Typography className={classes.text}>
+              {" "}
+              {firstn} {lastn} 
+            </Typography>
+          }
+          subheader={
+            <>
+          
+          <Typography className={classes.text}>{email}</Typography> 
+          </>
+        }
+        />
+        <CardMedia className={classes.media} image={pic} />
+        <CardContent value={(firstn, lastn)} image={pic}>
+ 
+          <Typography>My Bio: {bio}</Typography>
+        </CardContent>
+      </Grid>
+        </Paper>
       <UserWorkshopAgenda />
-    </Grid>
+    </div>
   );
 };
 

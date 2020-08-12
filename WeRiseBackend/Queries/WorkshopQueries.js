@@ -105,27 +105,8 @@ const editWorkshop = async (req, res, next) => {
     next(error);
   }
 };
-const searchWorkshopByDate = async (req, res, next) => {
-  try {
-    let searchByDate = await database.any(
-      `SELECT DISTINCT date,
-      ARRAY_AGG(created_workshops.id) AS id,
-      ARRAY_AGG(created_workshops.user_id) AS user_id,
-      ARRAY_AGG(created_workshops.title) AS title,
-      ARRAY_AGG(created_workshops.description) AS description,
-      ARRAY_AGG(created_workshops.date) AS date,
-      ARRAY_AGG(created_workshops.startTime) AS startTime,
-      ARRAY_AGG(created_workshops.endTime) AS endTime
-      FROM created_workshops
-      `
-    );
-    res.status(200).json({
-      status: "success",
-      message: "retrieved all workshops from date",
-      payload: searchByDate
-    });
-  } catch (error) {}
-};
+
+
 module.exports = {
   createWorkshop,
   getWorkshop,
