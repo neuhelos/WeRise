@@ -10,7 +10,7 @@ import Jitsi from 'react-jitsi'
             return (
               <>
                 <h2>Intro To Dance</h2>
-                <Jitsi
+                <Jitsi classname ="videoComponent"
                   domain="meet.jit.si"
                   onAPILoad={handleAPI}
                   roomName={"jitseexx123"}

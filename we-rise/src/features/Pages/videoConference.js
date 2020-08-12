@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+import '../../styling/jitsi.css'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 const VideoConference = () => {
    
     return (
-        <div>
+        <div className = 'videoComponent'>
             <h1>Welcome to the Workshop</h1>
             <Jiti></Jiti>
         </div>
