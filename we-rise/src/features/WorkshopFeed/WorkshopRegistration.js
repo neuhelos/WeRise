@@ -5,7 +5,10 @@ import axios from 'axios'
 import { apiURL } from '../../Utilities/apiURL'
 import { useInput } from '../../Utilities/CustomHookery'
 
+
+import AddToCalendarHOC from 'react-add-to-calendar-hoc'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -20,6 +23,9 @@ import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined'
 import EventIcon from '@material-ui/icons/Event';
 import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
 import StepConnector from '@material-ui/core/StepConnector';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const useColorlibStepIconStyles = makeStyles({
   root: {
@@ -201,10 +207,40 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
 
     const WorkshopConfirmation = () => {
 
+        const [calendar, setCalendar] = useState("")
+
+        let calendarEventDetails = {
+          title: workshop.title,
+          description: workshop.descriptions,
+          location: 'WeRise VideoChat',
+          startTime: workshop.start_time,
+          endTime: workshop.end_time
+        };
+
+        const handleSelect = (event) => {
+
+        }
+
         return (
             <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
                 <Typography variant='h6'>Registration Complete</Typography>
                 <Typography variant='body1'>Thank you for Registering for {workshop.title}</Typography>
+                {/* <FormControl variant="filled" className={classes.formControl}>
+                  <InputLabel htmlFor="addToCalendar">Add to Calendar</InputLabel>
+                  <Select
+                    value={calendar}
+                    onChange={handleSelect}
+                    inputProps={{
+                      name: 'Add to Calendar',
+                      id: 'addToCalendar',
+                    }}
+                  >
+                    <option aria-label="None" value="" />
+                    <option value={'Apple'}>Apple</option>
+                    <option value={'Google'}>Google</option>
+                    <option value={'Outlook'}>Outlook</option>
+                  </Select>
+                </FormControl> */}
                 <Button variant="contained" color="primary" onClick={handleCloseModal}> CLOSE </Button>
             </Grid>
         )
