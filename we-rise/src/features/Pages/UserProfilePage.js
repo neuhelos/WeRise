@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { apiURL } from "../../Utilities/apiURL";
 import UserWorkshopAgenda from "../UserWorkshopsAgenda/UserWorkshopsAgenda";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { setCurrentUser } from "../Authentication/AuthenticationSlice";
@@ -19,17 +19,24 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     width: "100%"
   },
-  paper: {},
+  paper: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 500,
+    backgroundColor: 'grey'
+ 
+  },
   text: {
     fontFamily: "audiowide",
     fontSize: 18,
-    color: 'white'
+    color: 'white',
    
   },
   avatar: {
     width: theme.spacing(15),
     height: theme.spacing(15),
   },
+ 
 }));
 
 const UserProfilePage = () => {
@@ -63,6 +70,8 @@ const UserProfilePage = () => {
 
   return (
     <div className="userProfile">
+       <Paper className={classes.paper}>
+
       <Grid
         container
         className={classes.root}
@@ -72,7 +81,9 @@ const UserProfilePage = () => {
         justify="left"
         alignItems="left"
         wrap="nowrap"
-      >
+        
+        
+        >
         <Card className="Container" />
         <CardHeader
           className={classes.header}
@@ -86,7 +97,7 @@ const UserProfilePage = () => {
             </Typography>
           }
           subheader={
-          <>
+            <>
           
           <Typography className={classes.text}>{email}</Typography> 
           </>
@@ -95,9 +106,10 @@ const UserProfilePage = () => {
         <CardMedia className={classes.media} image={pic} />
         <CardContent value={(firstn, lastn)} image={pic}>
  
-          <Typography>{bio}</Typography>
+          <Typography>My Bio: {bio}</Typography>
         </CardContent>
       </Grid>
+        </Paper>
       <UserWorkshopAgenda />
     </div>
   );
