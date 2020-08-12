@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import myWorkshopModal from './myWorkshopModal'
+// import WorkshopRegistration from './WorkshopRegistration'
 import { useHistory} from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,6 +16,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import Paper from '@material-ui/core/Paper'
 import Modal from '../BaseComponents/Modal'
+import MyWorkshopModal from './myWorkshopModal';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,43 +47,47 @@ const useStyles = makeStyles((theme) => ({
 
 const RegWorkCard = ( { workshop } ) => {
     const [openMyWorkshop , setMyWorkshop] = useState(false);
-    const history = useHistory();
+    // const toggleMyworkshopModal = () => {
+    //     setMyWorkshop(!openMyWorkshop)
+    // }
 
-    const toggleMyworkshopModal = () => {
-        setMyWorkshop(!openMyWorkshop)
+    // const workshopsModal = () => {
+    //     debugger
+    //     // history.push("/videoConference")
+    //    return (
+    // <Modal open={openMyWorkshop} toggleModal={toggleMyworkshopModal}>
+    //     <myWorkshopModal />
+    // </Modal>
+    //    ) 
+    // }
+
+    const date = `${new Date(workshop.start_time).getMonth()+1}-${new Date(workshop.start_time).getDate()}-${new Date(workshop.start_time).getFullYear()}`
+    const startTime = `@${new Date(workshop.start_time).getHours()}:${new Date(workshop.start_time).getMinutes()}0`
+
+    const [open , setOpen] = useState(false)
+    const toggleModal = () => {
+        setOpen(!open)
     }
-
-    const workshopsModal = () => {
-        debugger
-        history.push("/videoConference")
-       return (
-    <Modal open={openMyWorkshop} toggleModal={toggleMyworkshopModal}>
-        <myWorkshopModal />
-    </Modal>
-    
-       ) 
-    }
-
 
 
     
     const classes = useStyles();
     return (
-        <Paper onClick={workshopsModal} className={classes.paper}>
-            <Card className={classes.root}>
+        <Paper  className={classes.paper}>
+            <Card className={classes.root} onClick={toggleModal}>
                 <CardHeader
                 className={classes.header}
                 avatar={
-                    <Avatar aria-label="facilitator" className={classes.avatar} src={""} alt={workshop.facilitator}/>
+                    <Avatar aria-label="facilitator" className={classes.avatar} src={workshop.user_pic} alt={workshop.facilitator}/>
                 }
                 title= {
                     <Typography className={classes.text}>{workshop.title}</Typography>
                 }
                 subheader = {
                     <>
-                    <Typography className={classes.text}>{workshop.date}</Typography>
-                    {/* <Typography className={classes.text}>{workshop.start_time}</Typography>
-                    <Typography className={classes.text}>{workshop.end_time}</Typography> */}
+                    <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography>
+                    {/* <Typography className={classes.text}>{date}</Typography>
+                    <Typography className={classes.text}>{startTime}</Typography> */}
                     </>
                 }
                 />
@@ -91,6 +97,12 @@ const RegWorkCard = ( { workshop } ) => {
                 title={workshop.title}
                 />
             </Card>
+
+            <Modal open={open} toggleModal={toggleModal}>
+                {/* <WorkshopRegistration handleCloseModal={toggleModal} {...workshop} /> */}
+                <MyWorkshopModal handleCloseModal={toggleModal} workshop={workshop}/>
+            </Modal>
+
         </Paper>
     );
 }

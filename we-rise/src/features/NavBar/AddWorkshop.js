@@ -136,6 +136,7 @@ const AddWorkshop = ({handleCloseModal}) => {
     }
 
     const handleSubmit = async (event) => {
+
         event.preventDefault()
         let id = uuidv4()
         try {
@@ -150,16 +151,17 @@ const AddWorkshop = ({handleCloseModal}) => {
                 participants: participants,
                 workshop_img: workshopImage
             })
+        
+            skills.forEach( async (skill) => {
+                let resSkills = await axios.post(`${apiURL()}/workshopSkills`, {
+                  workshop_Id: id,
+                  skill: skill.toLowerCase()
+             })
+        })
         } catch (error) {
             throw Error(error)
         }
 
-        skills.forEach( async (skill) => {
-            let res = await axios.post(`${apiURL()}/workshopSkills`, {
-                workshop_Id: id,
-                skill: skill.toLowerCase()
-            })
-        })
         debugger
         handleCloseModal()
     }
