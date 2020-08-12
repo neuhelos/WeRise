@@ -2,7 +2,7 @@ const db = require('../Database/database');
 
 const getRegisteredWorkshop = async (req, res, next) => {
     try {
-      let workshop = await db.any("SELECT registered_workshops.id, created_workshops.title, created_workshops.start_time, firstn, lastn, USER_pic FROM registered_workshops INNER JOIN created_workshops ON registered_workshops.workshop_id = created_workshops.id JOIN users ON created_workshops.user_id = users.id  WHERE registered_workshops.user_id = $1 ORDER BY registered_workshops.id DESC",
+      let workshop = await db.any("SELECT registered_workshops.id, created_workshops.title, created_workshops.start_time, firstn, lastn, USER_pic, created_workshops.descriptions, created_workshops.workshop_img FROM registered_workshops INNER JOIN created_workshops ON registered_workshops.workshop_id = created_workshops.id JOIN users ON created_workshops.user_id = users.id  WHERE registered_workshops.user_id = $1 ORDER BY registered_workshops.id DESC",
       [
         req.params.id,
       ]);

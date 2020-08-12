@@ -27,6 +27,11 @@ const useStyles = makeStyles((theme) => ({
 const MyWorkshopModal = ({ workshop }) => {
   const history = useHistory();
   const classes = useStyles();
+
+  const currentTime = new Date().toLocaleString();
+  const date = `${new Date(workshop.start_time).getMonth()+1}-${new Date(workshop.start_time).getDate()}-${new Date(workshop.start_time).getFullYear()}`
+  const startTime = `${new Date(workshop.start_time).getHours()}:${new Date(workshop.start_time).getMinutes()}0`
+  sessionStorage.setItem("workshopTitle", workshop.title);
   debugger
 
   const workshopImage = workshop.workshop_img
