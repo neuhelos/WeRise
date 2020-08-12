@@ -63,9 +63,12 @@ const useStyles = makeStyles((theme) => ({
     button: {
         marginRight: theme.spacing(1),
   },
-    instructions: {
+    stepperContent: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
+        '& * + *' : {
+            margin: theme.spacing(1)
+        }
     },
     input: {
       width: '100%',
@@ -144,19 +147,16 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
     const WorkshopDescription = () => {
         
         return (
-            <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
+            <Grid className={classes.root} container display="flex" direction="column" justify="space-evenly" alignItems="center">
                 <Typography variant='h4'>{workshop.title}</Typography>
                 <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
                 <Typography variant='body1'>Description: {workshop.descriptions}</Typography>
                 <img className={classes.image} src={workshopImage} alt={workshop.title}/>
-                <Button variant="contained" color="primary" onClick={handleNext}> JOIN THE WORKSHOP </Button>
+                <Button variant="contained" color="primary" onClick={handleNext}> REGISTER FOR THIS WORKSHOP </Button>
             </Grid>
         )
     }
 
-
-  
-    
 
     const WorkshopRegistration = () => {
 
@@ -174,7 +174,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
                 })
 
                 let facilitatorEmail = axios.post(`${apiURL()}/email`, {
-                    to: 'nilberremon@gmail.com',
+                    to: 'nilberremon@pursuit.org',
                     from: 'WeRiseFacilitator@werise.org',
                     subject: 'WeRise - A User Registered for Your Workshop',
                     content: message.value
@@ -232,7 +232,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
           </Step>
         ))}
         </Stepper>
-        <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+        <Typography className={classes.stepperContent}>{getStepContent(activeStep)}</Typography>
     </div>
     )
 }

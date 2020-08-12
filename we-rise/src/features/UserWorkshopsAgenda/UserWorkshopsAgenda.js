@@ -29,7 +29,7 @@ const UserWorkshopsAgenda = () => {
             let res = await axios.get(`${apiURL()}/registered/${currentUser}`)
 
             setWorkshops(res.data.payload)
-            debugger
+           
       } catch (err){
           console.log(err)
      }

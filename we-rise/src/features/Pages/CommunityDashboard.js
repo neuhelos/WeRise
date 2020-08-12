@@ -76,7 +76,7 @@ const CommunityDashboard = () => {
             <Grid className={classes.gridSection}  container item direction="column" justify="start" alignItems="center" sm={12} md={5}>
                 <Paper className={classes.paperWrapper}>
                     <Paper className={classes.paperTitle}>
-                        <Typography className={classes.text} variant='h7'>My Workshops</Typography>
+                        <Typography className={classes.text} variant='h7'>Workshops I'm Attending</Typography>
                     </Paper>
                 </Paper>
                 <Paper className={classes.paper}>
