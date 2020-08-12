@@ -98,7 +98,7 @@ const RegWorkCard = ( { workshop } ) => {
                 />
                 <CardMedia
                 className={classes.media}
-                image={workshop.image}
+                image={workshop.workshop_img}
                 title={workshop.title}
                 />
             </Card>

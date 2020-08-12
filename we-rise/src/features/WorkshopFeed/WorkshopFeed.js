@@ -32,7 +32,7 @@ const WorkshopFeed = () => {
     }, [workshopFeed])
 
     let workshops = workshopFeed.map(workshop => {
-        return <WorkshopFeedCard key={workshop.id} id={workshop.id} workshop={workshop}/>
+        return <WorkshopFeedCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>
     })
 
     return (
