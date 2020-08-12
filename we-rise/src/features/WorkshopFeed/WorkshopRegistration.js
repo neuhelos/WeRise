@@ -176,7 +176,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
 
                 let registration = axios.post(`${apiURL()}/registered`, {
                     user_id: currentUser.uid,
-                    workshop_id: workshop.id
+                    workshop_id: workshop.workshop_id
                 })
 
                 let facilitatorEmail = axios.post(`${apiURL()}/email`, {
