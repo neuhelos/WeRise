@@ -14,7 +14,7 @@ const RecentlyPostedWorkshops = () => {
         try{
             let res = await axios.get(`${apiURL()}/recentPosted/`)
             setrecentPost(res.data.payload)
-            debugger
+         
       } catch (err){
           console.log(err)
      }
@@ -36,7 +36,6 @@ const RecentlyPostedWorkshops = () => {
     }, []);
 
 
-    debugger
     let recentlypostedpost =  recentPost.map(workshop => {
         return <WorkshopFeedCard key={workshop.id} id={workshop.id} workshop={workshop}/>
     })
