@@ -85,12 +85,12 @@ const AddWorkshop = ({handleCloseModal}) => {
         setSelectedDate(date);
     };
 
-    const pad = (value) => value.length === 1 ? '0' + value : value
+    const pad = (value) => value.toString() === 1 ? '0' + value : value
     const dateFormatter = (selectedDate) => {    
-        let year = selectedDate.year
-        let month = selectedDate.month
+        let year = selectedDate.getFullYear()
+        let month = selectedDate.getMonth() + 1
         month = pad(month)
-        let date = selectedDate.day
+        let date = selectedDate.getDate()
         date = pad(date)
         return `${year}-${month}-${date}`;
     }
@@ -136,35 +136,34 @@ const AddWorkshop = ({handleCloseModal}) => {
     }
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        let id = uuidv4();
-        let posted = new Date().toLocaleString();
-            try {
-                let res = await axios.post(`${apiURL}/workshops`, {
+
+        event.preventDefault()
+        let id = uuidv4()
+        try {
+            let res = await axios.post(`${apiURL()}/workshops`, {
                 id: id,
-                posted: posted,
                 user_id: currentUser.uid,
                 title: title.value,
-                descriptions: description.value,
-                startTime: `${dateFormatter(selectedDate)} ${time[0]}`,
-                endTime: `${dateFormatter(selectedDate)} ${time[1]}`,
-                category: category,
+                description: description.value,
+                start_time: `${dateFormatter(selectedDate)} ${time[0]}`,
+                end_time: `${dateFormatter(selectedDate)} ${time[1]}`,
+                category: category.value,
                 participants: participants,
-                workshop_image: workshopImage
-                })
+                workshop_img: workshopImage
+            })
+        
+            skills.forEach( async (skill) => {
+                let resSkills = await axios.post(`${apiURL()}/workshopSkills`, {
+                  workshop_Id: id,
+                  skill: skill.toLowerCase()
+             })
+        })
+        } catch (error) {
+            throw Error(error)
+        }
 
-                skills.forEach( async (skill) => {
-                    let res = await axios.post(`${apiURL}/workshopSkills`, {
-                        workshop_Id: id,
-                        skill: skill.toLowerCase()
-                    })
-                })
-            } catch (err){
-                console.log(err)
-                alert(err.message)
-                
-            }
-        handleCloseModal();
+        debugger
+        handleCloseModal()
     }
 
     return (
