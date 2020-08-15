@@ -268,7 +268,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
           </Step>
         ))}
         </Stepper>
-        <Typography className={classes.stepperContent}>{getStepContent(activeStep)}</Typography>
+        <Grid className={classes.stepperContent} container display="flex" direction="column" justify="space-evenly" alignItems="center">{getStepContent(activeStep)}</Grid>
     </div>
     )
 }

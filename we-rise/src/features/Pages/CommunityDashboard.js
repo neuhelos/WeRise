@@ -60,7 +60,7 @@ const CommunityDashboard = () => {
 
     return (
         <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
-            <Grid className={classes.gridSection} container item direction="column" justify="start" alignItems="center" sm={12} md={7}>
+            <Grid className={classes.gridSection} container item direction="column" justify="flex-start" alignItems="center" sm={12} md={7}>
                 <Paper className={classes.paperWrapper}>
                     <Paper className={classes.paperTitle}>
                         <Typography className={classes.text} variant='h5'>WORKSHOPS</Typography>
