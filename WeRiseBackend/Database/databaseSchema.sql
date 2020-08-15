@@ -111,7 +111,7 @@ VALUES
 ('3','E093QRw1swaW4KCQUON44IU2gcy2', 'ballet'),
 ('4', '3', 'styling and fashion design'),
 ('4', '3', 'community activism'),
-('4','3', 'dance')
+('4','3', 'dance');
 
 
 INSERT INTO workshop_skills
@@ -127,4 +127,4 @@ VALUES
 ('8', '7', 'civic tech'),
 ('9', '7', 'social justice'),
 ('10', '7', 'community organizing activism'),
-('11', '6', 'fashion budgeting')
+('11', '6', 'fashion budgeting');
