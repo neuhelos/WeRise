@@ -87,7 +87,7 @@ VALUES
 ('4', '2020-07-01 17:00-04', '4', 'I Love Javascript', 'Start Your Coding Journey with a Bit of JS Basics', '2020-10-01 17:00-04', '2020-10-01 18:00-04' ,'Technology, Coding & Programming', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRkILRijL6r1-ctV9uojAyUxg21EZLwjWOMAg&usqp=CAU'),
 ('5', '2020-08-14 16:00-04', '3', 'Werq it Vogue', 'Learn how to burn the runway with your vogue moves', '2020-10-16 16:00-04', '2020-10-16 17:00-04', 'Dance & Music', 5,'https://i2.wp.com/nypost.com/wp-content/uploads/sites/2/2019/06/21a.mjheaderta_rr.jpg?quality=80&strip=all&ssl=1'),
 ('6', '2020-07-25 18:00-04', '3', 'Accessorizing Your Wardrobe', 'Its never too much, elevating your style with accessories.', '2020-09-16 18:00-04', '2020-09-16 19:00-04', 'Beauty & Fashion', 5, 'image'),
-('7','2020-07-10 15:00-04', '3', 'Creating Community Change Through Tech', 'Brainstorming strategies for sharing technical know-how and skills for driving social justice in our communities', '2020-10-01 17:00-04', '2020-10-01 20:00-04' 'Community Organizing & Activism', 5, 'image');
+('7','2020-07-10 15:00-04', '3', 'Creating Community Change Through Tech', 'Brainstorming strategies for sharing technical know-how and skills for driving social justice in our communities', '2020-10-01 17:00-04', '2020-10-01 20:00-04', 'Community Organizing & Activism', 5, 'image');
 
 INSERT INTO registered_workshops
 (user_id, workshop_id)
@@ -110,8 +110,8 @@ VALUES
 ('2','E093QRw1swaW4KCQUON44IU2gcy2', 'cooking cajun'),
 ('3','E093QRw1swaW4KCQUON44IU2gcy2', 'ballet'),
 ('4', '3', 'styling and fashion design'),
-('4', '3', 'community activism'),
-('4','3', 'dance');
+('5', '3', 'community activism'),
+('6','3', 'dance');
 
 
 INSERT INTO workshop_skills
