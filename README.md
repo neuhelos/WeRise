@@ -1,2 +1,4 @@
 # WeRise
-## Pursuit 6.4 Capstone Project
+## Community Skills-Share VideoChat Platform
+
+![WeRise Community Dashboard](we-rise/src/styling/Assets/Media/WeRiseCommunityDashboard.png)
