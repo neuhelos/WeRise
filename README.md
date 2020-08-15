@@ -1,5 +1,4 @@
 # WeRise
 ## Community Skills-Share VideoChat Platform
 
-![WeRise Dashboard](we-rise/src/styling/Assets/Media/WeRiseDashboard.png)
-
+![WeRise Community Dashboard](we-rise/src/styling/Assets/Media/WeRiseCommunityDashboard.png)
