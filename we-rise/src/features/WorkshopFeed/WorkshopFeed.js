@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
 
 
-import { fetchUpcomingWorkshops } from './workshopFeedSlice'
+import { fetchUpcomingWorkshops } from './WorkshopFeedSlice'
 
 const useStyles = makeStyles((theme) => ({
     root: {
