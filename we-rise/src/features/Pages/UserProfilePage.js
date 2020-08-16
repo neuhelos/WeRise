@@ -14,63 +14,66 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 import "../../styling/UserProfilePage.css";
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    width: "100%"
-  },
-  paper: {
-    padding: theme.spacing(2),
-    margin: 'auto',
-    maxWidth: 500,
-    backgroundColor: 'grey'
+import FetchUser from "../UserComponents/FetchUser";
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     flexGrow: 1,
+//     width: "100%"
+//   },
+//   paper: {
+//     padding: theme.spacing(2),
+//     margin: 'auto',
+//     maxWidth: 500,
+//     backgroundColor: 'grey'
  
-  },
-  text: {
-    fontFamily: "audiowide",
-    fontSize: 18,
-    color: 'white',
+//   },
+//   text: {
+//     fontFamily: "audiowide",
+//     fontSize: 18,
+//     color: 'white',
    
-  },
-  avatar: {
-    width: theme.spacing(15),
-    height: theme.spacing(15),
-  },
+//   },
+//   avatar: {
+//     width: theme.spacing(15),
+//     height: theme.spacing(15),
+//   },
  
-}));
+// }));
 
-const UserProfilePage = () => {
-  const classes = useStyles();
-  const currentUser = useSelector((state) => state.currentUserSession.uid);
+// const currentUser = useSelector((state) => state.currentUserSession.uid);
+const UserProfilePage = (
+  // user_id = current user
+  ) => {
+  // const classes = useStyles();
 
-  const [profile, setProfile] = useState([]);
-  const [firstn, setFirstn] = useState("");
-  const [lastn, setLastn] = useState("");
-  const [email, setEmail] = useState("");
-  const [bio, setBio] = useState("");
-  const [pic, setPic] = useState("");
-  const API = apiURL();
-  const fetchUser = async () => {
-    try {
-      let res = await axios.get(`${API}/users/${currentUser}`);
-      console.log(setProfile(res.data.payload[0]));
-      setProfile(res.data.payload[0]);
-      setFirstn(res.data.payload[0].firstn);
-      setLastn(res.data.payload[0].lastn);
-      setEmail(res.data.payload[0].email);
-      setBio(res.data.payload[0].bio);
-      setPic(res.data.payload[0].user_pic);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  // const [profile, setProfile] = useState([]);
+  // const [firstn, setFirstn] = useState("");
+  // const [lastn, setLastn] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [bio, setBio] = useState("");
+  // const [pic, setPic] = useState("");
+  // const API = apiURL();
+  // const fetchUser = async () => {
+  //   try {
+  //     let res = await axios.get(`${API}/users/${user_id}`);
+  //     console.log(setProfile(res.data.payload[0]));
+  //     setProfile(res.data.payload[0]);
+  //     setFirstn(res.data.payload[0].firstn);
+  //     setLastn(res.data.payload[0].lastn);
+  //     setEmail(res.data.payload[0].email);
+  //     setBio(res.data.payload[0].bio);
+  //     setPic(res.data.payload[0].user_pic);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   fetchUser();
+  // }, []);
 
   return (
     <div className="userProfile">
-       <Paper className={classes.paper}>
+       {/* <Paper className={classes.paper}>
 
       <Grid
         container
@@ -109,7 +112,8 @@ const UserProfilePage = () => {
           <Typography>My Bio: {bio}</Typography>
         </CardContent>
       </Grid>
-        </Paper>
+        </Paper> */}
+        <FetchUser/>
       <UserWorkshopAgenda />
     </div>
   );
