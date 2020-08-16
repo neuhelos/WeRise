@@ -1,7 +1,5 @@
 const database = require("../Database/database");
 
-//const categories = require('../../we-rise/src/features/BaseComponents/WorkshopCategories')
-
 
 const searchWorkshops = async (req, res) => {
     
@@ -9,24 +7,23 @@ const searchWorkshops = async (req, res) => {
     let categoriesQuery = req.body.categories ? categoriesArray.map((category) => `created_workshops.category = '${category}'`).join(" OR ") : `created_workshops.category IS NOT NULL`
 
     const query = {
-        search: req.body.search ? `%${req.body.search}%` : `%e%`,
+        search: req.body.search ? `%${req.body.search}%` : `%_%`,
         endDate: req.body.endDate ? req.body.endDate : new Date(new Date().getFullYear() + 20, 11, 31, 23, 59, 0, 0)
     }
-    console.log(query)
 
     try {
         let search = await database.any(
             `SELECT DISTINCT ON( created_workshops.id ) * 
             FROM created_workshops LEFT JOIN workshop_skills ON created_workshops.id = workshop_skills.workshop_id
-            LEFT JOIN registered_workshops ON created_workshops.id = registered_workshops.workshop_id
             JOIN users ON created_workshops.user_id = users.id
             WHERE (${categoriesQuery}) AND (created_workshops.title ILIKE $1 OR created_workshops.descriptions ILIKE $1
             OR workshop_skills.skills ILIKE $1) AND
             (created_workshops.start_time >= $2 AND created_workshops.end_time <= $3) AND
             created_workshops.start_time >= NOW() AND 
             created_workshops.user_id != $4 AND
+            created_workshops.id NOT IN (SELECT registered_workshops.workshop_id FROM registered_workshops WHERE registered_workshops.user_id = $4 )
             ORDER BY created_workshops.id, created_workshops.start_time`,
-            [query.search, req.body.startDate, query.endDate, req.body.user_id]
+            [query.search, req.body.startDate, query.endDate, req.body.id]
         );
         res.status(200).json({
             status: "Success",

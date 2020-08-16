@@ -178,7 +178,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
                     user_id: currentUser.uid,
                     workshop_id: workshop.workshop_id
                 })
-
+                debugger
                 let facilitatorEmail = axios.post(`${apiURL()}/email`, {
                     to: 'nilberremon@pursuit.org',
                     from: 'WeRiseFacilitator@werise.org',

@@ -19,9 +19,9 @@ export const fetchUpcomingWorkshops = createAsyncThunk(
 export const fetchWorkshopSearch = createAsyncThunk(
     'post/fetchWorkshopSearch',
     async (search, {getState}) => {
-        const { uid } = getState().currentUserSession
-        search['id'] = uid
         try {
+            const { uid } = getState().currentUserSession
+            search['id'] = uid
             const res = await axios.post(`${apiURL()}/workshops/search`,
                 search
             )
