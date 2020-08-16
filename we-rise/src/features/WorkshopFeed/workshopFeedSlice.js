@@ -3,12 +3,12 @@ import axios from 'axios'
 
 import { apiURL } from '../../Utilities/apiURL'
 
-
 export const fetchUpcomingWorkshops = createAsyncThunk(
     'get/fetchUpcomingWorkshops',
-    async () => {
+    async ( payload , { getState }) => {
         try {
-            const res = await axios.get(`${apiURL()}/workshops`)
+            const { uid } = getState().currentUserSession
+            const res = await axios.get(`${apiURL()}/workshops?id=${uid}`)
             return res.data.payload
         } catch (error) {
             throw Error(error)
@@ -18,7 +18,9 @@ export const fetchUpcomingWorkshops = createAsyncThunk(
 
 export const fetchWorkshopSearch = createAsyncThunk(
     'post/fetchWorkshopSearch',
-    async (search) => {
+    async (search, {getState}) => {
+        const { uid } = getState().currentUserSession
+        search['id'] = uid
         try {
             const res = await axios.post(`${apiURL()}/workshops/search`,
                 search
