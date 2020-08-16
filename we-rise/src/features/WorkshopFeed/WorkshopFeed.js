@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { selectCurrentUserId } from '../Authentication/AuthenticationSlice'
 
-import WorkshopFeedCard from './workshopFeedCard'
+import WorkshopFeedCard from './WorkshopFeedCard'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'

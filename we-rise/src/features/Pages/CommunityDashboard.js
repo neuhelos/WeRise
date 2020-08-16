@@ -73,10 +73,10 @@ const CommunityDashboard = () => {
                     <WorkshopFeed />
                 </Paper>
             </Grid>
-            <Grid className={classes.gridSection}  container item direction="column" justify="start" alignItems="center" sm={12} md={5}>
+            <Grid className={classes.gridSection}  container item direction="column" justify="flex-start" alignItems="center" sm={12} md={5}>
                 <Paper className={classes.paperWrapper}>
                     <Paper className={classes.paperTitle}>
-                        <Typography className={classes.text} variant='h7'>Workshops I'm Attending</Typography>
+                        <Typography className={classes.text} variant='subtitle1'>Workshops I'm Attending</Typography>
                     </Paper>
                 </Paper>
                 <Paper className={classes.paper}>
@@ -84,7 +84,7 @@ const CommunityDashboard = () => {
                 </Paper>
                 <Paper className={classes.paperWrapper}>
                     <Paper className={classes.paperTitle}>
-                        <Typography className={classes.text} variant='h7'>Recently Posted</Typography>
+                        <Typography className={classes.text} variant='subtitle1'>Recently Posted</Typography>
                     </Paper>
                 </Paper>
                 <Paper className={classes.paper}>

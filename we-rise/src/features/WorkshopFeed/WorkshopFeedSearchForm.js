@@ -125,7 +125,6 @@ const WorkshopFeedSearchForm = () => {
             startDate: startDateFormatter(dateRange[0].startDate),
             endDate: endDateFormatter(dateRange[0].endDate)
         }))
-     
     }
     
 
