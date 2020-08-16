@@ -79,7 +79,8 @@ const getAllWorkshops = async (req, res) => {
       JOIN users ON created_workshops.user_id = users.id
       WHERE created_workshops.start_time >= NOW() AND 
       created_workshops.user_id != $1
-      ORDER BY created_workshops.id, created_workshops.start_time`,
+      ORDER BY created_workshops.id, created_workshops.start_time
+      )`,
       [req.query.id]
     );
     res.status(200).json({
