@@ -56,9 +56,11 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
     const classes = useStyles()
 
     const [openMenu, setOpenMenu] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleOpenMenu = (event) => {
         setOpenMenu(true)
+        setAnchorEl(event.currentTarget);
     };
 
     const handleCloseMenu = (event) => {
@@ -77,7 +79,9 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
         },
         open: openMenu,
         onClose: handleCloseMenu,
+        anchorEl: anchorEl,
         anchorOrigin: { vertical: 'top', horizontal: 'left'},
+        getContentAnchorEl: null
     }
 
     const [open , setOpen] = useState(false)
