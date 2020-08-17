@@ -133,7 +133,7 @@ const WorkshopFeedSearchForm = () => {
     return (
         <form onSubmit={handleSubmit} className={classes.root}>
             <SearchBar searchQuery={searchQuery} />
-            <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
+            <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
                 <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange} buttonLabelChange={buttonLabelChange} selectAllCategories={selectAllCategories} clearSelectCategories={clearSelectCategories}/>
                 <Button className={classes.buttonReset} variant="contained" color="primary" size='small' onClick={handleSearchReset}>RESET</Button>
                 <Button className={classes.buttonSubmit} type="submit" variant="contained" color="primary" size='small'>SUBMIT</Button>

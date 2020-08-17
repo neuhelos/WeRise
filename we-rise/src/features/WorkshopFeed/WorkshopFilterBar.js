@@ -23,8 +23,7 @@ import { categories } from '../BaseComponents/WorkshopCategories'
 const useStyles = makeStyles((theme) => ({
     root: {
         fontFamily: 'audiowide',
-        margin: theme.spacing(1),
-        outline: 'none'
+        outline: 'none',
     },
     button: {
         fontFamily: 'audiowide',
@@ -39,12 +38,8 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
         backgroundColor: 'white',
         borderRadius: '4px',
-        width: '50%'    
-    },
-    inputLabel: {
-        width: '100%',
-        fontFamily: 'audiowide',
-        textAlign: 'center'
+        width: '50%',
+        textOverflow: 'ellipsis',
     },
     dateRange: {
         margin: theme.spacing(1)
@@ -104,7 +99,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
     return (
         <>
 
-        <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
+        <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
             <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal} size='small'>{buttonDateRangeLabel}</Button>
             <Select
                 className={classes.select}
@@ -115,7 +110,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 onChange={handleSelectChange}
                 onClick={handleOpenMenu}
                 input={<Input style={{textAlign: 'center'}}/>}
-                renderValue={(selected) => selected.length > 1 ? "Multiple" : selected.length === 1 ? selected[0] : "Categories" }
+                renderValue={(selected) => selected.length > 1 ? "Multiple Categories" : selected.length === 1 ? "One Category" : "Categories" }
                 MenuProps={MenuProps}
                 >
                     <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>

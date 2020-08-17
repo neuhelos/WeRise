@@ -23,18 +23,25 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#F5F5F5'
     },
     header: {
-        width: '50%'
+        width: '60%'
     },
     media: {
-        width: '50%',
+        width: '40%',
         //paddingTop: '56.25%', // 16:9
     },
     avatar: {
-        width: theme.spacing(7),
-        height: theme.spacing(7),
+        width: theme.spacing(8),
+        height: theme.spacing(8),
     },
     text: {
+        fontSize: '0.75rem',
         fontFamily:'audiowide'
+    },
+    participants: {
+        fontSize: '0.75rem',
+        fontFamily:'audiowide',
+        color: '#FF0F7B',
+        fontWeight: 700
     },
     paper: {
         width: '100%',
@@ -61,6 +68,9 @@ const WorkshopFeedCard = ( props ) => {
         setOpen(!open)
     }
 
+    let registeredParticipants = 4
+    let participantsData = workshop.participants !== registeredParticipants ? `Participants: ${registeredParticipants} / ${workshop.participants}` : `WORKSHOP FULL`
+
     return (
         <Paper className={classes.paper}>
             <Card className={classes.root} onClick={toggleModal}>
@@ -75,9 +85,8 @@ const WorkshopFeedCard = ( props ) => {
                 subheader = {
                     <>
                     <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography>
-                    <Typography className={classes.text}>{date}</Typography>
-                    <Typography className={classes.text}>{startTime}</Typography>
-                    <Typography className={classes.text}>{workshop.category}</Typography>
+                    <Typography className={classes.text}>{`${date} ${startTime}`}</Typography>
+                    <Typography className={workshop.participants !== registeredParticipants ? classes.text : classes.participants}>{participantsData}</Typography>
                     </>
                 }
                 />

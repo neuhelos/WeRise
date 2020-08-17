@@ -105,11 +105,9 @@ VALUES
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', '2'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', '3'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', '5'),
-('E093QRw1swaW4KCQUON44IU2gcy2', '2'),
 ('E093QRw1swaW4KCQUON44IU2gcy2', '3'),
 ('E093QRw1swaW4KCQUON44IU2gcy2', '4'),
-('E093QRw1swaW4KCQUON44IU2gcy2', '5'),
-('E093QRw1swaW4KCQUON44IU2gcy2', '7');
+('E093QRw1swaW4KCQUON44IU2gcy2', '5');
 
 INSERT INTO users_skills
 (id, user_id, skills)
