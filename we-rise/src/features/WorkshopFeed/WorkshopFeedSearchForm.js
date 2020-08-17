@@ -104,7 +104,7 @@ const WorkshopFeedSearchForm = () => {
         event.stopPropagation()
     }
     
-    const handleSearchReset = () => {
+    const handleSearchReset = (event) => {
         searchQuery.clearinput()
         setDateRange([{
             startDate: new Date(),
@@ -112,7 +112,7 @@ const WorkshopFeedSearchForm = () => {
             key: 'selection'
             }]
         )
-        clearSelectCategories()
+        clearSelectCategories(event)
         setButtonLabelChange(false)
         dispatch(fetchUpcomingWorkshops())
     }
