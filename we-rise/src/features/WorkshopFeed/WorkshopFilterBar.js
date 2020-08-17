@@ -29,13 +29,13 @@ const useStyles = makeStyles((theme) => ({
             fontFamily: 'audiowide'
         },
         outline: 'none',
-        width: '100%'
+        width: '100%',
     },
     button: {
         fontFamily: 'audiowide',
         width: '50%',
         height: '3rem',
-        margin: theme.spacing(1),
+        marginRight: theme.spacing(1),
         background: '#36386D'
     },
     select: {
@@ -117,15 +117,16 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 value={selectCategories}
                 onChange={handleSelectChange}
                 onClick={handleOpenMenu}
-                input={<Input style={{textAlign: 'center', width: '50%', textOverflow: 'ellipsis'}}/>}
+                input={<Input style={{textAlign: 'center', textOverflow: 'ellipsis'}}/>}
                 renderValue={(selected) => selected.length > 1 ? "Multiple" : selected.length === 1 ? `${selected[0].slice(0,10)}...` : "Categories" }
                 MenuProps={MenuProps}
                 >
-                    <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>
+                    <Grid className={classes.dateRange} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>
                         <Button variant="contained" color="primary" onClick={selectAllCategories} size='small'>All</Button>
                         <Button variant="contained" color="primary" onClick={clearSelectCategories} size='small'>Clear</Button>
                         <Button variant="contained" color="primary" onClick={handleCloseMenu} size='small'>Select</Button>
                     </Grid>
+                    <MenuItem value="" disabled>Categories</MenuItem>
                     {categories.map((category) => (
                         <MenuItem key={category} value={category} >
                             <Checkbox checked={ selectCategories.indexOf(category) > -1  }/>
