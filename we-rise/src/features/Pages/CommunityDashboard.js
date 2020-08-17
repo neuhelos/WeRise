@@ -84,7 +84,7 @@ const CommunityDashboard = () => {
                 </Paper>
                 <Paper className={classes.paperWrapper}>
                     <Paper className={classes.paperTitle}>
-                        <Typography className={classes.text} variant='subtitle1'>Recently Posted</Typography>
+                        <Typography className={classes.text} variant='subtitle1'>Recently Posted Workshops</Typography>
                     </Paper>
                 </Paper>
                 <Paper className={classes.paper}>

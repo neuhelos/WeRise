@@ -117,8 +117,8 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 value={selectCategories}
                 onChange={handleSelectChange}
                 onClick={handleOpenMenu}
-                input={<Input style={{textAlign: 'center', textOverflow: 'ellipsis'}}/>}
-                renderValue={(selected) => selected.length > 1 ? "Multiple" : selected.length === 1 ? `${selected[0].slice(0,10)}...` : "Categories" }
+                input={<Input style={{textAlign: 'center'}}/>}
+                renderValue={(selected) => selected.length > 1 ? "Multiple" : selected.length === 1 ? `${selected[0].slice(0,15)}...` : "Categories" }
                 MenuProps={MenuProps}
                 >
                     <Grid className={classes.dateRange} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>
