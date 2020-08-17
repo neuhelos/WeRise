@@ -1,5 +1,22 @@
 const database = require("../Database/database");
 
+const queryColumns = `
+    created_workshops.id AS workshop_id,
+    created_workshops.user_id,
+    created_workshops.title,
+    created_workshops.descriptions,
+    created_workshops.start_time,
+    created_workshops.end_time,
+    created_workshops.category,
+    created_workshops.participants,
+    created_workshops.workshop_img,
+    users.id AS user_id,
+    users.firstn,
+    users.lastn,
+    users.email,
+    users.user_pic
+  `
+
 const createWorkshop = async (req, res) => {
   try {
     let newWorkshop = await database.one('INSERT INTO created_workshops(id, user_id, title, descriptions, start_time, end_time, category, participants, workshop_img) VALUES(${id}, ${user_id}, ${title}, ${description}, ${start_time}, ${end_time}, ${category}, ${participants}, ${workshop_img}) RETURNING *', req.body);
@@ -51,36 +68,16 @@ const deleteWorkshop = async (req, res) => {
   }
 };
 
-const searchWorkshop = async (req, res) => {
-  try {
-    let search = await database.any(
-      "SELECT * FROM created_workshops WHERE title=$1", title.req.params
-    );
-    res.status(200).json({
-      status: "Success",
-      message: "Found workshop",
-      payload: search
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: err,
-      message: "Could not find workshop",
-      payload: null
-    });
-  }
-};
-
 
 const getAllWorkshops = async (req, res) => {
   try {
     let search = await database.any(
-      `SELECT DISTINCT ON (created_workshops.id) * FROM created_workshops
-      LEFT JOIN registered_workshops ON created_workshops.id = registered_workshops.workshop_id
+      `SELECT DISTINCT ON (created_workshops.id) ${queryColumns} FROM created_workshops
       JOIN users ON created_workshops.user_id = users.id
       WHERE created_workshops.start_time >= NOW() AND 
-      created_workshops.user_id != $1
-      ORDER BY created_workshops.id, created_workshops.start_time
-      )`,
+      created_workshops.user_id != $1 AND
+      created_workshops.id NOT IN (SELECT registered_workshops.workshop_id FROM registered_workshops WHERE registered_workshops.user_id = $1 )
+      ORDER BY created_workshops.id, created_workshops.start_time`,
       [req.query.id]
     );
     res.status(200).json({

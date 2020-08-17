@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'
 
+import { DateTime } from 'luxon'
+
 import { DateRange } from 'react-date-range';
 import Grid from '@material-ui/core/Grid'
 import Modal from '../BaseComponents/Modal'
@@ -15,26 +17,19 @@ import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
+import Typography from '@material-ui/core/Typography'
 
 import { categories } from '../BaseComponents/WorkshopCategories'
 
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        }
-    }
-}
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        fontFamily: 'audiowide',
-        margin: theme.spacing(1),
-        outline: 'none'
+        '& *': {
+            fontFamily: 'audiowide'
+        },
+        outline: 'none',
+        width: '100%'
     },
     button: {
         fontFamily: 'audiowide',
@@ -42,29 +37,53 @@ const useStyles = makeStyles((theme) => ({
         height: '3rem',
         margin: theme.spacing(1),
         background: '#36386D'
-
-    },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-        maxWidth: 300,
-        backgroundColor: '#F5F5F5',
-        borderRadius: '4px',
-        width: '50%'
     },
     select: {
         fontFamily: 'audiowide',
+        height: '3rem',
+        margin: theme.spacing(1),
+        backgroundColor: 'white',
+        borderRadius: '4px',
+        width: '50%',
+        textOverflow: 'ellipsis',
     },
-    inputLabel: {
-        width: '100%',
-        fontFamily: 'audiowide',
-        textAlign: 'center'
+    dateRange: {
+        margin: theme.spacing(1)
     }
 }))
 
 const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handleSelectChange, buttonLabelChange, selectAllCategories, clearSelectCategories }) => {
 
     const classes = useStyles()
+
+    const [openMenu, setOpenMenu] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    const handleOpenMenu = (event) => {
+        setOpenMenu(true)
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleCloseMenu = (event) => {
+        setOpenMenu(false)
+        event.stopPropagation()
+    };
+
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                width: 350,
+            }
+        },
+        open: openMenu,
+        onClose: handleCloseMenu,
+        anchorEl: anchorEl,
+        anchorOrigin: { vertical: 'top', horizontal: 'left'},
+        getContentAnchorEl: null
+    }
 
     const [open , setOpen] = useState(false)
     const toggleModal = () => {
@@ -79,33 +98,33 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
     }
 
     const buttonDateRangeLabel = !buttonLabelChange ? 
-        "Select Date Range" : 
-        `${dateConverter(dateRange[0].startDate)} thru 
-        ${dateConverter(dateRange[0].endDate)}`
-
-    const today = new Date()
+        "Select Date Range" :
+        <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
+            <Typography variant="body1">{dateConverter(dateRange[0].startDate)} thru </Typography>
+            <Typography variant="body1">{dateConverter(dateRange[0].endDate)}</Typography>
+        </Grid>
 
     return (
         <>
 
-        <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
+        <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
             <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal} size='small'>{buttonDateRangeLabel}</Button>
-            <FormControl className={classes.formControl}>
-                <InputLabel className={classes.inputLabel} id="multiple-select-label">Categories</InputLabel>
-                <Select
+            <Select
                 className={classes.select}
-                labelId="multiple-select"
-                id="multiple-select"
+                id="multiple-select-categories"
+                displayEmpty
                 multiple
                 value={selectCategories}
                 onChange={handleSelectChange}
-                input={<Input style={{textAlign: 'center' }}/>}
-                renderValue={(selected) => selected.length > 1 ? "Multiple" : selected[0]}
+                onClick={handleOpenMenu}
+                input={<Input style={{textAlign: 'center', width: '50%', textOverflow: 'ellipsis'}}/>}
+                renderValue={(selected) => selected.length > 1 ? "Multiple" : selected.length === 1 ? `${selected[0].slice(0,10)}...` : "Categories" }
                 MenuProps={MenuProps}
                 >
                     <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>
                         <Button variant="contained" color="primary" onClick={selectAllCategories} size='small'>All</Button>
                         <Button variant="contained" color="primary" onClick={clearSelectCategories} size='small'>Clear</Button>
+                        <Button variant="contained" color="primary" onClick={handleCloseMenu} size='small'>Select</Button>
                     </Grid>
                     {categories.map((category) => (
                         <MenuItem key={category} value={category} >
@@ -113,23 +132,26 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                             <ListItemText primary={category}/>
                         </MenuItem>
                     ))}
-                </Select>
-            </FormControl>
+            </Select>
         </Grid>
         
-        <Modal open={open} toggleModal={toggleModal}>
-            <DateRange
-                editableDateInputs={true}
-                onChange={handleDateChange}
-                moveRangeOnFirstSelection={false}
-                ranges={dateRange}
-                handleCloseModal={toggleModal}
-                minDate={new Date()}
-                shownDate={new Date()}
-                scroll={{ enabled: true }}
-                startDatePlaceholder="Start Date"
-                endDatePlaceholder="End Date"
-            />
+        <Modal open={open}>
+            <Grid className={classes.root} container display="flex" direction="column" justify="space-evenly" alignItems="center" wrap='nowrap'>
+                <DateRange
+                    className={classes.dateRange}
+                    editableDateInputs={true}
+                    onChange={handleDateChange}
+                    moveRangeOnFirstSelection={false}
+                    ranges={dateRange}
+                    handleCloseModal={toggleModal}
+                    minDate={new Date()}
+                    shownDate={new Date()}
+                    scroll={{ enabled: true }}
+                    startDatePlaceholder="Start Date"
+                    endDatePlaceholder="End Date"
+                />
+                <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal} size='small'>SELECT</Button>
+            </Grid>
         </Modal>
         </>
     )

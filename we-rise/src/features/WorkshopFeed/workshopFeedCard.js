@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+
+import { DateTime } from 'luxon'
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -23,18 +26,23 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#F5F5F5'
     },
     header: {
-        width: '50%'
+        width: '60%'
     },
     media: {
-        width: '50%',
+        width: '40%',
         //paddingTop: '56.25%', // 16:9
     },
     avatar: {
-        width: theme.spacing(7),
-        height: theme.spacing(7),
+        width: theme.spacing(8),
+        height: theme.spacing(8),
     },
     text: {
         fontFamily:'audiowide'
+    },
+    participants: {
+        fontFamily:'audiowide',
+        color: '#FF0F7B',
+        fontWeight: 700
     },
     paper: {
         width: '100%',
@@ -53,13 +61,20 @@ const WorkshopFeedCard = ( props ) => {
     const classes = useStyles();
     const { workshop } = props
 
-    const date = `${new Date(workshop.start_time).getMonth()+1}-${new Date(workshop.start_time).getDate()}-${new Date(workshop.start_time).getFullYear()}`
-    const startTime = `@${new Date(workshop.start_time).getHours()}:${new Date(workshop.start_time).getMinutes()}0`
+    let date = `${DateTime.fromISO(workshop.start_time).toFormat('EEE')}, 
+    ${DateTime.fromISO(workshop.start_time).toFormat('MMM')} 
+    ${DateTime.fromISO(workshop.start_time).toFormat('d')},  
+    ${DateTime.fromISO(workshop.start_time).toFormat('y')}`
+
+    let time = `${DateTime.fromISO(workshop.start_time).toFormat('T')} ${DateTime.fromISO(workshop.start_time).toFormat('ZZZZ')}`
 
     const [open , setOpen] = useState(false)
     const toggleModal = () => {
         setOpen(!open)
     }
+
+    let registeredParticipants = 4
+    let participantsData = workshop.participants !== registeredParticipants ? `Participants: ${registeredParticipants} / ${workshop.participants}` : `WORKSHOP FULL`
 
     return (
         <Paper className={classes.paper}>
@@ -75,9 +90,9 @@ const WorkshopFeedCard = ( props ) => {
                 subheader = {
                     <>
                     <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography>
-                    <Typography className={classes.text}>{date}</Typography>
-                    <Typography className={classes.text}>{startTime}</Typography>
-                    <Typography className={classes.text}>{workshop.category}</Typography>
+                    <Typography className={classes.text}>{`${date}`}</Typography>
+                    <Typography className={classes.text}>{`${time}`}</Typography>
+                    <Typography className={workshop.participants !== registeredParticipants ? classes.text : classes.participants}>{participantsData}</Typography>
                     </>
                 }
                 />
@@ -89,7 +104,7 @@ const WorkshopFeedCard = ( props ) => {
             </Card>
 
             <Modal open={open} toggleModal={toggleModal}>
-                <WorkshopRegistration handleCloseModal={toggleModal} {...props} />
+                <WorkshopRegistration handleCloseModal={toggleModal} dateTime={{date: date, time: time}} {...props} />
             </Modal>
 
         </Paper>

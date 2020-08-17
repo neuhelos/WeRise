@@ -151,16 +151,23 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
     const workshopImage = workshop.workshop_img
 
     const WorkshopDescription = () => {
-        
-        return (
-            <Grid className={classes.root} container display="flex" direction="column" justify="space-evenly" alignItems="center">
-                <Typography variant='h4'>{workshop.title}</Typography>
-                <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
-                <Typography variant='body1'>Description: {workshop.descriptions}</Typography>
-                <img className={classes.image} src={workshopImage} alt={workshop.title}/>
-                <Button variant="contained" color="primary" onClick={handleNext}> REGISTER FOR THIS WORKSHOP </Button>
-            </Grid>
-        )
+
+      let registeredParticipants = 4
+
+      return (
+          <Grid className={classes.root} container display="flex" direction="column" justify="space-evenly" alignItems="center">
+              <Typography variant='h4'>{workshop.title}</Typography>
+              <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
+              <Typography variant='body1'>Description: {workshop.descriptions}</Typography>
+              <img className={classes.image} src={workshopImage} alt={workshop.title}/>
+              {workshop.participants !== registeredParticipants ?
+                  <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center">
+                    <Button variant="contained" color="primary" onClick={handleCloseModal}> RETURN TO SEARCH </Button>
+                    <Button variant="contained" color="primary" onClick={handleNext}> BEGIN REGISTRATION </Button> 
+                  </Grid>
+                : <Button variant="contained" color="primary" onClick={handleCloseModal}> AT CAPACITY : RETURN TO SEARCH </Button>}
+          </Grid>
+      )
     }
 
 
@@ -178,7 +185,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
                     user_id: currentUser.uid,
                     workshop_id: workshop.workshop_id
                 })
-
+                debugger
                 let facilitatorEmail = axios.post(`${apiURL()}/email`, {
                     to: 'nilberremon@pursuit.org',
                     from: 'WeRiseFacilitator@werise.org',

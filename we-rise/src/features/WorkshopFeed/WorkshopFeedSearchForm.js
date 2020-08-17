@@ -94,15 +94,17 @@ const WorkshopFeedSearchForm = () => {
         }
     }
     
-    const selectAllCategories = () => {
+    const selectAllCategories = (event) => {
         setSelectCategories([...categories])
+        event.stopPropagation()
     }
 
-    const clearSelectCategories = () => {
+    const clearSelectCategories = (event) => {
         setSelectCategories([])
+        event.stopPropagation()
     }
     
-    const handleSearchReset = () => {
+    const handleSearchReset = (event) => {
         searchQuery.clearinput()
         setDateRange([{
             startDate: new Date(),
@@ -110,18 +112,18 @@ const WorkshopFeedSearchForm = () => {
             key: 'selection'
             }]
         )
-        clearSelectCategories()
+        clearSelectCategories(event)
         setButtonLabelChange(false)
         dispatch(fetchUpcomingWorkshops())
     }
 
-    let categories = selectCategories.length ? selectCategories.join(' OR ') : ""
+    let categoriesArray = selectCategories.length ? selectCategories.join(' OR ') : ""
     
     const handleSubmit = (event) => {
         event.preventDefault()
         dispatch(fetchWorkshopSearch({
             search: searchQuery.value,
-            categories: categories, 
+            categories: categoriesArray, 
             startDate: startDateFormatter(dateRange[0].startDate),
             endDate: endDateFormatter(dateRange[0].endDate)
         }))
@@ -131,7 +133,7 @@ const WorkshopFeedSearchForm = () => {
     return (
         <form onSubmit={handleSubmit} className={classes.root}>
             <SearchBar searchQuery={searchQuery} />
-            <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
+            <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
                 <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange} buttonLabelChange={buttonLabelChange} selectAllCategories={selectAllCategories} clearSelectCategories={clearSelectCategories}/>
                 <Button className={classes.buttonReset} variant="contained" color="primary" size='small' onClick={handleSearchReset}>RESET</Button>
                 <Button className={classes.buttonSubmit} type="submit" variant="contained" color="primary" size='small'>SUBMIT</Button>
