@@ -46,9 +46,7 @@ const useStyles = makeStyles((theme) => ({
     },
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 120,
-        maxWidth: 300,
-        backgroundColor: '#F5F5F5',
+        backgroundColor: '#A3A3A3',
         borderRadius: '4px',
         width: '50%'
     },
@@ -59,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         fontFamily: 'audiowide',
         textAlign: 'center'
+    },
+    dateRange: {
+        margin: theme.spacing(1)
     }
 }))
 
@@ -117,19 +118,23 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
             </FormControl>
         </Grid>
         
-        <Modal open={open} toggleModal={toggleModal}>
-            <DateRange
-                editableDateInputs={true}
-                onChange={handleDateChange}
-                moveRangeOnFirstSelection={false}
-                ranges={dateRange}
-                handleCloseModal={toggleModal}
-                minDate={new Date()}
-                shownDate={new Date()}
-                scroll={{ enabled: true }}
-                startDatePlaceholder="Start Date"
-                endDatePlaceholder="End Date"
-            />
+        <Modal open={open}>
+            <Grid className={classes.root} container display="flex" direction="column" justify="space-evenly" alignItems="center" wrap='nowrap'>
+                <DateRange
+                    className={classes.dateRange}
+                    editableDateInputs={true}
+                    onChange={handleDateChange}
+                    moveRangeOnFirstSelection={false}
+                    ranges={dateRange}
+                    handleCloseModal={toggleModal}
+                    minDate={new Date()}
+                    shownDate={new Date()}
+                    scroll={{ enabled: true }}
+                    startDatePlaceholder="Start Date"
+                    endDatePlaceholder="End Date"
+                />
+                <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal} size='small'>SELECT</Button>
+            </Grid>
         </Modal>
         </>
     )
