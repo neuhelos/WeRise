@@ -44,14 +44,13 @@ const useStyles = makeStyles((theme) => ({
         background: '#36386D'
 
     },
-    formControl: {
-        margin: theme.spacing(1),
-        backgroundColor: '#A3A3A3',
-        borderRadius: '4px',
-        width: '50%'
-    },
     select: {
         fontFamily: 'audiowide',
+        height: '3rem',
+        margin: theme.spacing(1),
+        backgroundColor: 'white',
+        borderRadius: '4px',
+        width: '50%'    
     },
     inputLabel: {
         width: '100%',
@@ -84,24 +83,20 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
         `${dateConverter(dateRange[0].startDate)} thru 
         ${dateConverter(dateRange[0].endDate)}`
 
-    const today = new Date()
-
     return (
         <>
 
         <Grid container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
             <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal} size='small'>{buttonDateRangeLabel}</Button>
-            <FormControl className={classes.formControl}>
-                <InputLabel className={classes.inputLabel} id="multiple-select-label">Categories</InputLabel>
-                <Select
+            <Select
                 className={classes.select}
-                labelId="multiple-select"
-                id="multiple-select"
+                id="multiple-select-categories"
+                displayEmpty
                 multiple
                 value={selectCategories}
                 onChange={handleSelectChange}
                 input={<Input style={{textAlign: 'center' }}/>}
-                renderValue={(selected) => selected.length > 1 ? "Multiple" : selected[0]}
+                renderValue={(selected) => selected.length > 1 ? "Multiple" : selected.length === 1 ? selected[0] : "Categories" }
                 MenuProps={MenuProps}
                 >
                     <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>
@@ -114,8 +109,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                             <ListItemText primary={category}/>
                         </MenuItem>
                     ))}
-                </Select>
-            </FormControl>
+            </Select>
         </Grid>
         
         <Modal open={open}>
