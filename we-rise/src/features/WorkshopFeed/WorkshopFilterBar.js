@@ -19,16 +19,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { categories } from '../BaseComponents/WorkshopCategories'
 
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        }
-    }
-}
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -65,6 +55,31 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
 
     const classes = useStyles()
 
+    const [openMenu, setOpenMenu] = useState(false)
+
+    const handleOpenMenu = (event) => {
+        setOpenMenu(true)
+    };
+
+    const handleCloseMenu = (event) => {
+        setOpenMenu(false)
+        event.stopPropagation()
+    };
+
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                width: 350,
+            }
+        },
+        open: openMenu,
+        onClose: handleCloseMenu,
+        anchorOrigin: { vertical: 'top', horizontal: 'left'},
+    }
+
     const [open , setOpen] = useState(false)
     const toggleModal = () => {
         setOpen(!open)
@@ -94,13 +109,15 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 multiple
                 value={selectCategories}
                 onChange={handleSelectChange}
-                input={<Input style={{textAlign: 'center', fontFamily: 'audiowide' }}/>}
+                onClick={handleOpenMenu}
+                input={<Input style={{textAlign: 'center'}}/>}
                 renderValue={(selected) => selected.length > 1 ? "Multiple" : selected.length === 1 ? selected[0] : "Categories" }
                 MenuProps={MenuProps}
                 >
                     <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>
                         <Button variant="contained" color="primary" onClick={selectAllCategories} size='small'>All</Button>
                         <Button variant="contained" color="primary" onClick={clearSelectCategories} size='small'>Clear</Button>
+                        <Button variant="contained" color="primary" onClick={handleCloseMenu} size='small'>Select</Button>
                     </Grid>
                     {categories.map((category) => (
                         <MenuItem key={category} value={category} >
