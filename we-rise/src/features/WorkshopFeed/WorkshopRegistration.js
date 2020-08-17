@@ -160,7 +160,12 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
               <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
               <Typography variant='body1'>Description: {workshop.descriptions}</Typography>
               <img className={classes.image} src={workshopImage} alt={workshop.title}/>
-              {workshop.participants !== registeredParticipants ? <Button variant="contained" color="primary" onClick={handleNext}> REGISTER FOR THIS WORKSHOP </Button> : <Button variant="contained" color="primary" onClick={handleCloseModal}> AT CAPACITY : RETURN TO SEARCH </Button>}
+              {workshop.participants !== registeredParticipants ?
+                  <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center">
+                    <Button variant="contained" color="primary" onClick={handleCloseModal}> RETURN TO SEARCH </Button>
+                    <Button variant="contained" color="primary" onClick={handleNext}> BEGIN REGISTRATION </Button> 
+                  </Grid>
+                : <Button variant="contained" color="primary" onClick={handleCloseModal}> AT CAPACITY : RETURN TO SEARCH </Button>}
           </Grid>
       )
     }

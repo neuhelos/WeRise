@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'
 
+import { DateTime } from 'luxon'
+
 import { DateRange } from 'react-date-range';
 import Grid from '@material-ui/core/Grid'
 import Modal from '../BaseComponents/Modal'
@@ -15,6 +17,7 @@ import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
+import Typography from '@material-ui/core/Typography'
 
 import { categories } from '../BaseComponents/WorkshopCategories'
 
@@ -22,8 +25,11 @@ import { categories } from '../BaseComponents/WorkshopCategories'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        fontFamily: 'audiowide',
+        '& *': {
+            fontFamily: 'audiowide'
+        },
         outline: 'none',
+        width: '100%'
     },
     button: {
         fontFamily: 'audiowide',
@@ -92,9 +98,11 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
     }
 
     const buttonDateRangeLabel = !buttonLabelChange ? 
-        "Select Date Range" : 
-        `${dateConverter(dateRange[0].startDate)} thru 
-        ${dateConverter(dateRange[0].endDate)}`
+        "Select Date Range" :
+        <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
+            <Typography variant="body1">{dateConverter(dateRange[0].startDate)} thru </Typography>
+            <Typography variant="body1">{dateConverter(dateRange[0].endDate)}</Typography>
+        </Grid>
 
     return (
         <>
@@ -109,8 +117,8 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 value={selectCategories}
                 onChange={handleSelectChange}
                 onClick={handleOpenMenu}
-                input={<Input style={{textAlign: 'center'}}/>}
-                renderValue={(selected) => selected.length > 1 ? "Multiple Categories" : selected.length === 1 ? "One Category" : "Categories" }
+                input={<Input style={{textAlign: 'center', width: '50%', textOverflow: 'ellipsis'}}/>}
+                renderValue={(selected) => selected.length > 1 ? "Multiple" : selected.length === 1 ? `${selected[0].slice(0,10)}...` : "Categories" }
                 MenuProps={MenuProps}
                 >
                     <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>
