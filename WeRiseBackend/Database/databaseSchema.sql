@@ -67,6 +67,10 @@ CREATE TABLE direct_messages(
     body VARCHAR
 );
 
+CREATE INDEX created_workshops_index ON created_workshops(start_time);
+CREATE INDEX registered_workshops_index ON registered_workshops(workshop_id);
+CREATE INDEX workshop_skills_index ON workshop_skills(skills);
+
 INSERT INTO users
 (id, firstn, lastn,  email, user_pic, bio)
 VALUES
