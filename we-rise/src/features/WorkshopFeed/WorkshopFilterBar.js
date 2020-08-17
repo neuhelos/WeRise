@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
         height: '3rem',
         margin: theme.spacing(1),
         background: '#36386D'
-
     },
     select: {
         fontFamily: 'audiowide',
@@ -95,7 +94,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 multiple
                 value={selectCategories}
                 onChange={handleSelectChange}
-                input={<Input style={{textAlign: 'center' }}/>}
+                input={<Input style={{textAlign: 'center', fontFamily: 'audiowide' }}/>}
                 renderValue={(selected) => selected.length > 1 ? "Multiple" : selected.length === 1 ? selected[0] : "Categories" }
                 MenuProps={MenuProps}
                 >

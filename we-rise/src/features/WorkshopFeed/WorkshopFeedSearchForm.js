@@ -94,12 +94,14 @@ const WorkshopFeedSearchForm = () => {
         }
     }
     
-    const selectAllCategories = () => {
+    const selectAllCategories = (event) => {
         setSelectCategories([...categories])
+        event.stopPropagation()
     }
 
-    const clearSelectCategories = () => {
+    const clearSelectCategories = (event) => {
         setSelectCategories([])
+        event.stopPropagation()
     }
     
     const handleSearchReset = () => {
@@ -115,13 +117,13 @@ const WorkshopFeedSearchForm = () => {
         dispatch(fetchUpcomingWorkshops())
     }
 
-    let categories = selectCategories.length ? selectCategories.join(' OR ') : ""
+    let categoriesArray = selectCategories.length ? selectCategories.join(' OR ') : ""
     
     const handleSubmit = (event) => {
         event.preventDefault()
         dispatch(fetchWorkshopSearch({
             search: searchQuery.value,
-            categories: categories, 
+            categories: categoriesArray, 
             startDate: startDateFormatter(dateRange[0].startDate),
             endDate: endDateFormatter(dateRange[0].endDate)
         }))
