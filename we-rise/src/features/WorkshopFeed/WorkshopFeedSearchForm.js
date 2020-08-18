@@ -15,7 +15,8 @@ import { categories } from '../BaseComponents/WorkshopCategories'
 const useStyles = makeStyles((theme) => ({
     root: {
         fontFamily: 'audiowide',
-        width: '100%'
+        width: '100%',
+        // margin: theme.spacing(1),
     },
     buttonReset: {
         fontFamily: 'audiowide',

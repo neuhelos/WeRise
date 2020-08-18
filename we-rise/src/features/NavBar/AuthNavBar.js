@@ -23,16 +23,22 @@ import MobileNavMenu from './MobileNavMenu'
 const useStyles = makeStyles((theme) => ({
   root: {
         background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
-    },
+        marginBottom: theme.spacing(1)
+  },
   grow: {
     flexGrow: 1,
   },
   title: {
-    fontFamily: 'audiowide'
+    fontFamily: 'audiowide',
+    '&:hover': {
+      cursor: 'pointer',
+      color: '#F89B29',
+      filter: `drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.25))`,
     // display: 'none',
     // [theme.breakpoints.up('sm')]: {
     //   display: 'block',
     // },
+    }
   },
   iconButton: {
     margin: theme.spacing(1),
@@ -92,11 +98,15 @@ const NavBar = () => {
         setOpen(!open)
     }
 
+    const handleScrollToTop = () => {
+      window.scrollTo({top: 0, behavior: 'smooth'});     
+    }
+
     return (
       <>
-      <AppBar position="static" className={classes.root}>
+      <AppBar position="sticky" className={classes.root}>
         <Toolbar>
-          <Typography className={classes.title} variant="h2" noWrap>
+          <Typography className={classes.title} variant="h2" noWrap onClick={handleScrollToTop}>
             WeRise
           </Typography>
           <div className={classes.grow} />
