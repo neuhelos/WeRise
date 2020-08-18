@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import { useHistory} from 'react-router-dom'
+import { apiURL } from '../../Utilities/apiURL'
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -33,7 +35,17 @@ const MyWorkshopModal = ({ workshop }) => {
   const date = `${new Date(workshop.start_time).getMonth()+1}-${new Date(workshop.start_time).getDate()}-${new Date(workshop.start_time).getFullYear()}`
   const startTime = `${new Date(workshop.start_time).getHours()}:${new Date(workshop.start_time).getMinutes()}0`
   sessionStorage.setItem("workshopTitle", workshop.title);
-debugger
+
+  
+  const handleUnregister = async () => {
+    try{
+        const res = await axios.delete(`${apiURL()}/registered/${workshop.id}`)
+        console.log(res.payload) 
+    } catch (error) {
+        throw Error(error)
+    }
+  }
+
 
   const workshopImage = workshop.workshop_img
   // Button should only show if the start_time is the same as the current time!
@@ -43,7 +55,9 @@ debugger
           <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
           <Typography variant='h10'>Description: {workshop.descriptions}</Typography>
           <img className={classes.image} src={workshopImage} alt="workshop.title"/>
-          {currentDate === date? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}> Join workshop </Button>: <p>Date: {date}</p>}
+          {/* {currentDate === date? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}> Join workshop </Button>: <p>Date: {date}</p>} */}
+          <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}>Join Workshop</Button>
+          <Button variant="contained" color="primary" type="submit" onClick = {() => handleUnregister}>Unregister From Workshop</Button>
       </Grid>
   )
 }

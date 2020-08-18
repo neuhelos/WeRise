@@ -8,10 +8,11 @@ import { apiURL } from '../../Utilities/apiURL'
 export const RegisteredWorkshop = createAsyncThunk(
     // const currentUser = useSelector( state => state.currentUserSession.uid )
     'post/fetchMyWorkshops',
-    async () => {
+    async ( payload , { getState }) => {
         try {
             console.log(`${apiURL()}/workshops`)
-            const res = await axios.get(`${apiURL()}/registered/${currentUser}`)
+            const { uid } = getState().currentUserSession.uid
+            const res = await axios.get(`${apiURL()}/registered/${uid}`)
             return res.payload
         } catch (error) {
             throw Error(error)
@@ -21,7 +22,7 @@ export const RegisteredWorkshop = createAsyncThunk(
 
 
 export const RegisteredWorkshopSlice = createSlice( {
-    name: "RegisteredWorkshop",
+    name: "registeredWorkshop",
     initialState: [],
     reducers: {
     },
@@ -31,4 +32,4 @@ export const RegisteredWorkshopSlice = createSlice( {
 })
 
 export const selectRegisteredWorkshopFeed = state => state.workshopFeed
-export default RegisteredWorkshop.reducer 
+export default RegisteredWorkshopSlice.reducer 
