@@ -82,15 +82,15 @@ const RegWorkCard = ( { workshop } ) => {
             <Card className={classes.root} onClick={toggleModal}>
                 <CardHeader
                 className={classes.header}
-                avatar={
-                    <Avatar aria-label="facilitator" className={classes.avatar} src={workshop.user_pic} alt={workshop.facilitator}/>
-                }
+                // avatar={
+                //     <Avatar aria-label="facilitator" className={classes.avatar} src={workshop.user_pic} alt={workshop.facilitator}/>
+                // }
                 title= {
                     <Typography className={classes.text}>{workshop.title}</Typography>
                 }
                 subheader = {
                     <>
-                    <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography>
+                    {/* <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography> */}
                     {/* <Typography className={classes.text}>{date}</Typography>
                     <Typography className={classes.text}>{startTime}</Typography> */}
                     </>

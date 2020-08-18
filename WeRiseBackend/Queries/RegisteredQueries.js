@@ -66,12 +66,34 @@ const getRegisteredWorkshop = async (req, res, next) => {
     }
   }
 
+  const getRegisteredCount = async (req, res, next)=>{
+    try {
+      const registered = await db.any(
+        'SELECT count(workshop_id) AS Workshopcount FROM registered_workshops WHERE workshop_id =$1 ', 
+        [req.params.id]
+      );
+      res.json({
+        status: "success",
+        message: 'A count of all participants',
+        payload: registered
+      })
+      
+    } catch (error) {
+      res.status(404).json({
+        status: err,
+        message: "There are no workshop found for the specified user",
+        payload: null,
+      });
+      
+    }
+  }
+
   const deleteRegistration = async (req, res) => {
     try {
       await db.none(`DELETE FROM registered_workshops WHERE id = ${req.params.id} RETURNING *`);
       res.status(200).json({
         status: "success",
-        message: "The workshop is deleted"
+        message: "The workshop is unregistered"
       });
     } catch (err) {
       res.status(404).json({
@@ -100,5 +122,5 @@ const getRegisteredWorkshop = async (req, res, next) => {
 }
 
   module.exports = {
-    getRegisteredWorkshop, getAllRegistered, deleteRegistration, createRegistration
+    getRegisteredWorkshop, getAllRegistered, deleteRegistration, createRegistration, getRegisteredCount
   }
