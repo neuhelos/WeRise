@@ -152,15 +152,13 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
 
     const WorkshopDescription = () => {
 
-      let registeredParticipants = 4
-
       return (
           <Grid className={classes.root} container display="flex" direction="column" justify="space-evenly" alignItems="center">
               <Typography variant='h4'>{workshop.title}</Typography>
               <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
               <Typography variant='body1'>Description: {workshop.descriptions}</Typography>
               <img className={classes.image} src={workshopImage} alt={workshop.title}/>
-              {workshop.participants !== registeredParticipants ?
+              {workshop.participants !== workshop.workshop_count ?
                   <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center">
                     <Button variant="contained" color="primary" onClick={handleCloseModal}> RETURN TO SEARCH </Button>
                     <Button variant="contained" color="primary" onClick={handleNext}> BEGIN REGISTRATION </Button> 
@@ -180,12 +178,11 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
         const handleSubmit = (event) => {
             event.preventDefault()
             try {
-
                 let registration = axios.post(`${apiURL()}/registered`, {
                     user_id: currentUser.uid,
-                    workshop_id: workshop.workshop_id
+                    workshop_id: workshop.workshop_id,
+                    workshop_id_user_id: `${currentUser.uid}${workshop.workshop_id}`
                 })
-                debugger
                 let facilitatorEmail = axios.post(`${apiURL()}/email`, {
                     to: 'nilberremon@pursuit.org',
                     from: 'WeRiseFacilitator@werise.org',
