@@ -57,13 +57,13 @@ const deleteWorkshop = async (req, res) => {
 const getAllWorkshops = async (req, res) => {
   try {
     let search = await database.any(
-      `SELECT DISTINCT ON (created_workshops.id) ${queryColumns} 
+      `SELECT ${queryColumns} 
       FROM created_workshops
       JOIN users ON created_workshops.user_id = users.id
       WHERE created_workshops.start_time >= NOW() AND 
       created_workshops.user_id != $1 AND
       created_workshops.id NOT IN (SELECT registered_workshops.workshop_id FROM registered_workshops WHERE registered_workshops.user_id = $1 )
-      ORDER BY created_workshops.id, created_workshops.start_time`,
+      ORDER BY created_workshops.start_time`,
       [req.query.id]
     );
     res.status(200).json({
