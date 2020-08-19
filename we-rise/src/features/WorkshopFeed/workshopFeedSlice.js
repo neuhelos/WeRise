@@ -71,7 +71,6 @@ export const workshopFeedSlice = createSlice( {
         }, 
         [deleteRegistration.fulfilled] : (state, action) => {
             let insertIndex = binarySearchInsert(state, action.payload.start_time)
-            debugger
             state.splice(insertIndex, 0, action.payload)
         }
     }
