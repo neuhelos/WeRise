@@ -60,7 +60,7 @@ const CommunityDashboard = () => {
 
     return (
         <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
-            <Grid className={classes.gridSection} container item direction="column" justify="flex-start" alignItems="center" sm={12} md={7}>
+            <Grid className={classes.gridSection} container item direction="column" justify="flex-start" alignItems="center" sm={12} md={6}>
                 <Paper className={classes.paperWrapper}>
                     <Paper className={classes.paperTitle}>
                         <Typography className={classes.text} variant='h5'>WORKSHOPS</Typography>
@@ -73,7 +73,7 @@ const CommunityDashboard = () => {
                     <WorkshopFeed />
                 </Paper>
             </Grid>
-            <Grid className={classes.gridSection}  container item direction="column" justify="flex-start" alignItems="center" sm={12} md={5}>
+            <Grid className={classes.gridSection}  container item direction="column" justify="flex-start" alignItems="center" sm={12} md={6}>
                 <Paper className={classes.paperWrapper}>
                     <Paper className={classes.paperTitle}>
                         <Typography className={classes.text} variant='subtitle1'>Workshops I'm Attending</Typography>

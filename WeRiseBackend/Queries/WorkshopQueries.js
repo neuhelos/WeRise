@@ -72,7 +72,9 @@ const deleteWorkshop = async (req, res) => {
 const getAllWorkshops = async (req, res) => {
   try {
     let search = await database.any(
-      `SELECT DISTINCT ON (created_workshops.id) ${queryColumns} FROM created_workshops
+      `SELECT DISTINCT ON (created_workshops.id) ${queryColumns},
+      (SELECT COUNT(workshop_id) FROM registered_workshops WHERE created_workshops.id = registered_workshops.workshop_id) AS workshop_count 
+      FROM created_workshops
       JOIN users ON created_workshops.user_id = users.id
       WHERE created_workshops.start_time >= NOW() AND 
       created_workshops.user_id != $1 AND
@@ -86,6 +88,7 @@ const getAllWorkshops = async (req, res) => {
       payload: search
     });
   } catch (err) {
+    console.log(err)
     res.status(404).json({
       status: err,
       message: "Could not find all workshop",

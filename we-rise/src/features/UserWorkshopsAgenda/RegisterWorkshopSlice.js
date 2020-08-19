@@ -34,7 +34,6 @@ export const addRegistration = createAsyncThunk(
     }
 )
 
-
 export const fetchMyWorkshops = createAsyncThunk(
     // const currentUser = useSelector( state => state.currentUserSession.uid )
     'get/fetchMyWorkshops',

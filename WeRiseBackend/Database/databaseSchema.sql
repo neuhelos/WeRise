@@ -24,7 +24,7 @@ CREATE TABLE users(
 );
 
 CREATE TABLE created_workshops(
-    id VARCHAR PRIMARY KEY,
+    id VARCHAR PRIMARY KEY UNIQUE,
     posted TIMESTAMPTZ DEFAULT NOW(),
     user_id VARCHAR REFERENCES users(id),
     title VARCHAR(280),
@@ -39,7 +39,8 @@ CREATE TABLE created_workshops(
 CREATE TABLE registered_workshops(
     id SERIAL PRIMARY KEY,
     user_id VARCHAR REFERENCES users(id) ON DELETE SET NULL,
-    workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL
+    workshop_id VARCHAR REFERENCES created_workshops(id) ON DELETE SET NULL,
+    workshop_id_user_id VARCHAR UNIQUE
 );
 
 CREATE TABLE video_chat(
@@ -97,17 +98,17 @@ VALUES
 ('10', '2020-09-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'Classic Films', 'Breaking down great movies', '2020-10-16 10:00-04', '2020-10-16 12:00-04',  'Film, Photography and Theater', 5, 'https://cdn.sparkfun.com/assets/learn_tutorials/4/0/8/daisy-2.png');
 
 INSERT INTO registered_workshops
-(user_id, workshop_id)
+(user_id, workshop_id, workshop_id_user_id)
 VALUES
-('2', '3'),
-('3', '1'),
-('1', '2'),
-('ilFicLgXB5O9utKaS8WCn4UaQh53', '2'),
-('ilFicLgXB5O9utKaS8WCn4UaQh53', '3'),
-('ilFicLgXB5O9utKaS8WCn4UaQh53', '5'),
-('E093QRw1swaW4KCQUON44IU2gcy2', '3'),
-('E093QRw1swaW4KCQUON44IU2gcy2', '4'),
-('E093QRw1swaW4KCQUON44IU2gcy2', '5');
+('2', '3','23'),
+('3', '1',31),
+('1', '2','12'),
+('ilFicLgXB5O9utKaS8WCn4UaQh53', '2', 'ilFicLgXB5O9utKaS8WCn4UaQh532'),
+('ilFicLgXB5O9utKaS8WCn4UaQh53', '3', 'ilFicLgXB5O9utKaS8WCn4UaQh533'),
+('ilFicLgXB5O9utKaS8WCn4UaQh53', '5', 'ilFicLgXB5O9utKaS8WCn4UaQh535'),
+('E093QRw1swaW4KCQUON44IU2gcy2', '3','ilFicLgXB5O9utKaS8WCn4UaQh533'),
+('E093QRw1swaW4KCQUON44IU2gcy2', '4','ilFicLgXB5O9utKaS8WCn4UaQh534'),
+('E093QRw1swaW4KCQUON44IU2gcy2', '5','ilFicLgXB5O9utKaS8WCn4UaQh535');
 
 INSERT INTO users_skills
 (id, user_id, skills)
