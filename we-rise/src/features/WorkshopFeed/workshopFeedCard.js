@@ -73,8 +73,7 @@ const WorkshopFeedCard = ( props ) => {
         setOpen(!open)
     }
 
-    let registeredParticipants = 4
-    let participantsData = workshop.participants !== registeredParticipants ? `Participants: ${registeredParticipants} / ${workshop.participants}` : `WORKSHOP FULL`
+    let participantsData = workshop.participants !== workshop.workshop_count? `Participants: ${workshop.workshop_count} / ${workshop.participants}` : `WORKSHOP FULL`
 
     return (
         <Paper className={classes.paper}>
@@ -92,7 +91,7 @@ const WorkshopFeedCard = ( props ) => {
                     <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography>
                     <Typography className={classes.text}>{`${date}`}</Typography>
                     <Typography className={classes.text}>{`${time}`}</Typography>
-                    <Typography className={workshop.participants !== registeredParticipants ? classes.text : classes.participants}>{participantsData}</Typography>
+                    <Typography className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
                     </>
                 }
                 />

@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+import { binarySearchInsert } from '../../Utilities/binarySearchInsertion'
 import { apiURL } from '../../Utilities/apiURL'
-import { deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
+import { addRegistration, deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 export const fetchUpcomingWorkshops = createAsyncThunk(
     'get/fetchUpcomingWorkshops',
@@ -26,7 +27,6 @@ export const fetchWorkshopSearch = createAsyncThunk(
             const res = await axios.post(`${apiURL()}/workshops/search`,
                 search
             )
-            console.log(search)
             return res.data.payload
         } catch (error) {
             throw Error(error)
@@ -42,8 +42,12 @@ export const workshopFeedSlice = createSlice( {
     extraReducers: {
         [fetchUpcomingWorkshops.fulfilled]: (state, action) => action.payload,
         [fetchWorkshopSearch.fulfilled] : (state, action) => action.payload,
+        [addRegistration.fulfilled] : (state, action) => {
+            return state.filter(workshop => workshop.workshop_id !== action.payload.workshop_id)
+        }, 
         [deleteRegistration.fulfilled] : (state, action) => {
-            state.unshift(action.payload);
+            let insertIndex = binarySearchInsert(state, new Date(action.payload.start_time))
+            state.splice(insertIndex, 0, action.payload)
         }
     }
 })

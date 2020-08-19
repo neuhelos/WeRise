@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 
 import { apiURL } from '../../Utilities/apiURL'
 import { useInput } from '../../Utilities/CustomHookery'
-
+import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 import AddToCalendarHOC from 'react-add-to-calendar-hoc'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -135,7 +135,8 @@ function getSteps() {
 
 
 const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
-    
+  
+    const dispatch = useDispatch()
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     const steps = getSteps();
@@ -152,15 +153,13 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
 
     const WorkshopDescription = () => {
 
-      let registeredParticipants = 4
-
       return (
           <Grid className={classes.root} container display="flex" direction="column" justify="space-evenly" alignItems="center">
               <Typography variant='h4'>{workshop.title}</Typography>
               <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
               <Typography variant='body1'>Description: {workshop.descriptions}</Typography>
               <img className={classes.image} src={workshopImage} alt={workshop.title}/>
-              {workshop.participants !== registeredParticipants ?
+              {workshop.participants !== workshop.workshop_count ?
                   <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center">
                     <Button variant="contained" color="primary" onClick={handleCloseModal}> RETURN TO SEARCH </Button>
                     <Button variant="contained" color="primary" onClick={handleNext}> BEGIN REGISTRATION </Button> 
@@ -173,19 +172,12 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
 
     const WorkshopRegistration = () => {
 
-        const currentUser = useSelector( state => state.currentUserSession )
-
+        let workshopId = workshop.workshop_id
         const message = useInput("")
-
         const handleSubmit = (event) => {
             event.preventDefault()
             try {
-
-                let registration = axios.post(`${apiURL()}/registered`, {
-                    user_id: currentUser.uid,
-                    workshop_id: workshop.workshop_id
-                })
-                debugger
+                dispatch(addRegistration(workshopId))
                 let facilitatorEmail = axios.post(`${apiURL()}/email`, {
                     to: 'nilberremon@pursuit.org',
                     from: 'WeRiseFacilitator@werise.org',
