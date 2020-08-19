@@ -2,35 +2,42 @@ const db = require('../Database/database');
 
 const getRegisteredWorkshop = async (req, res, next) => {
     try {
-      let workshop = await db.any(`SELECT registered_workshops.id, created_workshops.title, created_workshops.start_time, firstn, lastn, USER_pic, created_workshops.descriptions, created_workshops.workshop_img FROM registered_workshops INNER JOIN created_workshops ON registered_workshops.workshop_id = created_workshops.id JOIN users ON created_workshops.user_id = users.id  WHERE registered_workshops.user_id = $1 
-      ORDER BY created_workshops.start_time DESC`,
+      let workshops = await db.any(`SELECT registered_workshops.id, created_workshops.title, created_workshops.start_time, firstn, lastn, USER_pic, created_workshops.descriptions, created_workshops.workshop_img 
+      FROM registered_workshops 
+      JOIN created_workshops ON registered_workshops.workshop_id = created_workshops.id 
+      JOIN users ON created_workshops.user_id = users.id  
+      WHERE registered_workshops.user_id = $1 
+      ORDER BY created_workshops.start_time`,
       [
         req.params.id,
       ]);
       res.status(200).json({
         status: "success",
-        message: "All registered workshops for one user",
-        payload: workshop,
+        message: "User Registered Workshops",
+        payload: workshops,
       });
     } catch (err) {
       console.log(err);
       res.status(404).json({
         status: err,
-        message: "There are no workshop found for the specified user",
+        message: "No Registered Workshops Found for User",
         payload: null,
       });
     }
   };
-  
-  // const fetchAllRegisteredWorkshop = async (req, res, next)=>{
+
+  // const getAllRegistered = async (req, res, next)=>{
   //   try {
   //     const registered = await db.any(
-  //       'SELECT * FROM registeredWorkshops JOIN users ON registeredWorkshops.user_id = users.id WHERE registeredWorkshops.users.id', 
+  //       `SELECT registered_workshops.workshop_id, users.firstn, users.lastn FROM registered_workshops 
+  //       INNER JOIN users ON registered_workshops.user_id = users.id 
+  //       WHERE registered_workshops.workshop_id = $1 
+  //       ORDER BY registered_workshops.id DESC`, 
   //       [req.params.id]
   //     );
   //     res.json({
   //       status: "success",
-  //       message: 'workshop is registered by user',
+  //       message: 'users registered for workshop',
   //       payload: registered
   //     })
       
@@ -43,32 +50,6 @@ const getRegisteredWorkshop = async (req, res, next) => {
       
   //   }
   // }
-  
-
-  const getAllRegistered = async (req, res, next)=>{
-    try {
-      const registered = await db.any(
-        `SELECT registered_workshops.workshop_id, users.firstn, users.lastn FROM registered_workshops 
-        INNER JOIN users ON registered_workshops.user_id = users.id 
-        WHERE registered_workshops.workshop_id = $1 
-        ORDER BY registered_workshops.id DESC`, 
-        [req.params.id]
-      );
-      res.json({
-        status: "success",
-        message: 'users registered for workshop',
-        payload: registered
-      })
-      
-    } catch (error) {
-      res.status(404).json({
-        status: err,
-        message: "There are no workshop found for the specified user",
-        payload: null,
-      });
-      
-    }
-  }
 
   const getRegisteredCount = async (req, res, next)=>{
     try {
@@ -129,5 +110,5 @@ const getRegisteredWorkshop = async (req, res, next) => {
 }
 
   module.exports = {
-    getRegisteredWorkshop, getAllRegistered, deleteRegistration, createRegistration, getRegisteredCount
+    getRegisteredWorkshop, deleteRegistration, createRegistration, getRegisteredCount
   }

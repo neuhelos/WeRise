@@ -58,8 +58,8 @@ export const RegisteredWorkshopSlice = createSlice( {
     extraReducers: {
         [fetchMyWorkshops.fulfilled]: (state, action) => action.payload,
         [addRegistration.fulfilled]: (state, action) =>  {
-                
-        }
+            
+        },
         [deleteRegistration.fulfilled]: (state, action) => {
            let workshopIndex = state.findIndex((workshop)=> {
                 return Number(workshop.id) === Number(action.payload.registeredId)
