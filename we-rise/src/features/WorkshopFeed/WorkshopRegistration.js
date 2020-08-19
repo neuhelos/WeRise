@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 
 import { apiURL } from '../../Utilities/apiURL'
 import { useInput } from '../../Utilities/CustomHookery'
-
+import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 import AddToCalendarHOC from 'react-add-to-calendar-hoc'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -135,7 +135,8 @@ function getSteps() {
 
 
 const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
-    
+  
+    const dispatch = useDispatch()
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     const steps = getSteps();
@@ -171,18 +172,12 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
 
     const WorkshopRegistration = () => {
 
-        const currentUser = useSelector( state => state.currentUserSession )
-
         const message = useInput("")
 
         const handleSubmit = (event) => {
             event.preventDefault()
             try {
-                let registration = axios.post(`${apiURL()}/registered`, {
-                    user_id: currentUser.uid,
-                    workshop_id: workshop.workshop_id,
-                    workshop_id_user_id: `${currentUser.uid}${workshop.workshop_id}`
-                })
+                dispatch(addRegistration(workshop.workshop_id))
                 let facilitatorEmail = axios.post(`${apiURL()}/email`, {
                     to: 'nilberremon@pursuit.org',
                     from: 'WeRiseFacilitator@werise.org',

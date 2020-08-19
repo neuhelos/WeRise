@@ -7,10 +7,10 @@ import { apiURL } from '../../Utilities/apiURL'
 
 export const deleteRegistration = createAsyncThunk(
     'delete/deleteRegistration',
-    async(workshopId) => {
+    async(workshop_id) => {
         try{
-           let res = await axios.delete(`${apiURL()}/registered/${workshopId}`);
-           res.data.payload.registeredId = workshopId;
+            let res = await axios.delete(`${apiURL()}/registered/${workshop_id}`);
+            res.data.payload.registeredId = workshop_id;
             return res.data.payload;
         } catch (error) {
             throw Error(error)
@@ -25,7 +25,8 @@ export const addRegistration = createAsyncThunk(
             const { uid } = getState().currentUserSession
             let registration = axios.post(`${apiURL()}/registered`, {
                 user_id: uid,
-                workshop_id: workshop_id
+                workshop_id: workshop_id,
+                workshop_id_user_id: `${uid}${workshop_id}`
             })
         return registration.data.payload;
         } catch (error) {
