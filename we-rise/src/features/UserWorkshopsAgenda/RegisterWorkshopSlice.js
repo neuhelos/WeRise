@@ -18,6 +18,22 @@ export const deleteRegistration = createAsyncThunk(
     }
 )
 
+export const addRegistration = createAsyncThunk(
+    'post/addRegistration',// In registration, it should dispatch this action to add workshop
+    async( workshop_id , { getState }) => {
+        try{
+            const { uid } = getState().currentUserSession
+            let registration = axios.post(`${apiURL()}/registered`, {
+                user_id: uid,
+                workshop_id: workshop_id
+            })
+        return registration.data.payload;
+        } catch (error) {
+            throw Error(error)
+        }
+    }
+)
+
 
 export const fetchMyWorkshops = createAsyncThunk(
     // const currentUser = useSelector( state => state.currentUserSession.uid )
