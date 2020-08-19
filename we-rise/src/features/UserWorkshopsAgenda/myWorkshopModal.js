@@ -50,8 +50,8 @@ const MyWorkshopModal = ({ workshop }) => {
           <Typography variant='h10'>Description: {workshop.descriptions}</Typography>
           <img className={classes.image} src={workshopImage} alt="workshop.title"/>
           {/* {currentDate === date? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}> Join workshop </Button>: <p>Date: {date}</p>} */}
-          <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}>Join Workshop</Button>
-          <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister From Workshop</Button>
+          <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}>Join VideoChat</Button>
+          <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister</Button>
       </Grid>
   )
 }

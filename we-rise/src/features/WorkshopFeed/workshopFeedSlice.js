@@ -34,6 +34,30 @@ export const fetchWorkshopSearch = createAsyncThunk(
     }
 )
 
+const binarySearchInsert = (state, searchElement) => {
+
+    if(!state.length) return 0
+    let minIndex = 0;
+    let maxIndex = state.length - 1;
+    let currentIndex = Math.floor((minIndex + maxIndex) / 2) 
+    let currentElement;
+
+    while (minIndex <= maxIndex) {
+        currentElement = state[currentIndex.start_time];
+
+        if (currentElement < searchElement) {
+        minIndex = currentIndex + 1;
+        }
+        else if (currentElement > searchElement) {
+        maxIndex = currentIndex - 1;
+        }
+        else {
+        return currentIndex
+        }
+    }      
+    return currentElement < searchElement ? currentIndex + 1 : currentIndex
+}
+
 export const workshopFeedSlice = createSlice( {
     name: "workshopFeed",
     initialState: [],
@@ -43,11 +67,12 @@ export const workshopFeedSlice = createSlice( {
         [fetchUpcomingWorkshops.fulfilled]: (state, action) => action.payload,
         [fetchWorkshopSearch.fulfilled] : (state, action) => action.payload,
         [addRegistration.fulfilled] : (state, action) => {
-            state.filter(workshop => workshop.workshop_id !== action.payload.data.workshop_id)
-            debugger
+            return state.filter(workshop => workshop.workshop_id !== action.payload.workshop_id)
         }, 
         [deleteRegistration.fulfilled] : (state, action) => {
-            state.unshift(action.payload);
+            let insertIndex = binarySearchInsert(state, action.payload.start_time)
+            debugger
+            state.splice(insertIndex, 0, action.payload)
         }
     }
 })

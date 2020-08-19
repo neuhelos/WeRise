@@ -20,13 +20,13 @@ export const deleteRegistration = createAsyncThunk(
 
 export const addRegistration = createAsyncThunk(
     'post/addRegistration',// In registration, it should dispatch this action to add workshop
-    async( workshop_id , { getState }) => {
+    async( workshopId , { getState }) => {
         try{
             const { uid } = getState().currentUserSession
-            let registration = axios.post(`${apiURL()}/registered`, {
+            const registration = await axios.post(`${apiURL()}/registered`, {
                 user_id: uid,
-                workshop_id: workshop_id,
-                workshop_id_user_id: `${workshop_id}${uid}`
+                workshop_id: workshopId,
+                workshop_id_user_id: `${workshopId}${uid}`
             })
             return registration.data.payload;
         } catch (error) {
@@ -50,6 +50,30 @@ export const fetchMyWorkshops = createAsyncThunk(
 )
 
 
+const binarySearchInsert = (state, searchElement) => {
+
+    if(!state.length) return 0
+    let minIndex = 0;
+    let maxIndex = state.length - 1;
+    let currentIndex = Math.floor((minIndex + maxIndex) / 2) 
+    let currentElement;
+
+    while (minIndex <= maxIndex) {
+        currentElement = state[currentIndex.start_time];
+
+        if (currentElement < searchElement) {
+        minIndex = currentIndex + 1;
+        }
+        else if (currentElement > searchElement) {
+        maxIndex = currentIndex - 1;
+        }
+        else {
+        return currentIndex
+        }
+    }      
+    return currentElement < searchElement ? currentIndex + 1 : currentIndex
+}
+
 export const RegisteredWorkshopSlice = createSlice( {
     name: "registeredWorkshop",
     initialState: [],
@@ -58,15 +82,16 @@ export const RegisteredWorkshopSlice = createSlice( {
     extraReducers: {
         [fetchMyWorkshops.fulfilled]: (state, action) => action.payload,
         [addRegistration.fulfilled]: (state, action) =>  {
-            
+            let insertIndex = binarySearchInsert(state, action.payload.start_time)
+            state.splice(insertIndex, 0, action.payload)
         },
         [deleteRegistration.fulfilled]: (state, action) => {
-           let workshopIndex = state.findIndex((workshop)=> {
+            let workshopIndex = state.findIndex((workshop)=> {
                 return Number(workshop.id) === Number(action.payload.registeredId)
-           })
-           if(workshopIndex > -1){
-               state.splice(workshopIndex,1);
-           }
+            })
+            if(workshopIndex > -1){
+                state.splice(workshopIndex,1);
+            }
         }
     }
 })

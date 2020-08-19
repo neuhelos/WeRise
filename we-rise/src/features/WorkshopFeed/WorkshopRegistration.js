@@ -172,11 +172,12 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
 
     const WorkshopRegistration = () => {
 
+        let workshopId = workshop.workshop_id
         const message = useInput("")
         const handleSubmit = (event) => {
             event.preventDefault()
             try {
-                dispatch(addRegistration(workshop.workshop_id))
+                dispatch(addRegistration(workshopId))
                 let facilitatorEmail = axios.post(`${apiURL()}/email`, {
                     to: 'nilberremon@pursuit.org',
                     from: 'WeRiseFacilitator@werise.org',
