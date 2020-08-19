@@ -1,12 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
 import authenticationReducer from '../features/Authentication/AuthenticationSlice';
-import workshopFeedReducer from '../features/WorkshopFeed/WorkshopFeedSlice'
-import registeredWorkshopFeed from '../features/UserWorkshopsAgenda/RegisterWorkshopSlice'
+
+import workshopFeedReducer from '../features/WorkshopFeed/workshopFeedSlice'
+import registeredWorkshopFeedReducer from '../features/UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 export default configureStore({
+  middleware: [
+    logger, ...getDefaultMiddleware()
+
+  ],
   reducer: {
     currentUserSession: authenticationReducer,
     workshopFeed: workshopFeedReducer,
-    registeredWorkshop:registeredWorkshopFeed
+    registeredWorkshops: registeredWorkshopFeedReducer
   },
 });
