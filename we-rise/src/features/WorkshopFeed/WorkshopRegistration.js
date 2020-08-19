@@ -173,7 +173,6 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
     const WorkshopRegistration = () => {
 
         const message = useInput("")
-
         const handleSubmit = (event) => {
             event.preventDefault()
             try {

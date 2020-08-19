@@ -43,7 +43,8 @@ export const workshopFeedSlice = createSlice( {
         [fetchUpcomingWorkshops.fulfilled]: (state, action) => action.payload,
         [fetchWorkshopSearch.fulfilled] : (state, action) => action.payload,
         [addRegistration.fulfilled] : (state, action) => {
-            state.filter(workshop => workshop.workshop_id !== action.payload.workshop_id)
+            state.filter(workshop => workshop.workshop_id !== action.payload.data.workshop_id)
+            debugger
         }, 
         [deleteRegistration.fulfilled] : (state, action) => {
             state.unshift(action.payload);

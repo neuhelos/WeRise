@@ -26,10 +26,9 @@ export const addRegistration = createAsyncThunk(
             let registration = axios.post(`${apiURL()}/registered`, {
                 user_id: uid,
                 workshop_id: workshop_id,
-                workshop_id_user_id: `${workshop_id}${uid}$`
+                workshop_id_user_id: `${workshop_id}${uid}`
             })
-        debugger
-        return registration.data.payload;
+            return registration.data.payload;
         } catch (error) {
             throw Error(error)
         }
@@ -41,11 +40,8 @@ export const fetchMyWorkshops = createAsyncThunk(
     'get/fetchMyWorkshops',
     async ( payload , { getState }) => {
         try {
-            
             const { uid } = getState().currentUserSession
-            
             const res = await axios.get(`${apiURL()}/registered/${uid}`)
-            
             return res.data.payload
         } catch (error) {
             throw Error(error)
@@ -61,11 +57,13 @@ export const RegisteredWorkshopSlice = createSlice( {
     },
     extraReducers: {
         [fetchMyWorkshops.fulfilled]: (state, action) => action.payload,
+        [addRegistration.fulfilled]: (state, action) =>  {
+                
+        }
         [deleteRegistration.fulfilled]: (state, action) => {
            let workshopIndex = state.findIndex((workshop)=> {
                 return Number(workshop.id) === Number(action.payload.registeredId)
            })
-           debugger
            if(workshopIndex > -1){
                state.splice(workshopIndex,1);
            }
