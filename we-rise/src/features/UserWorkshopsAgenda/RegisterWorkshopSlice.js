@@ -26,8 +26,9 @@ export const addRegistration = createAsyncThunk(
             let registration = axios.post(`${apiURL()}/registered`, {
                 user_id: uid,
                 workshop_id: workshop_id,
-                workshop_id_user_id: `${uid}${workshop_id}`
+                workshop_id_user_id: `${workshop_id}${uid}$`
             })
+        debugger
         return registration.data.payload;
         } catch (error) {
             throw Error(error)

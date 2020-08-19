@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { apiURL } from '../../Utilities/apiURL'
-import { deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
+import { addRegistration, deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 export const fetchUpcomingWorkshops = createAsyncThunk(
     'get/fetchUpcomingWorkshops',
@@ -42,6 +42,9 @@ export const workshopFeedSlice = createSlice( {
     extraReducers: {
         [fetchUpcomingWorkshops.fulfilled]: (state, action) => action.payload,
         [fetchWorkshopSearch.fulfilled] : (state, action) => action.payload,
+        [addRegistration.fulfilled] : (state, action) => {
+            state.filter(workshop => workshop.workshop_id !== action.payload.workshop_id)
+        }, 
         [deleteRegistration.fulfilled] : (state, action) => {
             state.unshift(action.payload);
         }

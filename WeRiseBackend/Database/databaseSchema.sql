@@ -101,14 +101,14 @@ INSERT INTO registered_workshops
 (user_id, workshop_id, workshop_id_user_id)
 VALUES
 ('2', '3','23'),
-('3', '1',31),
+('3', '1','31'),
 ('1', '2','12'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', '2', 'ilFicLgXB5O9utKaS8WCn4UaQh532'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', '3', 'ilFicLgXB5O9utKaS8WCn4UaQh533'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', '5', 'ilFicLgXB5O9utKaS8WCn4UaQh535'),
-('E093QRw1swaW4KCQUON44IU2gcy2', '3','ilFicLgXB5O9utKaS8WCn4UaQh533'),
-('E093QRw1swaW4KCQUON44IU2gcy2', '4','ilFicLgXB5O9utKaS8WCn4UaQh534'),
-('E093QRw1swaW4KCQUON44IU2gcy2', '5','ilFicLgXB5O9utKaS8WCn4UaQh535');
+('E093QRw1swaW4KCQUON44IU2gcy2', '3','E093QRw1swaW4KCQUON44IU2gcy23'),
+('E093QRw1swaW4KCQUON44IU2gcy2', '4','E093QRw1swaW4KCQUON44IU2gcy24'),
+('E093QRw1swaW4KCQUON44IU2gcy2', '5','E093QRw1swaW4KCQUON44IU2gcy25');
 
 INSERT INTO users_skills
 (id, user_id, skills)
