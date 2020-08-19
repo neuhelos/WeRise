@@ -41,9 +41,6 @@ const MyWorkshopModal = ({ workshop }) => {
   const startTime = `${new Date(workshop.start_time).getHours()}:${new Date(workshop.start_time).getMinutes()}0`
   sessionStorage.setItem("workshopTitle", workshop.title);
 
- 
-
-
   const workshopImage = workshop.workshop_img
   // Button should only show if the start_time is the same as the current time!
   return (

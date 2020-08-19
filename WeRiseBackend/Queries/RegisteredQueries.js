@@ -90,7 +90,6 @@ const getRegisteredWorkshop = async (req, res, next) => {
 
   const deleteRegistration = async (req, res) => {
     try {
-
       let resWork = await db.one('DELETE FROM registered_workshops WHERE id = $1 returning workshop_id',req.params.id);
       console.log(resWork)
       let workshop = await db.one('SELECT * from users JOIN created_workshops ON created_workshops.user_id = users.id where created_workshops.id =$1', resWork.workshop_id);
