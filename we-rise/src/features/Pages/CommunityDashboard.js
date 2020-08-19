@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             flexDirection: 'column',
             flexWrap: 'nowrap'
-        }
+        },
     },
     gridSection: {
         padding: theme.spacing(1),

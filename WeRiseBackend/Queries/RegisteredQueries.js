@@ -90,7 +90,7 @@ const getRegisteredWorkshop = async (req, res, next) => {
 
   const deleteRegistration = async (req, res) => {
     try {
-      await db.none(`DELETE FROM registered_workshops WHERE id = ${req.params.id} RETURNING *`);
+      await db.none(`DELETE FROM registered_workshops WHERE id = ${req.params.id}`);
       res.status(200).json({
         status: "success",
         message: "The workshop is unregistered"

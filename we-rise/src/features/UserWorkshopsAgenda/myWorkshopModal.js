@@ -40,7 +40,8 @@ const MyWorkshopModal = ({ workshop }) => {
   const handleUnregister = async () => {
     try{
         const res = await axios.delete(`${apiURL()}/registered/${workshop.id}`)
-        console.log(res.payload) 
+        console.log(res)
+        debugger
     } catch (error) {
         throw Error(error)
     }
@@ -57,7 +58,7 @@ const MyWorkshopModal = ({ workshop }) => {
           <img className={classes.image} src={workshopImage} alt="workshop.title"/>
           {/* {currentDate === date? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}> Join workshop </Button>: <p>Date: {date}</p>} */}
           <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}>Join Workshop</Button>
-          <Button variant="contained" color="primary" type="submit" onClick = {() => handleUnregister}>Unregister From Workshop</Button>
+          <Button variant="contained" color="primary" type="submit" onClick = {handleUnregister}>Unregister From Workshop</Button>
       </Grid>
   )
 }
