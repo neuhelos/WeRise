@@ -11,14 +11,5 @@ export const fetchUserById = async(id) => {
       console.log(error)
     }
   }
-  export const fetchUserWorkshop = async() => {
-    try {
-      let res = await axios.get(API + `/work`);
-      console.log(res.data.payload);
-      return res.data.payload
-    } catch (error) {
-      console.log(error)
-    }
-  
-  }
+
   
