@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
 import axios from 'axios'
 
 import { apiURL } from '../../Utilities/apiURL'
@@ -8,6 +9,7 @@ import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 import AddToCalendarHOC from 'react-add-to-calendar-hoc'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 
 import Grid from '@material-ui/core/Grid';
@@ -172,12 +174,22 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
 
     const WorkshopRegistration = () => {
 
-        let workshopId = workshop.workshop_id
-        const message = useInput("")
+
+        const currentUser = useSelector( state => state.currentUserSession )
+
+        const message = useInput("");
+        const dispatch = useDispatch();
+
         const handleSubmit = (event) => {
             event.preventDefault()
             try {
-                dispatch(addRegistration(workshopId))
+              dispatch(addRegistration(workshop.workshop_id))
+                // let registration = axios.post(`${apiURL()}/registered`, {
+                //     user_id: currentUser.uid,
+                //     workshop_id: workshop.workshop_id
+                // })
+                // debugger
+
                 let facilitatorEmail = axios.post(`${apiURL()}/email`, {
                     to: 'nilberremon@pursuit.org',
                     from: 'WeRiseFacilitator@werise.org',

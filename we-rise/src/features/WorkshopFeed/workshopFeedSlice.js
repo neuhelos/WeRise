@@ -3,7 +3,10 @@ import axios from 'axios'
 
 import { binarySearchInsert } from '../../Utilities/binarySearchInsertion'
 import { apiURL } from '../../Utilities/apiURL'
-import { addRegistration, deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
+
+import { deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
+import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
+
 
 export const fetchUpcomingWorkshops = createAsyncThunk(
     'get/fetchUpcomingWorkshops',
@@ -42,12 +45,16 @@ export const workshopFeedSlice = createSlice( {
     extraReducers: {
         [fetchUpcomingWorkshops.fulfilled]: (state, action) => action.payload,
         [fetchWorkshopSearch.fulfilled] : (state, action) => action.payload,
-        [addRegistration.fulfilled] : (state, action) => {
-            return state.filter(workshop => workshop.workshop_id !== action.payload.workshop_id)
-        }, 
-        [deleteRegistration.fulfilled] : (state, action) => {
-            let insertIndex = binarySearchInsert(state, new Date(action.payload.start_time))
-            state.splice(insertIndex, 0, action.payload)
+
+        [deleteRegistration.fulfilled] : (state, action) => {state.unshift(action.payload);},
+        [addRegistration.fulfilled]: (state, action) => {
+            let workshopIndex = state.findIndex((workshop)=> {
+                return Number(workshop.workshop_id) === Number(action.payload.workshop_id)
+           })
+           if(workshopIndex > -1){
+               state.splice(workshopIndex,1);
+           }
+
         }
     }
 })
