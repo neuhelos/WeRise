@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
         flex: 1
     },
     tabBar: {
-        backgroundColor: '#F5F5F5'
+        backgroundColor: '#F5F5F5',
+        top: '6rem'
     },
     paper: {
         width: '90%',
@@ -87,7 +88,7 @@ const MobileCommunityDashboard = () => {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" color="default">
+            <AppBar position="sticky" color="default" className={classes.tabBar}>
                 <Tabs
                     className={classes.tabBar}
                     value={value}
