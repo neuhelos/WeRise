@@ -28,6 +28,16 @@ const useStyles = makeStyles((theme) => ({
     },
     tabBar: {
         backgroundColor: '#F5F5F5'
+    },
+    paper: {
+        width: '90%',
+        padding: theme.spacing(2),
+        margin: theme.spacing(2),
+        backgroundColor: '#282828',
+        color: 'white',
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: 'center',
     }
 }));
 
@@ -98,14 +108,22 @@ const MobileCommunityDashboard = () => {
             onChangeIndex={handleChangeIndex}
             >
                 <TabPanel value={value} index={0} dir={theme.direction}>
-                    <WorkshopFeedSearchForm />
-                    <WorkshopFeed />
+                    <Paper className={classes.paper}>
+                        <WorkshopFeedSearchForm />
+                    </Paper>
+                    <Paper className={classes.paper}>
+                        <WorkshopFeed />
+                    </Paper>
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                    <UserWorkshopAgenda />
+                    <Paper className={classes.paper}>
+                        <UserWorkshopAgenda />
+                    </Paper>
                 </TabPanel>
                 <TabPanel value={value} index={2} dir={theme.direction}>
-                    <RecentlyPostedWorkshops />
+                    <Paper className={classes.paper}>
+                        <RecentlyPostedWorkshops />
+                    </Paper>
                 </TabPanel>
             </SwipeableViews>
         </div>
