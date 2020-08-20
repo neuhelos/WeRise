@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
       try {
         // let res = await axios.get(`${API}/users/${currentUser}`);
         let res = await fetchUserById(currentUser)
-        debugger
+  
         console.log(setProfile(res[0].id));
         setProfile(res[0].id);
         setFirstn(res[0].firstn);
