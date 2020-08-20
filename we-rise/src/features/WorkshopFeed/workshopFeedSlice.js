@@ -43,9 +43,11 @@ export const workshopFeedSlice = createSlice( {
         [fetchUpcomingWorkshops.fulfilled]: (state, action) => action.payload,
         [fetchWorkshopSearch.fulfilled] : (state, action) => action.payload,
         [addRegistration.fulfilled] : (state, action) => {
+            
             return state.filter(workshop => workshop.workshop_id !== action.payload.workshop_id)
         }, 
         [deleteRegistration.fulfilled] : (state, action) => {
+            
             let insertIndex = binarySearchInsert(state, new Date(action.payload.start_time))
             state.splice(insertIndex, 0, action.payload)
         }
