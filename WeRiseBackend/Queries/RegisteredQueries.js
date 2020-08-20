@@ -102,6 +102,7 @@ const getRegisteredWorkshop = async (req, res, next) => {
     try {
         let registration = await db.one('INSERT INTO registered_workshops (user_id, workshop_id, workshop_id_user_id) VALUES( ${user_id}, ${workshop_id}, ${workshop_id_user_id} ) RETURNING *', req.body);
         let workshop = await db.one(`SELECT ${queryColumns} from users JOIN created_workshops ON created_workshops.user_id = users.id where created_workshops.id =$1`, registration.workshop_id);
+        workshop.id = registration.id
         res.status(200).json({
             status: "Success",
             message: "Successful Workshop Registration",

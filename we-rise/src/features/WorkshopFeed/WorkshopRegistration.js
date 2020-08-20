@@ -9,7 +9,6 @@ import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 import AddToCalendarHOC from 'react-add-to-calendar-hoc'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 
 import Grid from '@material-ui/core/Grid';

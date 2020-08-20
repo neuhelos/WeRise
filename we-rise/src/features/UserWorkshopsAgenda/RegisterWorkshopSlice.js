@@ -30,14 +30,15 @@ export const addRegistration = createAsyncThunk(
                 workshop_id_user_id: `${workshopId}${uid}`
             })
 
-            const workshops = getState().workshopFeed;
-            let num = workshop_id
-            let workshopinfo = workshops.findIndex((workshop)=> {
-                return workshop.workshop_id === num
-            })
-            debugger  
+            // const workshops = getState().workshopFeed;
+            // let num = workshopId
+            // let workshopinfo = workshops.findIndex((workshop)=> {
+            //     return workshop.workshop_id === num
+            // })
+            // debugger  
+            // workshopinfo.id = registration.data.payload
             
-        return workshops[workshopinfo]
+        return registration.data.payload
 
         } catch (error) {
             throw Error(error)
