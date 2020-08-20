@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
         textOverflow: 'ellipsis',
     },
     dateRange: {
-        margin: theme.spacing(1)
+        margin: theme.spacing(1),
     }
 }))
 
@@ -98,7 +98,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
     }
 
     const buttonDateRangeLabel = !buttonLabelChange ? 
-        "Select Date Range" :
+        "SELECT DATE RANGE" :
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
             <Typography variant="body1">{dateConverter(dateRange[0].startDate)} thru </Typography>
             <Typography variant="body1">{dateConverter(dateRange[0].endDate)}</Typography>
