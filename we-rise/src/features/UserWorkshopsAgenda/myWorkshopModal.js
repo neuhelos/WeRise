@@ -40,6 +40,7 @@ const MyWorkshopModal = ({ workshop }) => {
   const date = `${new Date(workshop.start_time).getMonth()+1}-${new Date(workshop.start_time).getDate()}-${new Date(workshop.start_time).getFullYear()}`
   const startTime = `${new Date(workshop.start_time).getHours()}:${new Date(workshop.start_time).getMinutes()}0`
   sessionStorage.setItem("workshopTitle", workshop.title);
+  
 
  
 
@@ -54,7 +55,7 @@ const MyWorkshopModal = ({ workshop }) => {
           <img className={classes.image} src={workshopImage} alt="workshop.title"/>
           {/* {currentDate === date? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}> Join workshop </Button>: <p>Date: {date}</p>} */}
           <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}>Join Workshop</Button>
-          <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister From Workshop</Button>
+        {workshop.id ? <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister From Workshop</Button> : <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.registrationId))}>Unregister From Workshop</Button> }
       </Grid>
   )
 }

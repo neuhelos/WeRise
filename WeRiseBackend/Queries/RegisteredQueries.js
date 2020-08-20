@@ -93,7 +93,7 @@ const getRegisteredWorkshop = async (req, res, next) => {
 
       let resWork = await db.one('DELETE FROM registered_workshops WHERE id = $1 returning workshop_id',req.params.id);
       console.log(resWork)
-      let workshop = await db.one('SELECT * from users JOIN created_workshops ON created_workshops.user_id = users.id where created_workshops.id =$1', resWork.workshop_id);
+      let workshop = await db.one('SELECT  created_workshops.id AS workshop_id, created_workshops.user_id AS user_id, created_workshops.title, created_workshops.descriptions, created_workshops.start_time, created_workshops.end_time, created_workshops.category, created_workshops.participants, created_workshops.workshop_img, USERs.firstn, users.lastn, users.email, users.user_pic from users JOIN created_workshops ON created_workshops.user_id = users.id where created_workshops.id =$1', resWork.workshop_id);
       res.status(200).json({
         status: "success",
         message: "The workshop is unregistered",

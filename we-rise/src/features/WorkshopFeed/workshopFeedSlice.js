@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import { apiURL } from '../../Utilities/apiURL'
 import { deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
+import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 export const fetchUpcomingWorkshops = createAsyncThunk(
     'get/fetchUpcomingWorkshops',
@@ -42,8 +43,14 @@ export const workshopFeedSlice = createSlice( {
     extraReducers: {
         [fetchUpcomingWorkshops.fulfilled]: (state, action) => action.payload,
         [fetchWorkshopSearch.fulfilled] : (state, action) => action.payload,
-        [deleteRegistration.fulfilled] : (state, action) => {
-            state.unshift(action.payload);
+        [deleteRegistration.fulfilled] : (state, action) => {state.unshift(action.payload);},
+        [addRegistration.fulfilled]: (state, action) => {
+            let workshopIndex = state.findIndex((workshop)=> {
+                return Number(workshop.workshop_id) === Number(action.payload.workshop_id)
+           })
+           if(workshopIndex > -1){
+               state.splice(workshopIndex,1);
+           }
         }
     }
 })
