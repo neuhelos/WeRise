@@ -23,7 +23,6 @@ import MobileNavMenu from './MobileNavMenu'
 const useStyles = makeStyles((theme) => ({
   root: {
         background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
-        marginBottom: theme.spacing(1)
   },
   grow: {
     flexGrow: 1,
