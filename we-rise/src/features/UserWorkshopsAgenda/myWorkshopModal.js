@@ -42,9 +42,6 @@ const MyWorkshopModal = ({ workshop }) => {
   sessionStorage.setItem("workshopTitle", workshop.title);
   
 
- 
-
-
   const workshopImage = workshop.workshop_img
   // Button should only show if the start_time is the same as the current time!
   return (
@@ -54,8 +51,10 @@ const MyWorkshopModal = ({ workshop }) => {
           <Typography variant='h10'>Description: {workshop.descriptions}</Typography>
           <img className={classes.image} src={workshopImage} alt="workshop.title"/>
           {/* {currentDate === date? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}> Join workshop </Button>: <p>Date: {date}</p>} */}
+
           <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}>Join Workshop</Button>
         {workshop.id ? <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister From Workshop</Button> : <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.registrationId))}>Unregister From Workshop</Button> }
+
       </Grid>
   )
 }

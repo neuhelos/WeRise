@@ -1,16 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+
+import { binarySearchInsert } from '../../Utilities/binarySearchInsertion'
 
 import { apiURL } from '../../Utilities/apiURL'
 
 
 export const deleteRegistration = createAsyncThunk(
     'delete/deleteRegistration',
-    async(workshopId) => {
+    async(workshop_id) => {
         try{
-           let res = await axios.delete(`${apiURL()}/registered/${workshopId}`);
-           res.data.payload.registeredId = workshopId;
+            let res = await axios.delete(`${apiURL()}/registered/${workshop_id}`);
+            res.data.payload.registeredId = workshop_id;
             return res.data.payload;
         } catch (error) {
             throw Error(error)
@@ -20,13 +21,15 @@ export const deleteRegistration = createAsyncThunk(
 
 export const addRegistration = createAsyncThunk(
     'post/addRegistration',// In registration, it should dispatch this action to add workshop
-    async( workshop_id , { getState }) => {
+    async( workshopId , { getState }) => {
         try{
             const { uid } = getState().currentUserSession
-            let registration = axios.post(`${apiURL()}/registered`, {
+            const registration = await axios.post(`${apiURL()}/registered`, {
                 user_id: uid,
-                workshop_id: workshop_id
+                workshop_id: workshopId,
+                workshop_id_user_id: `${workshopId}${uid}`
             })
+
             const workshops = getState().workshopFeed;
             let num = workshop_id
             let workshopinfo = workshops.findIndex((workshop)=> {
@@ -35,23 +38,20 @@ export const addRegistration = createAsyncThunk(
             debugger  
             
         return workshops[workshopinfo]
+
         } catch (error) {
             throw Error(error)
         }
     }
 )
 
-
 export const fetchMyWorkshops = createAsyncThunk(
     // const currentUser = useSelector( state => state.currentUserSession.uid )
     'get/fetchMyWorkshops',
     async ( payload , { getState }) => {
         try {
-            
             const { uid } = getState().currentUserSession
-            
             const res = await axios.get(`${apiURL()}/registered/${uid}`)
-            
             return res.data.payload
         } catch (error) {
             throw Error(error)
@@ -67,15 +67,21 @@ export const RegisteredWorkshopSlice = createSlice( {
     },
     extraReducers: {
         [fetchMyWorkshops.fulfilled]: (state, action) => action.payload,
+        [addRegistration.fulfilled]: (state, action) =>  {
+            let insertIndex = binarySearchInsert(state, action.payload.start_time)
+            state.splice(insertIndex, 0, action.payload)
+        },
         [deleteRegistration.fulfilled]: (state, action) => {
-           let workshopIndex = state.findIndex((workshop)=> {
+            let workshopIndex = state.findIndex((workshop)=> {
                 return Number(workshop.id) === Number(action.payload.registeredId)
+
            })
            if(workshopIndex > -1){
                state.splice(workshopIndex,1);
            }
         },
         [addRegistration.fulfilled]: (state, action) => {state.unshift(action.payload)}
+
     }
 })
 

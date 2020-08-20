@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import myWorkshopModal from './myWorkshopModal'
 // import WorkshopRegistration from './WorkshopRegistration'
 import { useHistory} from 'react-router-dom'
+import { DateTime } from 'luxon'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -50,24 +51,15 @@ const useStyles = makeStyles((theme) => ({
     }
     }));
 
-const RegWorkCard = ( { workshop } ) => {
-    const [openMyWorkshop , setMyWorkshop] = useState(false);
-    // const toggleMyworkshopModal = () => {
-    //     setMyWorkshop(!openMyWorkshop)
-    // }
+const RegisteredWorkshopCard = ( { workshop } ) => {
+    
+    let date = `${DateTime.fromISO(workshop.start_time).toFormat('EEE')}, 
+    ${DateTime.fromISO(workshop.start_time).toFormat('MMM')} 
+    ${DateTime.fromISO(workshop.start_time).toFormat('d')},  
+    ${DateTime.fromISO(workshop.start_time).toFormat('y')}`
 
-    // const workshopsModal = () => {
-    //     debugger
-    //     // history.push("/videoConference")
-    //    return (
-    // <Modal open={openMyWorkshop} toggleModal={toggleMyworkshopModal}>
-    //     <myWorkshopModal />
-    // </Modal>
-    //    ) 
-    // }
+    let time = `${DateTime.fromISO(workshop.start_time).toFormat('T')} ${DateTime.fromISO(workshop.start_time).toFormat('ZZZZ')}`
 
-    const date = `${new Date(workshop.start_time).getMonth()+1}-${new Date(workshop.start_time).getDate()}-${new Date(workshop.start_time).getFullYear()}`
-    const startTime = `@${new Date(workshop.start_time).getHours()}:${new Date(workshop.start_time).getMinutes()}0`
 
     const [open , setOpen] = useState(false)
     const toggleModal = () => {
@@ -90,9 +82,8 @@ const RegWorkCard = ( { workshop } ) => {
                 }
                 subheader = {
                     <>
-                    {/* <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography> */}
-                    {/* <Typography className={classes.text}>{date}</Typography>
-                    <Typography className={classes.text}>{startTime}</Typography> */}
+                    <Typography className={classes.text}>{`${date}`}</Typography>
+                    <Typography className={classes.text}>{`${time}`}</Typography>
                     </>
                 }
                 />
@@ -112,4 +103,4 @@ const RegWorkCard = ( { workshop } ) => {
     );
 }
 
-export default RegWorkCard;
+export default RegisteredWorkshopCard;

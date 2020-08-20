@@ -1,5 +1,7 @@
 const database = require("../Database/database");
 
+const {queryColumns} = require('./queryUniversal')
+
 
 const searchWorkshops = async (req, res) => {
     
@@ -13,7 +15,7 @@ const searchWorkshops = async (req, res) => {
 
     try {
         let search = await database.any(
-            `SELECT DISTINCT ON( created_workshops.id ) * 
+            `SELECT DISTINCT ON( created_workshops.id ) ${queryColumns}            
             FROM created_workshops LEFT JOIN workshop_skills ON created_workshops.id = workshop_skills.workshop_id
             JOIN users ON created_workshops.user_id = users.id
             WHERE (${categoriesQuery}) AND (created_workshops.title ILIKE $1 OR created_workshops.descriptions ILIKE $1
