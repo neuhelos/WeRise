@@ -12,6 +12,9 @@ import { useInput } from '../../Utilities/CustomHookery'
 import { fetchWorkshopSearch, fetchUpcomingWorkshops } from './workshopFeedSlice'
 import { categories } from '../BaseComponents/WorkshopCategories'
 
+import RestoreIcon from '@material-ui/icons/Restore';
+import SearchIcon from '@material-ui/icons/Search';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         fontFamily: 'audiowide',
@@ -136,8 +139,12 @@ const WorkshopFeedSearchForm = () => {
             <SearchBar searchQuery={searchQuery} />
             <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
                 <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange} buttonLabelChange={buttonLabelChange} selectAllCategories={selectAllCategories} clearSelectCategories={clearSelectCategories}/>
-                <Button className={classes.buttonReset} variant="contained" color="primary" size='small' onClick={handleSearchReset}>RESET</Button>
-                <Button className={classes.buttonSubmit} type="submit" variant="contained" color="primary" size='small'>SUBMIT</Button>
+                <Button className={classes.buttonReset} variant="contained" color="primary" size='small' onClick={handleSearchReset}>
+                    <RestoreIcon fontSize='large' />
+                </Button>
+                <Button className={classes.buttonSubmit} type="submit" variant="contained" color="primary" size='small'>
+                    <SearchIcon fontSize='large'/>
+                </Button>
             </Grid>
         </form>
     )

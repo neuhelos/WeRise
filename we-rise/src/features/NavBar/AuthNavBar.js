@@ -78,22 +78,27 @@ const NavBar = () => {
   
 
   const history = useHistory()
+  
   const navMessaging = () => {
-        history.push("/Messaging")
-      }
-      const navProfile = () => {
-        history.push("/Profile")
-      }
-    const navDashboard = () => {
-      history.push("/CommunityDashboard")
-    }
-    const signout = () => {
-      signOut()
-      history.push("/")
-    }
+    handleMobileMenuClose()  
+    history.push("/Messaging")
+  }
+  const navProfile = () => {
+    handleMobileMenuClose()
+    history.push("/Profile")
+  }
+  const navDashboard = () => {
+    handleMobileMenuClose()
+    history.push("/CommunityDashboard")
+  }
+  const signout = () => {
+    signOut()
+    history.push("/")
+  }
 
     const [open , setOpen] = useState(false)
     const toggleModal = () => {
+        handleMobileMenuClose()
         setOpen(!open)
     }
 
@@ -156,7 +161,7 @@ const NavBar = () => {
           </div>
         </Toolbar>
       </AppBar>
-      <MobileNavMenu  mobileMenuId={mobileMenuId} mobileMoreAnchorEl={mobileMoreAnchorEl} handleMobileMenuClose={handleMobileMenuClose}/>
+      <MobileNavMenu  mobileMenuId={mobileMenuId} mobileMoreAnchorEl={mobileMoreAnchorEl} handleMobileMenuClose={handleMobileMenuClose} nav={{navProfile, navDashboard, signout}} toggleModal={toggleModal}/>
     
       <Modal open={open} toggleModal={toggleModal}>
         <AddWorkshop handleCloseModal={toggleModal} />
