@@ -23,7 +23,6 @@ import MobileNavMenu from './MobileNavMenu'
 const useStyles = makeStyles((theme) => ({
   root: {
         background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
-        marginBottom: theme.spacing(1)
   },
   grow: {
     flexGrow: 1,
@@ -79,22 +78,27 @@ const NavBar = () => {
   
 
   const history = useHistory()
+  
   const navMessaging = () => {
-        history.push("/Messaging")
-      }
-      const navProfile = () => {
-        history.push("/Profile")
-      }
-    const navDashboard = () => {
-      history.push("/CommunityDashboard")
-    }
-    const signout = () => {
-      signOut()
-      history.push("/")
-    }
+    handleMobileMenuClose()  
+    history.push("/Messaging")
+  }
+  const navProfile = () => {
+    handleMobileMenuClose()
+    history.push("/Profile")
+  }
+  const navDashboard = () => {
+    handleMobileMenuClose()
+    history.push("/CommunityDashboard")
+  }
+  const signout = () => {
+    signOut()
+    history.push("/")
+  }
 
     const [open , setOpen] = useState(false)
     const toggleModal = () => {
+        handleMobileMenuClose()
         setOpen(!open)
     }
 
@@ -157,7 +161,7 @@ const NavBar = () => {
           </div>
         </Toolbar>
       </AppBar>
-      <MobileNavMenu  mobileMenuId={mobileMenuId} mobileMoreAnchorEl={mobileMoreAnchorEl} handleMobileMenuClose={handleMobileMenuClose}/>
+      <MobileNavMenu  mobileMenuId={mobileMenuId} mobileMoreAnchorEl={mobileMoreAnchorEl} handleMobileMenuClose={handleMobileMenuClose} nav={{navProfile, navDashboard, signout}} toggleModal={toggleModal}/>
     
       <Modal open={open} toggleModal={toggleModal}>
         <AddWorkshop handleCloseModal={toggleModal} />

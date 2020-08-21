@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+
+import MobileCommunityDashboard from './MobileCommunityDashboard'
 
 import WorkshopFeed from '../WorkshopFeed/WorkshopFeed'
 import WorkshopFeedSearchForm from '../WorkshopFeed/WorkshopFeedSearchForm'
@@ -56,42 +61,46 @@ const useStyles = makeStyles((theme) => ({
 
 const CommunityDashboard = () => {
 
+    const theme = useTheme();
+    const mobileMediaQuery = useMediaQuery(theme.breakpoints.down('sm'));
     const classes = useStyles()
 
     return (
-        <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
-            <Grid className={classes.gridSection} container item direction="column" justify="flex-start" alignItems="center" sm={12} md={7}>
-                <Paper className={classes.paperWrapper}>
-                    <Paper className={classes.paperTitle}>
-                        <Typography className={classes.text} variant='h5'>WORKSHOPS</Typography>
+        !mobileMediaQuery ?
+            <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
+                <Grid className={classes.gridSection} container item direction="column" justify="flex-start" alignItems="center" sm={12} md={7}>
+                    <Paper className={classes.paperWrapper}>
+                        <Paper className={classes.paperTitle}>
+                            <Typography className={classes.text} variant='h5'>WORKSHOPS</Typography>
+                        </Paper>
                     </Paper>
-                </Paper>
-                <Paper className={classes.paper}>
-                    <WorkshopFeedSearchForm />
-                </Paper>
-                <Paper className={classes.paper}>
-                    <WorkshopFeed />
-                </Paper>
+                    <Paper className={classes.paper}>
+                        <WorkshopFeedSearchForm />
+                    </Paper>
+                    <Paper className={classes.paper}>
+                        <WorkshopFeed />
+                    </Paper>
+                </Grid>
+                <Grid className={classes.gridSection}  container item direction="column" justify="flex-start" alignItems="center" sm={12} md={5}>
+                    <Paper className={classes.paperWrapper}>
+                        <Paper className={classes.paperTitle}>
+                            <Typography className={classes.text} variant='subtitle1'>Workshops I'm Attending</Typography>
+                        </Paper>
+                    </Paper>
+                    <Paper className={classes.paper}>
+                        <UserWorkshopAgenda />
+                    </Paper>
+                    <Paper className={classes.paperWrapper}>
+                        <Paper className={classes.paperTitle}>
+                            <Typography className={classes.text} variant='subtitle1'>Recently Posted Workshops</Typography>
+                        </Paper>
+                    </Paper>
+                    <Paper className={classes.paper}>
+                        <RecentlyPostedWorkshops />
+                    </Paper>
+                </Grid>
             </Grid>
-            <Grid className={classes.gridSection}  container item direction="column" justify="flex-start" alignItems="center" sm={12} md={5}>
-                <Paper className={classes.paperWrapper}>
-                    <Paper className={classes.paperTitle}>
-                        <Typography className={classes.text} variant='subtitle1'>Workshops I'm Attending</Typography>
-                    </Paper>
-                </Paper>
-                <Paper className={classes.paper}>
-                    <UserWorkshopAgenda />
-                </Paper>
-                <Paper className={classes.paperWrapper}>
-                    <Paper className={classes.paperTitle}>
-                        <Typography className={classes.text} variant='subtitle1'>Recently Posted Workshops</Typography>
-                    </Paper>
-                </Paper>
-                <Paper className={classes.paper}>
-                    <RecentlyPostedWorkshops />
-                </Paper>
-            </Grid>
-        </Grid>
+            : <MobileCommunityDashboard />
     )
 }
 

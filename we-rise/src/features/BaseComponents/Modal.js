@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#A3A3A3',
         padding: theme.spacing(3),
         width: '50%',
+        [theme.breakpoints.down('sm')]:{
+            width: '90%'
+        },
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

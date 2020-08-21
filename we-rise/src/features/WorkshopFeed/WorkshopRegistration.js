@@ -65,7 +65,9 @@ const useStyles = makeStyles((theme) => ({
     },
     image : {
         width:'50%',
-        height: '50%'
+        [theme.breakpoints.down('sm')]:{
+          width: '40%'
+      },
     },
     button: {
         marginRight: theme.spacing(1),

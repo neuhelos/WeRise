@@ -7,8 +7,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Dashboard from '@material-ui/icons/Dashboard';
 import MailIcon from '@material-ui/icons/Mail';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-const MobileNavMenu = ({mobileMenuId, mobileMoreAnchorEl, handleMobileMenuClose}) => {
+const MobileNavMenu = ({mobileMenuId, mobileMoreAnchorEl, handleMobileMenuClose, nav, toggleModal}) => {
   
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -22,8 +23,12 @@ const MobileNavMenu = ({mobileMenuId, mobileMoreAnchorEl, handleMobileMenuClose}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton color="inherit">
+      <MenuItem onClick={nav.navDashboard}>
+        <IconButton 
+          aria-label="Community Dashboard"
+          aria-haspopup="true"
+          color="inherit"
+        >
             <Dashboard />
         </IconButton>
         <p>Dashboard</p>
@@ -36,18 +41,9 @@ const MobileNavMenu = ({mobileMenuId, mobileMoreAnchorEl, handleMobileMenuClose}
         </IconButton>
         <p>Messages</p>
       </MenuItem> */}
-      {/* <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem> */}
-      <MenuItem onClick={null}>
+      <MenuItem onClick={nav.navProfile}>
         <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-account-menu"
+          aria-label="User Profile"
           aria-haspopup="true"
           color="inherit"
         >
@@ -55,16 +51,23 @@ const MobileNavMenu = ({mobileMenuId, mobileMoreAnchorEl, handleMobileMenuClose}
         </IconButton>
         <p>Profile</p>
       </MenuItem>
-      <MenuItem onClick={null}>
+      <MenuItem onClick={toggleModal}>
         <IconButton
           aria-label="Add Workshop"
-          aria-controls="primary-account-menu"
           aria-haspopup="true"
           color="inherit"
         >
           <AddBoxIcon />
         </IconButton>
         <p>Add Workshop</p>
+      </MenuItem>
+      <MenuItem onClick={nav.signout}>
+        <IconButton 
+          aria-label="Sign Out of Session"
+          color="inherit">
+            <ExitToAppIcon />
+        </IconButton>
+        <p>Sign Out</p>
       </MenuItem>
     </Menu>
   );
