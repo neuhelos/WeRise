@@ -9,7 +9,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-const MobileNavMenu = ({mobileMenuId, mobileMoreAnchorEl, handleMobileMenuClose, nav, toggleModal}) => {
+const MobileNavMenu = ({mobileMoreAnchorEl, handleMobileMenuClose, nav, toggleModal}) => {
   
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -17,7 +17,7 @@ const MobileNavMenu = ({mobileMenuId, mobileMoreAnchorEl, handleMobileMenuClose,
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
+      id='mobileHamburgerMenu'
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
@@ -33,14 +33,14 @@ const MobileNavMenu = ({mobileMenuId, mobileMoreAnchorEl, handleMobileMenuClose,
         </IconButton>
         <p>Dashboard</p>
       </MenuItem>
-      {/* <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
+      <MenuItem onClick={nav.navMessaging}>
+        <IconButton aria-label="Insant Messaging" color="inherit">
+          {/* <Badge badgeContent={4} color="secondary"> */}
             <MailIcon />
-          </Badge>
+          {/* </Badge> */}
         </IconButton>
-        <p>Messages</p>
-      </MenuItem> */}
+        <p>Instant Chat</p>
+      </MenuItem>
       <MenuItem onClick={nav.navProfile}>
         <IconButton
           aria-label="User Profile"
