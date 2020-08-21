@@ -67,7 +67,6 @@ const NavBar = () => {
   const classes = useStyles();
 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const mobileMenuId = 'primary-menu-mobile';
   
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -120,13 +119,13 @@ const NavBar = () => {
                   <Dashboard style={{ fontSize: 50 }} />
               </IconButton>
             </Tooltip>
-            {/* <Tooltip title="Instant Messaging">
+              <Tooltip title="Instant Messaging">
               <IconButton className={classes.iconButton}  aria-label="show 4 new mails" color="inherit" onClick={navMessaging} >
-                <Badge badgeContent={4} color="secondary" classes={{ badge: classes.badges }}>
+                {/* <Badge badgeContent={4} color="secondary" classes={{ badge: classes.badges }}> */}
                   <MailIcon style={{ fontSize: 50 }} />
-                </Badge>
+                {/* </Badge> */}
               </IconButton>
-            </Tooltip> */}
+            </Tooltip>
             {/* <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon style={{ fontSize: 60 }} />
@@ -151,7 +150,7 @@ const NavBar = () => {
           <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"
-              aria-controls={mobileMenuId}
+              aria-controls='mobileHamburgerMenu'
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
@@ -161,7 +160,7 @@ const NavBar = () => {
           </div>
         </Toolbar>
       </AppBar>
-      <MobileNavMenu  mobileMenuId={mobileMenuId} mobileMoreAnchorEl={mobileMoreAnchorEl} handleMobileMenuClose={handleMobileMenuClose} nav={{navProfile, navDashboard, signout}} toggleModal={toggleModal}/>
+      <MobileNavMenu mobileMoreAnchorEl={mobileMoreAnchorEl} handleMobileMenuClose={handleMobileMenuClose} nav={{navProfile, navDashboard, navMessaging, signout}} toggleModal={toggleModal}/>
     
       <Modal open={open} toggleModal={toggleModal}>
         <AddWorkshop handleCloseModal={toggleModal} />

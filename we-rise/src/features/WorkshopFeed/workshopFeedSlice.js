@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { binarySearchInsert } from '../../Utilities/binarySearchInsertion'
+import { mergeSort } from '../../Utilities/mergeSort'
 import { apiURL } from '../../Utilities/apiURL'
 
 import { deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
@@ -44,7 +45,7 @@ export const workshopFeedSlice = createSlice( {
     },
     extraReducers: {
         [fetchUpcomingWorkshops.fulfilled]: (state, action) => action.payload,
-        [fetchWorkshopSearch.fulfilled] : (state, action) => action.payload,
+        [fetchWorkshopSearch.fulfilled] : (state, action) => mergeSort(action.payload),
         [addRegistration.fulfilled] : (state, action) => {
             
             return state.filter(workshop => workshop.workshop_id !== action.payload.workshop_id)

@@ -161,8 +161,6 @@ const AddWorkshop = ({handleCloseModal}) => {
         } catch (error) {
             throw Error(error)
         }
-
-        debugger
         handleCloseModal()
     }
 
@@ -172,7 +170,7 @@ const AddWorkshop = ({handleCloseModal}) => {
                 <Typography variant="h6">Create Your Workshop</Typography>
                 <TextField className={classes.input} id="filled-basic" label="Workshop Title" placeholder="Enter Workshop Title" variant="filled" {...title}/>
                 <CategoryDropdown className={classes.input} category={category}/>
-                <TextField className={classes.input} id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline variant="filled" {...description}/>
+                <TextField className={classes.input} id="filled-textarea" label="Workshop Description" placeholder="Enter a Brief Description of Your Workshop" multiline rows={3} variant="filled" {...description}/>
                 <MuiPickersUtilsProvider utils={LuxonUtils}>
                     <InputLabel className={classes.inputLabel} id="timerangepicker">Workshop Time</InputLabel>
                     <Container className={classes.container} > 
@@ -227,7 +225,10 @@ const AddWorkshop = ({handleCloseModal}) => {
                     )}
                 />
                 <Dropzone handleImageChange={handleImageChange} dropzoneText={"Drop or Select Your Workshop Image"}/>
-                <Button variant="contained" color="primary" type="submit"> SUBMIT </Button>
+                <Grid container className={classes.container} display="flex" direction="row" justify="space-around" alignItems="center">
+                    <Button variant="contained" color="primary" onClick={handleCloseModal}> CANCEL </Button>
+                    <Button variant="contained" color="primary" type="submit"> SUBMIT </Button>
+                </Grid>
             </form>
         </Grid>
     )

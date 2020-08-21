@@ -23,7 +23,14 @@ const useStyles = makeStyles((theme) => ({
         '& *': {
             fontFamily: 'audiowide'
         },
-        flex: 1
+        flex: 1,
+    },
+    container: {
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%'
     },
     tabBar: {
         backgroundColor: '#F5F5F5',
@@ -43,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TabPanel = (props) => {
     const { children, value, index, ...other } = props;
+    const classes = useStyles()
 
     return (
         <div
@@ -53,8 +61,8 @@ const TabPanel = (props) => {
         {...other}
         >
         {value === index && (
-            <Box p={3}>
-            <Typography>{children}</Typography>
+            <Box p={3} className={classes.container}>
+            <Typography className={classes.container}>{children}</Typography>
             </Box>
         )}
         </div>
