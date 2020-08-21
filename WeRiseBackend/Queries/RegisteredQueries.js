@@ -1,11 +1,11 @@
 const db = require('../Database/database');
 
-const {queryColumns} = require('./queryUniversal')
+const {queryColumns} = require('./queryBase')
 
 
 const getRegisteredWorkshop = async (req, res, next) => {
     try {
-      let workshops = await db.any(`SELECT created_workshops.id AS workshop_id, registered_workshops.id, created_workshops.title, created_workshops.start_time, firstn, lastn, USER_pic, created_workshops.descriptions, created_workshops.workshop_img 
+      let workshops = await db.any(`SELECT registered_workshops.id, ${queryColumns} 
       FROM registered_workshops 
       JOIN created_workshops ON registered_workshops.workshop_id = created_workshops.id 
       JOIN users ON created_workshops.user_id = users.id  

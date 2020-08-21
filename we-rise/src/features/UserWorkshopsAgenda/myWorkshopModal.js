@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import  { useDispatch } from 'react-redux'
 import axios from 'axios'
+import { DateTime } from 'luxon'
 import { useHistory} from 'react-router-dom'
 import { apiURL } from '../../Utilities/apiURL'
 
@@ -35,12 +36,12 @@ const MyWorkshopModal = ({ workshop }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const currentDate = `${new Date().getMonth()+1}-${new Date().getDate()}-${new Date().getFullYear()}`;
-  const currentTime = `${new Date().getHours()}:${new Date().getMinutes()}`;
-  const date = `${new Date(workshop.start_time).getMonth()+1}-${new Date(workshop.start_time).getDate()}-${new Date(workshop.start_time).getFullYear()}`
-  const startTime = `${new Date(workshop.start_time).getHours()}:${new Date(workshop.start_time).getMinutes()}0`
-  sessionStorage.setItem("workshopTitle", workshop.title);
-  
+    let date = `${DateTime.fromISO(workshop.start_time).toFormat('EEE')}, 
+        ${DateTime.fromISO(workshop.start_time).toFormat('MMM')} 
+        ${DateTime.fromISO(workshop.start_time).toFormat('d')},  
+        ${DateTime.fromISO(workshop.start_time).toFormat('y')}`
+
+    let time = `${DateTime.fromISO(workshop.start_time).toFormat('T')} ${DateTime.fromISO(workshop.start_time).toFormat('ZZZZ')}`
 
   const workshopImage = workshop.workshop_img
   // Button should only show if the start_time is the same as the current time!

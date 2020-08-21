@@ -35,7 +35,7 @@ const WorkshopFeed = () => {
     let workshops = workshopFeed.map(workshop => {
         return <WorkshopFeedCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>
     })
-
+    
     return (
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
             {workshops}

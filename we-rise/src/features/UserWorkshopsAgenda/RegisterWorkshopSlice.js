@@ -74,6 +74,7 @@ export const RegisteredWorkshopSlice = createSlice( {
         },
         [deleteRegistration.fulfilled]: (state, action) => {
             let workshopIndex = state.findIndex((workshop)=> {
+                
                 return Number(workshop.id) === Number(action.payload.registeredId)
 
            })

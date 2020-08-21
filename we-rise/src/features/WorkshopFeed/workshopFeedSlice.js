@@ -45,16 +45,14 @@ export const workshopFeedSlice = createSlice( {
     extraReducers: {
         [fetchUpcomingWorkshops.fulfilled]: (state, action) => action.payload,
         [fetchWorkshopSearch.fulfilled] : (state, action) => action.payload,
-
-        [deleteRegistration.fulfilled] : (state, action) => {state.unshift(action.payload);},
-        [addRegistration.fulfilled]: (state, action) => {
-            let workshopIndex = state.findIndex((workshop)=> {
-                return Number(workshop.workshop_id) === Number(action.payload.workshop_id)
-           })
-           if(workshopIndex > -1){
-               state.splice(workshopIndex,1);
-           }
-
+        [addRegistration.fulfilled] : (state, action) => {
+            
+            return state.filter(workshop => workshop.workshop_id !== action.payload.workshop_id)
+        }, 
+        [deleteRegistration.fulfilled] : (state, action) => {
+            
+            let insertIndex = binarySearchInsert(state, new Date(action.payload.start_time))
+            state.splice(insertIndex, 0, action.payload)
         }
     }
 })

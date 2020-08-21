@@ -70,18 +70,22 @@ const useStyles = makeStyles((theme) => ({
     button: {
         marginRight: theme.spacing(1),
   },
-    stepperContent: {
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
-        '& * + *' : {
-            margin: theme.spacing(1)
-        }
-    },
-    input: {
-      width: '100%',
-      fontFamily: 'audiowide',
-      marginBottom: theme.spacing(1)
+  stepperContent: {
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+      '& * + *' : {
+          margin: theme.spacing(1)
+      }
   },
+  input: {
+    width: '100%',
+    fontFamily: 'audiowide',
+    marginBottom: theme.spacing(1)
+  }, 
+  stepper: {
+    padding: theme.spacing(2),
+    backgroundColor: '#F5F5F5'
+  }
 }))
 
 const ColorlibConnector = withStyles({
@@ -156,9 +160,9 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
 
       return (
           <Grid className={classes.root} container display="flex" direction="column" justify="space-evenly" alignItems="center">
-              <Typography variant='h4'>{workshop.title}</Typography>
-              <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
-              <Typography variant='body1'>Description: {workshop.descriptions}</Typography>
+              <Typography variant='h6'>{workshop.title}</Typography>
+              <Typography variant='subtitle1'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
+              <Typography variant='body2'>Description: {workshop.descriptions}</Typography>
               <img className={classes.image} src={workshopImage} alt={workshop.title}/>
               {workshop.participants !== workshop.workshop_count ?
                   <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center">
@@ -174,10 +178,9 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
     const WorkshopRegistration = () => {
 
 
-        const currentUser = useSelector( state => state.currentUserSession )
+        let workshopId = workshop.workshop_id
 
-        const message = useInput("");
-        const dispatch = useDispatch();
+        const message = useInput("")
 
         const handleSubmit = (event) => {
             event.preventDefault()
@@ -271,7 +274,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
 
     return (
         <div className={classes.root}>
-        <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+        <Stepper className={classes.stepper} alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>

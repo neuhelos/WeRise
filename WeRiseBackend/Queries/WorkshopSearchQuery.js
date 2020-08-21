@@ -1,6 +1,6 @@
 const database = require("../Database/database");
 
-const {queryColumns} = require('./queryUniversal')
+const {queryColumns} = require('./queryBase')
 
 
 const searchWorkshops = async (req, res) => {
