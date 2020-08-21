@@ -43,10 +43,13 @@ const useStyles = makeStyles((theme) => ({
   },
   divider: {
     margin: theme.spacing(0.25)
+  },
+  button: {
+    margin: theme.spacing(1)
   }
 }));
 
-const SignUpModal = ( ) => {
+const SignUpModal = ({toggleModal, toggleSignInModal}) => {
 
     
   const classes = useStyles()
@@ -75,6 +78,11 @@ const SignUpModal = ( ) => {
     if(imageFile[0]){
       handleupload(imageFile[0])
     }
+  }
+
+  const handleCurrentUser = () => {
+    toggleModal()
+    toggleSignInModal()
   }
 
   const handleSubmit = async (e) => {
@@ -181,9 +189,11 @@ const SignUpModal = ( ) => {
             <Divider className={classes.divider} orientation="vertical" flexItem />
             <TextField className={classes.input} id="linkedin" label="LinkedIn" placeholder="Enter  Username" variant="filled" {...linkedin}/>
           </Grid>
-          <Dropzone handleImageChange={handleImageChange} dropzoneText={"Drop or Select Your Profile Image"} required/>
-          <Button variant="contained" color="primary" type="submit"> SIGN UP </Button>
-
+          <Dropzone className={classes.container} handleImageChange={handleImageChange} dropzoneText={"Drop or Select Your Profile Image"} required/>
+          <Grid container display="flex" direction="row" justify="space-evenly" alignItems="center">
+            <Button className={classes.button} variant="contained" color="primary" onClick={handleCurrentUser}> HAVE AN ACCOUNT? </Button>
+            <Button className={classes.button} variant="contained" color="primary" type="submit"> CREATE NEW ACCOUNT </Button>
+          </Grid>
         </form>
       </Grid>
     )

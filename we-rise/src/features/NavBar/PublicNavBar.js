@@ -93,7 +93,7 @@ const PublicNavBar = () => {
                     <SignInModal toggleSignUpModal={toggleSignUpModal} toggleModal={toggleSignInModal}/>
                 </Modal>
                 <Modal open={openSignUp} toggleModal={toggleSignUpModal}>
-                    <SignUpModal />
+                    <SignUpModal toggleSignInModal={toggleSignInModal} toggleModal={toggleSignUpModal}/>
                 </Modal>
             </Toolbar>
         </AppBar>
