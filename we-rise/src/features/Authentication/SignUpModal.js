@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { signUp } from '../../Utilities/firebaseFunctions';
-import { storage } from '../../Utilities/firebase'
+import { storage, firestore } from '../../Utilities/firebase'
 import { useHistory} from 'react-router-dom'
 import axios from 'axios'
 import { apiURL } from '../../Utilities/apiURL'
@@ -60,7 +60,7 @@ const SignUpModal = ({toggleModal, toggleSignInModal}) => {
   const lastName = useInput("")
   const bio = useInput("")
   const [skills, setSkills] = useState([])
-  const [uploadPic, setUploadPic] = useState("https://www.dts.edu/wp-content/uploads/sites/6/2018/04/Blank-Profile-Picture.jpg")
+  const [uploadPic, setUploadPic] = useState("https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FRainbowSmileyDefaultAvatar.png?alt=media&token=379959f1-6d89-43a4-bf01-92a68841c643")
 
   const instagram = useInput("")
   const facebook = useInput("")
@@ -76,7 +76,7 @@ const SignUpModal = ({toggleModal, toggleSignInModal}) => {
 
   const handleImageChange = (imageFile) => {
     if(imageFile[0]){
-      handleupload(imageFile[0])
+      handleUpload(imageFile[0])
     }
   }
 
@@ -85,29 +85,38 @@ const SignUpModal = ({toggleModal, toggleSignInModal}) => {
     toggleSignInModal()
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (event) => {
 
-    e.preventDefault();
+    event.preventDefault();
 
     try {
-      let resSignup = await signUp(email.value, password.value);
+      let userId
+      await signUp(email.value, password.value).then( authUser => {
+        userId = authUser.user.uid;
+        firestore
+          .collection('users')
+          .doc(userId)
+          .set({userId: userId, firstName: firstName.value, lastName: lastName.value, email: email.value})
+      }, error => {
+        console.log(error)
+      });
       
       let res =  await axios.post(`${apiURL()}/users`, {
-        id: resSignup.user.uid,
+        id: userId,
         firstn: firstName.value,
         lastn: lastName.value,
-        email: email,
+        email: email.value,
         user_pic: uploadPic,
         bio : bio.value,
-        // instagram: instagram.value,
-        // facebook: facebook.value,
-        // twitter: twitter.value,
-        // linkedin: linkedin.value
+        instagram: instagram.value,
+        facebook: facebook.value,
+        twitter: twitter.value,
+        linkedin: linkedin.value
       })
       
       skills.forEach( async (skill) => {
           let res = await axios.post(`${apiURL}/usersSkills`, {
-              user_id: resSignup.user.uid,
+              user_id: userId,
               skills: skill.toLowerCase()
         })
       })
@@ -119,39 +128,28 @@ const SignUpModal = ({toggleModal, toggleSignInModal}) => {
     history.push("/CommunityDashboard")
   }
 
-  const handleClick = (e) => {
-      if(e.target.files[0]){
-        handleupload(e.target.files[0]);
-      }
-    };
 
-      const handleupload = (image) => {
-        const uploadTask = storage.ref(`image/${image.name}`).put(image);
-        uploadTask.on(
-          "state_changed",
-          snapshot => {},
-          error => {
-            console.log(error);
-          },
-          () => {
-            storage
-            .ref("image")
-            .child(image.name)
-            .getDownloadURL()
-            .then(url => {
-                setUploadPic(url)
-            })
-          }
-        )
-      }
+    const handleUpload = (image) => {
+      const uploadTask = storage.ref(`image/${image.name}`).put(image);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {},
+        error => {
+          console.log(error);
+        },
+        () => {
+          storage
+          .ref("image")
+          .child(image.name)
+          .getDownloadURL()
+          .then(url => {
+              setUploadPic(url)
+          })
+        }
+      )
+    }
 
-     
-
-      console.log("image: ", uploadPic);
-
-
-
-
+    
     return (
       <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
         <form className={classes.root} onSubmit={handleSubmit}>
@@ -189,7 +187,7 @@ const SignUpModal = ({toggleModal, toggleSignInModal}) => {
             <Divider className={classes.divider} orientation="vertical" flexItem />
             <TextField className={classes.input} id="linkedin" label="LinkedIn" placeholder="Enter  Username" variant="filled" {...linkedin}/>
           </Grid>
-          <Dropzone className={classes.container} handleImageChange={handleImageChange} dropzoneText={"Drop or Select Your Profile Image"} required/>
+          <Dropzone className={classes.container} handleImageChange={handleImageChange} dropzoneText={"Drop or Select Your Profile Image"}/>
           <Grid container display="flex" direction="row" justify="space-evenly" alignItems="center">
             <Button className={classes.button} variant="contained" color="primary" onClick={handleCurrentUser}> HAVE AN ACCOUNT? </Button>
             <Button className={classes.button} variant="contained" color="primary" type="submit"> CREATE NEW ACCOUNT </Button>

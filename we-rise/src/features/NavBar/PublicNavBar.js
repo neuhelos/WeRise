@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     button: {
         fontFamily: 'audiowide',
         width: '20%',
-        margin: theme.spacing(2),
+        margin: theme.spacing(1),
         backgroundColor: 'white',
         color: '#FF07FB'
     },
@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         [theme.breakpoints.down('sm')]: {
             fontSize: '3rem',
+            
         },
     },
 }));
@@ -75,8 +76,8 @@ const PublicNavBar = () => {
     return (
         <AppBar className={classes.root} position="static">
             <Toolbar>
-                <Grid container spacing={2}>
-                    <Grid item xs={5}>
+                <Grid container spacing={1} alignItems="center" >
+                    <Grid item justify="flex-start" alignItems="center" xs={5}>
                         <Typography className={classes.title} variant="h1" noWrap>
                             WeRise
                         </Typography>
