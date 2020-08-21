@@ -30,12 +30,16 @@ const useStyles = makeStyles((theme) => ({
       },
   },
   container: {
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1),
+    width: '100%'
+  },
+  inputFullWidth: {
+    marginBottom: theme.spacing(1),
+    width: '100%'
   },
   input: {
-      width: '100%',
       fontFamily: 'audiowide',
-      marginBottom: theme.spacing(1)
+      width: '100%'
   },
   divider: {
     margin: theme.spacing(0.25)
@@ -142,20 +146,20 @@ const SignUpModal = ( ) => {
 
     return (
       <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
-        <form onSubmit = {handleSubmit}>
+        <form className={classes.root} onSubmit={handleSubmit}>
           <Typography className={classes.input} variant="h6">Create Your We Rise Account</Typography>
           <Grid container className={classes.container} display="flex" direction="row" justify="space-evenly" alignItems="center" wrap='nowrap'>
-            <TextField id="firstName" label="Preferred First Name" placeholder="Enter First Name" variant="filled" {...firstName}/>
+            <TextField className={classes.input} id="firstName" label="Preferred First Name" placeholder="Enter First Name" variant="filled" {...firstName} required />
             <Divider className={classes.divider} orientation="vertical" flexItem />
-            <TextField  id="lastName" label="Preferred Last Name" placeholder="Enter Last Name" variant="filled" {...lastName}/>
+            <TextField  className={classes.input} id="lastName" label="Preferred Last Name" placeholder="Enter Last Name" variant="filled" {...lastName} required/>
           </Grid>
           <Grid container className={classes.container} display="flex" direction="row" justify="space-evenly" alignItems="center" wrap='nowrap'>
-            <TextField id="email" label="Email" placeholder="Enter Your Email" variant="filled" {...email}/>
+            <TextField className={classes.input} id="email" label="Email" placeholder="Enter Your Email" variant="filled" {...email} required/>
             <Divider className={classes.divider} orientation="vertical" flexItem />
-            <TextField id="password" type="password" label="Password" placeholder="Enter Password" variant="filled" {...password}/>
+            <TextField className={classes.input} id="password" type="password" label="Password" placeholder="Enter Password" variant="filled" {...password} required/>
           </Grid>
-          <TextField className={classes.input} id="bio" label="Short Bio" placeholder="Tell Folx About Yourself" variant="filled" multiline rows={4} {...bio}/>
-          <Autocomplete className={classes.input} multiple id="userSkills" options={[]} defaultValue={""} freeSolo
+          <TextField className={classes.inputFullWidth} id="bio" label="Short Bio" placeholder="Tell Folx About Yourself" variant="filled" multiline rows={4} {...bio} required/>
+          <Autocomplete className={classes.inputFullWidth} multiple id="userSkills" options={[]} defaultValue={""} freeSolo
               onChange={handleSkillsTagsChange}
               renderTags={(value, getTagProps) =>
                   value.map((option, index) => (
@@ -168,16 +172,16 @@ const SignUpModal = ( ) => {
           />
           
           <Grid container className={classes.container} display="flex" direction="row" justify="space-evenly" alignItems="center" wrap='nowrap'>
-            <TextField id="instagram" label="Instagram" placeholder="Enter Handle" variant="filled" {...instagram}/>
+            <TextField className={classes.input} id="instagram" label="Instagram" placeholder="Enter Handle" variant="filled" {...instagram}/>
             <Divider className={classes.divider} orientation="vertical" flexItem />
-            <TextField id="facebook" label="Facebook" placeholder="Enter Username" variant="filled" {...facebook}/>
+            <TextField className={classes.input} id="facebook" label="Facebook" placeholder="Enter Username" variant="filled" {...facebook}/>
           </Grid>
           <Grid container className={classes.container} display="flex" direction="row" justify="space-evenly" alignItems="center" wrap='nowrap'>
-            <TextField id="twitter" label="Twitter" placeholder="Enter  Handle" variant="filled" {...twitter}/>
+            <TextField className={classes.input} id="twitter" label="Twitter" placeholder="Enter  Handle" variant="filled" {...twitter}/>
             <Divider className={classes.divider} orientation="vertical" flexItem />
-            <TextField id="linkedin" label="LinkedIn" placeholder="Enter  Username" variant="filled" {...linkedin}/>
+            <TextField className={classes.input} id="linkedin" label="LinkedIn" placeholder="Enter  Username" variant="filled" {...linkedin}/>
           </Grid>
-          <Dropzone handleImageChange={handleImageChange} dropzoneText={"Drop or Select Your Profile Image"}/>
+          <Dropzone handleImageChange={handleImageChange} dropzoneText={"Drop or Select Your Profile Image"} required/>
           <Button variant="contained" color="primary" type="submit"> SIGN UP </Button>
 
         </form>

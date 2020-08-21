@@ -90,7 +90,7 @@ const PublicNavBar = () => {
                 </Grid>
 
                 <Modal open={openSignIn} toggleModal={toggleSignInModal}>
-                    <SignInModal />
+                    <SignInModal toggleSignUpModal={toggleSignUpModal} toggleModal={toggleSignInModal}/>
                 </Modal>
                 <Modal open={openSignUp} toggleModal={toggleSignUpModal}>
                     <SignUpModal />

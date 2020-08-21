@@ -14,7 +14,7 @@ import { useInput } from '../../Utilities/CustomHookery'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
+        width: '70%',
         '& *': {
             fontFamily: 'audiowide',
             textAlign: 'center',
@@ -27,9 +27,12 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'audiowide',
         marginBottom: theme.spacing(1)
     },
+    container: {
+        margin: theme.spacing(1)
+    }
   }));
 
-const SignInModal = () => {
+const SignInModal = ({toggleModal, toggleSignUpModal}) => {
     
     const classes = useStyles()
 
@@ -38,6 +41,10 @@ const SignInModal = () => {
     
     const history = useHistory();
 
+    const handleNewUser = () => {
+        toggleModal()
+        toggleSignUpModal()
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -58,9 +65,12 @@ const SignInModal = () => {
         <form className={classes.root} onSubmit = {handleSubmit}>
             <Grid container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
                 <img src={WeRiseLogo}></img>
-                <TextField className={classes.input} id="email" label="Email" placeholder="Enter Your Email" variant="filled" {...email}/>
-                <TextField className={classes.input} id="password" type="password" label="Password" placeholder="Enter Your Password" variant="filled" {...password}/>
-                <Button variant="contained" color="primary" type="submit"> SIGN IN </Button>
+                <TextField className={classes.input} id="email" label="Email" placeholder="Enter Your Email" variant="filled" {...email} required/>
+                <TextField className={classes.input} id="password" type="password" label="Password" placeholder="Enter Your Password" variant="filled" {...password} required/>
+                <Grid className={classes.container} container display="flex" direction="row" justify="space-evenly" alignItems="center">
+                    <Button variant="contained" color="primary" onClick={handleNewUser}> NEW USER? </Button>
+                    <Button variant="contained" color="primary" type="submit"> SIGN IN </Button>
+                </Grid>
             </Grid>
         </form>
     )
