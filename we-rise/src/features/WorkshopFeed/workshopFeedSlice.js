@@ -3,7 +3,10 @@ import axios from 'axios'
 
 import { binarySearchInsert } from '../../Utilities/binarySearchInsertion'
 import { apiURL } from '../../Utilities/apiURL'
-import { addRegistration, deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
+
+import { deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
+import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
+
 
 export const fetchUpcomingWorkshops = createAsyncThunk(
     'get/fetchUpcomingWorkshops',

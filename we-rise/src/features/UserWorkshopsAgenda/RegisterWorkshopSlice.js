@@ -29,7 +29,17 @@ export const addRegistration = createAsyncThunk(
                 workshop_id: workshopId,
                 workshop_id_user_id: `${workshopId}${uid}`
             })
-            return registration.data.payload;
+
+            // const workshops = getState().workshopFeed;
+            // let num = workshopId
+            // let workshopinfo = workshops.findIndex((workshop)=> {
+            //     return workshop.workshop_id === num
+            // })
+            // debugger  
+            // workshopinfo.id = registration.data.payload
+            
+        return registration.data.payload
+
         } catch (error) {
             throw Error(error)
         }
@@ -66,11 +76,14 @@ export const RegisteredWorkshopSlice = createSlice( {
             let workshopIndex = state.findIndex((workshop)=> {
                 
                 return Number(workshop.id) === Number(action.payload.registeredId)
-            })
-            if(workshopIndex > -1){
-                state.splice(workshopIndex,1);
-            }
-        }
+
+           })
+           if(workshopIndex > -1){
+               state.splice(workshopIndex,1);
+           }
+        },
+        [addRegistration.fulfilled]: (state, action) => {state.unshift(action.payload)}
+
     }
 })
 
