@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     paperContainer: {
         backgroundColor: '#A3A3A3',
         padding: theme.spacing(3),
-        width: '50%',
+        width: '60%',
         [theme.breakpoints.down('sm')]:{
             width: '90%'
         },
