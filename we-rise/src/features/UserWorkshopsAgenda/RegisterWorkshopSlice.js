@@ -74,16 +74,12 @@ export const RegisteredWorkshopSlice = createSlice( {
         },
         [deleteRegistration.fulfilled]: (state, action) => {
             let workshopIndex = state.findIndex((workshop)=> {
-                
                 return Number(workshop.id) === Number(action.payload.registeredId)
-
            })
            if(workshopIndex > -1){
                state.splice(workshopIndex,1);
            }
         },
-        [addRegistration.fulfilled]: (state, action) => {state.unshift(action.payload)}
-
     }
 })
 

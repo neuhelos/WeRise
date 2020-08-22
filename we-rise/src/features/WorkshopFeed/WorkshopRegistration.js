@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import axios from 'axios'
 
@@ -114,7 +114,7 @@ const ColorlibConnector = withStyles({
   },
 })(StepConnector);
 
-function ColorlibStepIcon(props) {
+const ColorlibStepIcon = (props) => {
   const classes = useColorlibStepIconStyles();
   const { active, completed } = props;
 
@@ -136,7 +136,7 @@ function ColorlibStepIcon(props) {
   );
 }
 
-function getSteps() {
+const getSteps = () => {
   return ['Details', 'Register', 'Confirmation'];
 }
 
@@ -168,7 +168,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
               <img className={classes.image} src={workshopImage} alt={workshop.title}/>
               {workshop.participants !== workshop.workshop_count ?
                   <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center">
-                    <Button variant="contained" color="primary" onClick={handleCloseModal}> RETURN TO SEARCH </Button>
+                    <Button variant="contained" color="primary" onClick={handleCloseModal}> RETURN TO WORKSHOPS </Button>
                     <Button variant="contained" color="primary" onClick={handleNext}> BEGIN REGISTRATION </Button> 
                   </Grid>
                 : <Button variant="contained" color="primary" onClick={handleCloseModal}> AT CAPACITY : RETURN TO SEARCH </Button>}
@@ -178,9 +178,6 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
 
 
     const WorkshopRegistration = () => {
-
-
-        let workshopId = workshop.workshop_id
 
         const message = useInput("")
 

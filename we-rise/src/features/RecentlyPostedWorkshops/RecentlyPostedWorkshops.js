@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { apiURL } from '../../Utilities/apiURL'
 import axios from 'axios'
-import WorkshopFeedCard from '../WorkshopFeed/workshopFeedCard'
+import WorkshopFeedCard from '../WorkshopFeed/WorkshopSearchFeedCard'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'

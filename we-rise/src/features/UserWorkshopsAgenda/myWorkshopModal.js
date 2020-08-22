@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const MyWorkshopModal = ({ workshop }) => {
+const MyWorkshopModal = ({ handleCloseModal, workshop }) => {
   const history = useHistory();
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -45,19 +45,20 @@ const MyWorkshopModal = ({ workshop }) => {
 
   const workshopImage = workshop.workshop_img
   // Button should only show if the start_time is the same as the current time!
-  return (
-      <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
-          <Typography variant='h4'>{workshop.title}</Typography>
-          <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
-          <Typography variant='h10'>Description: {workshop.descriptions}</Typography>
-          <img className={classes.image} src={workshopImage} alt="workshop.title"/>
-          {/* {currentDate === date? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}> Join workshop </Button>: <p>Date: {date}</p>} */}
-
-          <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}>Join Workshop</Button>
-        {workshop.id ? <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister From Workshop</Button> : <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.registrationId))}>Unregister From Workshop</Button> }
-
-      </Grid>
-  )
+    return (
+        <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
+            <Typography variant='h4'>{workshop.title}</Typography>
+            <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
+            <Typography variant='h10'>Description: {workshop.descriptions}</Typography>
+            <img className={classes.image} src={workshopImage} alt="workshop.title"/>
+            {/* {currentDate === date? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}> Join workshop </Button>: <p>Date: {date}</p>} */}
+            <Grid className={classes.root} container display="flex" direction="row" justify="space-evenly" alignItems="center">
+                <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}>Join VideoChat</Button>
+                <Button variant="contained" color="primary" onClick={handleCloseModal}>Close</Button>
+                <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister</Button> 
+            </Grid>
+        </Grid>
+    )
 }
 
 export default MyWorkshopModal;

@@ -7,7 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box';
 
 import WorkshopFeed from '../WorkshopFeed/WorkshopFeed'
@@ -26,20 +26,17 @@ const useStyles = makeStyles((theme) => ({
         flex: 1,
     },
     container: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '100%'
+        padding: theme.spacing(2),
+        display: 'flex'
     },
     tabBar: {
         backgroundColor: '#F5F5F5',
         top: '6rem'
     },
     paper: {
-        width: '90%',
+        width: '100%',
         padding: theme.spacing(2),
-        margin: theme.spacing(2),
+        marginBottom: theme.spacing(2),
         backgroundColor: '#282828',
         color: 'white',
         display: 'flex',
@@ -61,9 +58,7 @@ const TabPanel = (props) => {
         {...other}
         >
         {value === index && (
-            <Box p={3} className={classes.container}>
-            <Typography className={classes.container}>{children}</Typography>
-            </Box>
+            <Grid className={classes.container} direction="column" justify="center" alignItems="center" sm={12}>{children}</Grid>
         )}
         </div>
     );
