@@ -5,8 +5,7 @@ import { binarySearchInsert } from '../../Utilities/binarySearchInsertion'
 import { mergeSort } from '../../Utilities/mergeSort'
 import { apiURL } from '../../Utilities/apiURL'
 
-import { deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
-import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
+import { addRegistration, deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 
 export const fetchUpcomingWorkshops = createAsyncThunk(
