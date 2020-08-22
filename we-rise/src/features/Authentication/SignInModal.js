@@ -64,7 +64,7 @@ const SignInModal = ({toggleModal, toggleSignUpModal}) => {
     return (
         <form className={classes.root} onSubmit = {handleSubmit}>
             <Grid container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
-                <img src={WeRiseLogo}></img>
+                <img src={WeRiseLogo} alt={"WeRise Logo"}></img>
                 <TextField className={classes.input} id="email" label="Email" placeholder="Enter Your Email" variant="filled" {...email} required/>
                 <TextField className={classes.input} id="password" type="password" label="Password" placeholder="Enter Your Password" variant="filled" {...password} required/>
                 <Grid className={classes.container} container display="flex" direction="row" justify="space-evenly" alignItems="center">
