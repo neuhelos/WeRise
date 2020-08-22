@@ -9,7 +9,7 @@ import SearchBar from './WorkshopSearchBar'
 import FilterBar from './WorkshopFilterBar'
 import { useInput } from '../../Utilities/CustomHookery'
 
-import { fetchWorkshopSearch, fetchUpcomingWorkshops } from './workshopFeedSlice'
+import { fetchWorkshopSearch, fetchUpcomingWorkshops } from './WorkshopSearchFeedSlice'
 import { categories } from '../BaseComponents/WorkshopCategories'
 
 import RestoreIcon from '@material-ui/icons/Restore';
