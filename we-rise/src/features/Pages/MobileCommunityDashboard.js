@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         flex: 1,
     },
     container: {
-        padding: theme.spacing(3),
+        padding: theme.spacing(2),
         display: 'flex'
     },
     tabBar: {
@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
         top: '6rem'
     },
     paper: {
-        width: '90%',
+        width: '100%',
         padding: theme.spacing(2),
-        margin: theme.spacing(2),
+        marginBottom: theme.spacing(2),
         backgroundColor: '#282828',
         color: 'white',
         display: 'flex',
