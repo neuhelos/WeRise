@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const MyWorkshopModal = ({ workshop }) => {
+const MyWorkshopModal = ({ handleCloseModal, workshop }) => {
   const history = useHistory();
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -52,9 +52,11 @@ const MyWorkshopModal = ({ workshop }) => {
             <Typography variant='h10'>Description: {workshop.descriptions}</Typography>
             <img className={classes.image} src={workshopImage} alt="workshop.title"/>
             {/* {currentDate === date? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}> Join workshop </Button>: <p>Date: {date}</p>} */}
-
-            <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}>Join VideoChat</Button>
-            <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister</Button> 
+            <Grid className={classes.root} container display="flex" direction="row" justify="space-evenly" alignItems="center">
+                <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}>Join VideoChat</Button>
+                <Button variant="contained" color="primary" onClick={handleCloseModal}>Close</Button>
+                <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister</Button> 
+            </Grid>
         </Grid>
     )
 }
