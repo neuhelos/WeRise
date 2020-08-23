@@ -1,5 +1,5 @@
 const recentPost = require("express").Router();
-const { getRecentPost } = require("../Queries/getRecentPostQueries");
+const { getRecentPost } = require("../Queries/RecentPostQueries");
 
 recentPost.get("/", getRecentPost);
 
