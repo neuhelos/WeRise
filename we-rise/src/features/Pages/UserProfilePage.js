@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { apiURL } from "../../Utilities/apiURL";
 import UserWorkshopAgenda from "../UserWorkshopsAgenda/UserWorkshopsAgenda";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
+import FacilitatorWorkshops from "../UserComponents/FacilitatorWorkshops";
+
+
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { setCurrentUser } from "../Authentication/AuthenticationSlice";
@@ -114,7 +117,9 @@ const UserProfilePage = (
       </Grid>
         </Paper> */}
         <FetchUser/>
-      <UserWorkshopAgenda />
+      {/* <UserWorkshopAgenda /> */}
+      <FacilitatorWorkshops  />
+      
     </div>
   );
 };
