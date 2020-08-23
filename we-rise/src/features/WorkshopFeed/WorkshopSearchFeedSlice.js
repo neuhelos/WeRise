@@ -46,7 +46,6 @@ export const workshopFeedSlice = createSlice( {
         [fetchUpcomingWorkshops.fulfilled]: (state, action) => action.payload,
         [fetchWorkshopSearch.fulfilled] : (state, action) => mergeSort(action.payload),
         [addRegistration.fulfilled] : (state, action) => {
-            
             return state.filter(workshop => workshop.workshop_id !== action.payload.workshop_id)
         }, 
         [deleteRegistration.fulfilled] : (state, action) => {
