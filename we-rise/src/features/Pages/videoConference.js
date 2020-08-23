@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../Authentication/AuthenticationSlice";
-import Jiti from '../jitsi/JitsiComponent'
+import Jitsi from '../jitsi/JitsiComponent'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
@@ -55,9 +55,9 @@ const useStyles = makeStyles((theme) => ({
 const VideoConference = () => {
    
     return (
-        <div className = 'videoComponent'>
+        <div className='videoComponent'>
             <h1>Welcome to the Workshop</h1>
-            <Jiti></Jiti>
+            <Jitsi></Jitsi>
         </div>
     )
 }
