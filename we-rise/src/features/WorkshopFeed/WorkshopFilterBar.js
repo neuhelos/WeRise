@@ -117,7 +117,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 value={selectCategories}
                 onChange={handleSelectChange}
                 onClick={handleOpenMenu}
-                input={<Input style={{textAlign: 'center'}}/>}
+                input={<Input style={{fontSize: '0.8125rem', textAlign: 'center'}}/>}
                 renderValue={(selected) => selected.length > 1 ? "Multiple" : selected.length === 1 ? `${selected[0].slice(0,15)}...` : "CATEGORIES" }
                 MenuProps={MenuProps}
                 >

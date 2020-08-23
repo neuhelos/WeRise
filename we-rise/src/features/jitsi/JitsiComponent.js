@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Jitsi from 'react-jitsi'
 
+import '../../styling/jitsi.css'
+
         
         const JedaiVideoConfig = () => {
             const handleAPI = JitsiMeetAPI => {
@@ -24,12 +26,21 @@ import Jitsi from 'react-jitsi'
           
           const interfaceConfig = {
             LANG_DETECTION: false,
-            lang: "es",
-            APP_NAME: "QoriMed",
+            lang: "en",
+            APP_NAME: "WeRise",
             DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
             HIDE_INVITE_MORE_HEADER: true,
             MOBILE_APP_PROMO: false,
             SHOW_CHROME_EXTENSION_BANNER: false,
+            SHOW_JITSI_WATERMARK: false,
+            JITSI_WATERMARK_LINK: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/appImages%2FWeRise_Logo.png?alt=media&token=8c93514c-69b8-4dea-973e-159f66720dff',
+            BRAND_WATERMARK_LINK: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/appImages%2FWeRise_Logo.png?alt=media&token=8c93514c-69b8-4dea-973e-159f66720dff',
+            DEFAULT_LOGO_URL: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/appImages%2FWeRise_Logo.png?alt=media&token=8c93514c-69b8-4dea-973e-159f66720dff',
+            DEFAULT_REMOTE_DISPLAY_NAME: 'Workshop Participant',
+            DEFAULT_WELCOME_PAGE_LOGO_URL: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/appImages%2FWeRise_Logo.png?alt=media&token=8c93514c-69b8-4dea-973e-159f66720dff',
+            SHOW_BRAND_WATERMARK: true,
+            SHOW_WATERMARK_FOR_GUESTS: false,
+            HIDE_DEEP_LINKING_LOGO: true,
             TOOLBAR_BUTTONS: [
               "microphone",
               "camera",
@@ -43,13 +54,14 @@ import Jitsi from 'react-jitsi'
               "tileview",
               "download",
               "help",
-              "mute-everyone"
+              "mute-everyone",
+              "desktop"
               // 'security'
             ]
           };
           
           const config = {
-            defaultLanguage: "es",
+            defaultLanguage: "en",
             prejoinPageEnabled: false
           };
           
