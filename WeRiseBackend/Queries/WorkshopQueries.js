@@ -19,10 +19,20 @@ const createWorkshop = async (req, res) => {
     });
   }
 };
+
 const getWorkshop = async (req, res) => {
   try {
-    let workshop = await database.one(
-      "SELECT * FROM created_workshops WHERE id = $1",
+    let workshop = await database.any(
+      `SELECT created_workshops.id AS workshop_id, 
+      created_workshops.user_id AS user_id, created_workshops.title, 
+      created_workshops.descriptions, created_workshops.start_time, 
+      created_workshops.end_time, created_workshops.category, 
+      created_workshops.participants, created_workshops.workshop_img, 
+      USERs.firstn, users.lastn, users.email, users.user_pic 
+      FROM created_workshops  
+      INNER JOIN users 
+      ON created_workshops.user_id = users.id  
+      WHERE user_id = $1`,
       req.params.id
     );
     res.status(200).json({
