@@ -183,24 +183,20 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
 
         const handleSubmit = (event) => {
             event.preventDefault()
+            handleNext()
             try {
-              dispatch(addRegistration(workshop.workshop_id))
-                // let registration = axios.post(`${apiURL()}/registered`, {
-                //     user_id: currentUser.uid,
-                //     workshop_id: workshop.workshop_id
-                // })
-                // debugger
-
-                let facilitatorEmail = axios.post(`${apiURL()}/email`, {
-                    to: 'nilberremon@pursuit.org',
-                    from: 'WeRiseFacilitator@werise.org',
-                    subject: 'WeRise - A User Registered for Your Workshop',
-                    content: message.value
-                })
+              setTimeout(() => {
+                dispatch(addRegistration(workshop.workshop_id))
+              }, 3000);
+              let facilitatorEmail = axios.post(`${apiURL()}/email`, {
+                  to: 'nilberremon@pursuit.org',
+                  from: 'WeRiseFacilitator@werise.org',
+                  subject: 'WeRise - A User Registered for Your Workshop',
+                  content: message.value
+              })
             } catch (error) {
                 throw Error(error)
             }
-            handleNext()
         }
 
         return (
