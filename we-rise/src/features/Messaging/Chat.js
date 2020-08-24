@@ -1,9 +1,15 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { firestore } from '../../Utilities/firebase'
+
+import Grid from '@material-ui/core/Grid';
+
 
 import ChatList from './ChatList' 
 
 const Chat = (props) => {
     
+    const currentUser = useSelector( state => state.currentUserSession.uid )
     
     const [selectedChat, setSelectedChat] = useState(null)
     const [newChatFormVisible, setNewChatFormVisible] = useState(false)
@@ -11,19 +17,29 @@ const Chat = (props) => {
 
 
     const handleNewChat = () => {
-        console.log("New Chat Button Clicked")
         setNewChatFormVisible(true)
+        setSelectedChat(null)
     }
 
-    const selectChat = () => {
-        console.log('Select Chat')
+    const handleSelectedChat = (chatIndex) => {
+        setSelectedChat(chatIndex)
     }
     
+    useEffect ( async () => {
+        await firestore
+        .collection('chats')
+        .where('users', 'array-contains', currentUser)
+        .onSnapshot( async (res) => {
+            const chats = res.docs.map(doc => doc.data())
+            await setChats(chats)
+        })
+    }, [])
+
     
     
     return (
         <>
-            <ChatList history={props.history} selectedChatIndex={setSelectedChat} chats={setChats} newChat={handleNewChat}/>
+            <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} chats={chats} selectedChatIndex={selectedChat}/>
         </>
 
     )

@@ -77,7 +77,7 @@ const PublicNavBar = () => {
         <AppBar className={classes.root} position="static">
             <Toolbar>
                 <Grid container spacing={1} alignItems="center" >
-                    <Grid item justify="flex-start" alignItems="center" xs={5}>
+                    <Grid container item justify="flex-start" alignItems="center" xs={5}>
                         <Typography className={classes.title} variant="h1" noWrap>
                             WeRise
                         </Typography>
