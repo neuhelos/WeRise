@@ -86,7 +86,7 @@ const NavBar = () => {
   }
   const navProfile = () => {
     handleMobileMenuClose()
-    history.push("/Profile")
+    history.push("/Profile/:id")
   }
   const navDashboard = () => {
     handleMobileMenuClose()

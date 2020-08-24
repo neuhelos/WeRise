@@ -57,7 +57,7 @@ const WeRiseApp = () => {
           <ProtectedRoute path="/videoConference">
             <VideoConference />
           </ProtectedRoute>
-          <ProtectedRoute path="/Profile">
+          <ProtectedRoute exact path="/Profile/:id">
             <UserProfilePage />
           </ProtectedRoute>
           <ProtectedRoute path="/Messaging">

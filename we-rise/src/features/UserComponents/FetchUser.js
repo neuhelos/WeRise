@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import {apiURL} from '../../Utilities/apiURL'
 import axios from "axios";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -12,6 +11,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import { fetchUserById } from "../../Utilities/FetchFunctions";
+import { useHistory, useParams, useRouteMatch } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -36,37 +36,42 @@ const useStyles = makeStyles((theme) => ({
     },
    
   }));
-  const FetchUser =()=>{
-    const currentUser = useSelector((state) => state.currentUserSession.uid);
-    const classes = useStyles();
-
+  const FetchUser =( )=>{
+  const currentUser = useSelector((state) => state.currentUserSession.uid);
+  const classes = useStyles();
+  const history = useHistory()
   const [profile, setProfile] = useState([]);
   const [firstn, setFirstn] = useState("");
   const [lastn, setLastn] = useState("");
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
   const [pic, setPic] = useState("");
-  const API = apiURL();
-  const fetchUser = async () => {
-      try {
-        // let res = await axios.get(`${API}/users/${currentUser}`);
-        let res = await fetchUserById(currentUser)
+  const { userName: username } = useParams();
+
+  const match = useRouteMatch('/Profile/:id')
+
+  const fetchUser = async (id) => {
+
+      let res = await fetchUserById(currentUser)
+      debugger
+
+      setProfile(res)
+      // console.log(setProfile(res[0].id));
+      // setProfile(res[0].id);
+      // setFirstn(res[0].firstn);
+      // setLastn(res[0].lastn);
+      // setEmail(res[0].email);
+      // setBio(res[0].bio);
+      // setPic(res[0].user_pic);
   
-        console.log(setProfile(res[0].id));
-        setProfile(res[0].id);
-        setFirstn(res[0].firstn);
-        setLastn(res[0].lastn);
-        setEmail(res[0].email);
-        setBio(res[0].bio);
-        setPic(res[0].user_pic);
+
+     
           
-      } catch (error) {
-        console.log(error);
-      }
+      
   }
   useEffect(() => {
-    fetchUser();
-  }, []);
+    fetchUser(match.params.id);
+  }, [currentUser, match.params.id]);
   return (
     <div className="userProfile">
     <Paper className={classes.paper}>
