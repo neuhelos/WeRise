@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 
 import ChatList from './ChatList'
 import ChatView from './ChatView'
+import ChatInput from './ChatInput'
 
 const Chat = (props) => {
     
@@ -41,12 +42,34 @@ const Chat = (props) => {
         fetchChats()
     }, [])
 
+
+    const buildDocKey = (peer) => {
+        return [currentUser, peer].sort().join(":")
+    }
+
+    const submitMessage = (message) => {
+        const docKey = buildDocKey(chats[selectedChat].users.filter(user => user !== currentUser)[0]);
+        firestore
+        .collection('chats')
+        .doc(docKey)
+        .update({
+            messages: firebase.firestore.FieldValue.arrayUnion({
+                message: message,
+                sender: currentUser,
+                timestamp: Date.now()
+            }),
+            receiverHasRead: false
+        });
+
+    }
+
+
     return (
         <>
             <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} chats={chats} selectedChatIndex={selectedChat}/>
-            { newChatFormVisible ? null : <ChatView chat={chats[selectedChat]}/>}
+            { newChatFormVisible ? null : <ChatView chat={chats[selectedChat]}/> }
+            { selectedChat !== null && !newChatFormVisible ? <ChatInput submitMessage={submitMessage} /> : null }
         </>
-
     )
 }
 

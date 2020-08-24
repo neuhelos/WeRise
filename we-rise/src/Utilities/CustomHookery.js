@@ -23,6 +23,3 @@ export const useSelect = (initialValue) => {
     }
     return {value, onChange: handleChange}
 }
-
-
-  

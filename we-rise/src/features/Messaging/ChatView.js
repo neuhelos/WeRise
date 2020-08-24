@@ -7,7 +7,7 @@ const useStyles = makeStyles( theme => ({
 
     content: {
         height: 'calc(100vh - 100px)',
-        overflow: 'auto',
+        overflow: 'scroll',
         padding: '25px',
         marginLeft: '300px',
         boxSizing: 'border-box',
