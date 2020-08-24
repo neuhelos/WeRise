@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
         left: '0',
         width: '30%',
         boxShadow: '0px 0px 2px black',
+        '& *': {
+            fontFamily: 'audiowide'
+        }
     },
     list: {
         width: '100%'

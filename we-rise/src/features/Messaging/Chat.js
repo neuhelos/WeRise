@@ -25,7 +25,7 @@ const Chat = (props) => {
         setSelectedChat(chatIndex)
     }
     
-    useEffect ( async () => {
+    const fetchChats = async () => {
         await firestore
         .collection('chats')
         .where('users', 'array-contains', currentUser)
@@ -33,10 +33,12 @@ const Chat = (props) => {
             const chats = res.docs.map(doc => doc.data())
             await setChats(chats)
         })
-    }, [])
+    }
 
-    
-    
+    useEffect ( () => {
+        fetchChats()
+    }, [chats])
+
     return (
         <>
             <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} chats={chats} selectedChatIndex={selectedChat}/>
