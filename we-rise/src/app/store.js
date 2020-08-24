@@ -2,7 +2,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import authenticationReducer from '../features/Authentication/AuthenticationSlice';
 
-import workshopFeedReducer from '../features/WorkshopFeed/WorkshopSearchFeedSlice'
+import workshopFeedReducer from '../features/WorkshopFeed/WorkshopFeedSlice'
 import registeredWorkshopFeedReducer from '../features/UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 export default configureStore({

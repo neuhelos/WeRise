@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCurrentUserId } from '../Authentication/AuthenticationSlice'
 
-import WorkshopFeedCard from './WorkshopSearchFeedCard'
+import WorkshopFeedCard from './WorkshopFeedCard'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
 
 
-import { fetchUpcomingWorkshops } from './WorkshopSearchFeedSlice'
+import { fetchUpcomingWorkshops } from './WorkshopFeedSlice'
 
 const useStyles = makeStyles((theme) => ({
     root: {

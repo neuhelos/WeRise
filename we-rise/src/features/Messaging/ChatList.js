@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -52,15 +52,18 @@ const ChatList = ( props ) => {
         console.log('New Chat')
     }
 
-    const selectChat = (index) => {
-        console.log('select chat', index)
-    }
+
+
+    useEffect ( () => {
+
+    }, [props.chats])
+
 
     let chats = props.chats.map( (chat, index) => {
         return (
-            <>
-                <ListItem className={classes.listItem} key={index} selected={props.selectedChatIndex === index} 
-                    onClick={()=> selectChat(index)}
+            <div key={index} id={index}>
+                <ListItem className={classes.listItem} selected={props.selectedChatIndex === index} 
+                    onClick={() => {props.selectedChat(index)}}
                     alignItems='flex-start'
                     >
                     <ListItemAvatar>
@@ -76,7 +79,7 @@ const ChatList = ( props ) => {
                     </ListItemText>
                 </ListItem>
                 <Divider></Divider>
-            </>
+            </div>
         )
     })
 
@@ -84,7 +87,7 @@ const ChatList = ( props ) => {
         <Grid className={classes.root} container display="flex" direction="column" justify="flex-start" alignItems="flex-start">
             <Button className={classes.button} variant='contained' fullWidth onClick={props.newChat}>NEW CHAT</Button>
             <List className={classes.list}>
-                { props.chats.length ? chats : null}
+                { !props.chats.length ? null : chats}
             </List>
         </Grid>
     )
