@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import Paper from '@material-ui/core/Paper'
-
+import { Link, withRouter } from 'react-router-dom'
 import Modal from '../BaseComponents/Modal'
 import WorkshopRegistration from './WorkshopRegistration'
 
@@ -88,7 +88,11 @@ const WorkshopFeedCard = ( props ) => {
                 }
                 subheader = {
                     <>
-                    <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography>
+                    <Link to="/Profile" className="profile">
+                    <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}
+				
+                    </Typography>
+				</Link>
                     <Typography className={classes.text}>{`${date}`}</Typography>
                     <Typography className={classes.text}>{`${time}`}</Typography>
                     <Typography className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
