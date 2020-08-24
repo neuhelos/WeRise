@@ -165,7 +165,7 @@ const AddWorkshop = ({handleCloseModal}) => {
     }
 
     return (
-        <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
+        <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
             <form onSubmit={handleSubmit} className={classes.root}>
                 <Typography variant="h6">Create Your Workshop</Typography>
                 <TextField className={classes.input} id="filled-basic" label="Workshop Title" placeholder="Enter Workshop Title" variant="filled" {...title}/>

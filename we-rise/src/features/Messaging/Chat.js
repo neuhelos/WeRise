@@ -5,7 +5,8 @@ import { firestore } from '../../Utilities/firebase'
 import Grid from '@material-ui/core/Grid';
 
 
-import ChatList from './ChatList' 
+import ChatList from './ChatList'
+import ChatView from './ChatView'
 
 const Chat = (props) => {
     
@@ -37,11 +38,12 @@ const Chat = (props) => {
 
     useEffect ( () => {
         fetchChats()
-    }, [chats])
+    }, [])
 
     return (
         <>
             <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} chats={chats} selectedChatIndex={selectedChat}/>
+            { newChatFormVisible ? null : <ChatView chat={chats[selectedChat]}/>}
         </>
 
     )
