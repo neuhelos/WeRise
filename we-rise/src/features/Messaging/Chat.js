@@ -23,6 +23,7 @@ const Chat = (props) => {
     }
 
     const handleSelectedChat = (chatIndex) => {
+        setNewChatFormVisible(false)
         setSelectedChat(chatIndex)
     }
     

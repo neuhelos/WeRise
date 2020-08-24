@@ -61,9 +61,9 @@ const ChatList = ( props ) => {
 
     let chats = props.chats.map( (chat, index) => {
         return (
-            <div key={index}>
+            <div key={index} id={index}>
                 <ListItem className={classes.listItem} selected={props.selectedChatIndex === index} 
-                    onClick={() => props.selectedChat(index)}
+                    onClick={() => {props.selectedChat(index)}}
                     alignItems='flex-start'
                     >
                     <ListItemAvatar>

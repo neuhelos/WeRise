@@ -86,6 +86,7 @@ const ChatView = ( props ) => {
     }
 
     const ChatMessages = () => {
+
         return props.chat.messages.map( (message, index) => {
             return (
                 <div key={index} className={message.sender === currentUser ? classes.userSent : classes.friendSent}>
