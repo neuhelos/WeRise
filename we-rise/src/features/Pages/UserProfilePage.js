@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const UserProfilePage = () => {
+const UserProfilePage = ({user}) => {
   
 
 

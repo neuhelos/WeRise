@@ -11,7 +11,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import { fetchUserById } from "../../Utilities/FetchFunctions";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, useRouteMatch } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -48,8 +48,10 @@ const useStyles = makeStyles((theme) => ({
   const [pic, setPic] = useState("");
   const { userName: username } = useParams();
 
-  const fetchUser = async () => {
-    if(currentUser){
+  const match = useRouteMatch('/Profile/:id')
+
+  const fetchUser = async (id) => {
+
       let res = await fetchUserById(currentUser)
       debugger
 
@@ -61,15 +63,15 @@ const useStyles = makeStyles((theme) => ({
       // setEmail(res[0].email);
       // setBio(res[0].bio);
       // setPic(res[0].user_pic);
-    }
+  
 
      
           
       
   }
   useEffect(() => {
-    fetchUser();
-  }, []);
+    fetchUser(match.params.id);
+  }, [currentUser, match.params.id]);
   return (
     <div className="userProfile">
     <Paper className={classes.paper}>
