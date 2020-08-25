@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectCurrentUserId } from '../Authentication/AuthenticationSlice'
 
 import WorkshopFeedCard from './WorkshopSearchFeedCard'
 
@@ -29,8 +28,8 @@ const WorkshopFeed = () => {
         dispatch(fetchUpcomingWorkshops())
     }, [])
     
-    useEffect ( () => {
-    }, [workshopFeed])
+    // useEffect ( () => {
+    // }, [workshopFeed])
 
     let workshops = workshopFeed.map(workshop => {
         return <WorkshopFeedCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>

@@ -58,7 +58,7 @@ const TabPanel = (props) => {
         {...other}
         >
         {value === index && (
-            <Grid className={classes.container} direction="column" justify="center" alignItems="center" sm={12}>{children}</Grid>
+            <Grid item container className={classes.container} direction="column" justify="center" alignItems="center" sm={12}>{children}</Grid>
         )}
         </div>
     );

@@ -30,10 +30,10 @@ const RecentlyPostedWorkshops = () => {
 
     const classes = useStyles();
 
-    useEffect(() => {
-
-        fetchRecentlyPosted();
-        
+    useEffect( () => {
+        let isMounted = true
+        if(isMounted) fetchRecentlyPosted();
+        return () => isMounted = false   
     }, []);
 
     let recentlyPostedWorkshops =  recentlyPosted.map(workshop => {
