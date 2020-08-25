@@ -15,7 +15,6 @@ import Typography from "@material-ui/core/Typography";
 
 import "../../styling/UserProfilePage.css";
 import FetchUser from "../UserComponents/FetchUser";
-import FacilitatorProfile from "../UserComponents/FacilitatorProfile";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +48,7 @@ const UserProfilePage = ({user}) => {
 
   return (
     <div className="userProfile">
- {/* <FacilitatorProfile/> */}
+ 
         <FetchUser/>
       {/* <UserWorkshopAgenda /> */}
       <FacilitatorWorkshops  />
