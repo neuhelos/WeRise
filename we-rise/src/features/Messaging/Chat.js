@@ -47,28 +47,28 @@ const Chat = (props) => {
         return [currentUser, peer].sort().join(":")
     }
 
-    const submitMessage = (message) => {
-        const docKey = buildDocKey(chats[selectedChat].users.filter(user => user !== currentUser)[0]);
-        firestore
-        .collection('chats')
-        .doc(docKey)
-        .update({
-            messages: firebase.firestore.FieldValue.arrayUnion({
-                message: message,
-                sender: currentUser,
-                timestamp: Date.now()
-            }),
-            receiverHasRead: false
-        });
+    // const submitMessage = (message) => {
+    //     const docKey = buildDocKey(chats[selectedChat].users.filter(user => user !== currentUser)[0]);
+    //     firestore
+    //     .collection('chats')
+    //     .doc(docKey)
+    //     .update({
+    //         messages: firebase.firestore.FieldValue.arrayUnion({
+    //             message: message,
+    //             sender: currentUser,
+    //             timestamp: Date.now()
+    //         }),
+    //         receiverHasRead: false
+    //     });
 
-    }
+    // }
 
 
     return (
         <>
             <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} chats={chats} selectedChatIndex={selectedChat}/>
             { newChatFormVisible ? null : <ChatView chat={chats[selectedChat]}/> }
-            { selectedChat !== null && !newChatFormVisible ? <ChatInput submitMessage={submitMessage} /> : null }
+            {/* { selectedChat !== null && !newChatFormVisible ? <ChatInput submitMessage={submitMessage} /> : null } */}
         </>
     )
 }

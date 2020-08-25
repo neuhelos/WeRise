@@ -50,11 +50,10 @@ const useStyles = makeStyles((theme) => ({
 
   const match = useRouteMatch('/Profile/:id')
 
-  const fetchUser = async (id) => {
+  const fetchUser = async () => {
 
       let res = await fetchUserById(currentUser)
-      debugger
-
+      
       setProfile(res)
       // console.log(setProfile(res[0].id));
       // setProfile(res[0].id);
