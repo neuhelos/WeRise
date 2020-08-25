@@ -45,12 +45,12 @@ const FacilitatorWorkshops = () => {
     
 // debugger 
     let currentWorkshops = UserCreatedWorkshops.map(workshop => {
-        debugger
+        // debugger
         return <FacilitatorWorkshopCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>
     })
 
     let pastWorkshops = UserPastCreatedWorkshops.map(workshop => {
-        debugger
+        // debugger
         return <FacilitatorWorkshopCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>
     })
     
