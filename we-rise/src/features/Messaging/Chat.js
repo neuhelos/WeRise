@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { firestore } from '../../Utilities/firebase'
+import firebase, { firestore } from '../../Utilities/firebase'
 
 import Grid from '@material-ui/core/Grid';
 
@@ -23,10 +23,12 @@ const Chat = (props) => {
         setSelectedChat(null)
     }
 
+    
     const handleSelectedChat = (chatIndex) => {
         setNewChatFormVisible(false)
-        setSelectedChat(chatIndex)
+        setSelectedChat(chatIndex);
     }
+
     
     const fetchChats = async () => {
         await firestore
@@ -37,23 +39,43 @@ const Chat = (props) => {
             await setChats(chats)
         })
     }
-
+    
     useEffect ( () => {
         fetchChats()
     }, [])
 
+    let unreadCount = chats.filter(chat => !chat.receiverHasRead).length
+
+    
+    const clickedChatNotSender = (chatIndex) => chats[chatIndex].messages[chats[chatIndex].messages.length-1].sender !== currentUser
+    
+    const messageRead = () => {
+        const docKey = buildDocKey(chats[selectedChat].users.filter(user => user !== currentUser)[0])
+        if(clickedChatNotSender(selectedChat)){
+            firestore
+            .collection('chats')
+            .doc(docKey)
+            .update({
+                receiverHasRead: true
+            })
+        }
+    }
+    
+    useEffect( () => {
+        if(selectedChat) messageRead()
+    }, [selectedChat])
 
     const buildDocKey = (peer) => {
         return [currentUser, peer].sort().join(":")
     }
-
+    
     const submitMessage = (message) => {
         const docKey = buildDocKey(chats[selectedChat].users.filter(user => user !== currentUser)[0]);
         firestore
         .collection('chats')
         .doc(docKey)
         .update({
-            messages: firestore.FieldValue.arrayUnion({
+            messages: firebase.firestore.FieldValue.arrayUnion({
                 message: message,
                 sender: currentUser,
                 timestamp: Date.now()
@@ -68,7 +90,7 @@ const Chat = (props) => {
         <>
             <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} chats={chats} selectedChatIndex={selectedChat}/>
             { newChatFormVisible ? null : <ChatView chat={chats[selectedChat]}/> }
-            { selectedChat !== null && !newChatFormVisible ? <ChatInput submitMessage={submitMessage} /> : null }
+            { selectedChat !== null && !newChatFormVisible ? <ChatInput submitMessage={submitMessage} messageRead={messageRead} /> : null }
         </>
     )
 }

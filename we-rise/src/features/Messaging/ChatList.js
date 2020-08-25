@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -46,17 +47,18 @@ const useStyles = makeStyles((theme) => ({
 
 const ChatList = ( props ) => {
     
+    const currentUser = useSelector( state => state.currentUserSession.uid )
+
     const classes = useStyles()
     
     const newChat = () => {
         console.log('New Chat')
     }
 
-
-
     useEffect ( () => {
-
     }, [props.chats])
+
+    const currentUserIsLatestSender = (chat) => chat.messages[chat.messages.length-1].sender === currentUser
 
 
     let chats = props.chats.map( (chat, index) => {
@@ -77,6 +79,13 @@ const ChatList = ( props ) => {
                         }
                     >
                     </ListItemText>
+                    { 
+                        chat.receiverHasRead === false && !currentUserIsLatestSender(chat) ? 
+                        <ListItemIcon>
+                            <NotificationImportant className={classes.unreadMessage}/>
+                        </ListItemIcon>
+                        : null
+                    }
                 </ListItem>
                 <Divider></Divider>
             </div>

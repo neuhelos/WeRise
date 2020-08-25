@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#FF0F7B',
     },
     image: {
-        width: '75%',
+        width: '50%',
     }
 }))
 
