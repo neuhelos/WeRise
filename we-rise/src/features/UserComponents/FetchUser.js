@@ -46,13 +46,14 @@ const useStyles = makeStyles((theme) => ({
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
   const [pic, setPic] = useState("");
-  const { userName: username } = useParams();
+  const { workshop: workshop } = useParams();
 
   const match = useRouteMatch('/Profile/:id')
 
   const fetchUser = async (id) => {
 
       let res = await fetchUserById(currentUser)
+      let res2 = await fetchUserById(workshop)
       debugger
 
       setProfile(res)
@@ -63,6 +64,11 @@ const useStyles = makeStyles((theme) => ({
       // setEmail(res[0].email);
       // setBio(res[0].bio);
       // setPic(res[0].user_pic);
+
+     // setFirstn(res2[0].firstn);
+      // setLastn(res2[0].lastn);
+      // setBio(res2[0].bio);
+      // setPic(res2[0].user_pic);
   
 
      
