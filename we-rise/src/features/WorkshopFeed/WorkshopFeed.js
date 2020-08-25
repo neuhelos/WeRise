@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import WorkshopFeedCard from './WorkshopFeedCard'
+import WorkshopFeedCard from './WorkshopSearchFeedCard'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
