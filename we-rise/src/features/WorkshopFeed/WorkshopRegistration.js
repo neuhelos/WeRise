@@ -187,7 +187,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
             try {
               setTimeout(() => {
                 dispatch(addRegistration(workshop.workshop_id))
-              }, 3000);
+              }, 5000);
               let facilitatorEmail = axios.post(`${apiURL()}/email`, {
                   to: 'nilberremon@pursuit.org',
                   from: 'WeRiseFacilitator@werise.org',
