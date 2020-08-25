@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
    
   }));
-  const FetchUser =( )=>{
+  const FetchUser =( props )=>{
   const currentUser = useSelector((state) => state.currentUserSession.uid);
   const classes = useStyles();
   const history = useHistory()
@@ -46,29 +46,29 @@ const useStyles = makeStyles((theme) => ({
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
   const [pic, setPic] = useState("");
-  const { workshop: workshop } = useParams();
+  const { workshop: workshop } = useParams(props);
 
   const match = useRouteMatch('/Profile/:id')
 
-  const fetchUser = async (id) => {
+  const fetchUser = async (workshop) => {
 
       let res = await fetchUserById(currentUser)
       let res2 = await fetchUserById(workshop)
       debugger
 
-      setProfile(res)
-      // console.log(setProfile(res[0].id));
-      // setProfile(res[0].id);
-      // setFirstn(res[0].firstn);
-      // setLastn(res[0].lastn);
-      // setEmail(res[0].email);
-      // setBio(res[0].bio);
-      // setPic(res[0].user_pic);
+      setProfile(res2)
+      console.log(setProfile(res[0].id));
+      setProfile(res[0].id);
+      setFirstn(res[0].firstn);
+      setLastn(res[0].lastn);
+      setEmail(res[0].email);
+      setBio(res[0].bio);
+      setPic(res[0].user_pic);
 
-     // setFirstn(res2[0].firstn);
-      // setLastn(res2[0].lastn);
-      // setBio(res2[0].bio);
-      // setPic(res2[0].user_pic);
+     setFirstn(res2[0].firstn);
+      setLastn(res2[0].lastn);
+      setBio(res2[0].bio);
+      setPic(res2[0].user_pic);
   
 
      
