@@ -36,11 +36,11 @@ const ChatInput = ( props ) => {
     const input = useInput("")
     
     const handleMessageInput = (event) => {
-        return event.keyCode === 13 ? handleSubmit() : input.onChange(event)
+        return event.keyCode === 13 ? handleSubmit(event) : input.onChange(event)
     }
 
     const userClickedInput = () => {
-        console.log('Clicked Input')
+        props.messageRead()
     }
 
     const messageValidation  = (message) => {
@@ -50,7 +50,7 @@ const ChatInput = ( props ) => {
     const handleSubmit = (event) => {
         if(messageValidation(input.value)){
             props.submitMessage(input.value)
-            input.clearinput()
+            event.target.value = ""
         }
     }
     
