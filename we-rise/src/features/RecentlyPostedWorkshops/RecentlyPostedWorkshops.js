@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { apiURL } from '../../Utilities/apiURL'
 import axios from 'axios'
-import WorkshopFeedCard from '../WorkshopFeed/WorkshopSearchFeedCard'
+import WorkshopFeedCard from '../WorkshopFeed/WorkshopFeedCard'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -30,10 +30,10 @@ const RecentlyPostedWorkshops = () => {
 
     const classes = useStyles();
 
-    useEffect(() => {
-
-        fetchRecentlyPosted();
-        
+    useEffect( () => {
+        let isMounted = true
+        if(isMounted) fetchRecentlyPosted();
+        return () => isMounted = false   
     }, []);
 
     let recentlyPostedWorkshops =  recentlyPosted.map(workshop => {
