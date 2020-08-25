@@ -72,6 +72,7 @@ const Chat = (props) => {
       {newChatFormVisible ? null : <ChatView chat={chats[selectedChat]} />}
       {selectedChat !== null && !newChatFormVisible ? (
         <ChatInput submitMessage={submitMessage} />
+        
       ) : null}
     </>
   );
