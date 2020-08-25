@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
    
   }));
-  const FetchUser =( )=>{
+  const FetchUser =(props )=>{
   const currentUser = useSelector((state) => state.currentUserSession.uid);
   const classes = useStyles();
   const history = useHistory()
@@ -46,15 +46,17 @@ const useStyles = makeStyles((theme) => ({
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
   const [pic, setPic] = useState("");
+  
   const { workshop: workshop } = useParams();
 
   const match = useRouteMatch('/Profile/:id')
 
-  const fetchUser = async () => {
+  const fetchUser = async (props) => {
 
       let res = await fetchUserById(currentUser)
+      // {props.location.workshop}
       let res2 = await fetchUserById(workshop)
-      // debugger
+       debugger
       setProfile(res)
       console.log(setProfile(res[0].id));
       setProfile(res[0].id);
