@@ -52,8 +52,7 @@ const Chat = (props) => {
         firestore
         .collection('chats')
         .doc(docKey)
-        .update({
-            messages: firebase.firestore.FieldValue.arrayUnion({
+        .update({messages: firestore.FieldValue.arrayUnion({
                 message: message,
                 sender: currentUser,
                 timestamp: Date.now()
