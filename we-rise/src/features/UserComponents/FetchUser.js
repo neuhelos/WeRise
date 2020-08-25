@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
       let res = await fetchUserById(currentUser)
       let res2 = await fetchUserById(workshop)
-      debugger
+      // debugger
       setProfile(res)
       console.log(setProfile(res[0].id));
       setProfile(res[0].id);
