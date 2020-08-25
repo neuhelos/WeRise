@@ -23,8 +23,6 @@ import MobileNavMenu from './MobileNavMenu'
 const useStyles = makeStyles((theme) => ({
   root: {
         background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
-        top: '0rem',
-        position: 'sticky'
   },
   grow: {
     flexGrow: 1,
@@ -110,7 +108,7 @@ const NavBar = () => {
     return (
       <>
       <AppBar position="sticky" className={classes.root}>
-        <Toolbar className={classes.root}>
+        <Toolbar>
           <Typography className={classes.title} variant="h2" noWrap onClick={handleScrollToTop}>
             WeRise
           </Typography>

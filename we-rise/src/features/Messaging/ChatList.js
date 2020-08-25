@@ -51,9 +51,6 @@ const ChatList = ( props ) => {
 
     const classes = useStyles()
     
-    const newChat = () => {
-        console.log('New Chat')
-    }
 
     useEffect ( () => {
     }, [props.chats])

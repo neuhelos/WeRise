@@ -43,9 +43,7 @@ const FacilitatorWorkshops = () => {
         getWorkshops();
     },[])
     
-// debugger 
     let currentWorkshops = UserCreatedWorkshops.map(workshop => {
-        debugger
         return <FacilitatorWorkshopCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>
     })
 

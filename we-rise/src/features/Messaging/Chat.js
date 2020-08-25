@@ -4,10 +4,10 @@ import firebase, { firestore } from '../../Utilities/firebase'
 
 import Grid from '@material-ui/core/Grid';
 
-
 import ChatList from './ChatList'
 import ChatView from './ChatView'
 import ChatInput from './ChatInput'
+import NewChatForm from './NewChatForm'
 
 const Chat = (props) => {
     
@@ -46,7 +46,7 @@ const Chat = (props) => {
 
     let unreadCount = chats.filter(chat => !chat.receiverHasRead).length
 
-    
+
     const clickedChatNotSender = (chatIndex) => chats[chatIndex].messages[chats[chatIndex].messages.length-1].sender !== currentUser
     
     const messageRead = () => {
@@ -91,6 +91,7 @@ const Chat = (props) => {
             <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} chats={chats} selectedChatIndex={selectedChat}/>
             { newChatFormVisible ? null : <ChatView chat={chats[selectedChat]}/> }
             { selectedChat !== null && !newChatFormVisible ? <ChatInput submitMessage={submitMessage} messageRead={messageRead} /> : null }
+            { newChatFormVisible ? <NewChatForm /> : null }
         </>
     )
 }
