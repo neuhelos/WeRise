@@ -24,11 +24,15 @@ const FacilitatorWorkshops = () => {
     const currentUser = useSelector( state => state.currentUserSession.uid );
     let user_id = currentUser;
     const [UserCreatedWorkshops, setUCWorkshops] = useState([]);
+    const [UserPastCreatedWorkshops, setUPCWorkshops] = useState([]);
 
     const getWorkshops = async() => {
         try{
-           let res = await axios.get(`${apiURL()}/workshops/${user_id}`)
-            setUCWorkshops(res.data.payload); 
+           let currentWorkshopsRes = await axios.get(`${apiURL()}/workshops/${user_id}`)
+           let pastWorkshopsRes = await axios.get(`${apiURL()}/workshops/pastworkshops/${user_id}`)
+
+            setUCWorkshops(currentWorkshopsRes.data.payload); 
+            setUPCWorkshops(pastWorkshopsRes.data.payload); 
         }
         catch(err){
             console.log(err)
@@ -40,17 +44,32 @@ const FacilitatorWorkshops = () => {
     },[])
     
 // debugger 
-    let workshops = UserCreatedWorkshops.map(workshop => {
+    let currentWorkshops = UserCreatedWorkshops.map(workshop => {
+        debugger
+        return <FacilitatorWorkshopCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>
+    })
+
+    let pastWorkshops = UserPastCreatedWorkshops.map(workshop => {
+        debugger
         return <FacilitatorWorkshopCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>
     })
     
     return (
+        <>
         <div className ='FacilitatorWorkshops'>
-        <h1>Workshops I'm Facilitating</h1>
+            <h1>Workshops I'm Facilitating</h1>
             <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
-                {workshops}
+                {currentWorkshops}
             </Grid> 
         </div>
+
+        <div className ='FacilitatorWorkshops'>
+            <h1>Past Workshop I Facilitated</h1>
+                <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
+                    {pastWorkshops}
+                </Grid> 
+        </div>
+        </>
     )
     
 
