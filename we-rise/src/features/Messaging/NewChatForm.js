@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { firestore } from '../../Utilities/firebase'
+import { useSelector } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles';
 import { useInput } from '../../Utilities/CustomHookery'
 
-import { FormControl, InputLabel, Input, Button, Paper, withStyles, CssBaseline, Typography } from '@material-ui/core';
+import { FormControl, InputLabel, Input, Button, Paper, CssBaseline, Typography } from '@material-ui/core';
 
 
 
@@ -44,16 +45,59 @@ const useStyles = makeStyles((theme) => ({
     })
 )
 
-const NewChatForm = () => {
+const NewChatForm = ( props ) => {
     
     const classes = useStyles()
 
+    const currentUser = useSelector( state => state.currentUserSession.uid )
+
     let userSearch = useInput("")
     let newChatMessage = useInput("")
+    const [userServerError, setUserServerError] = useState("")
     
-    const handleSubmitNewChat = ( event ) => {
+
+    const userExists = async () => {
+        const usersSnapshot = await firestore
+            .collection('users')
+            .get()
+        const user = usersSnapshot.docs.map( doc => doc.data().email).includes(userSearch.value);
+        if(!userExists) setUserServerError('User Does Not Exist')
+        return user
+    }
+
+    const buildDocKey = () => {
+        return [currentUser, "userSearch uid"].sort().join(":")
+    }
+
+    const chatExists = async () => {
+        const docKey = buildDocKey()
+        const chat = await firestore
+            .collection('chats')
+            .doc(docKey)
+            .get()
+        return chat
+    }
+
+    const createChat = () => {
+        props.newChatSubmit({
+            sendTo: userSearch.value,
+            message: newChatMessage.value
+        })
+    }
+
+    const displayExistingChat = () => {
+        props.goToExistingChat(buildDocKey(), newChatMessage.value)
+    }
+
+    const handleSubmitNewChat = async ( event ) => {
         event.preventDefault()
-        
+        let userExists = await userExists()
+        if(userExists){
+            let chatExists = await chatExists()
+            chatExists ? displayExistingChat() : createChat()
+        }
+
+
     }
 
     return (
@@ -74,6 +118,7 @@ const NewChatForm = () => {
                         </InputLabel>
                         <Input id='new-chat-message' required className={classes.input} {...newChatMessage} />
                     </FormControl>
+                    <Button fullWidth className={classes.submit} variant='contained' type='submit'>SUBMIT</Button>
                 </form>
 
             </Paper>

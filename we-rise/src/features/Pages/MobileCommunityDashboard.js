@@ -88,7 +88,7 @@ const MobileCommunityDashboard = () => {
 
     return (
         <div className={classes.root}>
-            <AppBar position="sticky" color="default" className={classes.tabBar}>
+            <AppBar position="static" color="default" className={classes.tabBar}>
                 <Tabs
                     className={classes.tabBar}
                     value={value}

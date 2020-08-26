@@ -69,6 +69,8 @@ const Chat = (props) => {
         return [currentUser, peer].sort().join(":")
     }
     
+
+    
     const submitMessage = (message) => {
         const docKey = buildDocKey(chats[selectedChat].users.filter(user => user !== currentUser)[0]);
         firestore
@@ -82,7 +84,32 @@ const Chat = (props) => {
             }),
             receiverHasRead: false
         });
+        
+    }
+    
+    const goToExistingChat = async (docKey, message) => {
+        const usersInChat = docKey.split(':')
+        const chat = chats.find( chat => usersInChat.every( user => chat.users.includes(user)))
+        setNewChatFormVisible(false)
+        await setSelectedChat(chats.indexOf(chat))
+        submitMessage(message)
+    }
 
+    const newChatSubmit = async (chatObject) => {
+        const docKey = buildDocKey(chatObject.sendTo)
+        await firestore
+            .collection('chats')
+            .doc(docKey)
+            .set({
+                messages: [{
+                    message: chatObject.message,
+                    sender: currentUser
+                }],
+                receiverHasRead: false,
+                users: [currentUser, chatObject.sendTo]
+            })
+        setNewChatFormVisible(false)
+        setSelectedChat(chats.length-1)
     }
 
 
@@ -91,7 +118,7 @@ const Chat = (props) => {
             <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} chats={chats} selectedChatIndex={selectedChat}/>
             { newChatFormVisible ? null : <ChatView chat={chats[selectedChat]}/> }
             { selectedChat !== null && !newChatFormVisible ? <ChatInput submitMessage={submitMessage} messageRead={messageRead} /> : null }
-            { newChatFormVisible ? <NewChatForm /> : null }
+            { newChatFormVisible ? <NewChatForm newChatSubmit={newChatSubmit} goToExistingChat={goToExistingChat} /> : null }
         </>
     )
 }

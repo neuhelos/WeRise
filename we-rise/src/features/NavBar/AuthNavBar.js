@@ -107,7 +107,7 @@ const NavBar = () => {
 
     return (
       <>
-      <AppBar position="sticky" className={classes.root}>
+      <AppBar position={'sticky'} className={classes.root}>
         <Toolbar>
           <Typography className={classes.title} variant="h2" noWrap onClick={handleScrollToTop}>
             WeRise
