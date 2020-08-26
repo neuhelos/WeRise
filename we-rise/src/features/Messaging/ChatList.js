@@ -13,8 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import NotificationImportant from '@material-ui/icons/NotificationImportant';
-
+import NotificationsTwoToneIcon from '@material-ui/icons/NotificationsTwoTone';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,17 +47,18 @@ const useStyles = makeStyles((theme) => ({
 const ChatList = ( props ) => {
     
     const currentUser = useSelector( state => state.currentUserSession.uid )
+    const chats = useSelector (state => state.chats)
 
     const classes = useStyles()
     
 
     useEffect ( () => {
-    }, [props.chats])
+    }, [chats])
 
     const currentUserIsLatestSender = (chat) => chat.messages[chat.messages.length-1].sender === currentUser
 
 
-    let chats = props.chats.map( (chat, index) => {
+    let chatList = chats.map( (chat, index) => {
         return (
             <div key={index} id={index}>
                 <ListItem className={classes.listItem} selected={props.selectedChatIndex === index} 
@@ -79,7 +79,7 @@ const ChatList = ( props ) => {
                     { 
                         chat.receiverHasRead === false && !currentUserIsLatestSender(chat) ? 
                         <ListItemIcon>
-                            <NotificationImportant className={classes.unreadMessage}/>
+                            <NotificationsTwoToneIcon className={classes.unreadMessage}/>
                         </ListItemIcon>
                         : null
                     }
@@ -93,7 +93,7 @@ const ChatList = ( props ) => {
         <Grid className={classes.root} container display="flex" direction="column" justify="flex-start" alignItems="flex-start">
             <Button className={classes.button} variant='contained' fullWidth onClick={props.newChat}>NEW CHAT</Button>
             <List className={classes.list}>
-                { !props.chats.length ? null : chats}
+                { chatList.length ? null : chatList }
             </List>
         </Grid>
     )

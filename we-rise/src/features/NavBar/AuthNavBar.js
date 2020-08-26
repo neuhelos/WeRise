@@ -55,10 +55,12 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  badges: {
+  badge: {
       height: '2rem',
       minWidth: '2rem',
-      fontSize: '1.5rem'
+      fontSize: '1.5rem',
+      background: '#36386D',
+      border: 'solid 2px #FFFFFF'
   }
 }));
 
@@ -105,6 +107,11 @@ const NavBar = () => {
       window.scrollTo({top: 0, behavior: 'smooth'});     
     }
 
+
+    const chats = useSelector (state => state.chats)
+    let unreadCount = chats.filter(chat => !chat.receiverHasRead).length
+
+
     return (
       <>
       <AppBar position={'sticky'} className={classes.root}>
@@ -121,9 +128,9 @@ const NavBar = () => {
             </Tooltip>
               <Tooltip title="Instant Messaging">
               <IconButton className={classes.iconButton}  aria-label="show 4 new mails" color="inherit" onClick={navMessaging} >
-                {/* <Badge badgeContent={4} color="secondary" classes={{ badge: classes.badges }}> */}
+                <Badge badgeContent={unreadCount} classes={{ badge: classes.badge }} overlap='circle' showZero>
                   <MailIcon style={{ fontSize: 50 }} />
-                {/* </Badge> */}
+                </Badge>
               </IconButton>
             </Tooltip>
             {/* <IconButton aria-label="show 17 new notifications" color="inherit">
@@ -131,14 +138,14 @@ const NavBar = () => {
                 <NotificationsIcon style={{ fontSize: 60 }} />
               </Badge>
             </IconButton> */}
-            <Tooltip title="Profile">
-              <IconButton className={classes.iconButton}  aria-label="account of current user" onClick={navProfile} color="inherit" >
-                <AccountCircle style={{ fontSize: 50 }} />
-              </IconButton>
-            </Tooltip>
             <Tooltip title="Add Workshop">
               <IconButton className={classes.iconButton}  edge="end" aria-label="Add Workshop" onClick={toggleModal} color="inherit" >
                 <AddBoxIcon style={{ fontSize: 50 }} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Profile">
+              <IconButton className={classes.iconButton}  aria-label="account of current user" onClick={navProfile} color="inherit" >
+                <AccountCircle style={{ fontSize: 50 }} />
               </IconButton>
             </Tooltip>
             <Tooltip title="Sign Out">

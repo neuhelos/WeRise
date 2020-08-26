@@ -20,7 +20,6 @@ const Chat = (props) => {
 
     const [selectedChat, setSelectedChat] = useState(null)
     const [newChatFormVisible, setNewChatFormVisible] = useState(false)
-    //const [chats, setChats] = useState([])
 
 
     const handleNewChat = () => {
@@ -48,8 +47,6 @@ const Chat = (props) => {
     useEffect ( () => {
         fetchChats()
     }, [])
-
-    let unreadCount = chats.filter(chat => !chat.receiverHasRead).length
 
 
     const clickedChatNotSender = (chatIndex) => chats[chatIndex].messages[chats[chatIndex].messages.length-1].sender !== currentUser
@@ -120,7 +117,7 @@ const Chat = (props) => {
 
     return (
         <>
-            <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} chats={chats} selectedChatIndex={selectedChat}/>
+            <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatIndex={selectedChat}/>
             { newChatFormVisible ? null : <ChatView chat={chats[selectedChat]}/> }
             { selectedChat !== null && !newChatFormVisible ? <ChatInput submitMessage={submitMessage} messageRead={messageRead} /> : null }
             { newChatFormVisible ? <NewChatForm newChatSubmit={newChatSubmit} goToExistingChat={goToExistingChat} /> : null }

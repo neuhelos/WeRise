@@ -1,4 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
+
+import { makeStyles } from '@material-ui/core/styles'
+
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,9 +13,24 @@ import MailIcon from '@material-ui/icons/Mail';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
+
+const useStyles = makeStyles((theme) => ({
+  badge: {
+    fontWeight: 700,
+    color: '#FFFFFF',
+    border: 'solid 1px #FFFFFF',
+    background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)'
+  }
+}));
+
 const MobileNavMenu = ({mobileMoreAnchorEl, handleMobileMenuClose, nav, toggleModal}) => {
   
+  const classes = useStyles()
+
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const chats = useSelector (state => state.chats)
+  let unreadCount = chats.filter(chat => !chat.receiverHasRead).length
 
   return (
     <Menu
@@ -35,21 +54,11 @@ const MobileNavMenu = ({mobileMoreAnchorEl, handleMobileMenuClose, nav, toggleMo
       </MenuItem>
       <MenuItem onClick={nav.navMessaging}>
         <IconButton aria-label="Insant Messaging" color="inherit">
-          {/* <Badge badgeContent={4} color="secondary"> */}
+          <Badge badgeContent={unreadCount} classes={{ badge: classes.badge }} showZero>
             <MailIcon />
-          {/* </Badge> */}
+          </Badge>
         </IconButton>
         <p>Instant Chat</p>
-      </MenuItem>
-      <MenuItem onClick={nav.navProfile}>
-        <IconButton
-          aria-label="User Profile"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
       </MenuItem>
       <MenuItem onClick={toggleModal}>
         <IconButton
@@ -60,6 +69,16 @@ const MobileNavMenu = ({mobileMoreAnchorEl, handleMobileMenuClose, nav, toggleMo
           <AddBoxIcon />
         </IconButton>
         <p>Add Workshop</p>
+      </MenuItem>
+      <MenuItem onClick={nav.navProfile}>
+        <IconButton
+          aria-label="User Profile"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>Profile</p>
       </MenuItem>
       <MenuItem onClick={nav.signout}>
         <IconButton 
