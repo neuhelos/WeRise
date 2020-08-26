@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import firebase, { firestore } from '../../Utilities/firebase'
 
 //import { fetchChats } from './ChatSlice'
@@ -14,7 +14,6 @@ import Grid from '@material-ui/core/Grid';
 
 const Chat = (props) => {
     
-    const dispatch = useDispatch()
     const currentUser = useSelector( state => state.currentUserSession.uid )
     const chats = useSelector (state => state.chats)
 
@@ -32,7 +31,7 @@ const Chat = (props) => {
         setNewChatFormVisible(false)
         setSelectedChat(chatIndex);
     }
-    
+
 
     const clickedChatNotSender = (chatIndex) => chats[chatIndex].messages[chats[chatIndex].messages.length-1].sender !== currentUser
     

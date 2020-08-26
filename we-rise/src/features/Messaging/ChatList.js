@@ -89,7 +89,6 @@ const ChatList = ( props ) => {
         )
     })
 
-    debugger
 
     return (
         <Grid className={classes.root} container display="flex" direction="column" justify="flex-start" alignItems="flex-start">

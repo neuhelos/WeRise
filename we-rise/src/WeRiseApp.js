@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { Switch } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import firebase from './Utilities/firebase'
 
 import { setCurrentUser } from './features/Authentication/AuthenticationSlice'
 import { getFirebaseIdToken } from './Utilities/firebaseFunctions'
-import firebase, { firestore } from './Utilities/firebase'
-import { chatsStore } from './features/Messaging/ChatSlice'
 
 import AuthNavBar from './features/NavBar/AuthNavBar'
 import LandingPage from './features/Pages/LandingPage'
@@ -33,7 +32,6 @@ const WeRiseApp = () => {
         getFirebaseIdToken().then(token => {
             dispatch(setCurrentUser({email, uid, token}))
         })
-        await fetchChats(uid)
     } else {
         dispatch(setCurrentUser(null))
     }
@@ -44,15 +42,6 @@ const WeRiseApp = () => {
       return authStateObserver
   }, []);
 
-  const fetchChats = async (currentUser) => {
-    await firestore
-    .collection('chats')
-    .where('users', 'array-contains', currentUser)
-    .onSnapshot( async (res) => {
-        const chats = res.docs.map(doc => doc.data())
-        await dispatch(chatsStore(chats))
-    })
-  }
 
   return (
 

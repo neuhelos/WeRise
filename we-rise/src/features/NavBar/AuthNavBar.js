@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { firestore } from '../../Utilities/firebase'
+import { chatsStore } from '../Messaging/ChatSlice'
+
 import { makeStyles } from '@material-ui/core/styles';
 import { signOut } from '../../Utilities/firebaseFunctions'
 
-import { useSelector } from 'react-redux'
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -81,7 +85,7 @@ const NavBar = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
   
-
+  const dispatch = useDispatch()
   const history = useHistory()
   
   const navMessaging = () => {
@@ -101,15 +105,32 @@ const NavBar = () => {
     history.push("/")
   }
 
-    const [open , setOpen] = useState(false)
-    const toggleModal = () => {
-        handleMobileMenuClose()
-        setOpen(!open)
-    }
+  const [open , setOpen] = useState(false)
+  const toggleModal = () => {
+      handleMobileMenuClose()
+      setOpen(!open)
+  }
 
-    const handleScrollToTop = () => {
-      window.scrollTo({top: 0, behavior: 'smooth'});     
-    }
+  const handleScrollToTop = () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});     
+  }
+
+  const fetchChats = async () => {
+    await firestore
+    .collection('chats')
+    .where('users', 'array-contains', currentUser)
+    .onSnapshot( async (res) => {
+        const chats = res.docs.map(doc => doc.data())
+        await dispatch(chatsStore(chats))
+    })
+  }
+
+  useEffect( () => {
+    let isMounted = true
+    if(isMounted)fetchChats()
+    return () => isMounted = false
+  }, []);
+
 
   const chats = useSelector (state => state.chats)
   let unreadCount = chats.filter( (chat, index) => !chat.receiverHasRead && chat.messages[chats[index].messages.length-1].sender !== currentUser).length

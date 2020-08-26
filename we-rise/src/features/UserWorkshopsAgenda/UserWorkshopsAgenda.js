@@ -49,7 +49,7 @@ const UserWorkshopsAgenda = () => {
     const dispatch = useDispatch();
 
     useEffect ( () => {
-        let isMounted= true
+        let isMounted = true
         if(isMounted) dispatch(fetchMyWorkshops())
         return () => isMounted = false
     }, [])

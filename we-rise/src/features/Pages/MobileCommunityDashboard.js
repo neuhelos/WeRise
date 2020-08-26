@@ -8,7 +8,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box';
 
 import WorkshopFeed from '../WorkshopFeed/WorkshopFeed'
 import WorkshopFeedSearchForm from '../WorkshopFeed/WorkshopFeedSearchForm'
@@ -88,7 +87,7 @@ const MobileCommunityDashboard = () => {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" color="default" className={classes.tabBar}>
+            <AppBar position="sticky" color="default" className={classes.tabBar}>
                 <Tabs
                     className={classes.tabBar}
                     value={value}
