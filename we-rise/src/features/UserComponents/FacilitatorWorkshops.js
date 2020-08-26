@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
 import { apiURL } from '../../Utilities/apiURL';
@@ -22,9 +23,11 @@ const useStyles = makeStyles((theme) => ({
 const FacilitatorWorkshops = () => {
     const classes = useStyles();
     const currentUser = useSelector( state => state.currentUserSession.uid );
-    let user_id = currentUser;
     const [UserCreatedWorkshops, setUCWorkshops] = useState([]);
-    const [UserPastCreatedWorkshops, setUPCWorkshops] = useState([]);
+    const [UserPastCreatedWorkshops, setUPCWorkshops] = useState([]); 
+    const params = useParams();
+    let user_id = params.id;
+
 
     const getWorkshops = async() => {
         try{

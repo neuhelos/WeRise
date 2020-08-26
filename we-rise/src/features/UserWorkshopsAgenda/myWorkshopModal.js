@@ -53,7 +53,7 @@ const MyWorkshopModal = ({ handleCloseModal, workshop }) => {
             <img className={classes.image} src={workshopImage} alt="workshop.title"/>
             {/* {currentDate === date? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}> Join workshop </Button>: <p>Date: {date}</p>} */}
             <Grid className={classes.root} container display="flex" direction="row" justify="space-evenly" alignItems="center">
-                <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}>Join VideoChat</Button>
+                <Button variant="contained" color="primary" type="submit" onClick = {() => history.push(`/videoConference/${workshop.user_id}${workshop.workshop_id}`)}>Join VideoChat</Button>
                 <Button variant="contained" color="primary" onClick={handleCloseModal}>Close</Button>
                 <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister</Button> 
             </Grid>
