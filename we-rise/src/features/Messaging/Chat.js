@@ -32,22 +32,7 @@ const Chat = (props) => {
         setNewChatFormVisible(false)
         setSelectedChat(chatIndex);
     }
-
     
-    const fetchChats = async () => {
-        await firestore
-        .collection('chats')
-        .where('users', 'array-contains', currentUser)
-        .onSnapshot( async (res) => {
-            const chats = res.docs.map(doc => doc.data())
-            await dispatch(chatsStore(chats))
-        })
-    }
-    
-    useEffect ( () => {
-        fetchChats()
-    }, [])
-
 
     const clickedChatNotSender = (chatIndex) => chats[chatIndex].messages[chats[chatIndex].messages.length-1].sender !== currentUser
     

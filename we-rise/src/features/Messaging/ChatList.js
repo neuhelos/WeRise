@@ -89,11 +89,13 @@ const ChatList = ( props ) => {
         )
     })
 
+    debugger
+
     return (
         <Grid className={classes.root} container display="flex" direction="column" justify="flex-start" alignItems="flex-start">
             <Button className={classes.button} variant='contained' fullWidth onClick={props.newChat}>NEW CHAT</Button>
             <List className={classes.list}>
-                { chatList.length ? null : chatList }
+                { !chatList.length ? null : chatList }
             </List>
         </Grid>
     )

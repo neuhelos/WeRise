@@ -23,14 +23,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const MobileNavMenu = ({mobileMoreAnchorEl, handleMobileMenuClose, nav, toggleModal}) => {
+const MobileNavMenu = ({mobileMoreAnchorEl, handleMobileMenuClose, nav, toggleModal, unreadCount}) => {
   
   const classes = useStyles()
+  const currentUser = useSelector( state => state.currentUserSession.uid )
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const chats = useSelector (state => state.chats)
-  let unreadCount = chats.filter(chat => !chat.receiverHasRead).length
 
   return (
     <Menu

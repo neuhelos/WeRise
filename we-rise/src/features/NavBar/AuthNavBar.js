@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import { signOut } from '../../Utilities/firebaseFunctions'
+
+import { useDispatch, useSelector } from 'react-redux'
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,10 +17,11 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip'
-import {useSelector} from 'react-redux'
 import Modal from '../BaseComponents/Modal'
 import AddWorkshop from './AddWorkshop'
 import MobileNavMenu from './MobileNavMenu'
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = () => {
+
   const currentUser = useSelector( state => state.currentUserSession.uid )
   const classes = useStyles();
 
@@ -107,12 +111,11 @@ const NavBar = () => {
       window.scrollTo({top: 0, behavior: 'smooth'});     
     }
 
+  const chats = useSelector (state => state.chats)
+  let unreadCount = chats.filter( (chat, index) => !chat.receiverHasRead && chat.messages[chats[index].messages.length-1].sender !== currentUser).length
 
-    const chats = useSelector (state => state.chats)
-    let unreadCount = chats.filter(chat => !chat.receiverHasRead).length
 
-
-    return (
+  return (
       <>
       <AppBar position={'sticky'} className={classes.root}>
         <Toolbar>
@@ -167,7 +170,7 @@ const NavBar = () => {
           </div>
         </Toolbar>
       </AppBar>
-      <MobileNavMenu mobileMoreAnchorEl={mobileMoreAnchorEl} handleMobileMenuClose={handleMobileMenuClose} nav={{navProfile, navDashboard, navMessaging, signout}} toggleModal={toggleModal}/>
+      <MobileNavMenu mobileMoreAnchorEl={mobileMoreAnchorEl} handleMobileMenuClose={handleMobileMenuClose} nav={{navProfile, navDashboard, navMessaging, signout}} toggleModal={toggleModal} unreadCount={unreadCount}/>
     
       <Modal open={open} toggleModal={toggleModal}>
         <AddWorkshop handleCloseModal={toggleModal} />
