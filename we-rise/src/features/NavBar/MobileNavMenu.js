@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 const MobileNavMenu = ({mobileMoreAnchorEl, handleMobileMenuClose, nav, toggleModal, unreadCount}) => {
   
   const classes = useStyles()
-  const currentUser = useSelector( state => state.currentUserSession.uid )
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
