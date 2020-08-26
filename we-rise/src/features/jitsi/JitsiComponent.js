@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 import Jitsi from 'react-jitsi'
 
 import '../../styling/jitsi.css'
 
         
         const JedaiVideoConfig = () => {
+            const params = useParams();
+            const currentUser = useSelector( state => state.currentUserSession.email );
+            debugger
             const handleAPI = JitsiMeetAPI => {
               JitsiMeetAPI.executeCommand("toggleVideo");
             };
@@ -15,8 +20,8 @@ import '../../styling/jitsi.css'
                 <Jitsi classname ="videoComponent"
                   domain="meet.jit.si"
                   onAPILoad={handleAPI}
-                  roomName={"jitseexx123"}
-                  displayName={workshopTitle}
+                  roomName={`WeRiseWorkshop${params.workshopid}`}
+                  displayName={currentUser}
                   interfaceConfig={interfaceConfig}
                   config={config}
                 />

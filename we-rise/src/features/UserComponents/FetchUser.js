@@ -11,6 +11,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import { fetchUserById } from "../../Utilities/FetchFunctions";
 import {  useRouteMatch } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -44,6 +45,9 @@ const FetchUser = () => {
   const [bio, setBio] = useState("");
   const [pic, setPic] = useState("");
   const match = useRouteMatch("/Profile/:id");
+
+  
+
   const fetchUser = async (currentUser) => {
     let res = await fetchUserById(currentUser);
     setProfile(res);
@@ -54,9 +58,11 @@ const FetchUser = () => {
     setBio(res[0].bio);
     setPic(res[0].user_pic);
   };
+
   useEffect(() => {
     fetchUser(match.params.id);
   }, [currentUser, match.params.id]);
+
   return (
     <div className="userProfile">
       <Paper className={classes.paper}>

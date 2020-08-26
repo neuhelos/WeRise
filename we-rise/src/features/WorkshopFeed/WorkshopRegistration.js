@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom'
 
 import axios from 'axios'
 
@@ -163,7 +164,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
       return (
           <Grid className={classes.root} container display="flex" direction="column" justify="space-evenly" alignItems="center">
               <Typography variant='h6'>{workshop.title}</Typography>
-              <Typography variant='subtitle1'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
+              <Typography variant='subtitle1' >  Facilitator: {`${workshop.firstn} ${workshop.lastn}` }</Typography>
               <Typography variant='body2'>Description: {workshop.descriptions}</Typography>
               <img className={classes.image} src={workshopImage} alt={workshop.title}/>
               {workshop.participants !== workshop.workshop_count ?
