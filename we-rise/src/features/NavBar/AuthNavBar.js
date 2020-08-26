@@ -15,7 +15,7 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip'
-
+import {useSelector} from 'react-redux'
 import Modal from '../BaseComponents/Modal'
 import AddWorkshop from './AddWorkshop'
 import MobileNavMenu from './MobileNavMenu'
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = () => {
-
+  const currentUser = useSelector( state => state.currentUserSession.uid )
   const classes = useStyles();
 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -86,7 +86,7 @@ const NavBar = () => {
   }
   const navProfile = () => {
     handleMobileMenuClose()
-    history.push("/Profile/:id")
+    history.push(`/Profile/${currentUser}`)
   }
   const navDashboard = () => {
     handleMobileMenuClose()
