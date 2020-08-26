@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import firebase, { firestore } from '../../Utilities/firebase'
 
 //import { fetchChats } from './ChatSlice'
@@ -14,13 +14,11 @@ import Grid from '@material-ui/core/Grid';
 
 const Chat = (props) => {
     
-    const dispatch = useDispatch()
     const currentUser = useSelector( state => state.currentUserSession.uid )
     const chats = useSelector (state => state.chats)
 
     const [selectedChat, setSelectedChat] = useState(null)
     const [newChatFormVisible, setNewChatFormVisible] = useState(false)
-    //const [chats, setChats] = useState([])
 
 
     const handleNewChat = () => {
@@ -33,23 +31,6 @@ const Chat = (props) => {
         setNewChatFormVisible(false)
         setSelectedChat(chatIndex);
     }
-
-    
-    const fetchChats = async () => {
-        await firestore
-        .collection('chats')
-        .where('users', 'array-contains', currentUser)
-        .onSnapshot( async (res) => {
-            const chats = res.docs.map(doc => doc.data())
-            await dispatch(chatsStore(chats))
-        })
-    }
-    
-    useEffect ( () => {
-        fetchChats()
-    }, [])
-
-    let unreadCount = chats.filter(chat => !chat.receiverHasRead).length
 
 
     const clickedChatNotSender = (chatIndex) => chats[chatIndex].messages[chats[chatIndex].messages.length-1].sender !== currentUser
@@ -120,7 +101,7 @@ const Chat = (props) => {
 
     return (
         <>
-            <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} chats={chats} selectedChatIndex={selectedChat}/>
+            <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatIndex={selectedChat}/>
             { newChatFormVisible ? null : <ChatView chat={chats[selectedChat]}/> }
             { selectedChat !== null && !newChatFormVisible ? <ChatInput submitMessage={submitMessage} messageRead={messageRead} /> : null }
             { newChatFormVisible ? <NewChatForm newChatSubmit={newChatSubmit} goToExistingChat={goToExistingChat} /> : null }

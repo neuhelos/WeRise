@@ -110,7 +110,7 @@ const NewChatForm = ( props ) => {
                         <InputLabel htmlFor='new-chat-username'>
                             Enter A User
                         </InputLabel>
-                        <Input id='new-chat-username' required className={classes.input} autofocus {...userSearch} />
+                        <Input id='new-chat-username' required className={classes.input} autoFocus {...userSearch} />
                     </FormControl> 
                     <FormControl fullWidth>
                     <InputLabel htmlFor='new-chat-message'>

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Switch } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-
 import firebase from './Utilities/firebase'
+
 import { setCurrentUser } from './features/Authentication/AuthenticationSlice'
 import { getFirebaseIdToken } from './Utilities/firebaseFunctions'
 
@@ -41,6 +41,7 @@ const WeRiseApp = () => {
       const authStateObserver = firebase.auth().onAuthStateChanged(userSession)
       return authStateObserver
   }, []);
+
 
   return (
 
