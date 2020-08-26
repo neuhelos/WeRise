@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -75,7 +75,7 @@ const MobileCommunityDashboard = () => {
 
     const classes = useStyles()
     const theme = useTheme()
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);

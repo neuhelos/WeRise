@@ -7,14 +7,13 @@ import registeredWorkshopFeedReducer from '../features/UserWorkshopsAgenda/Regis
 import chatsReducer from '../features/Messaging/ChatSlice'
 
 export default configureStore({
-  middleware: [
-    logger, ...getDefaultMiddleware()
-
-  ],
   reducer: {
     currentUserSession: authenticationReducer,
     workshopFeed: workshopFeedReducer,
     registeredWorkshops: registeredWorkshopFeedReducer,
     chats: chatsReducer
   },
+  middleware: [
+    ...getDefaultMiddleware(), logger
+  ],
 });

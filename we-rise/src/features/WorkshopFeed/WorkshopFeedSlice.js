@@ -12,7 +12,7 @@ export const fetchUpcomingWorkshops = createAsyncThunk(
     'get/fetchUpcomingWorkshops',
     async ( payload , { getState }) => {
         try {
-            const { uid } = getState().currentUserSession
+            const { uid } = await getState().currentUserSession
             const res = await axios.get(`${apiURL()}/workshops?id=${uid}`)
             return res.data.payload
         } catch (error) {

@@ -126,11 +126,8 @@ const NavBar = () => {
   }
 
   useEffect( () => {
-    let isMounted = true
-    if(isMounted)fetchChats()
-    return () => isMounted = false
+    fetchChats()
   }, []);
-
 
   const chats = useSelector (state => state.chats)
   let unreadCount = chats.filter( (chat, index) => !chat.receiverHasRead && chat.messages[chats[index].messages.length-1].sender !== currentUser).length

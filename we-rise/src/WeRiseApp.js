@@ -26,7 +26,7 @@ const WeRiseApp = () => {
 
   const dispatch = useDispatch()
 
-  const userSession = async user => {
+  const userSession = user => {
     if(user) {
         const {email, uid} = user
         getFirebaseIdToken().then(token => {

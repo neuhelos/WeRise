@@ -15,7 +15,6 @@ const RecentlyPostedWorkshops = () => {
         try{
             let res = await axios.get(`${apiURL()}/recentPosted/`)
             setRecentlyPosted(res.data.payload)
-            
         } catch (err){
             console.log(err)
         }
@@ -31,10 +30,8 @@ const RecentlyPostedWorkshops = () => {
     const classes = useStyles();
 
     useEffect( () => {
-        let isMounted = true
-        if(isMounted) fetchRecentlyPosted();
-        return () => isMounted = false   
-    }, []);
+        fetchRecentlyPosted();  
+    }, [recentlyPosted]);
 
     let recentlyPostedWorkshops =  recentlyPosted.map(workshop => {
         return <WorkshopFeedCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>

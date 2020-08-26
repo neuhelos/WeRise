@@ -49,9 +49,7 @@ const UserWorkshopsAgenda = () => {
     const dispatch = useDispatch();
 
     useEffect ( () => {
-        let isMounted = true
-        if(isMounted) dispatch(fetchMyWorkshops())
-        return () => isMounted = false
+        dispatch(fetchMyWorkshops())
     }, [])
 
     let workshopsReq = regworkshopFeed.map(workshop => {
