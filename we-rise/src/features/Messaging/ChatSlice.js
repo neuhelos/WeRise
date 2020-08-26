@@ -1,55 +1,37 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import firebase, { firestore } from '../../Utilities/firebase'
+//import { firestore } from '../../Utilities/firebase'
 
-onst fetchChats = async () => {
-    await firestore
-    .collection('chats')
-    .where('users', 'array-contains', currentUser)
-    .onSnapshot( async (res) => {
-        const chats = res.docs.map(doc => doc.data())
-        await setChats(chats)
-    })
-}
+// export const fetchChats = createAsyncThunk(
+//     'get/fetchChats',
+//     async ( payload , { getState }) => {
+//         try {
+//             const { uid } = getState().currentUserSession
+//             let chats
+//             await firestore
+//                 .collection('chats')
+//                 .where('users', 'array-contains', uid)
+//                 .onSnapshot( (res) => {
+//                     chats = return res.docs.map(doc => {doc.data()})
+//                 })
+//             debugger
+//             return chats
+//         } catch (error) {
+//             throw Error(error)
+//         }
+//     }
+// )
 
-
-export const fetchUpcomingWorkshops = createAsyncThunk(
-    'get/fetchUpcomingWorkshops',
-    async ( payload , { getState }) => {
-        try {
-            const { uid } = getState().currentUserSession
-            const res = await axios.get(`${apiURL()}/workshops?id=${uid}`)
-            return res.data.payload
-        } catch (error) {
-            throw Error(error)
-        }
-    }
-)
-
-export const fetchWorkshopSearch = createAsyncThunk(
-    'post/fetchWorkshopSearch',
-    async (search, {getState}) => {
-        try {
-            const { uid } = getState().currentUserSession
-            search['id'] = uid
-            const res = await axios.post(`${apiURL()}/workshops/search`,
-                search
-            )
-            return res.data.payload
-        } catch (error) {
-            throw Error(error)
-        }
-    }
-)
-
-export const ChatsSlice = createSlice( {
+export const chatsSlice = createSlice( {
     name: "chats",
     initialState: [],
     reducers: {
+        chatsStore: (state, action ) => action.payload
     },
     extraReducers: {
-        
+        //[fetchChats.fulfilled]: (state, action) => action.payload
     }
 })
 
 export const selectUserChats = state => state.chats
-export default ChatsSlice.reducer 
+export const { chatsStore } = chatsSlice.actions
+export default chatsSlice.reducer 

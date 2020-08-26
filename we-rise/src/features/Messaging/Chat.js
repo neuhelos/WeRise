@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import firebase, { firestore } from '../../Utilities/firebase'
 
-import Grid from '@material-ui/core/Grid';
+//import { fetchChats } from './ChatSlice'
+import { chatsStore } from './ChatSlice'
 
 import ChatList from './ChatList'
 import ChatView from './ChatView'
 import ChatInput from './ChatInput'
 import NewChatForm from './NewChatForm'
 
+import Grid from '@material-ui/core/Grid';
+
 const Chat = (props) => {
     
+    const dispatch = useDispatch()
     const currentUser = useSelector( state => state.currentUserSession.uid )
-    
+    const chats = useSelector (state => state.chats)
+
     const [selectedChat, setSelectedChat] = useState(null)
     const [newChatFormVisible, setNewChatFormVisible] = useState(false)
-    const [chats, setChats] = useState([])
+    //const [chats, setChats] = useState([])
 
 
     const handleNewChat = () => {
@@ -36,7 +41,7 @@ const Chat = (props) => {
         .where('users', 'array-contains', currentUser)
         .onSnapshot( async (res) => {
             const chats = res.docs.map(doc => doc.data())
-            await setChats(chats)
+            await dispatch(chatsStore(chats))
         })
     }
     
