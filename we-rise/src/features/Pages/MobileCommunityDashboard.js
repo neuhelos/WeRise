@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
     tabBar: {
         backgroundColor: '#F5F5F5',
-        top: '6rem'
+        top: '6rem',
     },
     paper: {
         width: '100%',
@@ -88,7 +88,7 @@ const MobileCommunityDashboard = () => {
 
     return (
         <div className={classes.root}>
-            <AppBar position="sticky" color="default" className={classes.tabBar}>
+            <AppBar position="static" color="default" className={classes.tabBar}>
                 <Tabs
                     className={classes.tabBar}
                     value={value}
@@ -97,6 +97,7 @@ const MobileCommunityDashboard = () => {
                     textColor="primary"
                     variant='fullWidth'
                     aria-label="mobiledashboard-tab-bar"
+                    TabIndicatorProps={{style: { height: '0.5rem' }}}
                 >
                     <Tab label="Workshop Search" {...a11yProps(0)} />
                     <Tab label="Workshops I'm Attending" {...a11yProps(1)} />

@@ -66,7 +66,7 @@ const AddWorkshop = ({handleCloseModal}) => {
 
     const classes = useStyles();
 
-    const currentUser = useSelector( state => state.currentUserSession )
+    const currentUser = useSelector( state => state.currentUserSession.uid )
 
     const title = useInput("")
     const description = useInput("")
@@ -142,7 +142,7 @@ const AddWorkshop = ({handleCloseModal}) => {
         try {
             let res = await axios.post(`${apiURL()}/workshops`, {
                 id: id,
-                user_id: currentUser.uid,
+                user_id: currentUser,
                 title: title.value,
                 description: description.value,
                 start_time: `${dateFormatter(selectedDate)} ${time[0]}`,
