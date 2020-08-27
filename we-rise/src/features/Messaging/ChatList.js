@@ -14,16 +14,21 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import NotificationsTwoToneIcon from '@material-ui/icons/NotificationsTwoTone';
+import Paper from '@material-ui/core/Paper'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: theme.palette.background.paper,
+        width: '100%',
+        backgroundColor: '#282828',
         '& *': {
             fontFamily: 'audiowide'
-        }
+        },
+        height: '100%'
     },
     list: {
-        width: '100%'
+        width: '100%',
+        backgroundColor: '#F5F5F5'
     },
     listItem: {
         cursor: 'pointer',
@@ -88,7 +93,7 @@ const ChatList = ( props ) => {
 
 
     return (
-        <Grid className={classes.root} container display="flex" direction="column" justify="flex-start" alignItems="flex-start">
+        <Grid container className={classes.root} display="flex" direction="column" justify="flex-start" alignItems="center">
             <Button className={classes.button} variant='contained' fullWidth onClick={props.newChat}>NEW CHAT</Button>
             <List className={classes.list}>
                 { !chatList.length ? null : chatList }

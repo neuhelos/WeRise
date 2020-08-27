@@ -5,16 +5,19 @@ import firebase, { firestore } from '../../Utilities/firebase'
 
 import ChatList from './ChatList'
 import ChatView from './ChatView'
-import ChatInput from './ChatInput'
 import NewChatForm from './NewChatForm'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
         root: {
             width: '100%',
+            flex: 1
+        },
+        container: {
+            width: '100%',
+            height: '100%',
         }
     })
 )
@@ -109,15 +112,13 @@ const Chat = (props) => {
 
 
     return (
-        <Grid container item className={classes.root} display="flex" direction="row" justify="center" alignItems="center" xs={12}>
-            <Grid container item className={classes.root} display="flex" direction="row" justify="center" alignItems="center" md={4}>
+        <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
+            <Grid item className={classes.container} md={5}>
                 <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatIndex={selectedChat}/> 
-                <Divider orientation="vertical" flexItem />
             </Grid>
-            <Grid container item className={classes.root} display="flex" direction="row" justify="center" alignItems="center" md={8}>
-                { newChatFormVisible ? null : <ChatView selectedChat={chats[selectedChat]} /> }
+            <Grid container item className={classes.container} display="flex" direction="row" justify="center" alignItems="flex-start" md={7}>
+                { newChatFormVisible || selectedChat === null ? null : <ChatView selectedChat={chats[selectedChat]} submitMessage={submitMessage} messageRead={messageRead}/> }
                 { newChatFormVisible ? <NewChatForm newChatSubmit={newChatSubmit} goToExistingChat={goToExistingChat} /> : null }
-                { selectedChat !== null && !newChatFormVisible ? <ChatInput submitMessage={submitMessage} messageRead={messageRead} /> : null }
             </Grid>
         </Grid>
     )

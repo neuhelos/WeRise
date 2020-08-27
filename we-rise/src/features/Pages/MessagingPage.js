@@ -19,9 +19,9 @@ const MessagingPage = ( ) => {
     const classes = useStyles()
 
     return (
-        <Grid className={classes.root} container display="flex" direction="row">
+        <>
             <Chat />
-        </Grid>
+        </>
     )
 }
 

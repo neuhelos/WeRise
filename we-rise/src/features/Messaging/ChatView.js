@@ -4,12 +4,18 @@ import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
+import ChatInput from './ChatInput'
 
 const useStyles = makeStyles( theme => ({
 
+    root: {
+        width: '100%'
+    },
     content: {
         padding: theme.spacing(1),
-        overflowY: 'scroll',
+        maxHeight: '100%',
+        width: '100%',
+        overflow: 'scroll'
     },
     currentUserSent: {
         float: 'left',
@@ -46,7 +52,7 @@ const useStyles = makeStyles( theme => ({
     })
 );
 
-const ChatView = ( { selectedChat } ) => {
+const ChatView = ( { selectedChat, submitMessage, messageRead } ) => {
     
     const currentUser = useSelector( state => state.currentUserSession.uid )
 
@@ -85,14 +91,15 @@ const ChatView = ( { selectedChat } ) => {
 
 
     return (
-        <Grid container className={classes.root} display="flex" direction="column" justify="center" alignItems="center">
+        <div className={classes.root}>
             <div className={classes.chatHeader}>
                 Your Conversation with User
             </div>
             <div className={classes.content} id='chatview-container' >
                 {selectedChat === undefined ? <EmptyChatView /> : <ChatMessages /> }
             </div>
-        </Grid>
+            <ChatInput submitMessage={submitMessage} messageRead={messageRead} />
+        </div>
 
     )
 

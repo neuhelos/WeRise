@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import { useInput } from '../../Utilities/CustomHookery'
 
+import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -14,8 +15,9 @@ import { FormControl, InputLabel, Input, Button, Paper, Typography } from '@mate
 
 const useStyles = makeStyles((theme) => ({
 
-        main: {
-
+        root: {
+            width: '70%',
+            alignSelf: 'center'
         },
         paper: {
             padding: theme.spacing(2),
@@ -95,7 +97,7 @@ const NewChatForm = ( props ) => {
     }
 
     return (
-        <div className={classes.main}>
+        <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
             <Paper className={classes.paper}>
                 <Typography component='h1' variant='h5'>Send a Message</Typography>
                 <form className={classes.form} onSubmit={handleSubmitNewChat}>
@@ -121,7 +123,7 @@ const NewChatForm = ( props ) => {
                 </form>
 
             </Paper>
-        </div>
+        </Grid>
     )
 }
 
