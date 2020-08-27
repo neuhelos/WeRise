@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,26 +15,54 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import NotificationsTwoToneIcon from '@material-ui/icons/NotificationsTwoTone';
+import Paper from '@material-ui/core/Paper'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: theme.palette.background.paper,
-        left: '0',
-        width: '30%',
-        boxShadow: '0px 0px 2px black',
+        width: '100%',
+        height: '100%',
         '& *': {
             fontFamily: 'audiowide'
-        }
+        },
+    },
+    listContainer: {
+        width: '100%',
+        flex: 1,
+        backgroundColor: '#282828',
+        position: 'relative'
     },
     list: {
-        width: '100%'
+        width: '100%',
+        backgroundColor: '#F5F5F5',
+        overflow: 'auto',
+        position: 'absolute'
     },
     listItem: {
         cursor: 'pointer',
-        color: 'black'
+        color: '#000000',
+        '&:hover': {
+            background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
+            color: '#FFFFFF'
+        },
+    },
+    selected: {
+        '&$selected':{
+            background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
+            color: '#FFFFFF',
+            '&:hover':{
+                background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
+                color: '#FFFFFF',
+            }
+        }
     },
     button: {
-        borderRadius: '0px'
+        backgroundColor: '#F89B29',
+        borderRadius: '0px',
+        color: '#FFFFFF',
+        '&:hover': {
+            backgroundColor: '#36386D'
+        }
     },
     unreadMessage: {
         color: 'red',
@@ -61,14 +90,14 @@ const ChatList = ( props ) => {
     let chatList = chats.map( (chat, index) => {
         return (
             <div key={index} id={index}>
-                <ListItem className={classes.listItem} selected={props.selectedChatIndex === index} 
+                <ListItem selected={props.selectedChatIndex === index} classes={{ root: classes.listItem, selected: classes.selected }}
                     onClick={() => {props.selectedChat(index)}}
                     alignItems='flex-start'
                     >
                     <ListItemAvatar>
                         <Avatar alt=''>USER</Avatar>
                     </ListItemAvatar>
-                    <ListItemText className={classes.listItem} primary='username'
+                    <ListItemText primary='username'
                         secondary={
                                 <Typography component='span'>
                                     {chat.messages[chat.messages.length-1].message.substring(0,30)}
@@ -91,11 +120,13 @@ const ChatList = ( props ) => {
 
 
     return (
-        <Grid className={classes.root} container display="flex" direction="column" justify="flex-start" alignItems="flex-start">
+        <Grid container className={classes.root} display="flex" direction="column" justify="flex-start" alignItems="center">
             <Button className={classes.button} variant='contained' fullWidth onClick={props.newChat}>NEW CHAT</Button>
-            <List className={classes.list}>
-                { !chatList.length ? null : chatList }
-            </List>
+            <Box component='div' className={classes.listContainer}>
+                <List className={classes.list}>
+                    { !chatList.length ? null : chatList }
+                </List>
+            </Box>
         </Grid>
     )
 }

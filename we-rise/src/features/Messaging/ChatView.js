@@ -2,22 +2,30 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+
+import ChatInput from './ChatInput'
 
 const useStyles = makeStyles( theme => ({
 
-    content: {
-        height: 'calc(100vh - 100px)',
-        overflow: 'scroll',
-        padding: '25px',
-        marginLeft: '300px',
-        boxSizing: 'border-box',
-        overflowY: 'scroll',
-        top: '50px',
-        width: '70%',
+    root: {
+        width: '100%',
+        height: '100%',
+        position: 'relative'
+    },
+    chatViewContainer: {
+        width: '100%',
+        height: '80%',
+        position: 'relative'
+    },
+    chatView: {
+        padding: theme.spacing(1),
+        width: '100%',
+        height: '100%',
+        overflow: 'auto',
         position: 'absolute'
     },
-
-    userSent: {
+    currentUserSent: {
         float: 'left',
         clear: 'both',
         padding: '20px',
@@ -30,7 +38,7 @@ const useStyles = makeStyles( theme => ({
         borderRadius: '10px'
     },
 
-    friendSent: {
+    peerSent: {
         float: 'right',
         clear: 'both',
         padding: '20px',
@@ -44,22 +52,21 @@ const useStyles = makeStyles( theme => ({
     },
 
     chatHeader: {
-        width: 'calc(100% - 301px)',
-        height: '50px',
         backgroundColor: '#344195',
-        position: 'fixed',
-        marginLeft: '301px',
         fontSize: '18px',
         textAlign: 'center',
         color: 'white',
-        paddingTop: '10px',
-        boxSizing: 'border-box'
-    }
-
+        width: '100%',
+        height: '10%',
+    },
+    chatInput: {
+        width: '100%',
+        height: '10%',
+    } 
     })
 );
 
-const ChatView = ( props ) => {
+const ChatView = ( { selectedChat, submitMessage, messageRead } ) => {
     
     const currentUser = useSelector( state => state.currentUserSession.uid )
 
@@ -74,7 +81,7 @@ const ChatView = ( props ) => {
 
     useEffect ( () => {
         chatScrollDown()
-    }, [props.chat])
+    }, [selectedChat])
 
 
     const EmptyChatView = () => {
@@ -87,9 +94,9 @@ const ChatView = ( props ) => {
 
     const ChatMessages = () => {
 
-        return props.chat.messages.map( (message, index) => {
+        return selectedChat.messages.map( (message, index) => {
             return (
-                <div key={index} className={message.sender === currentUser ? classes.userSent : classes.friendSent}>
+                <div key={index} className={message.sender === currentUser ? classes.currentUserSent : classes.peerSent}>
                     {message.message}
                 </div>
             )
@@ -98,15 +105,25 @@ const ChatView = ( props ) => {
 
 
     return (
-        <div>
-            <div className={classes.chatHeader}>
-                Your Conversation with User
-            </div>
-            <div className={classes.content} id='chatview-container' >
-                {props.chat === undefined ? <EmptyChatView /> : <ChatMessages /> }
-            </div>
+        <div className={classes.root}>
+            { selectedChat === undefined ? 
+                <EmptyChatView />
+            :
+            <>
+                <div className={classes.chatHeader}>
+                    Your Conversation with User
+                </div>
+                <div className={classes.chatViewContainer}>
+                    <div className={classes.chatView} id='chatview-container' >
+                        <ChatMessages />
+                    </div>
+                </div>
+                <div className={classes.chatInput}>
+                    <ChatInput submitMessage={submitMessage} messageRead={messageRead} />
+                </div>
+            </>
+            }
         </div>
-
     )
 
     // if(props.chat === undefined){

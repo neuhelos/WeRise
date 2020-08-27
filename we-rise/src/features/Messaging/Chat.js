@@ -2,18 +2,31 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import firebase, { firestore } from '../../Utilities/firebase'
 
-//import { fetchChats } from './ChatSlice'
-import { chatsStore } from './ChatSlice'
 
 import ChatList from './ChatList'
 import ChatView from './ChatView'
-import ChatInput from './ChatInput'
 import NewChatForm from './NewChatForm'
 
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+
+const useStyles = makeStyles((theme) => ({
+        root: {
+            width: '100%',
+            height: '100%',
+            //flex: 1,
+        },
+        container: {
+            width: '100%',
+            height: '100%',
+        }
+    })
+)
 
 const Chat = (props) => {
     
+    const classes = useStyles()
+
     const currentUser = useSelector( state => state.currentUserSession.uid )
     const chats = useSelector (state => state.chats)
 
@@ -100,12 +113,15 @@ const Chat = (props) => {
 
 
     return (
-        <>
-            <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatIndex={selectedChat}/>
-            { newChatFormVisible ? null : <ChatView chat={chats[selectedChat]}/> }
-            { selectedChat !== null && !newChatFormVisible ? <ChatInput submitMessage={submitMessage} messageRead={messageRead} /> : null }
-            { newChatFormVisible ? <NewChatForm newChatSubmit={newChatSubmit} goToExistingChat={goToExistingChat} /> : null }
-        </>
+        <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems='center'>
+            <Grid container item className={classes.container} md={5} direction="column" justify="flex-start" alignItems='center'>
+                <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatIndex={selectedChat}/> 
+            </Grid>
+            <Grid container item className={classes.container} md={7} direction="column" justify="flex-start" alignItems='center'>
+                { newChatFormVisible || selectedChat === null ? null : <ChatView selectedChat={chats[selectedChat]} submitMessage={submitMessage} messageRead={messageRead}/> }
+                { newChatFormVisible ? <NewChatForm newChatSubmit={newChatSubmit} goToExistingChat={goToExistingChat} /> : null }
+            </Grid>
+        </Grid>
     )
 }
 
