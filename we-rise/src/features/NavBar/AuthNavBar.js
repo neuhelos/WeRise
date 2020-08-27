@@ -46,6 +46,14 @@ const useStyles = makeStyles((theme) => ({
     // },
     }
   },
+  spacer: {
+    height: '6rem',
+    width: '100%',
+    marginBottom: theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      marginBottom: 0,
+    },
+  },
   iconButton: {
     margin: theme.spacing(1),
     //filter: 'drop-shadow(1px 2px 3px #36386D)'
@@ -146,8 +154,9 @@ const NavBar = () => {
 
 
   return (
-      <>
-      <AppBar position={'sticky'} className={classes.root}>
+      <div className={classes.spacer}>
+      <div className={classes.spacer}></div>
+      <AppBar position={'fixed'} className={classes.root}>
         <Toolbar>
           <Typography className={classes.title} variant="h2" noWrap onClick={handleScrollToTop}>
             WeRise
@@ -206,7 +215,7 @@ const NavBar = () => {
         <AddWorkshop handleCloseModal={toggleModal} />
       </Modal>
 
-    </>
+    </div>
   );
 }
 
