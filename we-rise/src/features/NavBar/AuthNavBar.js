@@ -89,16 +89,28 @@ const NavBar = () => {
   const history = useHistory()
   
   const navMessaging = () => {
-    handleMobileMenuClose()  
-    history.push("/Messaging")
+    handleMobileMenuClose()
+    if(window.location.pathname === `/Messaging`){
+      history.push(`/Messaging`)
+      history.goBack()
+    }  
+    history.push(`/Messaging`)
   }
   const navProfile = () => {
     handleMobileMenuClose()
+    if(window.location.pathname === `/Profile/${currentUser}`){
+      history.push(`/Profile/${currentUser}`)
+      history.goBack()
+    }
     history.push(`/Profile/${currentUser}`)
   }
   const navDashboard = () => {
     handleMobileMenuClose()
-    history.push("/CommunityDashboard")
+    if(window.location.pathname === `/CommunityDashboard`){
+      history.push(`/CommunityDashboard`)
+      history.goBack()
+    }
+    history.push(`/CommunityDashboard`)
   }
   const signout = () => {
     signOut()

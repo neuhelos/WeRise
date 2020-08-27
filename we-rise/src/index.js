@@ -9,9 +9,10 @@ import * as serviceWorker from './serviceWorker';
 
 import 'typeface-audiowide'
 
+
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router >
       <Provider store={store}>
         <WeRiseApp />
       </Provider>

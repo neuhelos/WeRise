@@ -106,19 +106,24 @@ const ChatView = ( { selectedChat, submitMessage, messageRead } ) => {
 
     return (
         <div className={classes.root}>
-            <div className={classes.chatHeader}>
-                Your Conversation with User
-            </div>
-            <div className={classes.chatViewContainer}>
-                <div className={classes.chatView} id='chatview-container' >
-                    {selectedChat === undefined ? <EmptyChatView /> : <ChatMessages /> }
+            { selectedChat === undefined ? 
+                <EmptyChatView />
+            :
+            <>
+                <div className={classes.chatHeader}>
+                    Your Conversation with User
                 </div>
-            </div>
-            <div className={classes.chatInput}>
-                <ChatInput submitMessage={submitMessage} messageRead={messageRead} />
-            </div>
+                <div className={classes.chatViewContainer}>
+                    <div className={classes.chatView} id='chatview-container' >
+                        <ChatMessages />
+                    </div>
+                </div>
+                <div className={classes.chatInput}>
+                    <ChatInput submitMessage={submitMessage} messageRead={messageRead} />
+                </div>
+            </>
+            }
         </div>
-
     )
 
     // if(props.chat === undefined){
