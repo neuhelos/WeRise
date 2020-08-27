@@ -5,38 +5,30 @@ import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import { useInput } from '../../Utilities/CustomHookery'
 
-import { FormControl, InputLabel, Input, Button, Paper, CssBaseline, Typography } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField'
+import Chip from '@material-ui/core/Chip';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { FormControl, InputLabel, Input, Button, Paper, Typography } from '@material-ui/core';
 
 
 
 const useStyles = makeStyles((theme) => ({
 
         main: {
-            width: 'auto',
-            display: 'block', // Fix IE 11 issue.
-            marginLeft: theme.spacing() * 3,
-            marginRight: theme.spacing() * 3,
-            [theme.breakpoints.up(400 + theme.spacing() * 3 * 2)]: {
-                width: 400,
-                marginLeft: 'auto',
-                marginRight: 'auto',
-        },
+
         },
         paper: {
-            padding: `${theme.spacing() * 2}px ${theme.spacing() * 3}px ${theme.spacing() * 3}px`,
-            position: 'absolute',
-            width: '350px',
-            top: '50px',
-            left: 'calc(50% + 150px - 175px)'
+            padding: theme.spacing(2),
+            width: '100%'
         },
         input: {
         },
         form: {
             width: '100%',
-            marginTop: theme.spacing(),
+            marginTop: theme.spacing(1),
         },
         submit: {
-            marginTop: theme.spacing() * 3
+            marginTop: theme.spacing(1)
         },
         errorText: {
             color: 'red',
@@ -53,16 +45,20 @@ const NewChatForm = ( props ) => {
 
     let userSearch = useInput("")
     let newChatMessage = useInput("")
+    const [users, setUsers] = useState([])
     const [userServerError, setUserServerError] = useState("")
     
+    const handleChatUsers = (event, values) => {
+        setUsers(values)
+    }
 
-    const userExists = async () => {
+    const usersExist = async () => {
         const usersSnapshot = await firestore
             .collection('users')
             .get()
-        const user = usersSnapshot.docs.map( doc => doc.data().email).includes(userSearch.value);
-        if(!userExists) setUserServerError('User Does Not Exist')
-        return user
+        const allUsersExist = usersSnapshot.docs.map( doc => doc.data().email).includes(users.forEach( user => user));
+        if(!allUsersExist) setUserServerError('A User Does Not Exist')
+        return allUsersExist
     }
 
     const buildDocKey = () => {
@@ -91,27 +87,30 @@ const NewChatForm = ( props ) => {
 
     const handleSubmitNewChat = async ( event ) => {
         event.preventDefault()
-        let userExists = await userExists()
-        if(userExists){
-            let chatExists = await chatExists()
-            chatExists ? displayExistingChat() : createChat()
+        let existingUsers = await usersExist()
+        if(existingUsers){
+            let existingChat = await chatExists()
+            existingChat ? displayExistingChat() : createChat()
         }
-
-
     }
 
     return (
         <div className={classes.main}>
-            <CssBaseline></CssBaseline>
             <Paper className={classes.paper}>
                 <Typography component='h1' variant='h5'>Send a Message</Typography>
                 <form className={classes.form} onSubmit={handleSubmitNewChat}>
-                    <FormControl fullWidth>
-                        <InputLabel htmlFor='new-chat-username'>
-                            Enter A User
-                        </InputLabel>
-                        <Input id='new-chat-username' required className={classes.input} autoFocus {...userSearch} />
-                    </FormControl> 
+                    <Autocomplete className={classes.input} multiple options={[]} defaultValue={""} autoFocus freeSolo
+                        style={{marginTop: '0.5rem'}}
+                        onChange={handleChatUsers}
+                        renderTags={(value, getTagProps) =>
+                            value.map((option, index) => (
+                                <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                            ))
+                        }
+                        renderInput={(params) => (
+                            <TextField {...params} variant="filled" label="Enter User(s)" placeholder="Enter One or More Users" />
+                        )}
+                    />
                     <FormControl fullWidth>
                     <InputLabel htmlFor='new-chat-message'>
                             Enter Your Message

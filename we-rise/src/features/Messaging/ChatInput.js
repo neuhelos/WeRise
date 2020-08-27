@@ -16,10 +16,6 @@ const useStyles = makeStyles( theme => ({
                 }
             },
         chatTextBoxContainer: {
-            position: 'absolute',
-            bottom: '15px',
-            left: '315px',
-            boxSizing: 'border-box',
             overflow: 'auto',
             width: 'calc(100% - 300px - 50px)'
         },

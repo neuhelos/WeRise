@@ -2,22 +2,16 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+
 
 const useStyles = makeStyles( theme => ({
 
     content: {
-        height: 'calc(100vh - 100px)',
-        overflow: 'scroll',
-        padding: '25px',
-        marginLeft: '300px',
-        boxSizing: 'border-box',
+        padding: theme.spacing(1),
         overflowY: 'scroll',
-        top: '50px',
-        width: '70%',
-        position: 'absolute'
     },
-
-    userSent: {
+    currentUserSent: {
         float: 'left',
         clear: 'both',
         padding: '20px',
@@ -30,7 +24,7 @@ const useStyles = makeStyles( theme => ({
         borderRadius: '10px'
     },
 
-    friendSent: {
+    peerSent: {
         float: 'right',
         clear: 'both',
         padding: '20px',
@@ -44,22 +38,15 @@ const useStyles = makeStyles( theme => ({
     },
 
     chatHeader: {
-        width: 'calc(100% - 301px)',
-        height: '50px',
         backgroundColor: '#344195',
-        position: 'fixed',
-        marginLeft: '301px',
         fontSize: '18px',
         textAlign: 'center',
         color: 'white',
-        paddingTop: '10px',
-        boxSizing: 'border-box'
     }
-
     })
 );
 
-const ChatView = ( props ) => {
+const ChatView = ( { selectedChat } ) => {
     
     const currentUser = useSelector( state => state.currentUserSession.uid )
 
@@ -74,7 +61,7 @@ const ChatView = ( props ) => {
 
     useEffect ( () => {
         chatScrollDown()
-    }, [props.chat])
+    }, [selectedChat])
 
 
     const EmptyChatView = () => {
@@ -87,9 +74,9 @@ const ChatView = ( props ) => {
 
     const ChatMessages = () => {
 
-        return props.chat.messages.map( (message, index) => {
+        return selectedChat.messages.map( (message, index) => {
             return (
-                <div key={index} className={message.sender === currentUser ? classes.userSent : classes.friendSent}>
+                <div key={index} className={message.sender === currentUser ? classes.currentUserSent : classes.peerSent}>
                     {message.message}
                 </div>
             )
@@ -98,14 +85,14 @@ const ChatView = ( props ) => {
 
 
     return (
-        <div>
+        <Grid container className={classes.root} display="flex" direction="column" justify="center" alignItems="center">
             <div className={classes.chatHeader}>
                 Your Conversation with User
             </div>
             <div className={classes.content} id='chatview-container' >
-                {props.chat === undefined ? <EmptyChatView /> : <ChatMessages /> }
+                {selectedChat === undefined ? <EmptyChatView /> : <ChatMessages /> }
             </div>
-        </div>
+        </Grid>
 
     )
 

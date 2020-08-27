@@ -19,10 +19,6 @@ import RecentlyPostedWorkshops from '../RecentlyPostedWorkshops/RecentlyPostedWo
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        [theme.breakpoints.down('sm')]: {
-            flexDirection: 'column',
-            flexWrap: 'nowrap'
-        },
     },
     gridSection: {
         padding: theme.spacing(1),

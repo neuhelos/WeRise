@@ -30,7 +30,8 @@ const RecentlyPostedWorkshops = () => {
     const classes = useStyles();
 
     useEffect( () => {
-        fetchRecentlyPosted();  
+        fetchRecentlyPosted();
+
     }, [recentlyPosted]);
 
     let recentlyPostedWorkshops =  recentlyPosted.map(workshop => {

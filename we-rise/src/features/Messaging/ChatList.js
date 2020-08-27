@@ -18,9 +18,6 @@ import NotificationsTwoToneIcon from '@material-ui/icons/NotificationsTwoTone';
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: theme.palette.background.paper,
-        left: '0',
-        width: '30%',
-        boxShadow: '0px 0px 2px black',
         '& *': {
             fontFamily: 'audiowide'
         }
