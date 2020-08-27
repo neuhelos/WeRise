@@ -11,13 +11,19 @@ const useStyles = makeStyles( theme => ({
     root: {
         width: '100%',
         height: '100%',
-        overflow: 'hidden'
+        position: 'relative'
     },
-    content: {
-        padding: theme.spacing(1),
+    chatViewContainer: {
         width: '100%',
         height: '80%',
+        position: 'relative'
+    },
+    chatView: {
+        padding: theme.spacing(1),
+        width: '100%',
+        height: '100%',
         overflow: 'auto',
+        position: 'absolute'
     },
     currentUserSent: {
         float: 'left',
@@ -51,11 +57,11 @@ const useStyles = makeStyles( theme => ({
         textAlign: 'center',
         color: 'white',
         width: '100%',
-        height: '10%'
+        height: '10%',
     },
     chatInput: {
         width: '100%',
-        height: '10%'
+        height: '10%',
     } 
     })
 );
@@ -103,8 +109,10 @@ const ChatView = ( { selectedChat, submitMessage, messageRead } ) => {
             <div className={classes.chatHeader}>
                 Your Conversation with User
             </div>
-            <div className={classes.content} id='chatview-container' >
-                {selectedChat === undefined ? <EmptyChatView /> : <ChatMessages /> }
+            <div className={classes.chatViewContainer}>
+                <div className={classes.chatView} id='chatview-container' >
+                    {selectedChat === undefined ? <EmptyChatView /> : <ChatMessages /> }
+                </div>
             </div>
             <div className={classes.chatInput}>
                 <ChatInput submitMessage={submitMessage} messageRead={messageRead} />
