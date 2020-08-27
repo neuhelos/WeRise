@@ -9,13 +9,15 @@ import ChatInput from './ChatInput'
 const useStyles = makeStyles( theme => ({
 
     root: {
-        width: '100%'
+        width: '100%',
+        height: '100%',
+        overflow: 'hidden'
     },
     content: {
         padding: theme.spacing(1),
-        maxHeight: '100%',
         width: '100%',
-        overflow: 'scroll'
+        height: '80%',
+        overflow: 'auto',
     },
     currentUserSent: {
         float: 'left',
@@ -48,7 +50,13 @@ const useStyles = makeStyles( theme => ({
         fontSize: '18px',
         textAlign: 'center',
         color: 'white',
-    }
+        width: '100%',
+        height: '10%'
+    },
+    chatInput: {
+        width: '100%',
+        height: '10%'
+    } 
     })
 );
 
@@ -98,7 +106,9 @@ const ChatView = ( { selectedChat, submitMessage, messageRead } ) => {
             <div className={classes.content} id='chatview-container' >
                 {selectedChat === undefined ? <EmptyChatView /> : <ChatMessages /> }
             </div>
-            <ChatInput submitMessage={submitMessage} messageRead={messageRead} />
+            <div className={classes.chatInput}>
+                <ChatInput submitMessage={submitMessage} messageRead={messageRead} />
+            </div>
         </div>
 
     )

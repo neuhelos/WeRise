@@ -13,7 +13,8 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles((theme) => ({
         root: {
             width: '100%',
-            flex: 1
+            height: '100%',
+            //flex: 1,
         },
         container: {
             width: '100%',
@@ -112,11 +113,11 @@ const Chat = (props) => {
 
 
     return (
-        <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
-            <Grid item className={classes.container} md={5}>
+        <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems='center'>
+            <Grid container item className={classes.container} md={5} direction="column" justify="flex-start" alignItems='center'>
                 <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatIndex={selectedChat}/> 
             </Grid>
-            <Grid container item className={classes.container} display="flex" direction="row" justify="center" alignItems="flex-start" md={7}>
+            <Grid container item className={classes.container} md={7} direction="column" justify="flex-start" alignItems='center'>
                 { newChatFormVisible || selectedChat === null ? null : <ChatView selectedChat={chats[selectedChat]} submitMessage={submitMessage} messageRead={messageRead}/> }
                 { newChatFormVisible ? <NewChatForm newChatSubmit={newChatSubmit} goToExistingChat={goToExistingChat} /> : null }
             </Grid>

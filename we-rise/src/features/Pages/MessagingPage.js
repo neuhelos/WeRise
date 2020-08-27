@@ -8,7 +8,8 @@ import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
+        width: '100%',
+        height: '100%'
     },
     paper: {
     }
@@ -19,9 +20,9 @@ const MessagingPage = ( ) => {
     const classes = useStyles()
 
     return (
-        <>
+        <div className={classes.root}>
             <Chat />
-        </>
+        </div>
     )
 }
 

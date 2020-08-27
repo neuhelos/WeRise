@@ -17,10 +17,10 @@ const useStyles = makeStyles( theme => ({
             },
         chatTextBoxContainer: {
             overflow: 'auto',
-            width: 'calc(100% - 300px - 50px)'
+            width: '100%'
         },
         chatTextBox: {
-            width: 'calc(100% - 25px)'
+            width: '100%'
         }
     })
 )

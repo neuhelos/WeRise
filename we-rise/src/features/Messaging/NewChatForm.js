@@ -16,8 +16,8 @@ import { FormControl, InputLabel, Input, Button, Paper, Typography } from '@mate
 const useStyles = makeStyles((theme) => ({
 
         root: {
-            width: '70%',
-            alignSelf: 'center'
+            width: '80%',
+            margin: 'auto'
         },
         paper: {
             padding: theme.spacing(2),

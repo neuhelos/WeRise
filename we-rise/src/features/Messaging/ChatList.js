@@ -20,15 +20,17 @@ import Paper from '@material-ui/core/Paper'
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
+        height: '100%',
         backgroundColor: '#282828',
         '& *': {
             fontFamily: 'audiowide'
         },
-        height: '100%'
     },
     list: {
         width: '100%',
-        backgroundColor: '#F5F5F5'
+        backgroundColor: '#F5F5F5',
+        maxHeight: '100%',
+        overflow: 'auto'
     },
     listItem: {
         cursor: 'pointer',
