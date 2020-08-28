@@ -12,7 +12,7 @@ import { useInput } from '../../Utilities/CustomHookery'
 import { fetchWorkshopSearch, fetchUpcomingWorkshops } from './WorkshopFeedSlice'
 import { categories } from '../BaseComponents/WorkshopCategories'
 
-import ReplayIcon from '@material-ui/icons/Replay';
+import DeleteIcon from '@material-ui/icons/Delete'
 import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
@@ -140,7 +140,7 @@ const WorkshopFeedSearchForm = () => {
             <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="center" wrap='nowrap'>
                 <FilterBar dateRange={dateRange} handleDateChange={handleDateChange} selectCategories={selectCategories} handleSelectChange={handleSelectChange} buttonLabelChange={buttonLabelChange} selectAllCategories={selectAllCategories} clearSelectCategories={clearSelectCategories}/>
                 <Button className={classes.buttonReset} variant="contained" color="primary" size='small' onClick={handleSearchReset}>
-                    <ReplayIcon fontSize='large' />
+                    <DeleteIcon fontSize='large' />
                 </Button>
                 <Button className={classes.buttonSubmit} type="submit" variant="contained" color="primary" size='small'>
                     <SearchIcon fontSize='large'/>
