@@ -7,7 +7,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container';
 
-
 import ChatInput from './ChatInput'
 
 const useStyles = makeStyles( theme => ({
@@ -108,6 +107,9 @@ const ChatView = ( { selectedChat, submitMessage, messageRead } ) => {
         )
     }
 
+
+
+
     const ChatMessages = () => {
 
         return selectedChat.messages.map( (message, index) => {
@@ -119,22 +121,6 @@ const ChatView = ( { selectedChat, submitMessage, messageRead } ) => {
         })
     }
 
-    const fetchUser = async (chatPeer) => {
-        await firestore
-        .collection('users')
-        .doc(chatPeer)
-        .get()
-        .then( async querySnapshot => {
-            let user = querySnapshot.data()
-            await setChatPeers(user)
-            console.log(user)
-        })
-    }
-
-    useEffect( () => {
-        let userTest = fetchUser('TYnP6Pht9ffAdVvTZrRVjvQ7fum1')
-    }, [])
-    //let chatPeers = selectedChat.users.filter(user => user !== currentUser).map( user => )
 
     return (
         <div className={classes.root}>

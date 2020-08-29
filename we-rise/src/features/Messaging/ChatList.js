@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { fetchFirebaseUser } from '../../Utilities/firebaseFunctions'
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -86,10 +87,21 @@ const ChatList = ( props ) => {
     useEffect ( () => {
     }, [chats])
 
+
     const currentUserIsLatestSender = (chat) => chat.messages[chat.messages.length-1].sender === currentUser
 
 
-    let chatList = chats.map( (chat, index) => {
+    let chatList = chats.map( async (chat, index) => {
+
+        let userData
+        if(chat.users.length <= 2){
+            let currentUserPeer = chat.users.filter(user => user !== currentUser)
+            let firebaseData = fetchFirebaseUser(currentUserPeer[0])
+            await userData = firebaseData
+            debugger
+        }
+
+
         return (
             <div key={index} id={index}>
                 <ListItem selected={props.selectedChatIndex === index} classes={{ root: classes.listItem, selected: classes.selected }}
@@ -97,9 +109,10 @@ const ChatList = ( props ) => {
                     alignItems='flex-start'
                     >
                     <ListItemAvatar>
-                        <Avatar alt=''>USER</Avatar>
+                        <Avatar src='' alt='username' />
                     </ListItemAvatar>
-                    <ListItemText primary='username'
+                    <ListItemText
+                        primary={userData.firstName}
                         secondary={
                                 <Typography component='span'>
                                     {chat.messages[chat.messages.length-1].message.substring(0,30)}

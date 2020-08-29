@@ -20,7 +20,7 @@ const useStyles = makeStyles( theme => ({
             width: '100%',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
         },
         newMessage: {
             color: '#000000',
