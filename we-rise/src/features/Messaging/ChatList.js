@@ -30,13 +30,14 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         flex: 1,
         backgroundColor: '#282828',
-        position: 'relative'
+        position: 'relative',
+        height: '95%',
     },
     list: {
         width: '100%',
         backgroundColor: '#F5F5F5',
         overflow: 'auto',
-        position: 'absolute'
+        position: 'absolute',
     },
     listItem: {
         cursor: 'pointer',
@@ -57,11 +58,12 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     button: {
-        backgroundColor: '#F89B29',
+        height: '5%',
+        backgroundColor: '#36386D',
         borderRadius: '0px',
         color: '#FFFFFF',
         '&:hover': {
-            backgroundColor: '#36386D'
+            backgroundColor: '#F89B29'
         }
     },
     unreadMessage: {

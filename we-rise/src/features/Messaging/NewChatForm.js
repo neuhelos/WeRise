@@ -73,7 +73,7 @@ const NewChatForm = ( props ) => {
             .collection('chats')
             .doc(docKey)
             .get()
-        return chat
+        return chat.exists
     }
 
     const createChat = () => {

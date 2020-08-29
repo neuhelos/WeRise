@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     height: '6rem',
     width: '100%',
     marginBottom: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       marginBottom: 0,
     },
   },
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.5rem',
       background: '#36386D',
       border: 'solid 2px #FFFFFF'
-  }
+  },
 }));
 
 const NavBar = () => {
@@ -154,6 +154,7 @@ const NavBar = () => {
 
 
   return (
+      <>
       <div className={classes.spacer}>
       <div className={classes.spacer}></div>
       <AppBar position={'fixed'} className={classes.root}>
@@ -216,6 +217,7 @@ const NavBar = () => {
       </Modal>
 
     </div>
+    </>
   );
 }
 
