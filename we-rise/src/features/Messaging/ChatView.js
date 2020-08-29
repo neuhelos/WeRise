@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { firestore } from '../../Utilities/firebase'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container';
 
 import ChatInput from './ChatInput'
 
@@ -11,7 +14,10 @@ const useStyles = makeStyles( theme => ({
     root: {
         width: '100%',
         height: '100%',
-        position: 'relative'
+        position: 'relative',
+        '& *': {
+            fontFamily: 'audiowide'
+        }
     },
     chatViewContainer: {
         width: '100%',
@@ -28,40 +34,46 @@ const useStyles = makeStyles( theme => ({
     currentUserSent: {
         float: 'left',
         clear: 'both',
-        padding: '20px',
-        boxSizing: 'border-box',
+        padding: theme.spacing(2),
         wordWrap: 'break-word',
-        marginTop: '10px',
-        backgroundColor: '#707BC4',
+        margin: theme.spacing(1),
+        backgroundColor: '#FF0F7B',
         color: 'white',
-        width: '300px',
+        width: '45%',
+        border: '2px solid #F5F5F5',
         borderRadius: '10px'
     },
 
     peerSent: {
         float: 'right',
         clear: 'both',
-        padding: '20px',
-        boxSizing: 'border-box',
+        padding: theme.spacing(2),
         wordWrap: 'break-word',
-        marginTop: '10px',
-        backgroundColor: '#707BC4',
+        margin: theme.spacing(1),
+        backgroundColor: '#F89B29',
         color: 'white',
-        width: '300px',
+        width: '45%',
+        border: '2px solid #F5F5F5',
         borderRadius: '10px'
     },
 
     chatHeader: {
-        backgroundColor: '#344195',
-        fontSize: '18px',
-        textAlign: 'center',
+        backgroundColor: '#36386D',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: '2rem',
         color: 'white',
         width: '100%',
-        height: '10%',
+        height: '5%',
+
     },
     chatInput: {
         width: '100%',
-        height: '10%',
+        height: '15%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     } 
     })
 );
@@ -71,6 +83,9 @@ const ChatView = ( { selectedChat, submitMessage, messageRead } ) => {
     const currentUser = useSelector( state => state.currentUserSession.uid )
 
     const classes = useStyles()
+
+
+    const [chatPeers, setChatPeers] = useState("")
 
     const chatScrollDown = () => {
         const container = document.getElementById('chatview-container')
@@ -92,6 +107,9 @@ const ChatView = ( { selectedChat, submitMessage, messageRead } ) => {
         )
     }
 
+
+
+
     const ChatMessages = () => {
 
         return selectedChat.messages.map( (message, index) => {
@@ -110,17 +128,19 @@ const ChatView = ( { selectedChat, submitMessage, messageRead } ) => {
                 <EmptyChatView />
             :
             <>
-                <div className={classes.chatHeader}>
-                    Your Conversation with User
-                </div>
+                <Container className={classes.chatHeader}>
+                    <Typography>
+                        { `Your Conversation with ${chatPeers.firstName}`}
+                    </Typography>
+                </Container>
                 <div className={classes.chatViewContainer}>
                     <div className={classes.chatView} id='chatview-container' >
                         <ChatMessages />
                     </div>
                 </div>
-                <div className={classes.chatInput}>
+                <Container className={classes.chatInput}>
                     <ChatInput submitMessage={submitMessage} messageRead={messageRead} />
-                </div>
+                </Container>
             </>
             }
         </div>

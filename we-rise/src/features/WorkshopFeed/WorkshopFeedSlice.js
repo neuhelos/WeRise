@@ -49,9 +49,9 @@ export const workshopFeedSlice = createSlice( {
             return state.filter(workshop => workshop.workshop_id !== action.payload.workshop_id)
         }, 
         [deleteRegistration.fulfilled] : (state, action) => {
-            
-            let insertIndex = binarySearchInsert(state, new Date(action.payload.start_time))
-            state.splice(insertIndex, 0, action.payload)
+            return state.unshift(action.payload)
+            // let insertIndex = binarySearchInsert(state, new Date(action.payload.start_time))
+            // state.splice(insertIndex, 0, action.payload)
         }
     }
 })

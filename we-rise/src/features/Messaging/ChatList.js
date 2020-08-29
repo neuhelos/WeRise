@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { fetchFirebaseUser } from '../../Utilities/firebaseFunctions'
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -30,13 +31,14 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         flex: 1,
         backgroundColor: '#282828',
-        position: 'relative'
+        position: 'relative',
+        height: '95%',
     },
     list: {
         width: '100%',
         backgroundColor: '#F5F5F5',
         overflow: 'auto',
-        position: 'absolute'
+        position: 'absolute',
     },
     listItem: {
         cursor: 'pointer',
@@ -57,11 +59,12 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     button: {
-        backgroundColor: '#F89B29',
+        height: '5%',
+        backgroundColor: '#36386D',
         borderRadius: '0px',
         color: '#FFFFFF',
         '&:hover': {
-            backgroundColor: '#36386D'
+            backgroundColor: '#F89B29'
         }
     },
     unreadMessage: {
@@ -84,10 +87,21 @@ const ChatList = ( props ) => {
     useEffect ( () => {
     }, [chats])
 
+
     const currentUserIsLatestSender = (chat) => chat.messages[chat.messages.length-1].sender === currentUser
 
 
-    let chatList = chats.map( (chat, index) => {
+    let chatList = chats.map( async (chat, index) => {
+
+        let userData
+        if(chat.users.length <= 2){
+            let currentUserPeer = chat.users.filter(user => user !== currentUser)
+            let firebaseData = fetchFirebaseUser(currentUserPeer[0])
+            await userData = firebaseData
+            debugger
+        }
+
+
         return (
             <div key={index} id={index}>
                 <ListItem selected={props.selectedChatIndex === index} classes={{ root: classes.listItem, selected: classes.selected }}
@@ -95,9 +109,10 @@ const ChatList = ( props ) => {
                     alignItems='flex-start'
                     >
                     <ListItemAvatar>
-                        <Avatar alt=''>USER</Avatar>
+                        <Avatar src='' alt='username' />
                     </ListItemAvatar>
-                    <ListItemText primary='username'
+                    <ListItemText
+                        primary={userData.firstName}
                         secondary={
                                 <Typography component='span'>
                                     {chat.messages[chat.messages.length-1].message.substring(0,30)}
