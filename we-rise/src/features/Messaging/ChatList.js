@@ -80,26 +80,31 @@ const ChatList = ( props ) => {
     
     const currentUser = useSelector( state => state.currentUserSession.uid )
     const chats = useSelector (state => state.chats)
-
     const classes = useStyles()
     
-
     useEffect ( () => {
     }, [chats])
 
 
     const currentUserIsLatestSender = (chat) => chat.messages[chat.messages.length-1].sender === currentUser
-
-
-    let chatList = chats.map( async (chat, index) => {
-
-        let userData
-        if(chat.users.length <= 2){
-            let currentUserPeer = chat.users.filter(user => user !== currentUser)
-            let firebaseData = fetchFirebaseUser(currentUserPeer[0])
-            await userData = firebaseData
-            debugger
+    
+    const fetchPeersData = (users) => {
+        try {
+            let userData = users.map( user => {
+                return fetchFirebaseUser(user)
+            })
+            return (userData)
+        } catch(error) {
+            console.log(error)
         }
+    }
+
+    let multipleChatPeersAvatar = "https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FRainbowSmileyDefaultAvatar.png?alt=media&token=379959f1-6d89-43a4-bf01-92a68841c643"
+    
+    let chatList = chats.map( (chat, index) => {
+        
+        let currentUserChatPeers = chat.users.filter(user => user !== currentUser)
+        //let peerUserData = fetchPeersData(currentUserChatPeers)
 
 
         return (
@@ -109,10 +114,11 @@ const ChatList = ( props ) => {
                     alignItems='flex-start'
                     >
                     <ListItemAvatar>
-                        <Avatar src='' alt='username' />
+                        <Avatar src={ multipleChatPeersAvatar} alt='avatar' />
                     </ListItemAvatar>
                     <ListItemText
-                        primary={userData.firstName}
+                        primary={'username'}
+                        //peerUserData.map(user => user.firstName).join(" & ").substring(0,50) 
                         secondary={
                                 <Typography component='span'>
                                     {chat.messages[chat.messages.length-1].message.substring(0,30)}
@@ -132,7 +138,7 @@ const ChatList = ( props ) => {
             </div>
         )
     })
-
+    
 
     return (
         <Grid container className={classes.root} display="flex" direction="column" justify="flex-start" alignItems="center">
