@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
         display: 'flex',
         justifyContent: 'center',
+        
     },
     text: {
         fontFamily: 'audiowide'

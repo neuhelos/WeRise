@@ -7,6 +7,7 @@ import FacilitatorWorkshopCard from './FacilitatorWorkshopCard'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography';
 import '../../styling/facilitatorCss.css'
 
@@ -15,6 +16,31 @@ const useStyles = makeStyles((theme) => ({
     root: {
         fontFamily: 'audiowide',
         width: '100%'
+    },
+    paper: {
+        width: '90%',
+        padding: theme.spacing(2),
+        margin: theme.spacing(2),
+        backgroundColor: '#282828',
+        color: 'white',
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: 'center',
+    },
+    paperWrapper: {
+        width: '90%',
+        padding: theme.spacing(1),
+        margin: theme.spacing(1),
+        backgroundColor: '#282828',
+    },
+    paperTitle: {
+        width: '100%',
+        backgroundColor: '#666666',
+        color: '#FFFFFF',
+        padding: theme.spacing(1),
+        display: 'flex',
+        justifyContent: 'center',
+        fontSize:'40px',
     },
 }))
 
@@ -59,17 +85,28 @@ const FacilitatorWorkshops = () => {
     return (
         <>
         <div className ='FacilitatorWorkshops'>
-            <h1>Workshops I'm Facilitating</h1>
+        <Paper className={classes.paperWrapper}>
+            <Paper className={classes.paperTitle}>
+                <Typography className={classes.text} variant='subtitle1'>Workshops I'm Attending</Typography>
+            </Paper>
+        </Paper>
             <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
                 {currentWorkshops}
             </Grid> 
         </div>
 
         <div className ='FacilitatorWorkshops'>
-            <h1>Past Workshop I Facilitated</h1>
+            {/* <h1>Past Workshop I Facilitated</h1> */}
+            <Paper className={classes.paperWrapper}>
+                <Paper className={classes.paperTitle}>
+                    <Typography className={classes.text} variant='subtitle1'>Workshops I'm Attending</Typography>
+                </Paper>
+            </Paper>
                 <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
                     {pastWorkshops}
                 </Grid> 
+
+            
         </div>
         </>
     )
