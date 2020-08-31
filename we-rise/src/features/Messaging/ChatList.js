@@ -87,7 +87,7 @@ const ChatList = ( props ) => {
     }, [chats])
 
 
-    const currentUserIsLatestSender = (chat) => chat.messages[chat.messages.length-1].sender === currentUser
+    const currentUserIsLatestSender = (chat) => chat.messages[chat.messages.length-1].sender === currentUser.uid
     
 
     let multipleChatPeersAvatar = "https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FRainbowSmileyDefaultAvatar.png?alt=media&token=379959f1-6d89-43a4-bf01-92a68841c643"
