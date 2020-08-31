@@ -71,7 +71,6 @@ const NewChatForm = ( props ) => {
             .collection('users')
             .get()
         const exists = usersSnapshot.docs.map( doc => doc.data().email).includes(user);
-        debugger
         return exists
     }
 
@@ -82,7 +81,6 @@ const NewChatForm = ( props ) => {
             .where('usersEmail', 'in', [usersQuery])
             .get()
         const chatId = query.docs.map(doc => doc.id).join("")
-        debugger
         return chatId
     }
 
@@ -99,10 +97,8 @@ const NewChatForm = ( props ) => {
 
     const handleSubmitNewChat = async ( event ) => {
         event.preventDefault()
-        debugger
         if(users.length <= 8){
             let existingUsers = await users.every(userExists)
-            debugger
             if(existingUsers){
                 let existingChat = await chatExists()
                 existingChat ? displayExistingChat(existingChat) : createChat()
