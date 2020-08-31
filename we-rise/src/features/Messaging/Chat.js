@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import firebase, { firestore } from '../../Utilities/firebase'
-
+import { v4 as uuidv4 } from 'uuid'
 
 import ChatList from './ChatList'
 import ChatView from './ChatView'
@@ -27,7 +27,7 @@ const Chat = (props) => {
     
     const classes = useStyles()
 
-    const currentUser = useSelector( state => state.currentUserSession.uid )
+    const currentUser = useSelector( state => state.currentUserSession )
     const chats = useSelector (state => state.chats)
 
     const [selectedChat, setSelectedChat] = useState(null)
@@ -39,21 +39,19 @@ const Chat = (props) => {
         setSelectedChat(null)
     }
 
-    
     const handleSelectedChat = (chatIndex) => {
         setNewChatFormVisible(false)
         setSelectedChat(chatIndex);
     }
 
 
-    const clickedChatNotSender = (chatIndex) => chats[chatIndex].messages[chats[chatIndex].messages.length-1].sender !== currentUser
+    const clickedChatNotSender = (chatIndex) => chats[chatIndex].messages[chats[chatIndex].messages.length-1].sender !== currentUser.uid
     
     const messageRead = () => {
-        const docKey = buildDocKey(chats[selectedChat].users.filter(user => user !== currentUser)[0])
         if(clickedChatNotSender(selectedChat)){
             firestore
             .collection('chats')
-            .doc(docKey)
+            .doc(chats[selectedChat].chatId)
             .update({
                 receiverHasRead: true
             })
@@ -64,21 +62,16 @@ const Chat = (props) => {
         if(selectedChat) messageRead()
     }, [selectedChat])
 
-    const buildDocKey = (peer) => {
-        return [currentUser, peer].sort().join(":")
-    }
     
-
-    
-    const submitMessage = (message) => {
-        const docKey = buildDocKey(chats[selectedChat].users.filter(user => user !== currentUser)[0]);
+    const submitMessage = (chatId, message) => {
         firestore
         .collection('chats')
-        .doc(docKey)
+        .doc(chatId) //Have to debug chats[selectedChat].chatId
         .update({
             messages: firebase.firestore.FieldValue.arrayUnion({
+                firstName: currentUser.firstn,
                 message: message,
-                sender: currentUser,
+                sender: currentUser.uid,
                 timestamp: Date.now()
             }),
             receiverHasRead: false
@@ -86,26 +79,27 @@ const Chat = (props) => {
         
     }
     
-    const goToExistingChat = async (docKey, message) => {
-        const usersInChat = docKey.split(':')
-        const chat = chats.find( chat => usersInChat.every( user => chat.users.includes(user)))
+    const goToExistingChat = async (chatId, message) => {
+        const existingChatIndex = chats.indexOf(chats.find( chat => chat.chatId === chatId))
         setNewChatFormVisible(false)
-        await setSelectedChat(chats.indexOf(chat))
-        submitMessage(message)
+        setSelectedChat(existingChatIndex)
+        await submitMessage(chatId, message)
     }
 
     const newChatSubmit = async (chatObject) => {
-        const docKey = buildDocKey(chatObject.sendTo)
+        let chatId = uuidv4()
         await firestore
             .collection('chats')
-            .doc(docKey)
+            .doc(chatId)
             .set({
                 messages: [{
                     message: chatObject.message,
-                    sender: currentUser
+                    sender: currentUser.uid,
+                    timestamp: new Date(),
+                    firstName: currentUser.firstn
                 }],
                 receiverHasRead: false,
-                users: [currentUser, chatObject.sendTo]
+                users: [currentUser, chatObject.sendTo] //Redo
             })
         setNewChatFormVisible(false)
         setSelectedChat(chats.length-1)
@@ -118,7 +112,7 @@ const Chat = (props) => {
                 <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatIndex={selectedChat}/> 
             </Grid>
             <Grid container item className={classes.container} md={7} direction="column" justify="flex-start" alignItems='center'>
-                { newChatFormVisible || selectedChat === null ? null : <ChatView selectedChat={chats[selectedChat]} submitMessage={submitMessage} messageRead={messageRead}/> }
+                { newChatFormVisible ? null : <ChatView selectedChat={chats[selectedChat]} submitMessage={submitMessage} messageRead={messageRead}/> }
                 { newChatFormVisible ? <NewChatForm newChatSubmit={newChatSubmit} goToExistingChat={goToExistingChat} /> : null }
             </Grid>
         </Grid>

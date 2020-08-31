@@ -44,20 +44,20 @@ const deleteUser = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     console.log(req.params.id)
-    let user = await database.any(
+    let user = await database.one(
       "SELECT * FROM users WHERE id =$1", [
         req.params.id,
       ]
     );
     res.status(200).json({
       status: "success",
-      message: "found user",
+      message: "User Retrieved",
       payload: user
     });
   } catch (error) {
     res.status(404).json({
       status: error,
-      message: "user not found",
+      message: "User Not Found",
       payload: null
     });
   }
