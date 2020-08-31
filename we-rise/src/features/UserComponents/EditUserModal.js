@@ -38,7 +38,7 @@ const EditUserModal = ({ handleCloseModal, currentUser }) => {
   const dispatch = useDispatch();
 
     
-  const currentUser = useSelector((state) => state.currentUserSession.uid);
+//   const currentUser = useSelector((state) => state.currentUserSession.uid);
   
     return (
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
