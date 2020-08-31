@@ -59,7 +59,11 @@ const Chat = (props) => {
     }
     
     useEffect( () => {
-        if(selectedChat) messageRead()
+        let isMounted = true
+        if(isMounted){
+            if(selectedChat) messageRead()
+        }
+        return () => isMounted = false
     }, [selectedChat])
 
     
@@ -86,21 +90,23 @@ const Chat = (props) => {
         await submitMessage(chatId, message)
     }
 
-    const newChatSubmit = async (chatObject) => {
+    const newChatSubmit = async (chatData) => {
         let chatId = uuidv4()
         await firestore
             .collection('chats')
             .doc(chatId)
             .set({
                 messages: [{
-                    message: chatObject.message,
+                    message: chatData.message,
                     sender: currentUser.uid,
                     timestamp: new Date(),
                     firstName: currentUser.firstn
                 }],
                 receiverHasRead: false,
-                users: [currentUser, chatObject.sendTo] //Redo
+                users: chatData.userDetails,
+                usersEmail: [...chatData.recipients, currentUser.email].sort()
             })
+        debugger
         setNewChatFormVisible(false)
         setSelectedChat(chats.length-1)
     }

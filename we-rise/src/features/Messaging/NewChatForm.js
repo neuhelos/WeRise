@@ -57,7 +57,6 @@ const NewChatForm = ( props ) => {
     const currentUser = useSelector( state => state.currentUserSession )
 
 
-    let userSearch = useInput("")
     let newChatMessage = useInput("")
     const [users, setUsers] = useState([])
     const [error, setError] = useState("")
@@ -84,9 +83,22 @@ const NewChatForm = ( props ) => {
         return chatId
     }
 
-    const createChat = () => {
+    let newChatUserData = async (user) => {
+        let userQuery = await firestore
+            .collection('users')
+            .where('email', '==', user)
+            .get()
+        let userData = userQuery.docs[0].data()
+        debugger
+        return userData
+    }
+
+    const createChat = async () => {
+        let usersData = await users.map( user => newChatUserData(user))
+        debugger
         props.newChatSubmit({
-            sendTo: userSearch.value,
+            userDetails: usersData,
+            recipients: users,
             message: newChatMessage.value
         })
     }
@@ -97,7 +109,7 @@ const NewChatForm = ( props ) => {
 
     const handleSubmitNewChat = async ( event ) => {
         event.preventDefault()
-        if(users.length <= 8){
+        if(users.length >= 1 && users.length <= 8){
             let existingUsers = await users.every(userExists)
             if(existingUsers){
                 let existingChat = await chatExists()
@@ -125,10 +137,10 @@ const NewChatForm = ( props ) => {
                                 ))
                             }
                             renderInput={(params) => (
-                                <TextField {...params} variant="filled" label="Enter User(s)" placeholder="Enter One or Up to Eight Users" />
+                                <TextField {...params} variant="filled" label="Enter User(s)" placeholder="Enter One or Up to Eight Users" required/>
                             )}
                         />
-                        <TextField className={classes.input} fullWidth inputProps={{style: {textAlign: 'left'}}} id="newChatMessage" label="Message" placeholder="Enter Your Message" variant="filled" multiline rows={2} {...newChatMessage} required/>
+                        <TextField className={classes.input} fullWidth inputProps={{style: {textAlign: 'left'}}} id="newChatMessage" label="Message" placeholder="Enter Your Message" variant="filled" multiline rows={2} {...newChatMessage}/>
 
                         <Button fullWidth className={classes.submit} variant='contained' type='submit'>SUBMIT</Button>
                     </form>
