@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ChatList = ( props ) => {
     
-    const currentUser = useSelector( state => state.currentUserSession.uid )
+    const currentUser = useSelector( state => state.currentUserSession )
     const chats = useSelector (state => state.chats)
     const classes = useStyles()
     
@@ -103,9 +103,7 @@ const ChatList = ( props ) => {
     
     let chatList = chats.map( (chat, index) => {
         
-        //let currentUserChatPeers = chat.users.filter(user => user !== currentUser)
-        //let peerUserData = fetchPeersData(currentUserChatPeers)
-
+        let currentUserChatPeers = chat.users.filter(user => user.userId !== currentUser.uid)
 
         return (
             <div key={index} id={index}>
@@ -114,11 +112,10 @@ const ChatList = ( props ) => {
                     alignItems='flex-start'
                     >
                     <ListItemAvatar>
-                        <Avatar src={ multipleChatPeersAvatar} alt='avatar' />
+                        <Avatar src={ chat.usersEmail.length <= 2 ? currentUserChatPeers[0].profileImage : multipleChatPeersAvatar} alt='userAvatar' />
                     </ListItemAvatar>
                     <ListItemText
-                        primary={'username'}
-                        //peerUserData.map(user => user.firstName).join(" & ").substring(0,50) 
+                        primary={ chat.usersEmail.length <= 2 ? currentUserChatPeers[0].firstName : currentUserChatPeers.map(user => user.firstName).join(" & ").substring(0,50)}
                         secondary={
                                 <Typography component='span'>
                                     {chat.messages[chat.messages.length-1].message.substring(0,30)}

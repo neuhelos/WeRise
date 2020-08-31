@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = () => {
 
-  const currentUser = useSelector( state => state.currentUserSession.uid )
+  const currentUser = useSelector( state => state.currentUserSession )
   const classes = useStyles();
 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -138,7 +138,7 @@ const NavBar = () => {
   const fetchChats = async () => {
     await firestore
     .collection('chats')
-    .where(`users.${currentUser}.userId`, '==', currentUser)
+    .where('usersEmail', 'array-contains', currentUser.email)
     .onSnapshot( async (res) => {
         const chats = res.docs.map(doc => doc.data())
         await dispatch(chatsStore(chats))
