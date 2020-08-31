@@ -27,7 +27,7 @@ const Chat = (props) => {
     
     const classes = useStyles()
 
-    const currentUser = useSelector( state => state.currentUserSession.uid )
+    const currentUser = useSelector( state => state.currentUserSession )
     const chats = useSelector (state => state.chats)
 
     const [selectedChat, setSelectedChat] = useState(null)
@@ -46,7 +46,7 @@ const Chat = (props) => {
     }
 
 
-    const clickedChatNotSender = (chatIndex) => chats[chatIndex].messages[chats[chatIndex].messages.length-1].sender !== currentUser
+    const clickedChatNotSender = (chatIndex) => chats[chatIndex].messages[chats[chatIndex].messages.length-1].sender !== currentUser.uid
     
     const messageRead = () => {
         if(clickedChatNotSender(selectedChat)){
@@ -70,9 +70,9 @@ const Chat = (props) => {
         .doc(chats[selectedChat].chatId)
         .update({
             messages: firebase.firestore.FieldValue.arrayUnion({
-                firstName: currentUser.name.firstn,
+                firstName: currentUser.firstn,
                 message: message,
-                sender: currentUser,
+                sender: currentUser.uid,
                 timestamp: Date.now()
             }),
             receiverHasRead: false
@@ -96,10 +96,10 @@ const Chat = (props) => {
             .set({
                 messages: [{
                     message: chatObject.message,
-                    sender: currentUser
+                    sender: currentUser.uuidv4
                 }],
                 receiverHasRead: false,
-                users: [currentUser, chatObject.sendTo]
+                users: [currentUser, chatObject.sendTo] //Redo
             })
         setNewChatFormVisible(false)
         setSelectedChat(chats.length-1)
@@ -112,7 +112,7 @@ const Chat = (props) => {
                 <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatIndex={selectedChat}/> 
             </Grid>
             <Grid container item className={classes.container} md={7} direction="column" justify="flex-start" alignItems='center'>
-                { newChatFormVisible || selectedChat === null ? null : <ChatView selectedChat={chats[selectedChat]} submitMessage={submitMessage} messageRead={messageRead}/> }
+                { newChatFormVisible ? null : <ChatView selectedChat={chats[selectedChat]} submitMessage={submitMessage} messageRead={messageRead}/> }
                 { newChatFormVisible ? <NewChatForm newChatSubmit={newChatSubmit} goToExistingChat={goToExistingChat} /> : null }
             </Grid>
         </Grid>

@@ -67,7 +67,7 @@ const ChatInput = ( props ) => {
     
     return (
         <Container className={classes.newMessageContainer}>
-            <TextField className={classes.newMessage} InputProps={{style: {fontSize: '1.5rem', lineHeight: '2.5rem', paddingLeft: '2px', paddingRight: '2px'}, disableUnderline: true}} placeholder="Enter New Message..." multiline rows={1} onKeyUp={handleMessageInput} onFocus={userClickedInput} />
+            <TextField className={classes.newMessage} InputProps={{style: {color: '#36386D',fontSize: '1.5rem', lineHeight: '2.5rem', paddingLeft: '2px', paddingRight: '2px'}, disableUnderline: true}} placeholder="Enter New Message..." multiline rows={1} onKeyUp={handleMessageInput} onFocus={userClickedInput} />
             <Send className={classes.sendBtn} onClick={handleSubmit} style={{ fontSize: '4rem' }}/>
         </Container>
     )
