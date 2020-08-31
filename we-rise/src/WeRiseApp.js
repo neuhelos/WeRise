@@ -33,7 +33,6 @@ const WeRiseApp = () => {
         const {email, uid} = user
         let res = await axios.get(`${apiURL()}/users/${uid}`)
         const {bio, firstn, lastn, facebook, instagram, twitter, linkedin, user_pic} = res.data.payload[0]
-        debugger
         getFirebaseIdToken().then(token => {
             dispatch(setCurrentUser({email, uid, token, bio, firstn, lastn, facebook, instagram, twitter, linkedin, user_pic}))
         })
