@@ -32,7 +32,7 @@ const RecentlyPostedWorkshops = () => {
     useEffect( () => {
         fetchRecentlyPosted();
 
-    }, [recentlyPosted]);
+    }, []);
 
     let recentlyPostedWorkshops =  recentlyPosted.map(workshop => {
         return <WorkshopFeedCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>

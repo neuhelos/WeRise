@@ -51,12 +51,12 @@ const FetchUser = () => {
   const fetchUser = async (currentUser) => {
     let res = await fetchUserById(currentUser);
     setProfile(res);
-    console.log(setProfile(res[0].id));
-    setFirstn(res[0].firstn);
-    setLastn(res[0].lastn);
-    setEmail(res[0].email);
-    setBio(res[0].bio);
-    setPic(res[0].user_pic);
+    console.log(setProfile(res.id));
+    setFirstn(res.firstn);
+    setLastn(res.lastn);
+    setEmail(res.email);
+    setBio(res.bio);
+    setPic(res.user_pic);
   };
 
   useEffect(() => {

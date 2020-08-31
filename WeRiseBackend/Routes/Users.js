@@ -3,7 +3,7 @@ const { createUser, deleteUser, getUser, getAllUsers } = require("../Queries/Use
 
 users.post("/", createUser);
 users.delete("/:id", deleteUser);
-users.get("/:id", getUser);
 users.get("/", getAllUsers)
+users.get("/:id", getUser);
 
 module.exports = users;
