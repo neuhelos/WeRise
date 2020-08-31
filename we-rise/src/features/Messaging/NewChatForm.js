@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import FaceIcon from '@material-ui/icons/Face'
 import { FormControl, InputLabel, Input, Button, Paper, Typography } from '@material-ui/core';
 
 
@@ -31,18 +32,13 @@ const useStyles = makeStyles((theme) => ({
             padding: theme.spacing(2),
             width: '100%',
             backgroundColor: '#F5F5F5',
-            '& * + *': {
-                marginBottom: theme.spacing(1)
-            },
         },
         input: {
+            marginBottom: theme.spacing(1)
         },
         form: {
             width: '100%',
             marginTop: theme.spacing(1),
-            '& * + *': {
-                marginBottom: theme.spacing(1)
-            }
         },
         submit: {
             background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
@@ -64,10 +60,10 @@ const NewChatForm = ( props ) => {
     let userSearch = useInput("")
     let newChatMessage = useInput("")
     const [users, setUsers] = useState([])
-    const [userServerError, setUserServerError] = useState("")
+    const [error, setError] = useState("")
     
     const handleChatUsers = (event, values) => {
-        if(users.length <=8) setUsers(values)
+        setUsers(values)
     }
 
     const usersExist = async () => {
@@ -75,21 +71,17 @@ const NewChatForm = ( props ) => {
             .collection('users')
             .get()
         const allUsersExist = usersSnapshot.docs.map( doc => doc.data().email).includes(users.forEach( user => user));
-        if(!allUsersExist) setUserServerError('A User Does Not Exist')
+        if(!allUsersExist) setError('A User Does Not Exist')
         return allUsersExist
     }
 
-    const buildDocKey = () => {
-        return [currentUser, "userSearch uid"].sort().join(":")
-    }
-
     const chatExists = async () => {
-        const docKey = buildDocKey()
         const chat = await firestore
             .collection('chats')
-            .doc(docKey)
+            .where('chats.usersEmail', 'in', [users])
             .get()
-        return chat.exists
+        debugger
+        return chat.chatId
     }
 
     const createChat = () => {
@@ -99,16 +91,20 @@ const NewChatForm = ( props ) => {
         })
     }
 
-    const displayExistingChat = () => {
-        props.goToExistingChat(buildDocKey(), newChatMessage.value)
+    const displayExistingChat = (existingChatId) => {
+        props.goToExistingChat(existingChatId, newChatMessage.value)
     }
 
     const handleSubmitNewChat = async ( event ) => {
         event.preventDefault()
-        let existingUsers = await usersExist()
-        if(existingUsers){
-            let existingChat = await chatExists()
-            existingChat ? displayExistingChat() : createChat()
+        if(users.length <= 8){
+            let existingUsers = await usersExist()
+            if(existingUsers){
+                let existingChat = await chatExists()
+                existingChat ? displayExistingChat(existingChat) : createChat()
+            }
+        } else {
+            setError('Max Users Exceeded')
         }
     }
 
@@ -118,19 +114,19 @@ const NewChatForm = ( props ) => {
                 <Paper className={classes.paper}>
                     <Typography component='h1' variant='h5'>Send a Message</Typography>
                     <form className={classes.form} onSubmit={handleSubmitNewChat}>
-                        <Autocomplete className={classes.input} multiple options={[]} defaultValue={""} autoFocus freeSolo size="small"
+                        <Autocomplete className={classes.input} multiple options={[]} defaultValue={""} autoFocus freeSolo
                             style={{marginTop: '0.5rem'}}
                             onChange={handleChatUsers}
                             renderTags={(value, getTagProps) =>
                                 value.map((option, index) => (
-                                    <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                                    <Chip icon={<FaceIcon />} color='secondary' label={option} {...getTagProps({ index })} />
                                 ))
                             }
                             renderInput={(params) => (
                                 <TextField {...params} variant="filled" label="Enter User(s)" placeholder="Enter One or Up to Eight Users" />
                             )}
                         />
-                        <TextField fullWidth inputProps={{style: {textAlign: 'left'}}} id="newChatMessage" label="Message" placeholder="Enter Your Message" variant="filled" multiline rows={2} {...newChatMessage} required/>
+                        <TextField className={classes.input} fullWidth inputProps={{style: {textAlign: 'left'}}} id="newChatMessage" label="Message" placeholder="Enter Your Message" variant="filled" multiline rows={2} {...newChatMessage} required/>
 
                         <Button fullWidth className={classes.submit} variant='contained' type='submit'>SUBMIT</Button>
                     </form>

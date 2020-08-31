@@ -96,7 +96,9 @@ const Chat = (props) => {
             .set({
                 messages: [{
                     message: chatObject.message,
-                    sender: currentUser.uuidv4
+                    sender: currentUser.uid,
+                    timestamp: new Date(),
+                    firstName: currentUser.firstn
                 }],
                 receiverHasRead: false,
                 users: [currentUser, chatObject.sendTo] //Redo
