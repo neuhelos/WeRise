@@ -50,7 +50,7 @@ const MobileNavMenu = ({mobileMoreAnchorEl, handleMobileMenuClose, nav, toggleMo
         <p>Dashboard</p>
       </MenuItem>
       <MenuItem onClick={nav.navMessaging}>
-        <IconButton aria-label="Insant Messaging" color="inherit">
+        <IconButton aria-label="Instant Messaging" color="inherit">
           <Badge badgeContent={unreadCount} classes={{ badge: classes.badge }} showZero>
             <MailIcon />
           </Badge>

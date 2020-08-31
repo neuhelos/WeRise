@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, PureComponent } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -11,6 +11,8 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import { fetchUserById } from "../../Utilities/FetchFunctions";
 import {  useRouteMatch } from "react-router-dom";
+// import EditUser from "./EditUser";
+import Modal from '../BaseComponents/Modal'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +52,7 @@ const FetchUser = () => {
 
   const fetchUser = async (currentUser) => {
     let res = await fetchUserById(currentUser);
+    debugger
     setProfile(res);
     console.log(setProfile(res[0].id));
     setFirstn(res[0].firstn);
@@ -62,6 +65,8 @@ const FetchUser = () => {
   useEffect(() => {
     fetchUser(match.params.id);
   }, [currentUser, match.params.id]);
+
+
 
   return (
     <div className="userProfile">
@@ -99,6 +104,7 @@ const FetchUser = () => {
             <Typography>My Bio: {bio}</Typography>
           </CardContent>
         </Grid>
+      
       </Paper>
     </div>
   );

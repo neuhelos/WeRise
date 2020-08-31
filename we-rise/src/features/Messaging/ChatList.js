@@ -97,7 +97,7 @@ const ChatList = ( props ) => {
         if(chat.users.length <= 2){
             let currentUserPeer = chat.users.filter(user => user !== currentUser)
             let firebaseData = fetchFirebaseUser(currentUserPeer[0])
-            await userData = firebaseData
+            // await userData === firebaseData
             debugger
         }
 
