@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import firebase, { firestore } from '../../Utilities/firebase'
-
+import { v4 as uuidv4 } from 'uuid'
 
 import ChatList from './ChatList'
 import ChatView from './ChatView'
@@ -70,7 +70,7 @@ const Chat = (props) => {
         .doc(chats[selectedChat].chatId)
         .update({
             messages: firebase.firestore.FieldValue.arrayUnion({
-                firstName: currentUser,
+                firstName: currentUser.name.firstn,
                 message: message,
                 sender: currentUser,
                 timestamp: Date.now()
@@ -89,10 +89,10 @@ const Chat = (props) => {
     }
 
     const newChatSubmit = async (chatObject) => {
-        const docKey = buildDocKey(chatObject.sendTo)
+        let chatId = uuidv4()
         await firestore
             .collection('chats')
-            .doc(docKey)
+            .doc(chatId)
             .set({
                 messages: [{
                     message: chatObject.message,

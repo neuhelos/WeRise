@@ -3,6 +3,7 @@ import { Switch } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import firebase from './Utilities/firebase'
+import { apiURL } from './Utilities/apiURL'
 
 import { setCurrentUser } from './features/Authentication/AuthenticationSlice'
 import { getFirebaseIdToken } from './Utilities/firebaseFunctions'
@@ -27,12 +28,14 @@ const WeRiseApp = () => {
 
   const dispatch = useDispatch()
 
-  const userSession = user => {
+  const userSession = async user => {
     if(user) {
         const {email, uid} = user
-        let name = await axios.get()
+        let res = await axios.get(`${apiURL()}/users/${uid}`)
+        const {bio, firstn, lastn, facebook, instagram, twitter, linkedin, user_pic} = res.data.payload[0]
+        debugger
         getFirebaseIdToken().then(token => {
-            dispatch(setCurrentUser({email, uid, token}))
+            dispatch(setCurrentUser({email, uid, token, bio, firstn, lastn, facebook, instagram, twitter, linkedin, user_pic}))
         })
     } else {
         dispatch(setCurrentUser(null))

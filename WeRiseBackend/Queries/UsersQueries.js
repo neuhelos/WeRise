@@ -51,13 +51,13 @@ const getUser = async (req, res) => {
     );
     res.status(200).json({
       status: "success",
-      message: "found user",
+      message: "User Retrieved",
       payload: user
     });
   } catch (error) {
     res.status(404).json({
       status: error,
-      message: "user not found",
+      message: "User Not Found",
       payload: null
     });
   }
