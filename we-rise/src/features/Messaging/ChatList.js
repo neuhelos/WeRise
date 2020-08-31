@@ -103,7 +103,7 @@ const ChatList = ( props ) => {
     
     let chatList = chats.map( (chat, index) => {
         
-        let currentUserChatPeers = chat.users.filter(user => user !== currentUser)
+        //let currentUserChatPeers = chat.users.filter(user => user !== currentUser)
         //let peerUserData = fetchPeersData(currentUserChatPeers)
 
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Switch } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
 import firebase from './Utilities/firebase'
 
 import { setCurrentUser } from './features/Authentication/AuthenticationSlice'
@@ -29,6 +30,7 @@ const WeRiseApp = () => {
   const userSession = user => {
     if(user) {
         const {email, uid} = user
+        let name = await axios.get()
         getFirebaseIdToken().then(token => {
             dispatch(setCurrentUser({email, uid, token}))
         })

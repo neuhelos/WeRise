@@ -138,11 +138,12 @@ const NavBar = () => {
   const fetchChats = async () => {
     await firestore
     .collection('chats')
-    .where('users', 'array-contains', currentUser)
+    .where(`users.${currentUser}.userId`, '==', currentUser)
     .onSnapshot( async (res) => {
         const chats = res.docs.map(doc => doc.data())
         await dispatch(chatsStore(chats))
     })
+
   }
 
   useEffect( () => {

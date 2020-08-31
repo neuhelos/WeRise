@@ -49,11 +49,10 @@ const Chat = (props) => {
     const clickedChatNotSender = (chatIndex) => chats[chatIndex].messages[chats[chatIndex].messages.length-1].sender !== currentUser
     
     const messageRead = () => {
-        const docKey = buildDocKey(chats[selectedChat].users.filter(user => user !== currentUser)[0])
         if(clickedChatNotSender(selectedChat)){
             firestore
             .collection('chats')
-            .doc(docKey)
+            .doc(chats[selectedChat].chatId)
             .update({
                 receiverHasRead: true
             })
@@ -64,19 +63,14 @@ const Chat = (props) => {
         if(selectedChat) messageRead()
     }, [selectedChat])
 
-    const buildDocKey = (peer) => {
-        return [currentUser, peer].sort().join(":")
-    }
-    
-
     
     const submitMessage = (message) => {
-        const docKey = buildDocKey(chats[selectedChat].users.filter(user => user !== currentUser)[0]);
         firestore
         .collection('chats')
-        .doc(docKey)
+        .doc(chats[selectedChat].chatId)
         .update({
             messages: firebase.firestore.FieldValue.arrayUnion({
+                firstName: currentUser,
                 message: message,
                 sender: currentUser,
                 timestamp: Date.now()
