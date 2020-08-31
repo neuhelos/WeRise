@@ -60,7 +60,7 @@ const ChatInput = ( props ) => {
 
     const handleSubmit = (event) => {
         if(messageValidation(input.value)){
-            props.submitMessage(input.value)
+            props.submitMessage(props.selectedChat.chatId,input.value)
             event.target.value = ""
         }
     }

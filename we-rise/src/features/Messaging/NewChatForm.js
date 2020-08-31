@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
 const NewChatForm = ( props ) => {
     
     const classes = useStyles()
+    const currentUser = useSelector( state => state.currentUserSession )
 
-    const currentUser = useSelector( state => state.currentUserSession.uid )
 
     let userSearch = useInput("")
     let newChatMessage = useInput("")
@@ -66,22 +66,24 @@ const NewChatForm = ( props ) => {
         setUsers(values)
     }
 
-    const usersExist = async () => {
+    const userExists = async (user) => {
         const usersSnapshot = await firestore
             .collection('users')
             .get()
-        const allUsersExist = usersSnapshot.docs.map( doc => doc.data().email).includes(users.forEach( user => user));
-        if(!allUsersExist) setError('A User Does Not Exist')
-        return allUsersExist
+        const exists = usersSnapshot.docs.map( doc => doc.data().email).includes(user);
+        debugger
+        return exists
     }
 
     const chatExists = async () => {
-        const chat = await firestore
+        let usersQuery = [...users, currentUser.email].sort()
+        const query = await firestore
             .collection('chats')
-            .where('chats.usersEmail', 'in', [users])
+            .where('usersEmail', 'in', [usersQuery])
             .get()
+        const chatId = query.docs.map(doc => doc.id).join("")
         debugger
-        return chat.chatId
+        return chatId
     }
 
     const createChat = () => {
@@ -97,11 +99,15 @@ const NewChatForm = ( props ) => {
 
     const handleSubmitNewChat = async ( event ) => {
         event.preventDefault()
+        debugger
         if(users.length <= 8){
-            let existingUsers = await usersExist()
+            let existingUsers = await users.every(userExists)
+            debugger
             if(existingUsers){
                 let existingChat = await chatExists()
                 existingChat ? displayExistingChat(existingChat) : createChat()
+            } else {
+                setError('A User Does Not Exist')
             }
         } else {
             setError('Max Users Exceeded')

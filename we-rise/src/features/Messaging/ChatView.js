@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
 			fontFamily: "audiowide",
 		},
 	},
+    noVisibleChatView: {
+        height: "100%",
+    },
 	chatViewContainer: {
 		width: "100%",
 		height: "80%",
@@ -141,9 +144,10 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 		"https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/appImages%2FWeRiseFist.png?alt=media&token=1feea915-d2b3-4b6c-8b6c-1faf9b4c594f";
 
 	return (
-		<Container disableGutters className={classes.root}>
+		<Grid className={classes.root} display="flex">
 			{selectedChat === undefined ? (
 				<Grid
+                    className={classes.noVisibleChatView}
 					container
 					display="flex"
 					direction="column"
@@ -156,6 +160,7 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 			) : (
 				<>
 					<Grid
+                        container
 						className={classes.chatHeader}
 						container
 						display="flex"
@@ -172,19 +177,21 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 						</div>
 					</div>
 					<Grid
+                        container
 						className={classes.chatInput}
 						display="flex"
 						justify="center"
 						alignItems="center"
 					>
 						<ChatInput
+                            selectedChat={selectedChat}
 							submitMessage={submitMessage}
 							messageRead={messageRead}
 						/>
 					</Grid>
 				</>
 			)}
-		</Container>
+		</Grid>
 	);
 };
 

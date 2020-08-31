@@ -39,7 +39,6 @@ const Chat = (props) => {
         setSelectedChat(null)
     }
 
-    
     const handleSelectedChat = (chatIndex) => {
         setNewChatFormVisible(false)
         setSelectedChat(chatIndex);
@@ -64,10 +63,10 @@ const Chat = (props) => {
     }, [selectedChat])
 
     
-    const submitMessage = (message) => {
+    const submitMessage = (chatId, message) => {
         firestore
         .collection('chats')
-        .doc(chats[selectedChat].chatId)
+        .doc(chatId) //Have to debug chats[selectedChat].chatId
         .update({
             messages: firebase.firestore.FieldValue.arrayUnion({
                 firstName: currentUser.firstn,
@@ -80,12 +79,11 @@ const Chat = (props) => {
         
     }
     
-    const goToExistingChat = async (docKey, message) => {
-        const usersInChat = docKey.split(':')
-        const chat = chats.find( chat => usersInChat.every( user => chat.users.includes(user)))
+    const goToExistingChat = async (chatId, message) => {
+        const existingChatIndex = chats.indexOf(chats.find( chat => chat.chatId === chatId))
         setNewChatFormVisible(false)
-        await setSelectedChat(chats.indexOf(chat))
-        submitMessage(message)
+        setSelectedChat(existingChatIndex)
+        await submitMessage(chatId, message)
     }
 
     const newChatSubmit = async (chatObject) => {
