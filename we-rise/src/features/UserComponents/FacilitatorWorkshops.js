@@ -59,7 +59,6 @@ const FacilitatorWorkshops = () => {
         try{
            let currentWorkshopsRes = await axios.get(`${apiURL()}/workshops/${user_id}`)
            let pastWorkshopsRes = await axios.get(`${apiURL()}/workshops/pastworkshops/${user_id}`)
-
             setUCWorkshops(currentWorkshopsRes.data.payload); 
             setUPCWorkshops(pastWorkshopsRes.data.payload); 
         }

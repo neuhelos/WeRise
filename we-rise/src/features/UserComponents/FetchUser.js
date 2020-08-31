@@ -52,7 +52,7 @@ const FetchUser = () => {
 
   const fetchUser = async (currentUser) => {
     let res = await fetchUserById(currentUser);
-    debugger
+   
     setProfile(res);
     console.log(setProfile(res.id));
     setFirstn(res.firstn);
