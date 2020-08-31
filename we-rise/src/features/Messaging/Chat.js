@@ -76,7 +76,7 @@ const Chat = (props) => {
                 firstName: currentUser.firstn,
                 message: message,
                 sender: currentUser.uid,
-                timestamp: Date.now()
+                timestamp: firestore.Timestamp.fromDate(new Date())
             }),
             receiverHasRead: false
         });
@@ -99,11 +99,11 @@ const Chat = (props) => {
                 messages: [{
                     message: chatData.message,
                     sender: currentUser.uid,
-                    timestamp: new Date(),
+                    timestamp: firestore.Timestamp.fromDate(new Date()),
                     firstName: currentUser.firstn
                 }],
                 receiverHasRead: false,
-                users: chatData.userDetails,
+                users: [...chatData.userDetails, {email: currentUser.email, firstName: currentUser.firstn, lastName: currentUser.lastn, profileImage: currentUser.user_pic, userId: currentUser.uid}], 
                 usersEmail: [...chatData.recipients, currentUser.email].sort()
             })
         debugger

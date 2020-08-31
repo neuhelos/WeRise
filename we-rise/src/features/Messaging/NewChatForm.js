@@ -94,9 +94,9 @@ const NewChatForm = ( props ) => {
     }
 
     const createChat = async () => {
-        let usersData = await users.map( user => newChatUserData(user))
+        let usersData = await Promise.all(users.map( user => newChatUserData(user)))
         debugger
-        props.newChatSubmit({
+        await props.newChatSubmit({
             userDetails: usersData,
             recipients: users,
             message: newChatMessage.value
@@ -137,7 +137,7 @@ const NewChatForm = ( props ) => {
                                 ))
                             }
                             renderInput={(params) => (
-                                <TextField {...params} variant="filled" label="Enter User(s)" placeholder="Enter One or Up to Eight Users" required/>
+                                <TextField {...params} variant="filled" label="Enter User(s)" placeholder="Enter One or Up to Eight Users"/>
                             )}
                         />
                         <TextField className={classes.input} fullWidth inputProps={{style: {textAlign: 'left'}}} id="newChatMessage" label="Message" placeholder="Enter Your Message" variant="filled" multiline rows={2} {...newChatMessage}/>
