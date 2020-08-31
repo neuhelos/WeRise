@@ -20,59 +20,60 @@ import Paper from '@material-ui/core/Paper'
 
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-        height: '100%',
-        '& *': {
-            fontFamily: 'audiowide'
+        root: {
+            width: '100%',
+            height: '100%',
+            '& *': {
+                fontFamily: 'audiowide'
+            },
         },
-    },
-    listContainer: {
-        width: '100%',
-        flex: 1,
-        backgroundColor: '#282828',
-        position: 'relative',
-        height: '95%',
-    },
-    list: {
-        width: '100%',
-        backgroundColor: '#F5F5F5',
-        overflow: 'auto',
-        position: 'absolute',
-    },
-    listItem: {
-        cursor: 'pointer',
-        color: '#000000',
-        '&:hover': {
-            background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
-            color: '#FFFFFF'
+        listContainer: {
+            width: '100%',
+            flex: 1,
+            backgroundColor: '#282828',
+            position: 'relative',
+            height: '95%',
         },
-    },
-    selected: {
-        '&$selected':{
-            background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
-            color: '#FFFFFF',
-            '&:hover':{
+        list: {
+            width: '100%',
+            backgroundColor: '#666666',
+            overflow: 'auto',
+            position: 'absolute',
+        },
+        listItem: {
+            backgroundColor: '#F5F5F5',
+            cursor: 'pointer',
+            color: '#000000',
+            '&:hover': {
+                background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
+                color: '#FFFFFF'
+            },
+        },
+        selected: {
+            '&$selected':{
                 background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
                 color: '#FFFFFF',
+                '&:hover':{
+                    background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
+                    color: '#FFFFFF',
+                }
+            }
+        },
+        button: {
+            height: '5%',
+            backgroundColor: '#36386D',
+            borderRadius: '0px',
+            color: '#FFFFFF',
+            '&:hover': {
+                backgroundColor: '#F89B29'
+            }
+        },
+        unreadMessage: {
+            color: '#FF0F7B',
+            '&:hover': {
+                color: '#36386D'
             }
         }
-    },
-    button: {
-        height: '5%',
-        backgroundColor: '#36386D',
-        borderRadius: '0px',
-        color: '#FFFFFF',
-        '&:hover': {
-            backgroundColor: '#F89B29'
-        }
-    },
-    unreadMessage: {
-        color: 'red',
-        position: 'absolute',
-        top: '0',
-        right: '5px'
-    }
     })
 )
 
@@ -88,16 +89,6 @@ const ChatList = ( props ) => {
 
     const currentUserIsLatestSender = (chat) => chat.messages[chat.messages.length-1].sender === currentUser
     
-    const fetchPeersData = (users) => {
-        try {
-            let userData = users.map( user => {
-                return fetchFirebaseUser(user)
-            })
-            return (userData)
-        } catch(error) {
-            console.log(error)
-        }
-    }
 
     let multipleChatPeersAvatar = "https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FRainbowSmileyDefaultAvatar.png?alt=media&token=379959f1-6d89-43a4-bf01-92a68841c643"
     
@@ -125,8 +116,8 @@ const ChatList = ( props ) => {
                     </ListItemText>
                     { 
                         chat.receiverHasRead === false && !currentUserIsLatestSender(chat) ? 
-                        <ListItemIcon>
-                            <NotificationsTwoToneIcon className={classes.unreadMessage}/>
+                        <ListItemIcon edge='end'>
+                            <NotificationsTwoToneIcon className={classes.unreadMessage} fontSize='large'/>
                         </ListItemIcon>
                         : null
                     }
@@ -140,7 +131,7 @@ const ChatList = ( props ) => {
     return (
         <Grid container className={classes.root} display="flex" direction="column" justify="flex-start" alignItems="center">
             <Button className={classes.button} variant='contained' fullWidth onClick={props.newChat}>NEW CHAT</Button>
-            <Box component='div' className={classes.listContainer}>
+            <Box component='div' className={classes.listContainer} p={0}>
                 <List className={classes.list}>
                     { !chatList.length ? null : chatList }
                 </List>
