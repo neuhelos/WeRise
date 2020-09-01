@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { firestore } from "../../Utilities/firebase";
+import { Link } from 'react-router-dom'
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	chatHeader: {
 		backgroundColor: "#36386D",
-		fontSize: "2rem",
+		fontSize: "1rem",
 		color: "white",
 		width: "100%",
 		height: "5%",
@@ -83,6 +83,14 @@ const useStyles = makeStyles((theme) => ({
 		width: "100%",
 		height: "15%",
 	},
+    profileLink: {
+        color: '#FFFFFF',
+        '&:hover': {
+            color: '#FF0F7B'
+        },
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1)
+    }
 }));
 
 const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
@@ -130,15 +138,18 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 			);
 		});
 	};
+    
 
-	let chatPeers = (selectedChat) => {
-		let peers = [];
-		for (let key in selectedChat.users) {
-			if (selectedChat.users[key].userId !== currentUser.uid)
-				peers.push(selectedChat.users[key].firstName);
-		}
-		return peers.join("&");
-	};
+    let peers
+    if(selectedChat){
+		peers = selectedChat.users.filter(user => user.userId !== currentUser.uid).map( user => {
+            return  <Link to={`/Profile/${user.userId}`} className={classes.profileLink}>
+                        <Typography>{user.firstName}</Typography>
+                    </Link>
+        })
+        .reduce(( prev, curr ) => [prev, ' & ' , curr])
+    }
+    
 
 	let WeRiseFist =
 		"https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/appImages%2FWeRiseFist.png?alt=media&token=1feea915-d2b3-4b6c-8b6c-1faf9b4c594f";
@@ -167,9 +178,8 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 						justify="center"
 						alignItems="center"
 					>
-						<Typography>
-							{`Your Conversation with ${chatPeers(selectedChat)}`}
-						</Typography>
+						<Typography>Your Conversation with</Typography>
+                        {peers}
 					</Grid>
 					<div className={classes.chatViewContainer}>
 						<div className={classes.chatView} id="chatview-container">

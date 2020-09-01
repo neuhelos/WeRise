@@ -66,13 +66,17 @@ const useStyles = makeStyles((theme) => ({
             color: '#FFFFFF',
             '&:hover': {
                 backgroundColor: '#F89B29'
-            }
+            },
+            fontSize: '1rem'
         },
         unreadMessage: {
             color: '#FF0F7B',
             '&:hover': {
                 color: '#36386D'
             }
+        },
+        divider: {
+            backgroundColor: '#A3A3A3'
         }
     })
 )
@@ -122,7 +126,7 @@ const ChatList = ( props ) => {
                         : null
                     }
                 </ListItem>
-                <Divider></Divider>
+                <Divider className={classes.divider}></Divider>
             </div>
         )
     })
