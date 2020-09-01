@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = () => {
 
-  const currentUser = useSelector( state => state.currentUserSession.uid )
+  const currentUser = useSelector( state => state.currentUserSession )
   const classes = useStyles();
 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -138,11 +138,12 @@ const NavBar = () => {
   const fetchChats = async () => {
     await firestore
     .collection('chats')
-    .where('users', 'array-contains', currentUser)
+    .where('usersEmail', 'array-contains', currentUser.email)
     .onSnapshot( async (res) => {
         const chats = res.docs.map(doc => doc.data())
         await dispatch(chatsStore(chats))
     })
+
   }
 
   useEffect( () => {
@@ -150,7 +151,7 @@ const NavBar = () => {
   }, []);
 
   const chats = useSelector (state => state.chats)
-  let unreadCount = chats.filter( (chat, index) => !chat.receiverHasRead && chat.messages[chats[index].messages.length-1].sender !== currentUser).length
+  let unreadCount = chats.filter( (chat) => chat.receiverHasRead === false && chat.messages[chat.messages.length-1].sender !== currentUser.uid).length
 
 
   return (
@@ -170,17 +171,12 @@ const NavBar = () => {
               </IconButton>
             </Tooltip>
               <Tooltip title="Instant Messaging">
-              <IconButton className={classes.iconButton}  aria-label="show 4 new mails" color="inherit" onClick={navMessaging} >
+              <IconButton className={classes.iconButton}  aria-label="unread messages" color="inherit" onClick={navMessaging} >
                 <Badge badgeContent={unreadCount} classes={{ badge: classes.badge }} overlap='circle' showZero>
                   <MailIcon style={{ fontSize: 50 }} />
                 </Badge>
               </IconButton>
             </Tooltip>
-            {/* <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon style={{ fontSize: 60 }} />
-              </Badge>
-            </IconButton> */}
             <Tooltip title="Add Workshop">
               <IconButton className={classes.iconButton}  edge="end" aria-label="Add Workshop" onClick={toggleModal} color="inherit" >
                 <AddBoxIcon style={{ fontSize: 50 }} />

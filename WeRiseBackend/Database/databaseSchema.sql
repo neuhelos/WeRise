@@ -81,7 +81,7 @@ VALUES
 ('rVOVAIwKwdUchSqjZl0xh3qqe0q1', 'Uduakabasi', 'Abasiurua', 'uduakabasiabasiurua@pursuit.org','https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FUduakabasiAbasiurua.jpeg?alt=media&token=4d85a760-0c46-4cb6-a8ae-aa0d3a857281', '6.4 Pursuit Fellow'),
 ('8uvDSPKzhjU5rllJU1Fy40Gn8x23', 'Danielle', 'Cherry', 'daniellecherry@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FDanielleCherry.png?alt=media&token=d16969cf-fe72-4d92-a2a8-b48802c0354e', '6.4 Pursuit Fellow'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FTessaThompson.jpg?alt=media&token=02554b12-bfc8-419f-a1db-36d7cde08770', 'Hi im the Demo Account!'),
-('E093QRw1swaW4KCQUON44IU2gcy2', 'Guest', 'Account', 'guest@werise.org','https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FTessaThompson.jpg?alt=media&token=b8212f99-0cf4-4a34-8c91-a5694fc2ecd7', 'Hi im the Guest Account!');
+('E093QRw1swaW4KCQUON44IU2gcy2', 'WeRise', 'Together', 'guest@werise.org','https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FRainbowSmileyDefaultAvatar.png?alt=media&token=379959f1-6d89-43a4-bf01-92a68841c643', 'Hi im the Guest Account!');
 
 INSERT INTO created_workshops
 (id, posted, user_id, title, descriptions, start_time, end_time, category, participants, workshop_img)
