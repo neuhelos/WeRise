@@ -7,6 +7,7 @@ import { apiURL } from './Utilities/apiURL'
 
 import { setCurrentUser } from './features/Authentication/AuthenticationSlice'
 import { getFirebaseIdToken } from './Utilities/firebaseFunctions'
+import { finishLoading } from './features/BaseComponents/loadingSlice'
 
 import AuthNavBar from './features/NavBar/AuthNavBar'
 import LandingPage from './features/Pages/LandingPage'
@@ -16,6 +17,7 @@ import UserProfilePage from './features/Pages/UserProfilePage'
 import InstantMessagingPage from './features/Pages/MessagingPage'
 import Footer from './features/BaseComponents/Footer'
 import { PublicRoute, ProtectedRoute } from './features/Authentication/AuthRouting'
+import LoadingComponent from './features/BaseComponents/loadingComponent'
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -34,10 +36,18 @@ const WeRiseApp = () => {
         let res = await axios.get(`${apiURL()}/users/${uid}`)
         const {bio, firstn, lastn, facebook, instagram, twitter, linkedin, user_pic} = res.data.payload
         getFirebaseIdToken().then(token => {
+
+            dispatch(setCurrentUser({email, uid, token}))
+            dispatch(finishLoading());
+            
+            
+
             dispatch(setCurrentUser({email, uid, token, bio, firstn, lastn, facebook, instagram, twitter, linkedin, user_pic}))
+
         })
     } else {
-        dispatch(setCurrentUser(null))
+        dispatch(setCurrentUser(null));
+        dispatch(finishLoading());
     }
   };
 
@@ -50,6 +60,7 @@ const WeRiseApp = () => {
   return (
 
     <ThemeProvider theme={theme}>
+      <LoadingComponent>
         <CssBaseline />
         { currentUser ? <AuthNavBar /> : null }
         <Switch>
@@ -70,6 +81,7 @@ const WeRiseApp = () => {
           </ProtectedRoute>
         </Switch>
         <Footer />
+      </LoadingComponent>
     </ThemeProvider>
   )
 }
