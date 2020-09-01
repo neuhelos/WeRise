@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import Paper from '@material-ui/core/Paper'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Modal from '../BaseComponents/Modal'
 import WorkshopRegistration from './WorkshopRegistration'
 

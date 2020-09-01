@@ -76,7 +76,7 @@ const Chat = (props) => {
                 firstName: currentUser.firstn,
                 message: message,
                 sender: currentUser.uid,
-                timestamp: firestore.Timestamp.fromDate(new Date())
+                timestamp: firebase.firestore.Timestamp.fromDate(new Date())
             }),
             receiverHasRead: false
         });
@@ -99,7 +99,7 @@ const Chat = (props) => {
                 messages: [{
                     message: chatData.message,
                     sender: currentUser.uid,
-                    timestamp: firestore.Timestamp.fromDate(new Date()),
+                    timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
                     firstName: currentUser.firstn
                 }],
                 receiverHasRead: false,
@@ -108,7 +108,7 @@ const Chat = (props) => {
             })
         debugger
         setNewChatFormVisible(false)
-        setSelectedChat(chats.length-1)
+        await setSelectedChat(chats.length-1)
     }
 
 
