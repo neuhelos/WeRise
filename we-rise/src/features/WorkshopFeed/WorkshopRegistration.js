@@ -9,6 +9,8 @@ import { apiURL } from '../../Utilities/apiURL'
 import { useInput } from '../../Utilities/CustomHookery'
 import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
+import WorkshopDetails from './WorkshopDetails'
+
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';

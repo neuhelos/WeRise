@@ -41,7 +41,7 @@ const MyWorkshopModal = ({ handleCloseModal, workshop }) => {
     let time = dateFormat(workshop.start_time).time
 
   const workshopImage = workshop.workshop_img
-  // Button should only show if the start_time is the same as the current time!
+
     return (
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
             <Typography variant='h4'>{workshop.title}</Typography>
