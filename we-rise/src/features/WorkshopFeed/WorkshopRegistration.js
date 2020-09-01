@@ -68,39 +68,25 @@ const useStyles = makeStyles((theme) => ({
         flex: 1,
         marginBottom: theme.spacing(2)
     },
-    image : {
-        width: '75%',
-        [theme.breakpoints.down('sm')]:{
-          width: '50%'
-      },
-      border: '2px solid #666666', 
-      borderRadius: '4px'
-    },
     button: {
         marginRight: theme.spacing(1),
-  },
-  stepperContent: {
+    },
+    stepperContent: {
+        width: '100%',
+        marginTop: theme.spacing(1),
+    },
+    input: {
       width: '100%',
-      marginTop: theme.spacing(1),
-  },
-  profileLink: {
-        color: '#F89B29',
-        '&:hover': {
-            color: '#36386D'
-        },
-  },
-  input: {
-    width: '100%',
-    fontFamily: 'audiowide',
-    marginBottom: theme.spacing(1)
-  }, 
-  stepper: {
-    padding: theme.spacing(2),
-    backgroundColor: '#F5F5F5'
-  },
-  text: {
-    width: '100%',
-  }
+      fontFamily: 'audiowide',
+      marginBottom: theme.spacing(1)
+    }, 
+    stepper: {
+      padding: theme.spacing(2),
+      backgroundColor: '#F5F5F5'
+    },
+    text: {
+      width: '100%',
+    }
 }))
 
 const ColorlibConnector = withStyles({
@@ -154,7 +140,7 @@ const getSteps = () => {
 }
 
 
-const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participantsData }) => {
+const WorkshopRegistration = ({ workshop, handleCloseModal, ...props }) => {
   
     const currentUser = useSelector( state => state.currentUserSession )
 
@@ -177,24 +163,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
 
       return (
           <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
-              <Typography align='center' style={{color: '#FF0F7B'}} className={classes.text} gutterBottom={true} variant='h6'>{workshop.title}</Typography>
-              <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="flex-start">
-                <Grid className={classes.container} container display="flex" direction="column" justify="flex-start" alignItems="center">
-                    <div style={{display:"flex", width: '100%'}}>
-                      <Typography align='left' variant='subtitle1' gutterBottom={true}>Facilitator:</Typography>
-                      <Link to={`/Profile/${workshop.user_id}`} className={classes.profileLink}>
-                      <Typography align='left' className={classes.text} variant='subtitle1' gutterBottom={true} >{` ${workshop.firstn} ${workshop.lastn}` }</Typography>
-                      </Link>
-                    </div>
-                    <Typography align='left' className={classes.text} variant='body2' gutterBottom={true} >{`${dateTime.date} ${dateTime.time}`}</Typography>
-                    <Typography align='left' className={classes.text} variant='body2' gutterBottom={true} >Description: {workshop.descriptions}</Typography>
-                    <Typography align='left' className={classes.text} variant='body2' gutterBottom={true} >Category: {workshop.category}</Typography>
-                    <Typography align='left' variant='body2' gutterBottom={true}  className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
-                </Grid>
-                <Grid className={classes.container} container display="flex" direction='row' justify="flex-end" alignItems="center">
-                  <img className={classes.image} src={workshop.workshop_img} alt={workshop.title} />
-                </Grid>
-              </Grid>
+              <WorkshopDetails workshop={workshop} {...props}/>
               {workshop.participants !== workshop.workshop_count ?
                   <Grid className={classes.root} item container display="flex" direction="row" justify="space-around" alignItems="center">
                     <Button variant="contained" color="primary" onClick={handleCloseModal}> RETURN TO WORKSHOPS </Button>
