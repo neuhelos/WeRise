@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-
+import firebase, { firestore } from '../../Utilities/firebase'
+import { v4 as uuidv4 } from 'uuid'
 import axios from 'axios'
 
 import { apiURL } from '../../Utilities/apiURL'
@@ -65,12 +66,15 @@ const useStyles = makeStyles((theme) => ({
     container: {
         width: '50%',
         flex: 1,
+        marginBottom: theme.spacing(2)
     },
     image : {
-        width: '100%',
+        width: '75%',
         [theme.breakpoints.down('sm')]:{
           width: '50%'
       },
+      border: '2px solid #666666', 
+      borderRadius: '4px'
     },
     button: {
         marginRight: theme.spacing(1),
@@ -78,12 +82,9 @@ const useStyles = makeStyles((theme) => ({
   stepperContent: {
       width: '100%',
       marginTop: theme.spacing(1),
-      '& * + *' : {
-          marginBottom: theme.spacing(1)
-      }
   },
   profileLink: {
-        color: '#FF0F7B',
+        color: '#F89B29',
         '&:hover': {
             color: '#36386D'
         },
@@ -99,7 +100,6 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     width: '100%',
-    marginBottom: theme.spacing(1),
     flex: 1
   }
 }))
@@ -157,6 +157,8 @@ const getSteps = () => {
 
 const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participantsData }) => {
   
+    const currentUser = useSelector( state => state.currentUserSession )
+
     const dispatch = useDispatch()
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
@@ -170,24 +172,27 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
- 
+
 
     const WorkshopDescription = () => {
 
       return (
           <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
-              <Typography align='center' style={{color: '#FF0F7B'}} className={classes.text} variant='h6'>{workshop.title}</Typography>
-              <Grid className={classes.root} container item display="flex" direction="row" justify="center" alignItems="center" sm={12}>
-                <Grid className={classes.container} item container display="flex" direction="column" justify="flex-start" alignItems="stretch">
-                    <Link to={`/Profile/${workshop.user_id}`} className={classes.profileLink}>
-                    <Typography align='left' className={classes.text} variant='subtitle1'>  Facilitator: {`${workshop.firstn} ${workshop.lastn}` }</Typography>
-                    </Link>
-                    <Typography align='left' className={classes.text} variant='body2'>{`${dateTime.date} ${dateTime.time}`}</Typography>
-                    <Typography align='left' className={classes.text} variant='body2'>Description: {workshop.descriptions}</Typography>
-                    <Typography align='left' className={classes.text} variant='body2'>Category: {workshop.category}</Typography>
-                    <Typography align='left' className={classes.text} variant='body2' className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
+              <Typography align='center' style={{color: '#FF0F7B'}} className={classes.text} gutterBottom="true" variant='h6'>{workshop.title}</Typography>
+              <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="flex-start">
+                <Grid className={classes.container} container display="flex" direction="column" justify="flex-start" alignItems="center">
+                    <div style={{display:"flex"}}>
+                      <Typography align='center' className={classes.text} variant='subtitle1' gutterBottom="true">Facilitator:</Typography>
+                      <Link to={`/Profile/${workshop.user_id}`} className={classes.profileLink}>
+                      <Typography align='center' className={classes.text} variant='subtitle1' gutterBottom="true" >{` ${workshop.firstn} ${workshop.lastn}` }</Typography>
+                      </Link>
+                    </div>
+                    <Typography align='left' className={classes.text} variant='body2' gutterBottom="true" >{`${dateTime.date} ${dateTime.time}`}</Typography>
+                    <Typography align='left' className={classes.text} variant='body2' gutterBottom="true" >Description: {workshop.descriptions}</Typography>
+                    <Typography align='left' className={classes.text} variant='body2' gutterBottom="true" >Category: {workshop.category}</Typography>
+                    <Typography align='left' className={classes.text} variant='body2' gutterBottom="true"  className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
                 </Grid>
-                <Grid className={classes.container} item container display="flex" direction='row' justify="center" alignItems="center">
+                <Grid className={classes.container} container display="flex" direction='row' justify="center" alignItems="center">
                   <img className={classes.image} src={workshop.workshop_img} alt={workshop.title} />
                 </Grid>
               </Grid>
@@ -205,14 +210,55 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
     const WorkshopRegistration = () => {
 
         const message = useInput("")
+        
+        const chatExists = async () => {
+                let usersQuery = [workshop.email, currentUser.email].sort()
+                const query = await firestore
+                    .collection('chats')
+                    .where('usersEmail', 'in', [usersQuery])
+                    .get()
+                const chatId = query.docs.map(doc => doc.id).join("")
+                return chatId
+              }
 
-        const handleSubmit = (event) => {
+        const newChatSubmit = async (chatData) => {
+        let chatId = uuidv4()
+        await firestore
+            .collection('chats')
+            .doc(chatId)
+            .set({
+                messages: [{
+                    message: chatData.message,
+                    sender: currentUser.uid,
+                    timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+                    firstName: currentUser.firstn
+                }],
+                receiverHasRead: false,
+                users: [...chatData.userDetails, {email: currentUser.email, firstName: currentUser.firstn, lastName: currentUser.lastn, profileImage: currentUser.user_pic, userId: currentUser.uid}], 
+                usersEmail: [...chatData.recipients, currentUser.email].sort()
+            })
+    }
+
+        const createChat = () => {
+          newChatSubmit({
+              userDetails: usersData,
+              recipients: users,
+              message: newChatMessage.value
+          })
+        }
+
+        const handleSubmit = async (event) => {
             event.preventDefault()
             handleNext()
             try {
               setTimeout(() => {
                 dispatch(addRegistration(workshop.workshop_id))
               }, 5000);
+
+              let existingChat = await chatExists()
+              existingChat ? displayExistingChat(existingChat) : createChat()
+                
+
               let facilitatorEmail = axios.post(`${apiURL()}/email`, {
                   to: 'nilberremon@pursuit.org',
                   from: 'WeRiseFacilitator@werise.org',
@@ -226,9 +272,9 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
 
         return (
             <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">                
-                <form onSubmit={handleSubmit}>
-                    <Typography variant='h6'>Introduce Yourself to the Facilitator</Typography>
-                    <TextField id="message" className={classes.input} label="Your Message" placeholder="Tell the Facilitator About Your Interest in the Workshop" variant="filled" multiline rows={10} {...message} required />
+                <form className={classes.root} onSubmit={handleSubmit}>
+                    <Typography className={classes.text} align='center' variant='h6' gutterBottom="true">Introduce Yourself to the Facilitator</Typography>
+                    <TextField id="message" className={classes.input} label="Your Message" placeholder="Tell the Facilitator About Your Interest in the Workshop. They will receive a chat message from you." variant="filled" multiline rows={10} {...message} required />
                     <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center">
                         <Button variant="contained" color="primary" onClick={handleBack}> BACK </Button>
                         <Button variant="contained" color="primary" type="submit"> REGISTER </Button>
@@ -256,8 +302,8 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
 
         return (
             <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
-                <Typography variant='h6'>Registration Complete</Typography>
-                <Typography variant='body1'>Thank you for Registering for {workshop.title}</Typography>
+                <Typography variant='h6'gutterBottom="true">Registration Complete</Typography>
+                <Typography variant='body1' gutterBottom="true">Thank you for Registering for {workshop.title}</Typography>
                 {/* <FormControl variant="filled" className={classes.formControl}>
                   <InputLabel htmlFor="addToCalendar">Add to Calendar</InputLabel>
                   <Select
