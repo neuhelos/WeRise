@@ -210,41 +210,49 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
     const WorkshopRegistration = () => {
 
         const message = useInput("")
-        
+        let chatUsers = [workshop.email, currentUser.email].sort()
+        let facilitatorDetails = {email: workshop.email, firstName: workshop.firstn, lastName: workshop.lastn, profileImage: workshop.user_id.user_pic, userId: workshop.user_id.uid}
+
         const chatExists = async () => {
-                let usersQuery = [workshop.email, currentUser.email].sort()
-                const query = await firestore
-                    .collection('chats')
-                    .where('usersEmail', 'in', [usersQuery])
-                    .get()
-                const chatId = query.docs.map(doc => doc.id).join("")
-                return chatId
-              }
+          const query = await firestore
+                .collection('chats')
+                .where('usersEmail', 'in', [chatUsers])
+                .get()
+            const chatId = query.docs.map(doc => doc.id).join("")
+            return chatId
+        }
 
-        const newChatSubmit = async (chatData) => {
-        let chatId = uuidv4()
-        await firestore
-            .collection('chats')
-            .doc(chatId)
-            .set({
-                messages: [{
-                    message: chatData.message,
-                    sender: currentUser.uid,
-                    timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
-                    firstName: currentUser.firstn
-                }],
-                receiverHasRead: false,
-                users: [...chatData.userDetails, {email: currentUser.email, firstName: currentUser.firstn, lastName: currentUser.lastn, profileImage: currentUser.user_pic, userId: currentUser.uid}], 
-                usersEmail: [...chatData.recipients, currentUser.email].sort()
-            })
-    }
+        const newChatSubmit = async () => {
+          let chatId = uuidv4()
+          await firestore
+              .collection('chats')
+              .doc(chatId)
+              .set({
+                  messages: [{
+                      message: message.value,
+                      sender: currentUser.uid,
+                      timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+                      firstName: currentUser.firstn
+                  }],
+                  receiverHasRead: false,
+                  users: [facilitatorDetails, {email: currentUser.email, firstName: currentUser.firstn, lastName: currentUser.lastn, profileImage: currentUser.user_pic, userId: currentUser.uid}], 
+                  usersEmail: chatUsers
+              })
+        }
 
-        const createChat = () => {
-          newChatSubmit({
-              userDetails: usersData,
-              recipients: users,
-              message: newChatMessage.value
-          })
+        const addToExistingChat = (chatId) => {
+          firestore
+          .collection('chats')
+          .doc(chatId)
+          .update({
+              messages: firebase.firestore.FieldValue.arrayUnion({
+                  firstName: currentUser.firstn,
+                  message: message.value,
+                  sender: currentUser.uid,
+                  timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+              }),
+              receiverHasRead: false
+          });
         }
 
         const handleSubmit = async (event) => {
@@ -255,16 +263,16 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
                 dispatch(addRegistration(workshop.workshop_id))
               }, 5000);
 
-              let existingChat = await chatExists()
-              existingChat ? displayExistingChat(existingChat) : createChat()
-                
-
               let facilitatorEmail = axios.post(`${apiURL()}/email`, {
                   to: 'nilberremon@pursuit.org',
                   from: 'WeRiseFacilitator@werise.org',
                   subject: 'WeRise - A User Registered for Your Workshop',
                   content: message.value
               })
+
+              let existingChat = await chatExists()
+              existingChat ? addToExistingChat(existingChat) : newChatSubmit()
+
             } catch (error) {
                 throw Error(error)
             }

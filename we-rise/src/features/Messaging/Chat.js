@@ -80,7 +80,6 @@ const Chat = (props) => {
             }),
             receiverHasRead: false
         });
-        
     }
     
     const goToExistingChat = async (chatId, message) => {
