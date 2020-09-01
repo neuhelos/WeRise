@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignContent: 'center',
+        
     },
     paperWrapper: {
         width: '90%',
@@ -85,28 +86,31 @@ const FacilitatorWorkshops = () => {
     return (
         <>
         <div className ='FacilitatorWorkshops'>
-        <Paper className={classes.paperWrapper}>
-            <Paper className={classes.paperTitle}>
-                <Typography className={classes.text} variant='subtitle1'>Workshops I'm Attending</Typography>
-            </Paper>
-        </Paper>
-            <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
-                {currentWorkshops}
-            </Grid> 
-        </div>
-
-        <div className ='FacilitatorWorkshops'>
-            {/* <h1>Past Workshop I Facilitated</h1> */}
             <Paper className={classes.paperWrapper}>
                 <Paper className={classes.paperTitle}>
-                    <Typography className={classes.text} variant='subtitle1'>Workshops I'm Attending</Typography>
+                    <Typography className={classes.text} variant='subtitle1'>Workshops I'm</Typography>
                 </Paper>
             </Paper>
+            <div className ='workshops'>
+                <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
+                    {currentWorkshops}
+                </Grid> 
+            </div>
+        </div>
+
+
+        <div className ='FacilitatorWorkshops'>
+            <Paper className={classes.paperWrapper}>
+                <Paper className={classes.paperTitle}>
+                    <Typography className={classes.text} variant='subtitle1'>Past Workshop I Facilitated</Typography>
+                </Paper>
+            </Paper>
+            {/* <h1>Past Workshop I Facilitated</h1> */}
+            <div className ='workshops'>
                 <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
                     {pastWorkshops}
                 </Grid> 
-
-            
+            </div>
         </div>
         </>
     )

@@ -40,7 +40,7 @@ const FacilitatorModal = ({ handleCloseModal, workshop }) => {
         ${DateTime.fromISO(workshop.start_time).toFormat('MMM')} 
         ${DateTime.fromISO(workshop.start_time).toFormat('d')},  
         ${DateTime.fromISO(workshop.start_time).toFormat('y')}`
-
+debugger
     let time = `${DateTime.fromISO(workshop.start_time).toFormat('T')} ${DateTime.fromISO(workshop.start_time).toFormat('ZZZZ')}`
 
   const workshopImage = workshop.workshop_img
@@ -51,6 +51,7 @@ const FacilitatorModal = ({ handleCloseModal, workshop }) => {
             <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
             <Typography variant='h10'>Description: {workshop.descriptions}</Typography>
             <img className={classes.image} src={workshopImage} alt="workshop.title"/>
+            <Typography variant='h6'>Number of Participants: {workshop.participants}</Typography>
             <Typography variant='h6'>Workshop Date: {date}</Typography>
         </Grid>
     )
