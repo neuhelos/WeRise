@@ -1,5 +1,4 @@
 import React from "react";
-import UserWorkshopAgenda from "../UserWorkshopsAgenda/UserWorkshopsAgenda";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import FacilitatorWorkshops from "../UserComponents/FacilitatorWorkshops";
 
@@ -50,7 +49,6 @@ const UserProfilePage = ({user}) => {
     <div className="userProfile">
  
         <FetchUser/>
-      {/* <UserWorkshopAgenda /> */}
       <FacilitatorWorkshops  />
       
     </div>

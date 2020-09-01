@@ -7,7 +7,7 @@ import axios from 'axios'
 
 import { apiURL } from '../../Utilities/apiURL'
 import { useInput } from '../../Utilities/CustomHookery'
-import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
+import { addRegistration } from '../RegisteredWorkshops/RegisteredWorkshopSlice'
 
 import WorkshopDetails from './WorkshopDetails'
 

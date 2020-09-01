@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
         '& *': {
             fontFamily: 'audiowide',
             outlineColor: '#36386D',
-            border: 'none',
         },
     },
     container: {
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     text: {
-    width: '100%',
+        width: '100%',
     }
     }))
 
@@ -46,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 const WorkshopDetails = ( { workshop, dateTime, participantsData } ) => {
     
     const classes = useStyles();
-    
+
     return (
             <>
                 <Typography align='center' style={{color: '#FF0F7B'}} className={classes.text} gutterBottom={true} variant='h6'>{workshop.title}</Typography>

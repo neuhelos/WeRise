@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid'
 import WorkshopFeed from '../WorkshopFeed/WorkshopFeed'
 import WorkshopFeedSearchForm from '../WorkshopFeed/WorkshopFeedSearchForm'
 
-import UserWorkshopAgenda from '../UserWorkshopsAgenda/UserWorkshopsAgenda'
+import RegisteredWorkshops from '../RegisteredWorkshops/RegisteredWorkshops'
 import RecentlyPostedWorkshops from '../RecentlyPostedWorkshops/RecentlyPostedWorkshops'
 
 
@@ -118,7 +118,7 @@ const MobileCommunityDashboard = () => {
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
                     <Paper className={classes.paper}>
-                        <UserWorkshopAgenda />
+                        <RegisteredWorkshops />
                     </Paper>
                 </TabPanel>
                 <TabPanel value={value} index={2} dir={theme.direction}>
