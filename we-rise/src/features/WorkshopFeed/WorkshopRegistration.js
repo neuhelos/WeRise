@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import axios from 'axios'
 
@@ -10,7 +10,6 @@ import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
 import AddToCalendarHOC from 'react-add-to-calendar-hoc'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -59,26 +58,35 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         '& *': {
             fontFamily: 'audiowide',
-            textAlign: 'center',
             outlineColor: '#36386D',
             border: 'none',
         },
     },
+    container: {
+        width: '50%',
+        flex: 1,
+    },
     image : {
-        width:'50%',
+        width: '100%',
         [theme.breakpoints.down('sm')]:{
-          width: '40%'
+          width: '50%'
       },
     },
     button: {
         marginRight: theme.spacing(1),
   },
   stepperContent: {
+      width: '100%',
       marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(1),
       '& * + *' : {
-          margin: theme.spacing(1)
+          marginBottom: theme.spacing(1)
       }
+  },
+  profileLink: {
+        color: '#FF0F7B',
+        '&:hover': {
+            color: '#36386D'
+        },
   },
   input: {
     width: '100%',
@@ -88,6 +96,11 @@ const useStyles = makeStyles((theme) => ({
   stepper: {
     padding: theme.spacing(2),
     backgroundColor: '#F5F5F5'
+  },
+  text: {
+    width: '100%',
+    marginBottom: theme.spacing(1),
+    flex: 1
   }
 }))
 
@@ -110,7 +123,7 @@ const ColorlibConnector = withStyles({
   line: {
     height: 3,
     border: 0,
-    backgroundColor: '#eaeaf0',
+    backgroundColor: '#A3A3A3',
     borderRadius: 1,
   },
 })(StepConnector);
@@ -142,7 +155,7 @@ const getSteps = () => {
 }
 
 
-const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
+const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participantsData }) => {
   
     const dispatch = useDispatch()
     const classes = useStyles();
@@ -157,18 +170,29 @@ const WorkshopRegistration = ({ workshop, handleCloseModal }) => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const workshopImage = workshop.workshop_img
+ 
 
     const WorkshopDescription = () => {
 
       return (
-          <Grid className={classes.root} container display="flex" direction="column" justify="space-evenly" alignItems="center">
-              <Typography variant='h6'>{workshop.title}</Typography>
-              <Typography variant='subtitle1' >  Facilitator: {`${workshop.firstn} ${workshop.lastn}` }</Typography>
-              <Typography variant='body2'>Description: {workshop.descriptions}</Typography>
-              <img className={classes.image} src={workshopImage} alt={workshop.title}/>
+          <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
+              <Typography align='center' style={{color: '#FF0F7B'}} className={classes.text} variant='h6'>{workshop.title}</Typography>
+              <Grid className={classes.root} container item display="flex" direction="row" justify="center" alignItems="center" sm={12}>
+                <Grid className={classes.container} item container display="flex" direction="column" justify="flex-start" alignItems="stretch">
+                    <Link to={`/Profile/${workshop.user_id}`} className={classes.profileLink}>
+                    <Typography align='left' className={classes.text} variant='subtitle1'>  Facilitator: {`${workshop.firstn} ${workshop.lastn}` }</Typography>
+                    </Link>
+                    <Typography align='left' className={classes.text} variant='body2'>{`${dateTime.date} ${dateTime.time}`}</Typography>
+                    <Typography align='left' className={classes.text} variant='body2'>Description: {workshop.descriptions}</Typography>
+                    <Typography align='left' className={classes.text} variant='body2'>Category: {workshop.category}</Typography>
+                    <Typography align='left' className={classes.text} variant='body2' className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
+                </Grid>
+                <Grid className={classes.container} item container display="flex" direction='row' justify="center" alignItems="center">
+                  <img className={classes.image} src={workshop.workshop_img} alt={workshop.title} />
+                </Grid>
+              </Grid>
               {workshop.participants !== workshop.workshop_count ?
-                  <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center">
+                  <Grid className={classes.root} item container display="flex" direction="row" justify="space-around" alignItems="center">
                     <Button variant="contained" color="primary" onClick={handleCloseModal}> RETURN TO WORKSHOPS </Button>
                     <Button variant="contained" color="primary" onClick={handleNext}> BEGIN REGISTRATION </Button> 
                   </Grid>

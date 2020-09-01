@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 
 import { DateTime } from 'luxon'
 
@@ -35,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
         width: theme.spacing(8),
         height: theme.spacing(8),
+        '&:hover': {
+            border: '3px solid #F89B29'
+        }
     },
     text: {
         fontFamily:'audiowide'
@@ -53,11 +57,18 @@ const useStyles = makeStyles((theme) => ({
             cursor: 'pointer',
             border: '2px solid  #FF0F7B'
         }
+    },
+    profileLink: {
+        color: '#FF0F7B',
+        '&:hover': {
+            color: '#36386D'
+        },
     }
     }));
 
 const WorkshopFeedCard = ( props ) => {
     
+    const history = useHistory()
     const classes = useStyles();
     const { workshop } = props
 
@@ -75,24 +86,26 @@ const WorkshopFeedCard = ( props ) => {
 
     let participantsData = workshop.participants !== workshop.workshop_count? `Participants: ${workshop.workshop_count} / ${workshop.participants}` : `WORKSHOP FULL`
 
+    const userProfileLink = () => {
+        history.push(`/Profile/${workshop.user_id}`)
+    }
+
     return (
         <Paper className={classes.paper}>
             <Card className={classes.root} onClick={toggleModal}>
                 <CardHeader
                 className={classes.header}
                 avatar={
-                    <Avatar aria-label="facilitator" className={classes.avatar} src={workshop.user_pic} alt={workshop.firstn.toUpperCase()}/>
+                    <Avatar aria-label="facilitator" className={classes.avatar} onClick={userProfileLink} src={workshop.user_pic} alt={workshop.firstn.toUpperCase()}/>
                 }
                 title= {
                     <Typography className={classes.text}>{workshop.title}</Typography>
                 }
                 subheader = {
                     <>
-                    <Link to={`/Profile/${workshop.user_id}`}className="profile">
-                    <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}
-				
-                    </Typography>
-				</Link>
+                    <Link to={`/Profile/${workshop.user_id}`} className={classes.profileLink}>
+                        <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography>
+				    </Link>
                     <Typography className={classes.text}>{`${date}`}</Typography>
                     <Typography className={classes.text}>{`${time}`}</Typography>
                     <Typography className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
@@ -107,7 +120,7 @@ const WorkshopFeedCard = ( props ) => {
             </Card>
 
             <Modal open={open} toggleModal={toggleModal}>
-                <WorkshopRegistration handleCloseModal={toggleModal} dateTime={{date: date, time: time}} {...props} />
+                <WorkshopRegistration handleCloseModal={toggleModal} dateTime={{date: date, time: time}} participantsData={participantsData} {...props} />
             </Modal>
 
         </Paper>
