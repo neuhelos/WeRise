@@ -12,6 +12,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import "../../styling/UserProfilePage.css";
 import FetchUser from "../UserComponents/FetchUser";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
