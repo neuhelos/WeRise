@@ -9,7 +9,6 @@ import { apiURL } from '../../Utilities/apiURL'
 import { useInput } from '../../Utilities/CustomHookery'
 import { addRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
 
-import AddToCalendarHOC from 'react-add-to-calendar-hoc'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
@@ -20,14 +19,13 @@ import clsx from 'clsx';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Check from '@material-ui/icons/Check';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined'
 import EventIcon from '@material-ui/icons/Event';
 import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
 import StepConnector from '@material-ui/core/StepConnector';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+//import InputLabel from '@material-ui/core/InputLabel';
+// import FormControl from '@material-ui/core/FormControl';
+// import Select from '@material-ui/core/Select';
 
 const useColorlibStepIconStyles = makeStyles({
   root: {
@@ -189,7 +187,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
                     <Typography align='left' className={classes.text} variant='body2' gutterBottom="true" >{`${dateTime.date} ${dateTime.time}`}</Typography>
                     <Typography align='left' className={classes.text} variant='body2' gutterBottom="true" >Description: {workshop.descriptions}</Typography>
                     <Typography align='left' className={classes.text} variant='body2' gutterBottom="true" >Category: {workshop.category}</Typography>
-                    <Typography align='left' className={classes.text} variant='body2' gutterBottom="true"  className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
+                    <Typography align='left' variant='body2' gutterBottom="true"  className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
                 </Grid>
                 <Grid className={classes.container} container display="flex" direction='row' justify="flex-end" alignItems="center">
                   <img className={classes.image} src={workshop.workshop_img} alt={workshop.title} />
@@ -260,7 +258,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
             try {
               setTimeout(() => {
                 dispatch(addRegistration(workshop.workshop_id))
-              }, 5000);
+              }, 15000);
 
               let facilitatorEmail = axios.post(`${apiURL()}/email`, {
                   to: 'nilberremon@pursuit.org',
@@ -293,19 +291,19 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
 
     const WorkshopConfirmation = () => {
 
-        const [calendar, setCalendar] = useState("")
+        // const [calendar, setCalendar] = useState("")
 
-        let calendarEventDetails = {
-          title: workshop.title,
-          description: workshop.descriptions,
-          location: 'WeRise VideoChat',
-          startTime: workshop.start_time,
-          endTime: workshop.end_time
-        };
+        // let calendarEventDetails = {
+        //   title: workshop.title,
+        //   description: workshop.descriptions,
+        //   location: 'WeRise VideoChat',
+        //   startTime: workshop.start_time,
+        //   endTime: workshop.end_time
+        // };
 
-        const handleSelect = (event) => {
+        // const handleSelect = (event) => {
 
-        }
+        // }
 
         return (
             <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">

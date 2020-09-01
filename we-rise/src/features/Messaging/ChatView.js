@@ -174,7 +174,6 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 					<Grid
                         container
 						className={classes.chatHeader}
-						container
 						display="flex"
 						justify="center"
 						alignItems="center"
