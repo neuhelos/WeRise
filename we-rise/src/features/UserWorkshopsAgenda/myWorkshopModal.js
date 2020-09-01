@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import  { useDispatch } from 'react-redux'
 import axios from 'axios'
-import { DateTime } from 'luxon'
+import { dateFormat } from '../../Utilities/dateFormat'
 import { useHistory} from 'react-router-dom'
 import { apiURL } from '../../Utilities/apiURL'
 
@@ -32,16 +32,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 const MyWorkshopModal = ({ handleCloseModal, workshop }) => {
-  const history = useHistory();
-  const classes = useStyles();
-  const dispatch = useDispatch();
 
-    let date = `${DateTime.fromISO(workshop.start_time).toFormat('EEE')}, 
-        ${DateTime.fromISO(workshop.start_time).toFormat('MMM')} 
-        ${DateTime.fromISO(workshop.start_time).toFormat('d')},  
-        ${DateTime.fromISO(workshop.start_time).toFormat('y')}`
+    const history = useHistory();
+    const classes = useStyles();
+    const dispatch = useDispatch();
 
-    let time = `${DateTime.fromISO(workshop.start_time).toFormat('T')} ${DateTime.fromISO(workshop.start_time).toFormat('ZZZZ')}`
+    let date = dateFormat(workshop.start_time).date
+    let time = dateFormat(workshop.start_time).time
 
   const workshopImage = workshop.workshop_img
   // Button should only show if the start_time is the same as the current time!
@@ -51,7 +48,6 @@ const MyWorkshopModal = ({ handleCloseModal, workshop }) => {
             <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
             <Typography variant='body1'>Description: {workshop.descriptions}</Typography>
             <img className={classes.image} src={workshopImage} alt="workshop.title"/>
-            {/* {currentDate === date? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push("/videoConference")}> Join workshop </Button>: <p>Date: {date}</p>} */}
             <Grid className={classes.root} container display="flex" direction="row" justify="space-evenly" alignItems="center">
                 { new Date() >= new Date(workshop.start_time) - 6.048e+8 ? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push(`/videoConference/${workshop.user_id}${workshop.workshop_id}`)}>Join VideoChat</Button> : null}
                 <Button variant="contained" color="primary" onClick={handleCloseModal}>Close</Button>
