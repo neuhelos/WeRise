@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import myWorkshopModal from './myWorkshopModal'
+import myWorkshopModal from './RegisteredWorkshopModal'
 // import WorkshopRegistration from './WorkshopRegistration'
 import { useHistory} from 'react-router-dom'
-import { DateTime } from 'luxon'
+import { dateFormat } from '../../Utilities/dateFormat'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -17,7 +17,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import Paper from '@material-ui/core/Paper'
 import Modal from '../BaseComponents/Modal'
-import MyWorkshopModal from './myWorkshopModal';
+import RegisteredWorkshopModal from './RegisteredWorkshopModal';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -53,12 +53,8 @@ const useStyles = makeStyles((theme) => ({
 
 const RegisteredWorkshopCard = ( { workshop } ) => {
     
-    let date = `${DateTime.fromISO(workshop.start_time).toFormat('EEE')}, 
-    ${DateTime.fromISO(workshop.start_time).toFormat('MMM')} 
-    ${DateTime.fromISO(workshop.start_time).toFormat('d')},  
-    ${DateTime.fromISO(workshop.start_time).toFormat('y')}`
-
-    let time = `${DateTime.fromISO(workshop.start_time).toFormat('T')} ${DateTime.fromISO(workshop.start_time).toFormat('ZZZZ')}`
+    let date = dateFormat(workshop.start_time).date
+    let time = dateFormat(workshop.start_time).time
 
 
     const [open , setOpen] = useState(false)
@@ -66,6 +62,7 @@ const RegisteredWorkshopCard = ( { workshop } ) => {
         setOpen(!open)
     }
 
+    let participantsData = workshop.participants !== workshop.workshop_count? `Participants: ${workshop.workshop_count} / ${workshop.participants}` : `WORKSHOP FULL`
 
     
     const classes = useStyles();
@@ -74,9 +71,6 @@ const RegisteredWorkshopCard = ( { workshop } ) => {
             <Card className={classes.root} onClick={toggleModal}>
                 <CardHeader
                 className={classes.header}
-                // avatar={
-                //     <Avatar aria-label="facilitator" className={classes.avatar} src={workshop.user_pic} alt={workshop.facilitator}/>
-                // }
                 title= {
                     <Typography className={classes.text}>{workshop.title}</Typography>
                 }
@@ -96,7 +90,7 @@ const RegisteredWorkshopCard = ( { workshop } ) => {
 
             <Modal open={open} toggleModal={toggleModal}>
                 {/* <WorkshopRegistration handleCloseModal={toggleModal} {...workshop} /> */}
-                <MyWorkshopModal handleCloseModal={toggleModal} workshop={workshop}/>
+                <RegisteredWorkshopModal handleCloseModal={toggleModal} workshop={workshop} dateTime={{date: date, time: time}} participantsData={participantsData}/>
             </Modal>
 
         </Paper>

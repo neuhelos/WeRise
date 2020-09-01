@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 
-import { DateTime } from 'luxon'
+import { dateFormat } from '../../Utilities/dateFormat'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -68,12 +68,8 @@ const WorkshopFeedCard = ( props ) => {
     const classes = useStyles();
     const { workshop } = props
 
-    let date = `${DateTime.fromISO(workshop.start_time).toFormat('EEE')}, 
-    ${DateTime.fromISO(workshop.start_time).toFormat('MMM')} 
-    ${DateTime.fromISO(workshop.start_time).toFormat('d')},  
-    ${DateTime.fromISO(workshop.start_time).toFormat('y')}`
-
-    let time = `${DateTime.fromISO(workshop.start_time).toFormat('T')} ${DateTime.fromISO(workshop.start_time).toFormat('ZZZZ')}`
+    let date = dateFormat(workshop.start_time).date
+    let time = dateFormat(workshop.start_time).time
 
     const [open , setOpen] = useState(false)
     const toggleModal = () => {
