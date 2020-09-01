@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { fetchFirebaseUser } from '../../Utilities/firebaseFunctions'
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -16,7 +15,6 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import NotificationsTwoToneIcon from '@material-ui/icons/NotificationsTwoTone';
-import Paper from '@material-ui/core/Paper'
 
 
 const useStyles = makeStyles((theme) => ({

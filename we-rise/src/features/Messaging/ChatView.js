@@ -113,6 +113,7 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 		return selectedChat.messages.map((message, index) => {
 			return (
 				<Container
+					key={index}
 					className={
 						message.sender === currentUser.uid
 							? classes.currentUserMessageContainer
@@ -173,7 +174,6 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 					<Grid
                         container
 						className={classes.chatHeader}
-						container
 						display="flex"
 						justify="center"
 						alignItems="center"
