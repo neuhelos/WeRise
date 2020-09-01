@@ -210,7 +210,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
 
         const message = useInput("")
         let chatUsers = [workshop.email, currentUser.email].sort()
-        let facilitatorDetails = {email: workshop.email, firstName: workshop.firstn, lastName: workshop.lastn, profileImage: workshop.user_id.user_pic, userId: workshop.user_id.uid}
+        let facilitatorDetails = {email: workshop.email, firstName: workshop.firstn, lastName: workshop.lastn, profileImage: workshop.user_pic, userId: workshop.user_id}
 
         const chatExists = async () => {
           const query = await firestore
@@ -228,7 +228,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
               .doc(chatId)
               .set({
                   messages: [{
-                      message: message.value,
+                      message: `(New Workshop Participant: ${workshop.title}.) ${message.value}`,
                       sender: currentUser.uid,
                       timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
                       firstName: currentUser.firstn
@@ -246,7 +246,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
           .update({
               messages: firebase.firestore.FieldValue.arrayUnion({
                   firstName: currentUser.firstn,
-                  message: message.value,
+                  message: `(I'm attending: ${workshop.title}.) ${message.value}`,
                   sender: currentUser.uid,
                   timestamp: firebase.firestore.Timestamp.fromDate(new Date())
               }),
