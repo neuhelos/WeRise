@@ -5,6 +5,7 @@ import firebase from './Utilities/firebase'
 
 import { setCurrentUser } from './features/Authentication/AuthenticationSlice'
 import { getFirebaseIdToken } from './Utilities/firebaseFunctions'
+import { finishLoading } from './features/BaseComponents/loadingSlice'
 
 import AuthNavBar from './features/NavBar/AuthNavBar'
 import LandingPage from './features/Pages/LandingPage'
@@ -14,6 +15,7 @@ import UserProfilePage from './features/Pages/UserProfilePage'
 import InstantMessagingPage from './features/Pages/MessagingPage'
 import Footer from './features/BaseComponents/Footer'
 import { PublicRoute, ProtectedRoute } from './features/Authentication/AuthRouting'
+import LoadingComponent from './features/BaseComponents/loadingComponent'
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -31,9 +33,13 @@ const WeRiseApp = () => {
         const {email, uid} = user
         getFirebaseIdToken().then(token => {
             dispatch(setCurrentUser({email, uid, token}))
+            dispatch(finishLoading());
+            
+            
         })
     } else {
-        dispatch(setCurrentUser(null))
+        dispatch(setCurrentUser(null));
+        dispatch(finishLoading());
     }
   };
 
@@ -46,6 +52,7 @@ const WeRiseApp = () => {
   return (
 
     <ThemeProvider theme={theme}>
+      <LoadingComponent>
         <CssBaseline />
         { currentUser ? <AuthNavBar /> : null }
         <Switch>
@@ -66,6 +73,7 @@ const WeRiseApp = () => {
           </ProtectedRoute>
         </Switch>
         <Footer />
+      </LoadingComponent>
     </ThemeProvider>
   )
 }
