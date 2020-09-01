@@ -175,7 +175,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
 
       return (
           <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
-              <Typography align='center' style={{color: '#FF0F7B'}} className={classes.text} gutterBottom="true" variant='h6'>{workshop.title}</Typography>
+              <Typography align='center' style={{color: '#FF0F7B'}} className={classes.text} gutterBottom={true} variant='h6'>{workshop.title}</Typography>
               <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="flex-start">
                 <Grid className={classes.container} container display="flex" direction="column" justify="flex-start" alignItems="center">
                     <div style={{display:"flex", width: '100%'}}>
