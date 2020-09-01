@@ -1,4 +1,4 @@
-import React, { useEffect, useState, PureComponent } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -11,9 +11,9 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import { fetchUserById } from "../../Utilities/FetchFunctions";
 import {  useRouteMatch } from "react-router-dom";
-// import EditUser from "./EditUser";
 import Modal from '../BaseComponents/Modal'
-
+import EditUserModal from "./EditUserModal";
+import { current } from "@reduxjs/toolkit";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,17 +46,14 @@ const FetchUser = () => {
   const [lastn, setLastn] = useState("");
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
-  // const [userChange, setUserChange] = useState([])
   const [pic, setPic] = useState("");
   const match = useRouteMatch("/Profile/:id");
 
   
 
-  const fetchUser = async (currentUser) => {
+  const fetchUser = async () => {
     let res = await fetchUserById(currentUser);
-   
     setProfile(res);
-    // setUserChange(res.id)
     console.log(setProfile(res.id));
     setFirstn(res.firstn);
     setLastn(res.lastn);
@@ -69,14 +66,19 @@ const FetchUser = () => {
     fetchUser(match.params.id);
   }, [currentUser, match.params.id]);
 
-//   let currentUserProfile = userChange.map(currentUser => {
-//     // debugger
-//     return <EditUser key={currentUser.currentUser_id} id={currentUser.currentUser_id} currentUser={currentUser}/>
-// })
+  const [open , setOpen] = useState(false)
+  const toggleModal = () => {
+      setOpen(!open)
+  }
+
+
+  
+
 
   return (
     <div className="userProfile">
       <Paper className={classes.paper}>
+        <Card className={classes.root} onClick={toggleModal}>
         <Grid
           container
           className={classes.root}
@@ -87,7 +89,7 @@ const FetchUser = () => {
           alignItems="left"
           wrap="nowrap"
         >
-          <Card className="Container" />
+          {/* <Card className="Container" /> */}
           <CardHeader
             className={classes.header}
             avatar={
@@ -109,9 +111,12 @@ const FetchUser = () => {
           <CardContent value={(firstn, lastn)} image={pic}>
             <Typography>My Bio: {bio}</Typography>
           </CardContent>
-          {/* {currentUserProfile} */}
         </Grid>
-      
+          </Card>
+          <Modal open={open} toggleModal={toggleModal}>
+               
+                <EditUserModal handleCloseModal={toggleModal} currentUser={currentUser}/>
+            </Modal>
       </Paper>
     </div>
   );
