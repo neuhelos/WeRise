@@ -14,6 +14,7 @@ import {  useRouteMatch } from "react-router-dom";
 // import EditUser from "./EditUser";
 import Modal from '../BaseComponents/Modal'
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -45,6 +46,7 @@ const FetchUser = () => {
   const [lastn, setLastn] = useState("");
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
+  // const [userChange, setUserChange] = useState([])
   const [pic, setPic] = useState("");
   const match = useRouteMatch("/Profile/:id");
 
@@ -54,6 +56,7 @@ const FetchUser = () => {
     let res = await fetchUserById(currentUser);
    
     setProfile(res);
+    // setUserChange(res.id)
     console.log(setProfile(res.id));
     setFirstn(res.firstn);
     setLastn(res.lastn);
@@ -66,7 +69,10 @@ const FetchUser = () => {
     fetchUser(match.params.id);
   }, [currentUser, match.params.id]);
 
-
+//   let currentUserProfile = userChange.map(currentUser => {
+//     // debugger
+//     return <EditUser key={currentUser.currentUser_id} id={currentUser.currentUser_id} currentUser={currentUser}/>
+// })
 
   return (
     <div className="userProfile">
@@ -103,6 +109,7 @@ const FetchUser = () => {
           <CardContent value={(firstn, lastn)} image={pic}>
             <Typography>My Bio: {bio}</Typography>
           </CardContent>
+          {/* {currentUserProfile} */}
         </Grid>
       
       </Paper>
