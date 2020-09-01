@@ -1,78 +1,95 @@
 import React, {useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles'
-import { useSelector } from 'react-redux'
-import axios from 'axios'
-import { v4 as uuidv4 } from 'uuid'
-import {useInput, useSelect} from '../../Utilities/CustomHookery'
-import {apiURL} from '../../Utilities/apiURL'
-import {storage} from '../../Utilities/firebase'
+import EditUserModal from './EditUserModal'
+import { useHistory} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import Paper from '@material-ui/core/Paper'
+import Modal from '../BaseComponents/Modal'
 
-const useStyles  = makeStyles((theme)=>({
-    root:{},
-    container:{},
-    input:{},
-}))
-const EditUser=()=>{
-const classes = useStyles()
-const [firstn, setFirstn] = useState("");
-const [lastn, setLastn] = useState("");
-const [email, setEmail] = useState("");
-const [bio, setBio] = useState("");
-const [userImage, setUserImage] = useState(null)
 
-const handleFirstName = (firstn)=>{
-    setFirstn(firstn)
-}
-const handleLastName = (lastn)=>{
-    setLastn(lastn)
-}
-const handleEmail = (email)=>{
-    setEmail(email)
-}
-const handleBio=(bio)=>{
-    setBio(bio)
-}
-const handleImage=(user_pic)=>{
-    if(user_pic[0]){
-        handleUpload(user_pic[0])
-    }
-}
-
-const handleUpload = (user_pic)=>{
-    const uploadTasks = storage.ref(`posts/${user_pic.name}`).put(user_pic);
-    // debugger
-    uploadTask.on(
-        "state_changed",
-        snapshot => {},
-        error => {
-        console.log(error);
-        },
-        () => {
-            storage
-            .ref("posts")
-            .child(user_pic.name)
-            .getDownloadURL()
-            .then(url => {
-                setUserImage(url)
-                console.log(url)
-            })
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    header: {
+        width: '60%'
+    },
+    media: {
+        width: '40%',
+    },
+    avatar: {
+        width: theme.spacing(7),
+        height: theme.spacing(7),
+    },
+    text: {
+        fontFamily:'audiowide'
+    },
+    paper: {
+        width: '100%',
+        backgroundColor: '#666666',
+        padding: theme.spacing(1),
+        marginBottom: theme.spacing(1),
+        '&:hover': {
+            cursor: 'pointer',
+            border: '2px solid  #FF0F7B'
         }
-    )
-
-}
-const handleSubmit=async(event)=>{
-    try {
-        
-    } catch (error) {
-        
     }
-}
-    return(
-        <div>
+    }));
 
-        </div>
-    )
+const EditUser = ( { currentUser } ) => {
+const currentUser = useSelector((state) => state.currentUserSession.uid);
+    
 
+
+
+    const [open , setOpen] = useState(false)
+    const toggleModal = () => {
+        setOpen(!open)
+    }
+
+
+    
+    const classes = useStyles();
+    return (
+        <Paper  className={classes.paper}>
+            <Card className={classes.root} onClick={toggleModal}>
+                <CardHeader
+                className={classes.header}
+                title= {
+                    <Typography className={classes.text}>{currentUser}</Typography>
+                }
+                subheader = {
+                    <>
+                    <Typography className={classes.text}>{`${email}`}</Typography>
+                    <Typography className={classes.text}>{`${bio}`}</Typography>
+                    </>
+                }
+                />
+                <CardMedia
+                className={classes.media}
+                image={current.user_pic}
+               
+                />
+            </Card>
+
+            <Modal open={open} toggleModal={toggleModal}>
+                
+                <EditUserModal handleCloseModal={toggleModal} currentUser={currentUser}/>
+            </Modal>
+
+        </Paper>
+    );
 }
 
 export default EditUser;

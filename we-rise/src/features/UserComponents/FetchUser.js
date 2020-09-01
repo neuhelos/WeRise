@@ -11,6 +11,9 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import { fetchUserById } from "../../Utilities/FetchFunctions";
 import {  useRouteMatch } from "react-router-dom";
+import Modal from '../BaseComponents/Modal'
+import EditUserModal from "./EditUserModal";
+import { current } from "@reduxjs/toolkit";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,7 +51,7 @@ const FetchUser = () => {
 
   
 
-  const fetchUser = async (currentUser) => {
+  const fetchUser = async () => {
     let res = await fetchUserById(currentUser);
     setProfile(res);
     console.log(setProfile(res.id));
@@ -63,9 +66,19 @@ const FetchUser = () => {
     fetchUser(match.params.id);
   }, [currentUser, match.params.id]);
 
+  const [open , setOpen] = useState(false)
+  const toggleModal = () => {
+      setOpen(!open)
+  }
+
+
+  
+
+
   return (
     <div className="userProfile">
       <Paper className={classes.paper}>
+        <Card className={classes.root} onClick={toggleModal}>
         <Grid
           container
           className={classes.root}
@@ -76,7 +89,7 @@ const FetchUser = () => {
           alignItems="left"
           wrap="nowrap"
         >
-          <Card className="Container" />
+          {/* <Card className="Container" /> */}
           <CardHeader
             className={classes.header}
             avatar={
@@ -99,6 +112,11 @@ const FetchUser = () => {
             <Typography>My Bio: {bio}</Typography>
           </CardContent>
         </Grid>
+          </Card>
+          <Modal open={open} toggleModal={toggleModal}>
+               
+                <EditUserModal handleCloseModal={toggleModal} currentUser={currentUser}/>
+            </Modal>
       </Paper>
     </div>
   );
