@@ -100,7 +100,6 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     width: '100%',
-    flex: 1
   }
 }))
 
@@ -181,10 +180,10 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
               <Typography align='center' style={{color: '#FF0F7B'}} className={classes.text} gutterBottom="true" variant='h6'>{workshop.title}</Typography>
               <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="flex-start">
                 <Grid className={classes.container} container display="flex" direction="column" justify="flex-start" alignItems="center">
-                    <div style={{display:"flex"}}>
-                      <Typography align='center' className={classes.text} variant='subtitle1' gutterBottom="true">Facilitator:</Typography>
+                    <div style={{display:"flex", width: '100%'}}>
+                      <Typography align='left' variant='subtitle1' gutterBottom="true">Facilitator:</Typography>
                       <Link to={`/Profile/${workshop.user_id}`} className={classes.profileLink}>
-                      <Typography align='center' className={classes.text} variant='subtitle1' gutterBottom="true" >{` ${workshop.firstn} ${workshop.lastn}` }</Typography>
+                      <Typography align='left' className={classes.text} variant='subtitle1' gutterBottom="true" >{` ${workshop.firstn} ${workshop.lastn}` }</Typography>
                       </Link>
                     </div>
                     <Typography align='left' className={classes.text} variant='body2' gutterBottom="true" >{`${dateTime.date} ${dateTime.time}`}</Typography>
@@ -192,7 +191,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
                     <Typography align='left' className={classes.text} variant='body2' gutterBottom="true" >Category: {workshop.category}</Typography>
                     <Typography align='left' className={classes.text} variant='body2' gutterBottom="true"  className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
                 </Grid>
-                <Grid className={classes.container} container display="flex" direction='row' justify="center" alignItems="center">
+                <Grid className={classes.container} container display="flex" direction='row' justify="flex-end" alignItems="center">
                   <img className={classes.image} src={workshop.workshop_img} alt={workshop.title} />
                 </Grid>
               </Grid>
