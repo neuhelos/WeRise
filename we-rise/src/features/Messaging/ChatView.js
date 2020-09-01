@@ -113,6 +113,7 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 		return selectedChat.messages.map((message, index) => {
 			return (
 				<Container
+					key={index}
 					className={
 						message.sender === currentUser.uid
 							? classes.currentUserMessageContainer
