@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { fetchFirebaseUser } from '../../Utilities/firebaseFunctions'
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -16,7 +15,6 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import NotificationsTwoToneIcon from '@material-ui/icons/NotificationsTwoTone';
-import Paper from '@material-ui/core/Paper'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -66,13 +64,17 @@ const useStyles = makeStyles((theme) => ({
             color: '#FFFFFF',
             '&:hover': {
                 backgroundColor: '#F89B29'
-            }
+            },
+            fontSize: '1rem'
         },
         unreadMessage: {
             color: '#FF0F7B',
             '&:hover': {
                 color: '#36386D'
             }
+        },
+        divider: {
+            backgroundColor: '#A3A3A3'
         }
     })
 )
@@ -87,7 +89,7 @@ const ChatList = ( props ) => {
     }, [chats])
 
 
-    const currentUserIsLatestSender = (chat) => chat.messages[chat.messages.length-1].sender === currentUser
+    const currentUserIsLatestSender = (chat) => chat.messages[chat.messages.length-1].sender === currentUser.uid
     
 
     let multipleChatPeersAvatar = "https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FRainbowSmileyDefaultAvatar.png?alt=media&token=379959f1-6d89-43a4-bf01-92a68841c643"
@@ -122,7 +124,7 @@ const ChatList = ( props ) => {
                         : null
                     }
                 </ListItem>
-                <Divider></Divider>
+                <Divider className={classes.divider}></Divider>
             </div>
         )
     })

@@ -13,7 +13,7 @@ import MobileCommunityDashboard from './MobileCommunityDashboard'
 import WorkshopFeed from '../WorkshopFeed/WorkshopFeed'
 import WorkshopFeedSearchForm from '../WorkshopFeed/WorkshopFeedSearchForm'
 
-import UserWorkshopAgenda from '../UserWorkshopsAgenda/UserWorkshopsAgenda'
+import RegisteredWorkshops from '../RegisteredWorkshops/RegisteredWorkshops'
 import RecentlyPostedWorkshops from '../RecentlyPostedWorkshops/RecentlyPostedWorkshops'
 
 const useStyles = makeStyles((theme) => ({
@@ -85,7 +85,7 @@ const CommunityDashboard = () => {
                         </Paper>
                     </Paper>
                     <Paper className={classes.paper}>
-                        <UserWorkshopAgenda />
+                        <RegisteredWorkshops />
                     </Paper>
                     <Paper className={classes.paperWrapper}>
                         <Paper className={classes.paperTitle}>

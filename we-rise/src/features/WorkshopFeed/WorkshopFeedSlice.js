@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { binarySearchInsert } from '../../Utilities/binarySearchInsertion'
+//import { binarySearchInsert } from '../../Utilities/binarySearchInsertion'
 import { mergeSort } from '../../Utilities/mergeSort'
 import { apiURL } from '../../Utilities/apiURL'
 
-import { addRegistration, deleteRegistration } from '../UserWorkshopsAgenda/RegisterWorkshopSlice'
+import { addRegistration, deleteRegistration } from '../RegisteredWorkshops/RegisteredWorkshopSlice'
 
 
 export const fetchUpcomingWorkshops = createAsyncThunk(

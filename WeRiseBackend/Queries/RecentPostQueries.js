@@ -25,7 +25,7 @@ const getRecentPost = async (req, res) => {
     FROM created_workshops 
     INNER JOIN users ON created_workshops.user_id = users.id
     WHERE created_workshops.start_time >= NOW()
-    ORDER BY created_workshops.posted DESC LIMIT 3`);
+    ORDER BY created_workshops.posted DESC LIMIT 10`);
     res.status(200).json({
       status: "Success",
       message: "Workshop Recent Posts Successful",

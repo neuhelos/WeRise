@@ -59,7 +59,11 @@ const Chat = (props) => {
     }
     
     useEffect( () => {
-        if(selectedChat) messageRead()
+        let isMounted = true
+        if(isMounted){
+            if(selectedChat) messageRead()
+        }
+        return () => isMounted = false
     }, [selectedChat])
 
     
@@ -72,11 +76,10 @@ const Chat = (props) => {
                 firstName: currentUser.firstn,
                 message: message,
                 sender: currentUser.uid,
-                timestamp: Date.now()
+                timestamp: firebase.firestore.Timestamp.fromDate(new Date())
             }),
             receiverHasRead: false
         });
-        
     }
     
     const goToExistingChat = async (chatId, message) => {
@@ -86,23 +89,25 @@ const Chat = (props) => {
         await submitMessage(chatId, message)
     }
 
-    const newChatSubmit = async (chatObject) => {
+    const newChatSubmit = async (chatData) => {
         let chatId = uuidv4()
         await firestore
             .collection('chats')
             .doc(chatId)
             .set({
                 messages: [{
-                    message: chatObject.message,
+                    message: chatData.message,
                     sender: currentUser.uid,
-                    timestamp: new Date(),
+                    timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
                     firstName: currentUser.firstn
                 }],
                 receiverHasRead: false,
-                users: [currentUser, chatObject.sendTo] //Redo
+                users: [...chatData.userDetails, {email: currentUser.email, firstName: currentUser.firstn, lastName: currentUser.lastn, profileImage: currentUser.user_pic, userId: currentUser.uid}], 
+                usersEmail: [...chatData.recipients, currentUser.email].sort()
             })
+        debugger
         setNewChatFormVisible(false)
-        setSelectedChat(chats.length-1)
+        await setSelectedChat(chats.length-1)
     }
 
 

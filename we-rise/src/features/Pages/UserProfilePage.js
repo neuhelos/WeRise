@@ -1,5 +1,4 @@
-import React from 'react'
-import UserWorkshopAgenda from "../UserWorkshopsAgenda/UserWorkshopsAgenda";
+import React from "react";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import FacilitatorWorkshops from "../UserComponents/FacilitatorWorkshops";
 import Grid from "@material-ui/core/Grid";
@@ -12,7 +11,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import "../../styling/UserProfilePage.css";
 import FetchUser from "../UserComponents/FetchUser";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

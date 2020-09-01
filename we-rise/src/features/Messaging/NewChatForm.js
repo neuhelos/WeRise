@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField'
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import FaceIcon from '@material-ui/icons/Face'
-import { FormControl, InputLabel, Input, Button, Paper, Typography } from '@material-ui/core';
+import { Button, Paper, Typography } from '@material-ui/core';
 
 
 
@@ -43,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
         submit: {
             background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
             color: '#FFFFFF',
+            '&:hover': {
+                background: 'linear-gradient(270deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
+
+            }
         },
         errorText: {
             color: 'red',
@@ -57,7 +61,6 @@ const NewChatForm = ( props ) => {
     const currentUser = useSelector( state => state.currentUserSession )
 
 
-    let userSearch = useInput("")
     let newChatMessage = useInput("")
     const [users, setUsers] = useState([])
     const [error, setError] = useState("")
@@ -84,9 +87,22 @@ const NewChatForm = ( props ) => {
         return chatId
     }
 
-    const createChat = () => {
-        props.newChatSubmit({
-            sendTo: userSearch.value,
+    let newChatUserData = async (user) => {
+        let userQuery = await firestore
+            .collection('users')
+            .where('email', '==', user)
+            .get()
+        let userData = userQuery.docs[0].data()
+        debugger
+        return userData
+    }
+
+    const createChat = async () => {
+        let usersData = await Promise.all(users.map( user => newChatUserData(user)))
+        debugger
+        await props.newChatSubmit({
+            userDetails: usersData,
+            recipients: users,
             message: newChatMessage.value
         })
     }
@@ -97,7 +113,7 @@ const NewChatForm = ( props ) => {
 
     const handleSubmitNewChat = async ( event ) => {
         event.preventDefault()
-        if(users.length <= 8){
+        if(users.length >= 1 && users.length <= 8){
             let existingUsers = await users.every(userExists)
             if(existingUsers){
                 let existingChat = await chatExists()
@@ -125,10 +141,10 @@ const NewChatForm = ( props ) => {
                                 ))
                             }
                             renderInput={(params) => (
-                                <TextField {...params} variant="filled" label="Enter User(s)" placeholder="Enter One or Up to Eight Users" />
+                                <TextField {...params} variant="filled" label="Enter User(s)" placeholder="Enter One or Up to Eight Users"/>
                             )}
                         />
-                        <TextField className={classes.input} fullWidth inputProps={{style: {textAlign: 'left'}}} id="newChatMessage" label="Message" placeholder="Enter Your Message" variant="filled" multiline rows={2} {...newChatMessage} required/>
+                        <TextField className={classes.input} fullWidth inputProps={{style: {textAlign: 'left'}}} id="newChatMessage" label="Message" placeholder="Enter Your Message" variant="filled" multiline rows={2} {...newChatMessage}/>
 
                         <Button fullWidth className={classes.submit} variant='contained' type='submit'>SUBMIT</Button>
                     </form>
