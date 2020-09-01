@@ -179,14 +179,14 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, dateTime, participan
               <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="flex-start">
                 <Grid className={classes.container} container display="flex" direction="column" justify="flex-start" alignItems="center">
                     <div style={{display:"flex", width: '100%'}}>
-                      <Typography align='left' variant='subtitle1' gutterBottom="true">Facilitator:</Typography>
+                      <Typography align='left' variant='subtitle1' gutterBottom={true}>Facilitator:</Typography>
                       <Link to={`/Profile/${workshop.user_id}`} className={classes.profileLink}>
-                      <Typography align='left' className={classes.text} variant='subtitle1' gutterBottom="true" >{` ${workshop.firstn} ${workshop.lastn}` }</Typography>
+                      <Typography align='left' className={classes.text} variant='subtitle1' gutterBottom={true} >{` ${workshop.firstn} ${workshop.lastn}` }</Typography>
                       </Link>
                     </div>
-                    <Typography align='left' className={classes.text} variant='body2' gutterBottom="true" >{`${dateTime.date} ${dateTime.time}`}</Typography>
-                    <Typography align='left' className={classes.text} variant='body2' gutterBottom="true" >Description: {workshop.descriptions}</Typography>
-                    <Typography align='left' className={classes.text} variant='body2' gutterBottom="true" >Category: {workshop.category}</Typography>
+                    <Typography align='left' className={classes.text} variant='body2' gutterBottom={true} >{`${dateTime.date} ${dateTime.time}`}</Typography>
+                    <Typography align='left' className={classes.text} variant='body2' gutterBottom={true} >Description: {workshop.descriptions}</Typography>
+                    <Typography align='left' className={classes.text} variant='body2' gutterBottom={true} >Category: {workshop.category}</Typography>
                     <Typography align='left' variant='body2' gutterBottom="true"  className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
                 </Grid>
                 <Grid className={classes.container} container display="flex" direction='row' justify="flex-end" alignItems="center">
