@@ -106,8 +106,8 @@ const NavBar = () => {
   }
   const navProfile = () => {
     handleMobileMenuClose()
-    if(window.location.pathname === `/Profile/${currentUser}`){
-      history.push(`/Profile/${currentUser}`)
+    if(window.location.pathname === `/Profile/${currentUser.uid}`){
+      history.push(`/Profile/${currentUser.uid}`)
       history.goBack()
     }
     history.push(`/Profile/${currentUser}`)

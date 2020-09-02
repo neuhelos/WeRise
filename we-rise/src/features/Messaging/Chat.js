@@ -9,6 +9,7 @@ import NewChatForm from './NewChatForm'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import ChatInput from './ChatInput'
 
 const useStyles = makeStyles((theme) => ({
         root: {
@@ -30,28 +31,34 @@ const Chat = (props) => {
     const currentUser = useSelector( state => state.currentUserSession )
     const chats = useSelector (state => state.chats)
 
+    const [selectedChatId, setSelectedChatId] = useState(null)
     const [selectedChat, setSelectedChat] = useState(null)
     const [newChatFormVisible, setNewChatFormVisible] = useState(false)
 
+    let selectedChatFind = chats.find(chat => chat.chatId === selectedChatId)
 
     const handleNewChat = () => {
         setNewChatFormVisible(true)
+        setSelectedChatId(null)
         setSelectedChat(null)
     }
 
-    const handleSelectedChat = (chatIndex) => {
+    const handleSelectedChat = (chat) => {
         setNewChatFormVisible(false)
-        setSelectedChat(chatIndex);
+        setSelectedChatId(chat.chatId)
+        setSelectedChat(chat)
     }
 
 
-    const clickedChatNotSender = (chatIndex) => chats[chatIndex].messages[chats[chatIndex].messages.length-1].sender !== currentUser.uid
+    const clickedChatNotSender = (chat) => chat.messages[chat.messages.length-1].sender !== currentUser.uid
     
     const messageRead = () => {
-        if(clickedChatNotSender(selectedChat)){
+        let chat = chats.find(chat => chat.chatId === selectedChatId)
+        setSelectedChat(chat)
+        if(clickedChatNotSender(chat)){
             firestore
             .collection('chats')
-            .doc(chats[selectedChat].chatId)
+            .doc(chat.chatId)
             .update({
                 receiverHasRead: true
             })
@@ -83,9 +90,8 @@ const Chat = (props) => {
     }
     
     const goToExistingChat = async (chatId, message) => {
-        const existingChatIndex = chats.indexOf(chats.find( chat => chat.chatId === chatId))
         setNewChatFormVisible(false)
-        setSelectedChat(existingChatIndex)
+        setSelectedChatId(chatId)
         await submitMessage(chatId, message)
     }
 
@@ -95,6 +101,7 @@ const Chat = (props) => {
             .collection('chats')
             .doc(chatId)
             .set({
+                chatId: chatId,
                 messages: [{
                     message: chatData.message,
                     sender: currentUser.uid,
@@ -107,17 +114,17 @@ const Chat = (props) => {
             })
         debugger
         setNewChatFormVisible(false)
-        await setSelectedChat(chats.length-1)
+        await setSelectedChatId(chatId)
     }
 
 
     return (
         <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems='center'>
             <Grid container item className={classes.container} md={5} direction="column" justify="flex-start" alignItems='center'>
-                <ChatList history={props.history} selectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatIndex={selectedChat}/> 
+                <ChatList history={props.history} handleSelectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatId={selectedChatId}/> 
             </Grid>
             <Grid container item className={classes.container} md={7} direction="column" justify="flex-start" alignItems='center'>
-                { newChatFormVisible ? null : <ChatView selectedChat={chats[selectedChat]} submitMessage={submitMessage} messageRead={messageRead}/> }
+                { newChatFormVisible ? null : <ChatView selectedChat={selectedChatFind} submitMessage={submitMessage} messageRead={messageRead}/> }
                 { newChatFormVisible ? <NewChatForm newChatSubmit={newChatSubmit} goToExistingChat={goToExistingChat} /> : null }
             </Grid>
         </Grid>
