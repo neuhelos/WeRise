@@ -94,10 +94,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
+	
 	const currentUser = useSelector((state) => state.currentUserSession);
 
-	const classes = useStyles();
 
+	const classes = useStyles();
+	
 	const chatScrollDown = () => {
 		const container = document.getElementById("chatview-container");
 		if (container) {
@@ -109,36 +111,37 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 		chatScrollDown();
 	}, [selectedChat]);
 
-	const ChatMessages = () => {
-		return selectedChat.messages.map((message, index) => {
-			return (
+	let chatMessages
+	if(selectedChat){
+	chatMessages =  selectedChat.messages.map((message, index) => {
+		return (
+			<Container
+				key={index}
+				className={
+					message.sender === currentUser.uid
+						? classes.currentUserMessageContainer
+						: classes.peerMessageContainer
+				}
+			>
+				{message.sender !== currentUser.uid ? (
+					<Typography className={classes.peerMessageHeader} variant="body1">
+						{message.firstName}
+					</Typography>
+				) : null}
 				<Container
 					key={index}
 					className={
 						message.sender === currentUser.uid
-							? classes.currentUserMessageContainer
-							: classes.peerMessageContainer
+							? classes.currentUserMessage
+							: classes.peerMessage
 					}
 				>
-					{message.sender !== currentUser.uid ? (
-						<Typography className={classes.peerMessageHeader} variant="body1">
-							{message.firstName}
-						</Typography>
-					) : null}
-					<Container
-						key={index}
-						className={
-							message.sender === currentUser.uid
-								? classes.currentUserMessage
-								: classes.peerMessage
-						}
-					>
-						{message.message}
-					</Container>
+					{message.message}
 				</Container>
-			);
-		});
-	};
+			</Container>
+		);
+	});
+	}
     
 
     let peers
@@ -157,7 +160,7 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 
 	return (
 		<Grid className={classes.root} display="flex">
-			{selectedChat === undefined ? (
+			{selectedChat === null ? (
 				<Grid
                     className={classes.noVisibleChatView}
 					container
@@ -183,7 +186,7 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 					</Grid>
 					<div className={classes.chatViewContainer}>
 						<div className={classes.chatView} id="chatview-container">
-							<ChatMessages />
+							{chatMessages}
 						</div>
 					</div>
 					<Grid
