@@ -7,7 +7,7 @@ import { apiURL } from './Utilities/apiURL'
 
 import { setCurrentUser } from './features/Authentication/AuthenticationSlice'
 import { getFirebaseIdToken } from './Utilities/firebaseFunctions'
-import { isLoading, finishLoading } from './features/BaseComponents/loadingSlice'
+import { finishLoading } from './features/BaseComponents/loadingSlice'
 
 import AuthNavBar from './features/NavBar/AuthNavBar'
 import LandingPage from './features/Pages/LandingPage'
@@ -36,15 +36,18 @@ const WeRiseApp = () => {
         let res = await axios.get(`${apiURL()}/users/${uid}`)
         const {bio, firstn, lastn, facebook, instagram, twitter, linkedin, user_pic} = res.data.payload
         getFirebaseIdToken().then(token => {
+
+            dispatch(setCurrentUser({email, uid, token}))
+            dispatch(finishLoading());
+            
             dispatch(setCurrentUser({email, uid, token, bio, firstn, lastn, facebook, instagram, twitter, linkedin, user_pic}))
-            //dispatch(finishLoading());
+
         })
     } else {
         dispatch(setCurrentUser(null));
-        //dispatch(finishLoading());
+        dispatch(finishLoading());
     }
   };
-
 
   useEffect( () => {
       const authStateObserver = firebase.auth().onAuthStateChanged(userSession)
@@ -56,27 +59,27 @@ const WeRiseApp = () => {
 
     <ThemeProvider theme={theme}>
       <CssBaseline />
-       
-          { currentUser ? <AuthNavBar /> : null }
-          <Switch>
-            <PublicRoute exact path="/">
-              <LandingPage />
-            </PublicRoute>
-            <ProtectedRoute path="/CommunityDashboard">
-              <CommunityDashboardPage />
-            </ProtectedRoute>
-            <ProtectedRoute path="/videoConference/:workshopid">
-              <VideoConference />
-            </ProtectedRoute>
-            <ProtectedRoute exact path="/Profile/:id">
-              <UserProfilePage />
-            </ProtectedRoute>
-            <ProtectedRoute path="/Messaging">
-              <InstantMessagingPage />
-            </ProtectedRoute>
-          </Switch>
-          <Footer />
-       
+      <LoadingComponent>
+        { currentUser ? <AuthNavBar /> : null }
+        <Switch>
+          <PublicRoute exact path="/">
+            <LandingPage />
+          </PublicRoute>
+          <ProtectedRoute path="/CommunityDashboard">
+            <CommunityDashboardPage />
+          </ProtectedRoute>
+          <ProtectedRoute path="/videoConference/:workshopid">
+            <VideoConference />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/Profile/:id">
+            <UserProfilePage />
+          </ProtectedRoute>
+          <ProtectedRoute path="/Messaging">
+            <InstantMessagingPage />
+          </ProtectedRoute>
+        </Switch>
+        <Footer />
+      </LoadingComponent>
     </ThemeProvider>
   )
 }
