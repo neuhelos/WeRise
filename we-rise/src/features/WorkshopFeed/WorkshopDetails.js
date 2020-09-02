@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
     image : {
         width: '75%',
-        border: '2px solid #666666', 
+        //border: '2px solid #666666', 
         borderRadius: '4px'
     },
     button: {
@@ -51,7 +51,7 @@ const WorkshopDetails = ( { workshop, dateTime, participantsData } ) => {
                         <div style={{display:"flex", width: '100%'}}>
                             <Typography align='left' variant='subtitle1' gutterBottom={true}>Facilitator:</Typography>
                             <Link to={`/Profile/${workshop.user_id}`} className={classes.profileLink}>
-                            <Typography align='left' className={classes.text} variant='subtitle1' gutterBottom={true} >{` ${workshop.firstn} ${workshop.lastn}` }</Typography>
+                            <Typography align='left' className={classes.text} variant='subtitle1' gutterBottom={true} style={{ marginLeft: '1rem' }}>{`   ${workshop.firstn} ${workshop.lastn}` }</Typography>
                             </Link>
                         </div>
                         <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >{`${dateTime.date} ${dateTime.time}`}</Typography>
