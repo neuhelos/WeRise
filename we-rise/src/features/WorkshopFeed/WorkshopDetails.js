@@ -20,10 +20,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(2)
     },
     image : {
-        width: '50%',
-        [theme.breakpoints.down('sm')]:{
-            width: '40%'
-        },
+        width: '75%',
         border: '2px solid #666666', 
         borderRadius: '4px'
     },
@@ -62,7 +59,7 @@ const WorkshopDetails = ( { workshop, dateTime, participantsData } ) => {
                         <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >Category: {workshop.category}</Typography>
                         <Typography align='left' variant='body1' gutterBottom={true}  className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
                     </Grid>
-                    <Grid className={classes.container} container display="flex" direction='row' justify="flex-end" alignItems="center">
+                    <Grid className={classes.container} container display="flex" direction='row' justify="center" alignItems="center">
                         <img className={classes.image} src={workshop.workshop_img} alt={workshop.title} />
                     </Grid>
                 </Grid>

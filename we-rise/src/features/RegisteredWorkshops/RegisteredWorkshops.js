@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import RegisteredWorkshopCard from './RegisteredWorkshopCard'
+import Loading from '../BaseComponents/ProgressLoader'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -38,10 +39,12 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const UserWorkshopsAgenda = () => {
+const RegisteredWorkshops = () => {
+    
+    const loading = useSelector( state => state.loading );
     const classes = useStyles();
 
-    const regworkshopFeed = useSelector( state => state.registeredWorkshops);
+    const registeredWorkshopsFeed = useSelector( state => state.registeredWorkshops);
 
     const dispatch = useDispatch();
 
@@ -49,11 +52,12 @@ const UserWorkshopsAgenda = () => {
         dispatch(fetchMyWorkshops())
     }, [])
 
-    let workshopsReq = regworkshopFeed.map(workshop => {
+    let workshops = registeredWorkshopsFeed.map(workshop => {
         return <RegisteredWorkshopCard key={workshop.id} id={workshop.id} workshop={workshop}/>
     })
     
-    const RegisteredWorshopFeedPlaceholder = () => {
+
+    const RegisteredWorkshopFeedPlaceholder = () => {
         
         return (
             <Paper className={classes.paperContainer}>
@@ -66,10 +70,14 @@ const UserWorkshopsAgenda = () => {
     }
 
     return (
+        <>
+        { loading ? <Loading /> : registeredWorkshopsFeed.length ?
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
-            { regworkshopFeed.length ? workshopsReq : <RegisteredWorshopFeedPlaceholder /> }
-        </Grid>
+            {workshops} 
+        </Grid> : <RegisteredWorkshopFeedPlaceholder /> 
+        }
+        </>
     )
 }
 
-export default UserWorkshopsAgenda;
+export default RegisteredWorkshops;
