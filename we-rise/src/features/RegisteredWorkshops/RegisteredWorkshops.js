@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import RegisteredWorkshopCard from './RegisteredWorkshopCard'
-import Loading from '../BaseComponents/ProgressLoader'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -71,7 +70,7 @@ const RegisteredWorkshops = () => {
 
     return (
         <>
-        { loading ? <Loading /> : registeredWorkshopsFeed.length ?
+        { loading ? null : registeredWorkshopsFeed.length ?
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
             {workshops} 
         </Grid> : <RegisteredWorkshopFeedPlaceholder /> 
