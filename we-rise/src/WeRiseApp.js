@@ -40,8 +40,6 @@ const WeRiseApp = () => {
             dispatch(setCurrentUser({email, uid, token}))
             dispatch(finishLoading());
             
-            
-
             dispatch(setCurrentUser({email, uid, token, bio, firstn, lastn, facebook, instagram, twitter, linkedin, user_pic}))
 
         })

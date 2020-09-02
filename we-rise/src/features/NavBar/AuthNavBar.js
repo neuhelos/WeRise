@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { firestore } from '../../Utilities/firebase'
 import { chatsStore } from '../Messaging/ChatSlice'
+import { toggleLoading } from '../BaseComponents/loadingSlice'
 
 import { makeStyles } from '@material-ui/core/styles';
 import { signOut } from '../../Utilities/firebaseFunctions'
@@ -120,8 +121,17 @@ const NavBar = () => {
     }
     history.push(`/CommunityDashboard`)
   }
-  const signout = () => {
-    signOut()
+
+  const slowcode = async() => {
+    return new Promise(function(resolve, reject){
+      setTimeout(resolve, 2000)
+    })
+  }
+
+  const signout = async() => {
+    dispatch(toggleLoading());
+    await slowcode();
+    signOut();
     history.push("/")
   }
 
