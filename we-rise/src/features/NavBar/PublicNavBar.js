@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom'
 import { signIn } from '../../Utilities/firebaseFunctions'
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
+import { toggleLoading } from '../BaseComponents/loadingSlice';
+
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -59,6 +63,7 @@ const PublicNavBar = () => {
 
     const [openSignIn , setOpenSignIn] = useState(false)
     const [openSignUp , setOpenSignUp] = useState(false)
+    const dispatch = useDispatch();
 
     const toggleSignInModal = () => {
         setOpenSignIn(!openSignIn)
@@ -67,8 +72,16 @@ const PublicNavBar = () => {
         setOpenSignUp(!openSignUp)
     }
 
-    const history = useHistory()
+    const history = useHistory();
+
+    const slowcode = async() => {
+        return new Promise(function(resolve, reject){
+          setTimeout(resolve, 2000)
+        })
+      }
     const handleGuestSignIn = async () => {
+        dispatch(toggleLoading());
+        await slowcode();
         await signIn("guest@werise.org","weriseguest");
         history.push("/CommunityDashboard")
     }

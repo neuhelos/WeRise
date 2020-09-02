@@ -8,6 +8,9 @@ export const loadingSlice = createSlice({
         toggleLoading: (state) => !state,
         finishLoading: (state) => false
     },
+    extraReducers: {
+        
+    }
 })
 
 

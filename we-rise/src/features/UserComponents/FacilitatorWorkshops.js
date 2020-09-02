@@ -87,7 +87,7 @@ const FacilitatorWorkshops = () => {
         <div className ='FacilitatorWorkshops'>
             <Paper className={classes.paperWrapper}>
                 <Paper className={classes.paperTitle}>
-                    <Typography className={classes.text} variant='subtitle1'>Workshops I'm</Typography>
+                    <Typography className={classes.text} variant='subtitle1'>Workshops I'm Facilitating</Typography>
                 </Paper>
             </Paper>
             <div className ='workshops'>

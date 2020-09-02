@@ -20,7 +20,7 @@ export const deleteRegistration = createAsyncThunk(
 )
 
 export const addRegistration = createAsyncThunk(
-    'post/addRegistration',// In registration, it should dispatch this action to add workshop
+    'post/addRegistration',
     async( workshopId , { getState }) => {
         try{
             const { uid } = getState().currentUserSession
