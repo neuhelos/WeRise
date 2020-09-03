@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import  { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-
 import WorkshopDetails from '../WorkshopFeed/WorkshopDetails'
-import Modal from '../BaseComponents/Modal'
-
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { deleteRegistration } from './RegisteredWorkshopSlice'
+import { useInput } from '../../Utilities/CustomHookery'
+
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,57 +31,64 @@ const RegisteredWorkshopModal = ({ handleCloseModal, workshop, ...props }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    const [activeStep, setActiveStep] = useState(0);
+    const [activeModalView, setActiveModalView] = useState(0);
 
     const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveModalView((prevActiveModalView) => prevActiveModalView + 1);
     };
 
     const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveModalView((prevActiveModalView) => prevActiveModalView - 1);
     };
 
     const JoinWorkshopVideoChat = () => {
 
-        <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
-            <WorkshopDetails workshop={workshop} {...props}/>
-            <Grid className={classes.root} container display="flex" direction="row" justify="space-evenly" alignItems="center">
-                { new Date() >= new Date(workshop.start_time) - 6.048e+8 ? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push(`/videoConference/${workshop.user_id}${workshop.workshop_id}`)}>Join VideoChat</Button> : null}
-                <Button variant="contained" color="primary" onClick={handleCloseModal}>Close</Button>
-                <Button variant="contained" color="primary" type="submit" onClick={handleNext}>Cancel Registration</Button> 
-            </Grid>
-        </Grid>
+        return (
+            <>
+                <WorkshopDetails workshop={workshop} {...props}/>
+                <Grid className={classes.root} container display="flex" direction="row" justify="space-evenly" alignItems="center">
+                    { new Date() >= new Date(workshop.start_time) - 6.048e+8 ? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push(`/videoConference/${workshop.user_id}${workshop.workshop_id}`)}>Join VideoChat</Button> : null}
+                    <Button variant="contained" color="primary" onClick={handleCloseModal}>Close</Button>
+                    <Button variant="contained" color="primary" type="submit" onClick={handleNext}>Cancel Registration</Button> 
+                </Grid>
+            </>
+        )
     }
 
     const UnregisterWorkshop = () => {
-    
-    
+        
+        const message = useInput("")
+
+
+        return (
+            <>
+                <Typography className={classes.text} align='center' variant='h6' gutterBottom="true">Cancel Your Workshop Registration</Typography>
+                <TextField id="message" className={classes.input} label="Message to the Facilitator (Optional)" placeholder="Please explain to the Facilitator your workshop cancellation" variant="filled" multiline rows={5} {...message} />
+                <Grid className={classes.root} container display="flex" direction="row" justify="space-evenly" alignItems="center">
+                    <Button variant="contained" color="primary" onClick={handleBack}>Back</Button>
+                    <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister</Button> 
+                </Grid>
+            </>
+        )
     }
 
-    const getStepContent = (step) => {
-        switch (step) {
+    const getModalContent = (activeModalView) => {
+        switch (activeModalView) {
             case 0:
             return <JoinWorkshopVideoChat />
             case 1:
             return <UnregisterWorkshop />
             default:
-            return 'Unknown step';
+            return 'Unknown View';
         }
     }
 
     return (
-        <>
 
-        <Grid className={classes.roott} container display="flex" direction="column" justify="space-evenly" alignItems="center">{getStepContent(activeStep)}</Grid>
+        <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
+            {getModalContent(activeModalView)}
+        </Grid>
 
-
-        
-            <Grid className={classes.root} container display="flex" direction="row" justify="space-evenly" alignItems="center">
-                <Button variant="contained" color="primary" onClick={handleBack}>Cancel</Button>
-                <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister</Button> 
-            </Grid>
-
-        </>
     )
 }
 
