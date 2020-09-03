@@ -1,6 +1,9 @@
 import React from 'react'
 import { useHistory} from 'react-router-dom'
 import { signIn } from '../../Utilities/firebaseFunctions'
+import { useDispatch } from 'react-redux'
+import { toggleLoading } from '../BaseComponents/loadingSlice'
+import { finishLoading } from '../BaseComponents/loadingSlice'
 
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField'
@@ -33,12 +36,13 @@ const useStyles = makeStyles((theme) => ({
 
 const SignInModal = ({toggleModal, toggleSignUpModal}) => {
     
-    const classes = useStyles()
+    const classes = useStyles();
 
-    const email = useInput("")
-    const password = useInput("")
+    const email = useInput("");
+    const password = useInput("");
     
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const handleNewUser = () => {
         toggleModal()
@@ -49,8 +53,10 @@ const SignInModal = ({toggleModal, toggleSignUpModal}) => {
         e.preventDefault();
 
         try {
+            dispatch(toggleLoading());
             await signIn(email.value, password.value)
             history.push("/CommunityDashboard")
+            // dispatch(finishLoading());
 
         }
         catch (err){

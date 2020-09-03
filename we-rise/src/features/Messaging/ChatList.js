@@ -100,8 +100,8 @@ const ChatList = ( props ) => {
 
         return (
             <div key={index} id={index}>
-                <ListItem selected={props.selectedChatIndex === index} classes={{ root: classes.listItem, selected: classes.selected }}
-                    onClick={() => {props.selectedChat(index)}}
+                <ListItem selected={props.selectedChatId === chat.chatId} classes={{ root: classes.listItem, selected: classes.selected }}
+                    onClick={() => {props.handleSelectedChat(chat)}}
                     alignItems='flex-start'
                     >
                     <ListItemAvatar>
@@ -132,7 +132,7 @@ const ChatList = ( props ) => {
 
     return (
         <Grid container className={classes.root} display="flex" direction="column" justify="flex-start" alignItems="center">
-            <Button className={classes.button} variant='contained' fullWidth onClick={props.newChat}>NEW CHAT</Button>
+            <Button className={classes.button} variant='contained' fullWidth onClick={props.newChat}>CREATE NEW CHAT</Button>
             <Box component='div' className={classes.listContainer} p={0}>
                 <List className={classes.list}>
                     { !chatList.length ? null : chatList }

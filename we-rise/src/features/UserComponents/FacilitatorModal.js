@@ -51,7 +51,7 @@ debugger
             <Typography variant='h6'>Facilitator: {`${workshop.firstn} ${workshop.lastn}`}</Typography>
             <Typography variant='h10'>Description: {workshop.descriptions}</Typography>
             <img className={classes.image} src={workshopImage} alt="workshop.title"/>
-            <Typography variant='h6'>Number of Participants: {workshop.participants}</Typography>
+            <Typography variant='h6'>Number of Participants Registered: {workshop.participants}</Typography>
             <Typography variant='h6'>Workshop Date: {date}</Typography>
         </Grid>
     )

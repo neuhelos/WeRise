@@ -76,7 +76,7 @@ INSERT INTO users
 (id, firstn, lastn,  email, user_pic, bio)
 VALUES
 ('otmKzEboQMby4tLzx6X8vC33ve83', 'Jay', 'Jones', 'jayjones@pursuit.org','https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FJohnJay.jpeg?alt=media&token=90c32acb-5e72-4c20-8d7b-b57821c5017e', '6.4 Pursuit Fellow'),
-('W8QTHKVW9hTz9TQQZK5M2U2Bygc2', 'Deja', 'Flynn', 'dejaflynn@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FDejaFlynn.jpeg?alt=media&token=2f62e3c4-a344-454e-ba15-f5e3ec70f58f', '6.4 Pursuit Fellow'),
+('4BoeoW9pLWdNKD2WKq8Widdxmkj2', 'Deja', 'Flynn', 'dejaflynn@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FDejaFlynn.jpeg?alt=media&token=2f62e3c4-a344-454e-ba15-f5e3ec70f58f', '6.4 Pursuit Fellow'),
 ('QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Nilber', 'Remon', 'nilberremon@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FNilberRemon.png?alt=media&token=35d9a08c-a430-4843-9988-e6582d0443cf', '6.4 Pursuit Fellow'),
 ('rVOVAIwKwdUchSqjZl0xh3qqe0q1', 'Uduakabasi', 'Abasiurua', 'uduakabasiabasiurua@pursuit.org','https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FUduakabasiAbasiurua.jpeg?alt=media&token=4d85a760-0c46-4cb6-a8ae-aa0d3a857281', '6.4 Pursuit Fellow'),
 ('8uvDSPKzhjU5rllJU1Fy40Gn8x23', 'Danielle', 'Cherry', 'daniellecherry@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FDanielleCherry.png?alt=media&token=d16969cf-fe72-4d92-a2a8-b48802c0354e', '6.4 Pursuit Fellow'),
@@ -86,7 +86,7 @@ VALUES
 INSERT INTO created_workshops
 (id, posted, user_id, title, descriptions, start_time, end_time, category, participants, workshop_img)
 VALUES
-('1', '2020-08-22 10:00-04', 'W8QTHKVW9hTz9TQQZK5M2U2Bygc2', 'SQL Tutorial', 'An Intro to Mastering SQL', '2020-09-24 10:00-04', '2020-09-24 12:00-04', 'Technology, Coding & Programming',  4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FSQLTutorial.png?alt=media&token=4a05132b-d42c-4375-988c-56029054a8a2'),
+('1', '2020-08-22 10:00-04', '4BoeoW9pLWdNKD2WKq8Widdxmkj2', 'SQL Tutorial', 'An Intro to Mastering SQL', '2020-09-24 10:00-04', '2020-09-24 12:00-04', 'Technology, Coding & Programming',  4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FSQLTutorial.png?alt=media&token=4a05132b-d42c-4375-988c-56029054a8a2'),
 ('2', '2020-06-22 15:00-04', 'otmKzEboQMby4tLzx6X8vC33ve83', 'Get Your Cardio On', 'Burn those Love Handles and Get Fit in Quarantine', '2020-09-22 15:00-04', '2020-09-22 16:00-04' , 'Health, Fitness & Wellness', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCardioWorkout.jpg?alt=media&token=cec95c60-464b-4c5c-a12c-690e9e329dc1'),
 ('3', '2020-06-23 18:00-04', '8uvDSPKzhjU5rllJU1Fy40Gn8x23', 'Drama Therapy in COVID Times', 'Express Yourself while Socially Distancing', '2020-09-23 18:00-04', '2020-09-23 19:00-04' , 'Film, Photography & Theatre', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FDramaTherapy.jpg?alt=media&token=07f82c15-ec78-41cc-95a1-1bb6195c72d1'),
 ('4', '2020-07-01 17:00-04', 'rVOVAIwKwdUchSqjZl0xh3qqe0q1', 'I Love Javascript', 'Start Your Coding Journey with a Bit of JS Basics', '2020-10-01 17:00-04', '2020-10-01 18:00-04' ,'Technology, Coding & Programming', 2, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FILoveJavascript.png?alt=media&token=3370fe6f-9cd4-469f-84a5-f2e2b567b2bb'),
@@ -100,7 +100,7 @@ VALUES
 INSERT INTO registered_workshops
 (user_id, workshop_id, workshop_id_user_id)
 VALUES
-('W8QTHKVW9hTz9TQQZK5M2U2Bygc2', '3','W8QTHKVW9hTz9TQQZK5M2U2Bygc23'),
+('4BoeoW9pLWdNKD2WKq8Widdxmkj2', '3','4BoeoW9pLWdNKD2WKq8Widdxmkj23'),
 ('QYkHDRiXmATQFHQS4wKcjKhqUGa2', '1','QYkHDRiXmATQFHQS4wKcjKhqUGa21'),
 ('otmKzEboQMby4tLzx6X8vC33ve83', '2','otmKzEboQMby4tLzx6X8vC33ve832'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', '2', 'ilFicLgXB5O9utKaS8WCn4UaQh532'),

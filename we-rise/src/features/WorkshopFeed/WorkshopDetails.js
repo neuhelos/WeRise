@@ -20,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(2)
     },
     image : {
-        width: '75%',
+        width: '50%',
         [theme.breakpoints.down('sm')]:{
-            width: '50%'
+            width: '40%'
         },
         border: '2px solid #666666', 
         borderRadius: '4px'
@@ -48,7 +48,7 @@ const WorkshopDetails = ( { workshop, dateTime, participantsData } ) => {
 
     return (
             <>
-                <Typography align='center' style={{color: '#FF0F7B'}} className={classes.text} gutterBottom={true} variant='h6'>{workshop.title}</Typography>
+                <Typography align='center' style={{color: '#FF0F7B'}} className={classes.text} gutterBottom={true} variant='h5'>{workshop.title}</Typography>
                 <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="flex-start">
                     <Grid className={classes.container} container display="flex" direction="column" justify="flex-start" alignItems="center">
                         <div style={{display:"flex", width: '100%'}}>
@@ -57,10 +57,10 @@ const WorkshopDetails = ( { workshop, dateTime, participantsData } ) => {
                             <Typography align='left' className={classes.text} variant='subtitle1' gutterBottom={true} >{` ${workshop.firstn} ${workshop.lastn}` }</Typography>
                             </Link>
                         </div>
-                        <Typography align='left' className={classes.text} variant='body2' gutterBottom={true} >{`${dateTime.date} ${dateTime.time}`}</Typography>
-                        <Typography align='left' className={classes.text} variant='body2' gutterBottom={true} >Description: {workshop.descriptions}</Typography>
-                        <Typography align='left' className={classes.text} variant='body2' gutterBottom={true} >Category: {workshop.category}</Typography>
-                        <Typography align='left' variant='body2' gutterBottom={true}  className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
+                        <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >{`${dateTime.date} ${dateTime.time}`}</Typography>
+                        <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >Description: {workshop.descriptions}</Typography>
+                        <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >Category: {workshop.category}</Typography>
+                        <Typography align='left' variant='body1' gutterBottom={true}  className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
                     </Grid>
                     <Grid className={classes.container} container display="flex" direction='row' justify="flex-end" alignItems="center">
                         <img className={classes.image} src={workshop.workshop_img} alt={workshop.title} />
