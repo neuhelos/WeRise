@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
+const ChatView = ({ selectedChatId, selectedChat, submitMessage, messageRead }) => {
 	
 	const currentUser = useSelector((state) => state.currentUserSession);
 
@@ -160,7 +160,7 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 
 	return (
 		<Grid className={classes.root} display="flex">
-			{selectedChat === null ? (
+			{ selectedChatId === null ? (
 				<Grid
                     className={classes.noVisibleChatView}
 					container

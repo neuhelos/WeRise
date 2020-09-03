@@ -35,6 +35,7 @@ const Chat = (props) => {
     const [selectedChat, setSelectedChat] = useState(null)
     const [newChatFormVisible, setNewChatFormVisible] = useState(false)
 
+
     let selectedChatFind = chats.find(chat => chat.chatId === selectedChatId)
 
     const handleNewChat = () => {
@@ -123,7 +124,7 @@ const Chat = (props) => {
                 <ChatList history={props.history} handleSelectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatId={selectedChatId}/> 
             </Grid>
             <Grid container item className={classes.container} md={7} direction="column" justify="flex-start" alignItems='center'>
-                { newChatFormVisible ? null : <ChatView selectedChat={selectedChatFind} submitMessage={submitMessage} messageRead={messageRead}/> }
+                { newChatFormVisible ? null : <ChatView selectedChatId={selectedChatId} selectedChat={selectedChatFind} submitMessage={submitMessage} messageRead={messageRead}/> }
                 { newChatFormVisible ? <NewChatForm newChatSubmit={newChatSubmit} goToExistingChat={goToExistingChat} /> : null }
             </Grid>
         </Grid>
