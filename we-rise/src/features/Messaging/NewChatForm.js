@@ -93,7 +93,6 @@ const NewChatForm = ( props ) => {
             .where('email', '==', user)
             .get()
         let userData = userQuery.docs[0].data()
-        debugger
         return userData
     }
 

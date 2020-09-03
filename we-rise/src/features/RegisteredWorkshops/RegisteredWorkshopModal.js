@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
-import  { useDispatch } from 'react-redux'
+import  { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
 import WorkshopDetails from '../WorkshopFeed/WorkshopDetails'
 
+import { chatExistsCheck, addToExistingChat, newChatSubmit} from '../../Utilities/chatBase'
+import { sendEmail } from '../../Utilities/emailBase'
 import { deleteRegistration } from './RegisteredWorkshopSlice'
 import { useInput } from '../../Utilities/CustomHookery'
 
@@ -11,7 +14,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
-
+import Tooltip from '@material-ui/core/Tooltip'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,14 +25,20 @@ const useStyles = makeStyles((theme) => ({
             outlineColor: '#36386D',
         },
     },
+    input: {
+        width: '100%',
+        marginBottom: theme.spacing(1)
+    }, 
 }))
 
 
 const RegisteredWorkshopModal = ({ handleCloseModal, workshop, ...props }) => {
 
-    const history = useHistory();
+    const currentUser = useSelector( state => state.currentUserSession )
+
     const classes = useStyles();
     const dispatch = useDispatch();
+    const history = useHistory()
 
     const [activeModalView, setActiveModalView] = useState(0);
 
@@ -57,16 +66,43 @@ const RegisteredWorkshopModal = ({ handleCloseModal, workshop, ...props }) => {
 
     const UnregisterWorkshop = () => {
         
-        const message = useInput("")
+        const userMessage = useInput("")
+
+        const handleCancelRegistration = async () => {
+            try {
+
+                let automatedMessage = `${currentUser.firstn} has cancelled their registration for your following workshop: ${workshop.title}.`
+                let userCustomMessage = `Message from ${currentUser.firstn}: ${userMessage.value}`
+                let message = userMessage.value ? `${automatedMessage} ${userCustomMessage}` : automatedMessage
+
+                sendEmail('nilberremon@pursuit.org', `Participant Cancellation - ${workshop.title}`, message)
+
+                let usersEmail = [workshop.email, currentUser.email].sort()
+                let facilitatorDetails = {email: workshop.email, firstName: workshop.firstn, lastName: workshop.lastn, profileImage: workshop.user_pic, userId: workshop.user_id}
+                let currentUserDetails = {email: currentUser.email, firstName: currentUser.firstn, lastName: currentUser.lastn, profileImage: currentUser.user_pic, userId: currentUser.uid}
+                let usersData = {facilitatorDetails, currentUserDetails}
+
+                let existingChatId = await chatExistsCheck(usersEmail)
+                existingChatId ? addToExistingChat(existingChatId, currentUser.firstn, currentUser.uid, message) 
+                : newChatSubmit(message, currentUser.uid, currentUser.firstn, usersData, usersEmail)
+                
+                dispatch(deleteRegistration(workshop.id))
+                handleCloseModal()
+            } catch(error) {
+                console.log(error)
+            }
+        }
 
 
         return (
             <>
                 <Typography className={classes.text} align='center' variant='h6' gutterBottom="true">Cancel Your Workshop Registration</Typography>
-                <TextField id="message" className={classes.input} label="Message to the Facilitator (Optional)" placeholder="Please explain to the Facilitator your workshop cancellation" variant="filled" multiline rows={5} {...message} />
+                <TextField id="message" className={classes.input} label="Message to the Facilitator (Optional)" placeholder="If you'd like, provide the facilitator a reason for your cancellation. Otherwise we will send them an automated message." variant="filled" multiline rows={5} {...userMessage} />
                 <Grid className={classes.root} container display="flex" direction="row" justify="space-evenly" alignItems="center">
                     <Button variant="contained" color="primary" onClick={handleBack}>Back</Button>
-                    <Button variant="contained" color="primary" type="submit" onClick = {() => dispatch(deleteRegistration(workshop.id))}>Unregister</Button> 
+                    <Tooltip title="Can Not Be Undone!">
+                        <Button variant="contained" color="primary" type="submit" onClick = {handleCancelRegistration}>Unregister</Button> 
+                    </Tooltip>
                 </Grid>
             </>
         )

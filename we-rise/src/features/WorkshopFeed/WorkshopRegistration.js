@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import firebase, { firestore } from '../../Utilities/firebase'
 import { v4 as uuidv4 } from 'uuid'
 import axios from 'axios'

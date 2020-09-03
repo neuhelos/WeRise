@@ -112,7 +112,6 @@ const Chat = (props) => {
                 users: [...chatData.userDetails, {email: currentUser.email, firstName: currentUser.firstn, lastName: currentUser.lastn, profileImage: currentUser.user_pic, userId: currentUser.uid}], 
                 usersEmail: [...chatData.recipients, currentUser.email].sort()
             })
-        debugger
         setNewChatFormVisible(false)
         await setSelectedChatId(chatId)
     }
