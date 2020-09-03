@@ -71,7 +71,7 @@ const RegisteredWorkshopModal = ({ handleCloseModal, workshop, ...props }) => {
         const handleCancelRegistration = async () => {
             try {
 
-                let automatedMessage = `${currentUser.firstn} has cancelled their registration for your following workshop: ${workshop.title}.`
+                let automatedMessage = `I'm cancelling my registration for the following workshop: ${workshop.title}.`
                 let userCustomMessage = `Message from ${currentUser.firstn}: ${userMessage.value}`
                 let message = userMessage.value ? `${automatedMessage} ${userCustomMessage}` : automatedMessage
 
