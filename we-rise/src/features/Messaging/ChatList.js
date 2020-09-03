@@ -34,11 +34,12 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#282828',
             position: 'relative',
             height: '95%',
+            position: 'relative',
+            overflow: "auto",
         },
         list: {
             width: '100%',
             backgroundColor: '#666666',
-            overflow: 'auto',
             position: 'absolute',
         },
         listItem: {
