@@ -17,7 +17,7 @@ import UserProfilePage from './features/Pages/UserProfilePage'
 import InstantMessagingPage from './features/Pages/MessagingPage'
 import Footer from './features/BaseComponents/Footer'
 import { PublicRoute, ProtectedRoute } from './features/Authentication/AuthRouting'
-import LoadingComponent from './features/BaseComponents/loadingComponent'
+import Loading from './features/BaseComponents/loadingComponent'
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -25,6 +25,8 @@ import { theme } from './styling/ThemeProvider'
 
 
 const WeRiseApp = () => {
+
+  const loading = useSelector( state => state.loading );
 
   const currentUser = useSelector( state => state.currentUserSession )
 
@@ -37,10 +39,8 @@ const WeRiseApp = () => {
         const {bio, firstn, lastn, facebook, instagram, twitter, linkedin, user_pic} = res.data.payload
         getFirebaseIdToken().then(token => {
 
-            dispatch(setCurrentUser({email, uid, token}))
-            dispatch(finishLoading());
-            
             dispatch(setCurrentUser({email, uid, token, bio, firstn, lastn, facebook, instagram, twitter, linkedin, user_pic}))
+            dispatch(finishLoading());
 
         })
     } else {
@@ -57,9 +57,10 @@ const WeRiseApp = () => {
 
   return (
 
+      
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <LoadingComponent>
+      <Loading>
         { currentUser ? <AuthNavBar /> : null }
         <Switch>
           <PublicRoute exact path="/">
@@ -79,7 +80,7 @@ const WeRiseApp = () => {
           </ProtectedRoute>
         </Switch>
         <Footer />
-      </LoadingComponent>
+      </Loading>
     </ThemeProvider>
   )
 }

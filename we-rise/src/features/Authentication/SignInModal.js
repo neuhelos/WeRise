@@ -56,7 +56,7 @@ const SignInModal = ({toggleModal, toggleSignUpModal}) => {
             dispatch(toggleLoading());
             await signIn(email.value, password.value)
             history.push("/CommunityDashboard")
-            // dispatch(finishLoading());
+            dispatch(finishLoading());
 
         }
         catch (err){

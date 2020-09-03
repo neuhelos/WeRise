@@ -1,30 +1,34 @@
 import React from 'react'
+
+import { makeStyles } from '@material-ui/core/styles'
+
 import weRiseLoading from '../../styling/Assets/Media/Loading1.gif'
 import weRiseLoading2 from '../../styling/Assets/Media/Loading2.gif'
 import weRiseLoading3 from '../../styling/Assets/Media/Loading3.gif'
 import weRiseLoading4 from '../../styling/Assets/Media/Loading4.gif'
-import { useSelector } from 'react-redux'
-import  '../../styling/loading.css'
 
 
-const LoadingComponents = ({children}) => {
+const useStyles = makeStyles( (theme ) => ({
+        image: {
+            maxWidth: '100%',
+            maxHeight: '100%',
+        }
+    })
+)
 
-    const loading = useSelector( state => state.loading );
+const Loading = () => {
+
+    const classes = useStyles()
+
     const weRiseLoadingPage = [weRiseLoading, weRiseLoading2,weRiseLoading3,weRiseLoading4 ];
-    let random = Math.floor(Math.random()*4);
-
-    if(loading){
-    return(
-        <div className = 'loading'>
-            <img src ={weRiseLoadingPage[random]}/>
-        </div>
-    )
-    }
+    let random = Math.floor(Math.random()* 4);
+    
     return (
         <>
-            {children}
+            <img className={classes.image} src={weRiseLoadingPage[random]} alt='LOADING' />
         </>
     )
 }
 
-export default LoadingComponents;
+    export default Loading
+
