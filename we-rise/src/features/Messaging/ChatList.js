@@ -51,6 +51,11 @@ const useStyles = makeStyles((theme) => ({
                 color: '#FFFFFF'
             },
         },
+        avatar: {
+            '&:hover': {
+                border: '3px solid #F89B29'
+            }
+        },
         selected: {
             '&$selected':{
                 background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
@@ -76,6 +81,8 @@ const useStyles = makeStyles((theme) => ({
             '&:hover': {
                 color: '#36386D'
             },
+            margin: 'auto',
+            justifyContent: 'flex-end'
         },
         divider: {
             backgroundColor: '#A3A3A3'
@@ -123,7 +130,7 @@ const ChatList = ( props ) => {
                     alignItems='flex-start'
                     >
                     <ListItemAvatar>
-                        <Avatar src={ chat.usersEmail.length <= 2 ? currentUserChatPeers[0].profileImage : multipleChatPeersAvatar} alt='userAvatar' />
+                        <Avatar className={classes.avatar} src={ chat.usersEmail.length <= 2 ? currentUserChatPeers[0].profileImage : multipleChatPeersAvatar} alt='userAvatar' />
                     </ListItemAvatar>
                     <ListItemText
                         primary={ chat.usersEmail.length <= 2 ? currentUserChatPeers[0].firstName : currentUserChatPeers.map(user => user.firstName).join(" & ").substring(0,50)}
@@ -136,8 +143,8 @@ const ChatList = ( props ) => {
                     </ListItemText>
                     { 
                         chat.receiverHasRead === false && !currentUserIsLatestSender(chat) ? 
-                        <ListItemIcon edge='end'>
-                            <NotificationsTwoToneIcon className={classes.unreadMessage} fontSize='large'/>
+                        <ListItemIcon edge='end' className={classes.unreadMessage}>
+                            <NotificationsTwoToneIcon fontSize='large'/>
                         </ListItemIcon>
                         : null
                     }
