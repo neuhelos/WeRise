@@ -141,7 +141,7 @@ const NewChatForm = ( props ) => {
                                 ))
                             }
                             renderInput={(params) => (
-                                <TextField {...params} variant="filled" label="Enter User(s)" placeholder="Enter One or Up to Eight Users"/>
+                                <TextField {...params} variant="filled" label="Enter User(s)" placeholder="Enter Up to Eight Users and Press Enter"/>
                             )}
                         />
                         <TextField className={classes.input} fullWidth inputProps={{style: {textAlign: 'left'}}} id="newChatMessage" label="Message" placeholder="Enter Your Message" variant="filled" multiline rows={2} {...newChatMessage}/>
