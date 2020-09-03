@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import firebase, { firestore } from '../../Utilities/firebase'
-import { v4 as uuidv4 } from 'uuid'
-import axios from 'axios'
 
-import { apiURL } from '../../Utilities/apiURL'
+import { chatExistsCheck, addToExistingChat, newChatSubmit} from '../../Utilities/chatBase'
+import { sendEmail } from '../../Utilities/emailBase'
 import { useInput } from '../../Utilities/CustomHookery'
 import { addRegistration } from '../RegisteredWorkshops/RegisteredWorkshopSlice'
 
@@ -176,51 +174,15 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, ...props }) => {
 
     const WorkshopRegistration = () => {
 
-        const message = useInput("")
-        let chatUsers = [workshop.email, currentUser.email].sort()
+        const userMessage = useInput("")
+        
+        let usersEmail = [workshop.email, currentUser.email].sort()
         let facilitatorDetails = {email: workshop.email, firstName: workshop.firstn, lastName: workshop.lastn, profileImage: workshop.user_pic, userId: workshop.user_id}
+        let currentUserDetails = {email: currentUser.email, firstName: currentUser.firstn, lastName: currentUser.lastn, profileImage: currentUser.user_pic, userId: currentUser.uid}
+        let usersData = {facilitatorDetails, currentUserDetails}
 
-        const chatExists = async () => {
-          const query = await firestore
-                .collection('chats')
-                .where('usersEmail', 'in', [chatUsers])
-                .get()
-            const chatId = query.docs.map(doc => doc.id).join("")
-            return chatId
-        }
+        let message = `(New Workshop Participant: ${workshop.title}.) ${userMessage.value}`
 
-        const newChatSubmit = async () => {
-          let chatId = uuidv4()
-          await firestore
-              .collection('chats')
-              .doc(chatId)
-              .set({
-                  messages: [{
-                      message: `(New Workshop Participant: ${workshop.title}.) ${message.value}`,
-                      sender: currentUser.uid,
-                      timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
-                      firstName: currentUser.firstn
-                  }],
-                  receiverHasRead: false,
-                  users: [facilitatorDetails, {email: currentUser.email, firstName: currentUser.firstn, lastName: currentUser.lastn, profileImage: currentUser.user_pic, userId: currentUser.uid}], 
-                  usersEmail: chatUsers
-              })
-        }
-
-        const addToExistingChat = (chatId) => {
-          firestore
-          .collection('chats')
-          .doc(chatId)
-          .update({
-              messages: firebase.firestore.FieldValue.arrayUnion({
-                  firstName: currentUser.firstn,
-                  message: `(I'm attending: ${workshop.title}.) ${message.value}`,
-                  sender: currentUser.uid,
-                  timestamp: firebase.firestore.Timestamp.fromDate(new Date())
-              }),
-              receiverHasRead: false
-          });
-        }
 
         const handleSubmit = async (event) => {
             event.preventDefault()
@@ -230,15 +192,11 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, ...props }) => {
                 dispatch(addRegistration(workshop.workshop_id))
               }, 5000);
 
-              let facilitatorEmail = axios.post(`${apiURL()}/email`, {
-                  to: 'nilberremon@pursuit.org',
-                  from: 'WeRiseFacilitator@werise.org',
-                  subject: 'WeRise - A User Registered for Your Workshop',
-                  content: message.value
-              })
+              sendEmail('nilberremon@pursuit.org', 'WeRise - A User Registered for Your Workshop', message)
 
-              let existingChat = await chatExists()
-              existingChat ? addToExistingChat(existingChat) : newChatSubmit()
+              let existingChatId = await chatExistsCheck(usersEmail)
+              existingChatId ? addToExistingChat(existingChatId, currentUser.firstn, currentUser.uid, message) 
+              : newChatSubmit(message, currentUser.uid, currentUser.firstn, usersData, usersEmail)
 
             } catch (error) {
                 throw Error(error)
@@ -249,7 +207,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, ...props }) => {
             <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">                
                 <form className={classes.root} onSubmit={handleSubmit}>
                     <Typography className={classes.text} align='center' variant='h6' gutterBottom="true">Introduce Yourself to the Facilitator</Typography>
-                    <TextField id="message" className={classes.input} label="Your Message" placeholder="Tell the Facilitator About Your Interest in the Workshop. They will receive a chat message from you." variant="filled" multiline rows={10} {...message} required />
+                    <TextField id="message" className={classes.input} label="Your Message" placeholder="Tell the Facilitator About Your Interest in the Workshop. They will receive a chat message from you." variant="filled" multiline rows={10} {...userMessage} required />
                     <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center">
                         <Button variant="contained" color="primary" onClick={handleBack}> BACK </Button>
                         <Button variant="contained" color="primary" type="submit"> REGISTER </Button>
