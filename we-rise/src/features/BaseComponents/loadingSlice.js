@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { selectCurrentUserId } from '../Authentication/AuthenticationSlice'
+import { fetchMyWorkshops } from '../RegisteredWorkshops/RegisteredWorkshopSlice'
+
 
 export const loadingSlice = createSlice({
     name: "loading",
@@ -9,7 +10,6 @@ export const loadingSlice = createSlice({
         finishLoading: (state) => false
     },
     extraReducers: {
-        
     }
 })
 

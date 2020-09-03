@@ -45,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
     },
     dateRange: {
         margin: theme.spacing(1),
+        width: '100%',
+        '& .rdrMonth': {
+            width: '100%',
+        }
     }
 }))
 
@@ -136,6 +140,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
             <Grid className={classes.root} container display="flex" direction="column" justify="space-evenly" alignItems="center" wrap='nowrap'>
                 <DateRange
                     className={classes.dateRange}
+                    style={{classes: {rdrMonth: {width: '100%'}}}}
                     editableDateInputs={true}
                     onChange={handleDateChange}
                     moveRangeOnFirstSelection={false}
@@ -146,6 +151,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                     scroll={{ enabled: true }}
                     startDatePlaceholder="Start Date"
                     endDatePlaceholder="End Date"
+                    color="#FF0F7B"
                 />
                 <Button className={classes.button} variant="contained" color="primary" onClick={toggleModal} size='small'>SELECT</Button>
             </Grid>
