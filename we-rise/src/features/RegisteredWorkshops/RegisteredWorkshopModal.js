@@ -71,9 +71,9 @@ const RegisteredWorkshopModal = ({ handleCloseModal, workshop, ...props }) => {
         const handleCancelRegistration = async () => {
             try {
 
-                let automatedMessage = `I'm cancelling my registration for the following workshop: ${workshop.title}.`
-                let userCustomMessage = `Message from ${currentUser.firstn}: ${userMessage.value}`
-                let message = userMessage.value ? `${automatedMessage} ${userCustomMessage}` : automatedMessage
+                let automatedMessage = `Automated Message: I'm cancelling my registration for the following workshop: ${workshop.title}.`
+                let userCustomMessage = `${workshop.title} Cancellation: ${userMessage.value}`
+                let message = userMessage.value ? userCustomMessage : automatedMessage
 
                 sendEmail('nilberremon@pursuit.org', `Participant Cancellation - ${workshop.title}`, message)
 
@@ -97,7 +97,7 @@ const RegisteredWorkshopModal = ({ handleCloseModal, workshop, ...props }) => {
         return (
             <>
                 <Typography className={classes.text} align='center' variant='h6' gutterBottom="true">Cancel Your Workshop Registration</Typography>
-                <TextField id="message" className={classes.input} label="Message to the Facilitator (Optional)" placeholder="If you'd like, provide the facilitator a reason for your cancellation. Otherwise we will send them an automated message." variant="filled" multiline rows={5} {...userMessage} />
+                <TextField id="message" className={classes.input} label="Send Message to the Facilitator (Optional)" placeholder="If you'd like, provide the facilitator a reason for your cancellation. Otherwise we will send them an automated message." variant="filled" multiline rows={5} {...userMessage} />
                 <Grid className={classes.root} container display="flex" direction="row" justify="space-evenly" alignItems="center">
                     <Button variant="contained" color="primary" onClick={handleBack}>Back</Button>
                     <Tooltip title="Can Not Be Undone!">
