@@ -46,6 +46,7 @@ export const addRegistration = createAsyncThunk(
     }
 )
 
+
 export const fetchMyWorkshops = createAsyncThunk(
     // const currentUser = useSelector( state => state.currentUserSession.uid )
     'get/fetchMyWorkshops',
@@ -62,23 +63,31 @@ export const fetchMyWorkshops = createAsyncThunk(
 
 
 export const RegisteredWorkshopSlice = createSlice( {
-    name: "registeredWorkshop",
-    initialState: [],
+    name: "registeredWorkshops",
+    initialState: { feed: [], loading: true },
     reducers: {
     },
     extraReducers: {
-        [fetchMyWorkshops.fulfilled]: (state, action) => action.payload,
+        [fetchMyWorkshops.pending]: (state, action) => {
+            return {feed: [], loading: true}
+        },
+        [fetchMyWorkshops.fulfilled]: (state, action) => {
+            return {feed: action.payload, loading: false}
+        },
+        [fetchMyWorkshops.rejected]: (state, action) => {
+            return {feed: [], loading: false}
+        },
         [addRegistration.fulfilled]: (state, action) =>  {
-            let insertIndex = binarySearchInsert(state, action.payload.start_time)
-            state.splice(insertIndex, 0, action.payload)
+            let insertIndex = binarySearchInsert(state.feed, action.payload.start_time)
+            state.feed.splice(insertIndex, 0, action.payload)
         },
         [deleteRegistration.fulfilled]: (state, action) => {
-            let workshopIndex = state.findIndex((workshop)=> {
+            let workshopIndex = state.feed.findIndex((workshop)=> {
                 return Number(workshop.id) === Number(action.payload.registeredId)
-           })
-           if(workshopIndex > -1){
-               state.splice(workshopIndex,1);
-           }
+            })
+            if(workshopIndex > -1){
+                state.feed.splice(workshopIndex,1);
+            }
         },
     }
 })

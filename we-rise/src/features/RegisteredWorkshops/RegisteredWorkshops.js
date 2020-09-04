@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import RegisteredWorkshopCard from './RegisteredWorkshopCard'
@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography';
 
+import Loading from './RegisteredWorkshopLoader'
 import { fetchMyWorkshops } from './RegisteredWorkshopSlice'
 
 import WeRiseFist from '../../styling/Assets/Media/WeRiseFist.png'
@@ -38,22 +39,27 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const UserWorkshopsAgenda = () => {
+const RegisteredWorkshops = () => {
+    
+    
     const classes = useStyles();
-
-    const regworkshopFeed = useSelector( state => state.registeredWorkshops);
+    
+    const registeredWorkshopsFeed = useSelector( state => state.registeredWorkshops.feed);
+    const loading = useSelector( state => state.registeredWorkshops.loading)
 
     const dispatch = useDispatch();
+
 
     useEffect ( () => {
         dispatch(fetchMyWorkshops())
     }, [])
 
-    let workshopsReq = regworkshopFeed.map(workshop => {
+    
+    let workshops = registeredWorkshopsFeed.map(workshop => {
         return <RegisteredWorkshopCard key={workshop.id} id={workshop.id} workshop={workshop}/>
     })
     
-    const RegisteredWorshopFeedPlaceholder = () => {
+    const RegisteredWorkshopFeedPlaceholder = () => {
         
         return (
             <Paper className={classes.paperContainer}>
@@ -65,11 +71,17 @@ const UserWorkshopsAgenda = () => {
         )
     }
 
+    //setIsLoading(false)
+
     return (
+        <>
+        {loading ? <Loading/> : registeredWorkshopsFeed.length ?
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
-            { regworkshopFeed.length ? workshopsReq : <RegisteredWorshopFeedPlaceholder /> }
-        </Grid>
+            {workshops} 
+        </Grid> : <RegisteredWorkshopFeedPlaceholder /> 
+        }
+        </>
     )
 }
 
-export default UserWorkshopsAgenda;
+export default RegisteredWorkshops;
