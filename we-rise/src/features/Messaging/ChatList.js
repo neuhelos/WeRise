@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#282828',
             position: 'relative',
             height: '95%',
-            position: 'relative',
             overflow: "auto",
         },
         list: {

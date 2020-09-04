@@ -13,18 +13,16 @@ const LoadingComponents = ({children}) => {
     const weRiseLoadingPage = [weRiseLoading, weRiseLoading2,weRiseLoading3,weRiseLoading4 ];
     let random = Math.floor(Math.random()*4);
 
-    if(loading){
+ 
     return(
+        loading ?
         <div className = 'loading'>
-            <img src ={weRiseLoadingPage[random]}/>
+            <img src ={weRiseLoadingPage[random]} alt="Loading"/>
         </div>
+        :
+        children
     )
-    }
-    return (
-        <>
-            {children}
-        </>
-    )
+
 }
 
 export default LoadingComponents;
