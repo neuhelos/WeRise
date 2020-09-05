@@ -118,7 +118,7 @@ const ChatList = ( props ) => {
 
     let multipleChatPeersAvatar = "https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FRainbowSmileyDefaultAvatar.png?alt=media&token=379959f1-6d89-43a4-bf01-92a68841c643"
     
-    let chatList = chats.map( (chat, index) => {
+    let chatList = chats.map( (chat) => {
         
         let currentUserChatPeers = chat.users.filter(user => user.userId !== currentUser.uid)
 
@@ -135,7 +135,7 @@ const ChatList = ( props ) => {
                         primary={ chat.usersEmail.length <= 2 ? currentUserChatPeers[0].firstName : currentUserChatPeers.map(user => user.firstName).join(" & ").substring(0,50)}
                         secondary={
                                 <Typography component='span'>
-                                    {chat.messages[chat.messages.length-1].message.substring(0,30)}
+                                    {chat.messages[chat.messages.length-1].message.substring(0,20)}
                                 </Typography>
                         }
                     >

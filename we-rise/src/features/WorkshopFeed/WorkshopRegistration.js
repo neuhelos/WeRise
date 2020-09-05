@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { chatExistsCheck, addToExistingChat, newChatSubmit} from '../../Utilities/chatBase'
+import { chatExistsCheck, submitMessageExistingChat, newChatSubmit} from '../../Utilities/chatBase'
 import { sendEmail } from '../../Utilities/emailBase'
 import { useInput } from '../../Utilities/CustomHookery'
 import { addRegistration } from '../RegisteredWorkshops/RegisteredWorkshopSlice'
@@ -195,7 +195,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, ...props }) => {
               sendEmail('nilberremon@pursuit.org', 'WeRise - A User Registered for Your Workshop', message)
 
               let existingChatId = await chatExistsCheck(usersEmail)
-              existingChatId ? addToExistingChat(existingChatId, currentUser.firstn, currentUser.uid, message) 
+              existingChatId ? submitMessageExistingChat(existingChatId, currentUser.firstn, currentUser.uid, message) 
               : newChatSubmit(message, currentUser.uid, currentUser.firstn, usersData, usersEmail)
 
             } catch (error) {

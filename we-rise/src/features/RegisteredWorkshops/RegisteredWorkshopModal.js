@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 import WorkshopDetails from '../WorkshopFeed/WorkshopDetails'
 
-import { chatExistsCheck, addToExistingChat, newChatSubmit} from '../../Utilities/chatBase'
+import { chatExistsCheck, submitMessageExistingChat, newChatSubmit} from '../../Utilities/chatBase'
 import { sendEmail } from '../../Utilities/emailBase'
 import { deleteRegistration } from './RegisteredWorkshopSlice'
 import { useInput } from '../../Utilities/CustomHookery'
@@ -83,7 +83,7 @@ const RegisteredWorkshopModal = ({ handleCloseModal, workshop, ...props }) => {
                 let usersData = {facilitatorDetails, currentUserDetails}
 
                 let existingChatId = await chatExistsCheck(usersEmail)
-                existingChatId ? addToExistingChat(existingChatId, currentUser.firstn, currentUser.uid, message) 
+                existingChatId ? submitMessageExistingChat(existingChatId, currentUser.firstn, currentUser.uid, message) 
                 : newChatSubmit(message, currentUser.uid, currentUser.firstn, usersData, usersEmail)
                 
                 dispatch(deleteRegistration(workshop.id))

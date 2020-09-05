@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ChatView = ({ selectedChatId, selectedChat, submitMessage, messageRead }) => {
+const ChatView = ({ selectedChatId, selectedChat, messageRead }) => {
 	
 	const currentUser = useSelector((state) => state.currentUserSession);
 
@@ -198,7 +198,6 @@ const ChatView = ({ selectedChatId, selectedChat, submitMessage, messageRead }) 
 					>
 						<ChatInput
                             selectedChat={selectedChat}
-							submitMessage={submitMessage}
 							messageRead={messageRead}
 						/>
 					</Grid>
