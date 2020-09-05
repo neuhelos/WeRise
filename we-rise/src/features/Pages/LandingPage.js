@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         height: '100rem',
         padding: theme.spacing(3),
+        color: '#FFFFFF'
     },
     wrapper : {
         padding: theme.spacing(2)
@@ -58,6 +59,8 @@ const LandingPage = () => {
     return (
         <Grid container className={classes.root} display="flex" direction="column" wrap='nowrap'>
             <PublicNavBar />
+            
+            {/* Section 1 */}
             <Grid className={classes.container} container item display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap' md={12}>
                 <Grid className={classes.wrapper} container item display="flex" direction="column" justify='flex-end' alignItems='center' wrap='nowrap' md={6}>
                     <Paper className={classes.paper} style={{backgroundColor: '#121212', display:'flex', justify:'flex-end'}}>
@@ -73,26 +76,49 @@ const LandingPage = () => {
                     </Paper>
                 </Grid>
             </Grid>
-            <Grid className={classes.container} container item style={{backgroundColor: '#A3A3A3'}} display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap' md={12}>
-                <Grid className={classes.wrapper} container item display="flex" direction="column" justify='flex-end' alignItems='center' wrap='nowrap' md={6}>
+
+            {/* Section 2 */}
+            <Grid className={classes.container} container item style={{backgroundColor: '#A3A3A3'}} display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={12}>
+                <Grid className={classes.wrapper} container item display="flex" direction="row" justify='flex-end' alignItems='center' wrap='nowrap'>
+                    <Paper className={classes.paper} style={{backgroundColor: '#282828', display:'flex', justify:'flex-end'}}>
+                        <video className={classes.video} loop='loop' autoPlay='autoplay' muted>
+                            <source src={SloganVideoSource} type="video/mp4"/>
+                            Your browser does not support this video.
+                        </video>
+                    </Paper>
                     <Paper className={classes.paper} style={{backgroundColor: '#121212', display:'flex', justify:'flex-end'}}>
+                        <Typography variant='h4' gutterBottom={true} align='center'>
+                           Build Your Skills
+                        </Typography>
+                        <Typography variant='h4' gutterBottom={true} align='center'>
+                           Build Your Community
+                        </Typography>
                     </Paper>
-                    <Typography variant='h4' gutterBottom={true} align='center'>
-                        Workshop
-                    </Typography>
                 </Grid>
-                <Grid className={classes.wrapper} container item display="flex" direction="column" justify='flex-start' alignItems='center' wrap='nowrap' md={6}>
-                    <Paper className={classes.paper}>
+                <Grid className={classes.wrapper} container item display="flex" direction="row" justify='flex-start' alignItems='center' wrap='nowrap'>
+                    <Paper className={classes.paper} style={{backgroundColor: '#121212', display:'flex', justify:'flex-end'}}>
+                        <Typography variant='h4' gutterBottom={true} align='center'>
+                           Build Your Skills
+                        </Typography>
+                        <Typography variant='h4' gutterBottom={true} align='center'>
+                           Build Your Community
+                        </Typography>
                     </Paper>
+                    <Paper className={classes.paper} style={{backgroundColor: '#121212', display:'flex', justify:'flex-end'}}>
+                        <Typography variant='h4' gutterBottom={true} align='center'>
+                           Build Your Skills
+                        </Typography>
+                        <Typography variant='h4' gutterBottom={true} align='center'>
+                           Build Your Community
+                        </Typography>
+                    </Paper>
+
+
                 </Grid>
             </Grid>
 
             {/* <Grid container item className={classes.container} display="flex" direction="row" justify='space-evenly' alignItems='center' wrap='nowrap' sm={12}>
                 <Grid container item justify='flex-end' alignItems='center' sm={12} md={6}>
-                    <video className={classes.video} loop='loop' autoPlay='autoplay' muted>
-                        <source src={SloganVideoSource} type="video/mp4"/>
-                        Your browser does not support this video.
-                    </video>
                 </Grid>
                 <Grid container item justify='flex-start' alignItems='center' sm={12} md={6}>
                     <Paper className={classes.paper}>
