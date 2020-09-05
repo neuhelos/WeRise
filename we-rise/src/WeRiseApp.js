@@ -26,8 +26,6 @@ import { theme } from './styling/ThemeProvider'
 
 const WeRiseApp = () => {
 
-  const loading = useSelector( state => state.loading );
-
   const currentUser = useSelector( state => state.currentUserSession )
 
   const dispatch = useDispatch()

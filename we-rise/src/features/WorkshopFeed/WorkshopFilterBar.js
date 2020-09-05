@@ -98,7 +98,7 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
     }
 
     const buttonDateRangeLabel = !buttonLabelChange ? 
-        "SELECT DATE RANGE" :
+        "SELECT DATES" :
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
             <Typography variant="body1">{dateConverter(dateRange[0].startDate)} thru </Typography>
             <Typography variant="body1">{dateConverter(dateRange[0].endDate)}</Typography>

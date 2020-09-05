@@ -88,6 +88,7 @@ const AddWorkshop = ({handleCloseModal}) => {
     const pad = (value) => value.toString() === 1 ? '0' + value : value
     const dateFormatter = (selectedDate) => {    
         let year = selectedDate.getFullYear()
+        debugger
         let month = selectedDate.getMonth() + 1
         month = pad(month)
         let date = selectedDate.getDate()
@@ -145,8 +146,8 @@ const AddWorkshop = ({handleCloseModal}) => {
                 user_id: currentUser,
                 title: title.value,
                 description: description.value,
-                start_time: `${dateFormatter(selectedDate)} ${time[0]}`,
-                end_time: `${dateFormatter(selectedDate)} ${time[1]}`,
+                start_time: `${dateFormatter(new Date(selectedDate))} ${time[0]}`,
+                end_time: `${dateFormatter(new Date(selectedDate))} ${time[1]}`,
                 category: category.value,
                 participants: participants,
                 workshop_img: workshopImage

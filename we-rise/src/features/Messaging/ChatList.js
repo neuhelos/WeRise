@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { firestore } from '../../Utilities/firebase'
+
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -15,7 +17,8 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import NotificationsTwoToneIcon from '@material-ui/icons/NotificationsTwoTone';
-
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/DeleteForever';
 
 const useStyles = makeStyles((theme) => ({
         root: {
@@ -31,11 +34,11 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#282828',
             position: 'relative',
             height: '95%',
+            overflow: "auto",
         },
         list: {
             width: '100%',
             backgroundColor: '#666666',
-            overflow: 'auto',
             position: 'absolute',
         },
         listItem: {
@@ -46,6 +49,11 @@ const useStyles = makeStyles((theme) => ({
                 background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
                 color: '#FFFFFF'
             },
+        },
+        avatar: {
+            '&:hover': {
+                border: '3px solid #F89B29'
+            }
         },
         selected: {
             '&$selected':{
@@ -71,7 +79,9 @@ const useStyles = makeStyles((theme) => ({
             color: '#FF0F7B',
             '&:hover': {
                 color: '#36386D'
-            }
+            },
+            margin: 'auto',
+            justifyContent: 'flex-end'
         },
         divider: {
             backgroundColor: '#A3A3A3'
@@ -89,40 +99,59 @@ const ChatList = ( props ) => {
     }, [chats])
 
 
+    const handleDeleteChat = (event, chatId) => {
+        try {
+            firestore
+            .collection("chats")
+            .doc(chatId)
+            .delete()
+            .then(res => {
+                console.log("Document successfully deleted!", res);
+            })
+        } catch (error) {
+            console.error("Error removing document: ", error);
+        };
+        event.stopPropagation()
+        props.handleSelectedChat(null)
+    }
+
     const currentUserIsLatestSender = (chat) => chat.messages[chat.messages.length-1].sender === currentUser.uid
-    
+
 
     let multipleChatPeersAvatar = "https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FRainbowSmileyDefaultAvatar.png?alt=media&token=379959f1-6d89-43a4-bf01-92a68841c643"
     
-    let chatList = chats.map( (chat, index) => {
+    let chatList = chats.map( (chat) => {
         
         let currentUserChatPeers = chat.users.filter(user => user.userId !== currentUser.uid)
 
         return (
-            <div key={index} id={index}>
+            <div key={chat.chatId} id={chat.chatId}>
                 <ListItem selected={props.selectedChatId === chat.chatId} classes={{ root: classes.listItem, selected: classes.selected }}
-                    onClick={() => {props.handleSelectedChat(chat)}}
+                    onClick={() => {props.handleSelectedChat(chat.chatId)}}
                     alignItems='flex-start'
                     >
                     <ListItemAvatar>
-                        <Avatar src={ chat.usersEmail.length <= 2 ? currentUserChatPeers[0].profileImage : multipleChatPeersAvatar} alt='userAvatar' />
+                        <Avatar className={classes.avatar} src={ chat.usersEmail.length <= 2 ? currentUserChatPeers[0].profileImage : multipleChatPeersAvatar} alt='userAvatar' />
                     </ListItemAvatar>
                     <ListItemText
                         primary={ chat.usersEmail.length <= 2 ? currentUserChatPeers[0].firstName : currentUserChatPeers.map(user => user.firstName).join(" & ").substring(0,50)}
                         secondary={
                                 <Typography component='span'>
-                                    {chat.messages[chat.messages.length-1].message.substring(0,30)}
+                                    {chat.messages[chat.messages.length-1].message.substring(0,20)}
                                 </Typography>
                         }
                     >
                     </ListItemText>
                     { 
                         chat.receiverHasRead === false && !currentUserIsLatestSender(chat) ? 
-                        <ListItemIcon edge='end'>
-                            <NotificationsTwoToneIcon className={classes.unreadMessage} fontSize='large'/>
+                        <ListItemIcon edge='end' className={classes.unreadMessage}>
+                            <NotificationsTwoToneIcon fontSize='large'/>
                         </ListItemIcon>
                         : null
                     }
+                    <IconButton className={classes.deleteChat} edge="end" color="inherit" onClick={(event) => handleDeleteChat(event, chat.chatId)}>
+                        <DeleteIcon fontSize='large' />
+                    </IconButton>
                 </ListItem>
                 <Divider className={classes.divider}></Divider>
             </div>

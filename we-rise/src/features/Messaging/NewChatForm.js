@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
-import { firestore } from '../../Utilities/firebase'
 import { useSelector } from 'react-redux'
+
+import { userExistsCheck, fetchUserData } from '../../Utilities/firestoreUserBase'
+import { chatExistsCheck } from '../../Utilities/firestoreChatBase'
 
 import { makeStyles } from '@material-ui/core/styles';
 import { useInput } from '../../Utilities/CustomHookery'
@@ -69,38 +71,10 @@ const NewChatForm = ( props ) => {
         setUsers(values)
     }
 
-    const userExists = async (user) => {
-        const usersSnapshot = await firestore
-            .collection('users')
-            .get()
-        const exists = usersSnapshot.docs.map( doc => doc.data().email).includes(user);
-        return exists
-    }
-
-    const chatExists = async () => {
-        let usersQuery = [...users, currentUser.email].sort()
-        const query = await firestore
-            .collection('chats')
-            .where('usersEmail', 'in', [usersQuery])
-            .get()
-        const chatId = query.docs.map(doc => doc.id).join("")
-        return chatId
-    }
-
-    let newChatUserData = async (user) => {
-        let userQuery = await firestore
-            .collection('users')
-            .where('email', '==', user)
-            .get()
-        let userData = userQuery.docs[0].data()
-        debugger
-        return userData
-    }
 
     const createChat = async () => {
-        let usersData = await Promise.all(users.map( user => newChatUserData(user)))
-        debugger
-        await props.newChatSubmit({
+        let usersData = await Promise.all(users.map( user => fetchUserData(user)))        
+        await props.newChatFormSubmit({
             userDetails: usersData,
             recipients: users,
             message: newChatMessage.value
@@ -113,10 +87,12 @@ const NewChatForm = ( props ) => {
 
     const handleSubmitNewChat = async ( event ) => {
         event.preventDefault()
+        let usersEmail = [...users, currentUser.email].sort()
+
         if(users.length >= 1 && users.length <= 8){
-            let existingUsers = await users.every(userExists)
+            let existingUsers = await users.every(userExistsCheck)
             if(existingUsers){
-                let existingChat = await chatExists()
+                let existingChat = await chatExistsCheck(usersEmail)
                 existingChat ? displayExistingChat(existingChat) : createChat()
             } else {
                 setError('A User Does Not Exist')
@@ -132,7 +108,7 @@ const NewChatForm = ( props ) => {
                 <Paper className={classes.paper}>
                     <Typography component='h1' variant='h5'>Send a Message</Typography>
                     <form className={classes.form} onSubmit={handleSubmitNewChat}>
-                        <Autocomplete className={classes.input} multiple options={[]} defaultValue={""} autoFocus freeSolo
+                        <Autocomplete className={classes.input} multiple options={[]} defaultValue={""} freeSolo limitTags={2} autoSelect
                             style={{marginTop: '0.5rem'}}
                             onChange={handleChatUsers}
                             renderTags={(value, getTagProps) =>
@@ -141,7 +117,7 @@ const NewChatForm = ( props ) => {
                                 ))
                             }
                             renderInput={(params) => (
-                                <TextField {...params} variant="filled" label="Enter User(s)" placeholder="Enter One or Up to Eight Users"/>
+                                <TextField {...params} variant="filled" label="Enter User(s)" autoFocus placeholder="Enter Up to Eight Users and Press Enter"/>
                             )}
                         />
                         <TextField className={classes.input} fullWidth inputProps={{style: {textAlign: 'left'}}} id="newChatMessage" label="Message" placeholder="Enter Your Message" variant="filled" multiline rows={2} {...newChatMessage}/>

@@ -1,6 +1,9 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import { useInput } from '../../Utilities/CustomHookery'
+import { submitMessageExistingChat } from '../../Utilities/firestoreChatBase'
+
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -43,6 +46,7 @@ const useStyles = makeStyles( theme => ({
 const ChatInput = ( props ) => {
     
     const classes = useStyles()
+    const currentUser = useSelector( state => state.currentUserSession )
 
     const input = useInput("")
     
@@ -60,7 +64,8 @@ const ChatInput = ( props ) => {
 
     const handleSubmit = (event) => {
         if(messageValidation(input.value)){
-            props.submitMessage(props.selectedChat.chatId,input.value)
+            submitMessageExistingChat(props.selectedChat.chatId, currentUser.uid, currentUser.firstn, input.value)
+            //props.submitMessage(props.selectedChat.chatId,input.value)
             event.target.value = ""
         }
     }

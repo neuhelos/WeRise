@@ -93,13 +93,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
+const ChatView = ({ selectedChatId, selectedChat, messageRead }) => {
 	
 	const currentUser = useSelector((state) => state.currentUserSession);
 
-
 	const classes = useStyles();
-	
+
 	const chatScrollDown = () => {
 		const container = document.getElementById("chatview-container");
 		if (container) {
@@ -107,9 +106,9 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 		}
 	};
 
-	useEffect(() => {
+	useEffect( () => {
 		chatScrollDown();
-	}, [selectedChat]);
+	}, [selectedChat])
 
 	let chatMessages
 	if(selectedChat){
@@ -160,7 +159,7 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 
 	return (
 		<Grid className={classes.root} display="flex">
-			{selectedChat === null ? (
+			{ selectedChatId === null ? (
 				<Grid
                     className={classes.noVisibleChatView}
 					container
@@ -198,7 +197,6 @@ const ChatView = ({ selectedChat, submitMessage, messageRead }) => {
 					>
 						<ChatInput
                             selectedChat={selectedChat}
-							submitMessage={submitMessage}
 							messageRead={messageRead}
 						/>
 					</Grid>

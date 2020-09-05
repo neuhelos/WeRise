@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchMyWorkshops } from '../RegisteredWorkshops/RegisteredWorkshopSlice'
 
 
 export const loadingSlice = createSlice({
