@@ -134,10 +134,14 @@ const ChatList = ( props ) => {
                         <Avatar className={classes.avatar} src={ chat.usersEmail.length <= 2 ? currentUserChatPeers[0].profileImage : multipleChatPeersAvatar} alt='userAvatar' />
                     </ListItemAvatar>
                     <ListItemText
-                        primary={ chat.usersEmail.length <= 2 ? currentUserChatPeers[0].firstName : currentUserChatPeers.map(user => user.firstName).join(" & ").substring(0,50)}
+                        primary={
+                            <Typography style={{overflow: 'ellipsis'}}>
+                                {chat.usersEmail.length <= 2 ? currentUserChatPeers[0].firstName : currentUserChatPeers.map(user => user.firstName).join(" & ")}
+                            </Typography>
+                        }
                         secondary={
-                                <Typography component='span'>
-                                    {chat.messages[chat.messages.length-1].message.substring(0,20)}
+                                <Typography style={{overflow: 'ellipsis'}}>
+                                    {chat.messages[chat.messages.length-1].message}
                                 </Typography>
                         }
                     >

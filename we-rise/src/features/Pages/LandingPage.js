@@ -73,11 +73,12 @@ const LandingPage = () => {
                     </Paper>
                 </Grid>
             </Grid>
-            <Grid className={classes.container} container item display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap' md={12}>
+            <Grid className={classes.container} container item style={{backgroundColor: '#A3A3A3'}} display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap' md={12}>
                 <Grid className={classes.wrapper} container item display="flex" direction="column" justify='flex-end' alignItems='center' wrap='nowrap' md={6}>
                     <Paper className={classes.paper} style={{backgroundColor: '#121212', display:'flex', justify:'flex-end'}}>
                     </Paper>
                     <Typography variant='h4' gutterBottom={true} align='center'>
+                        Workshop
                     </Typography>
                 </Grid>
                 <Grid className={classes.wrapper} container item display="flex" direction="column" justify='flex-start' alignItems='center' wrap='nowrap' md={6}>
