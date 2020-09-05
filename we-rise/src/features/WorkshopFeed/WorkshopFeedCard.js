@@ -95,7 +95,7 @@ const WorkshopFeedCard = ( props ) => {
                 }
                 subheader = {
                     <>
-                    <Link to={`/Profile/${workshop.user_id}`} className={classes.profileLink}>
+                    <Link to={userProfileLink} className={classes.profileLink}>
                         <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography>
 				    </Link>
                     <Typography className={classes.text}>{`${date}`}</Typography>
