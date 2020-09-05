@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper'
 import { Link } from 'react-router-dom'
 import Modal from '../BaseComponents/Modal'
 import WorkshopRegistration from './WorkshopRegistration'
+import { current } from '@reduxjs/toolkit';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -95,7 +96,7 @@ const WorkshopFeedCard = ( props ) => {
                 }
                 subheader = {
                     <>
-                    <Link to={userProfileLink} className={classes.profileLink}>
+                    <Link to={`/Profile/${workshop.user_id}`} className={classes.profileLink}>
                         <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography>
 				    </Link>
                     <Typography className={classes.text}>{`${date}`}</Typography>

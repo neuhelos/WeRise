@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from 'react-router-dom';
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -14,7 +15,8 @@ import {  useRouteMatch } from "react-router-dom";
 import Modal from '../BaseComponents/Modal'
 import EditUserModal from "./EditUserModal";
 import { current } from "@reduxjs/toolkit";
-
+import axios from "axios";
+import {apiURL} from '../../Utilities/apiURL'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -47,12 +49,12 @@ const FetchUser = () => {
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
   const [pic, setPic] = useState("");
-  const match = useRouteMatch("/Profile/:id");
-
+  const params = useParams();
+  let user_id = params.id;
   
 
   const fetchUser = async () => {
-    let res = await fetchUserById(currentUser);
+     let res = await fetchUserById(user_id);
     setProfile(res);
     console.log(setProfile(res.id));
     setFirstn(res.firstn);
@@ -63,8 +65,8 @@ const FetchUser = () => {
   };
 
   useEffect(() => {
-    fetchUser(match.params.id);
-  }, [currentUser, match.params.id]);
+    fetchUser();
+  }, [user_id]);
 
   const [open , setOpen] = useState(false)
   const toggleModal = () => {

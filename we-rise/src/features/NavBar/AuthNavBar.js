@@ -111,7 +111,7 @@ const NavBar = () => {
       history.push(`/Profile/${currentUser.uid}`)
       history.goBack()
     }
-    history.push(`/Profile/${currentUser}`)
+    history.push(`/Profile/${currentUser.uid}`)
   }
   const navDashboard = () => {
     handleMobileMenuClose()
