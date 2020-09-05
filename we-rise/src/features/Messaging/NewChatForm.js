@@ -124,7 +124,7 @@ const NewChatForm = ( props ) => {
                 <Paper className={classes.paper}>
                     <Typography component='h1' variant='h5'>Send a Message</Typography>
                     <form className={classes.form} onSubmit={handleSubmitNewChat}>
-                        <Autocomplete className={classes.input} multiple options={[]} defaultValue={""} autoFocus freeSolo limitTags={4} autoSelect
+                        <Autocomplete className={classes.input} multiple options={[]} defaultValue={""} freeSolo limitTags={2} autoSelect
                             style={{marginTop: '0.5rem'}}
                             onChange={handleChatUsers}
                             renderTags={(value, getTagProps) =>
@@ -133,7 +133,7 @@ const NewChatForm = ( props ) => {
                                 ))
                             }
                             renderInput={(params) => (
-                                <TextField {...params} variant="filled" label="Enter User(s)" placeholder="Enter Up to Eight Users and Press Enter"/>
+                                <TextField {...params} variant="filled" label="Enter User(s)" autoFocus placeholder="Enter Up to Eight Users and Press Enter"/>
                             )}
                         />
                         <TextField className={classes.input} fullWidth inputProps={{style: {textAlign: 'left'}}} id="newChatMessage" label="Message" placeholder="Enter Your Message" variant="filled" multiline rows={2} {...newChatMessage}/>
