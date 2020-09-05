@@ -62,7 +62,8 @@ const EditUserModal = ({ toggleModal}) => {
     }
   }
 
-  const handleCurrentUser = () => {
+  const handleCurrentUser = (currentUser) => {
+      
     toggleModal()
     
   }
@@ -98,7 +99,7 @@ const EditUserModal = ({ toggleModal}) => {
       alert(err.message)
       return(<p>{err.message}</p>)
     }
-    history.push("/CommunityDashboard")
+    history.push(`/Profile/${handleCurrentUser}`)
   }
 
     
