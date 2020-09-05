@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 
@@ -97,9 +97,8 @@ const ChatView = ({ selectedChatId, selectedChat, messageRead }) => {
 	
 	const currentUser = useSelector((state) => state.currentUserSession);
 
-
 	const classes = useStyles();
-	
+
 	const chatScrollDown = () => {
 		const container = document.getElementById("chatview-container");
 		if (container) {
@@ -107,9 +106,9 @@ const ChatView = ({ selectedChatId, selectedChat, messageRead }) => {
 		}
 	};
 
-	useEffect(() => {
+	useEffect( () => {
 		chatScrollDown();
-	}, [selectedChat]);
+	}, [selectedChat])
 
 	let chatMessages
 	if(selectedChat){

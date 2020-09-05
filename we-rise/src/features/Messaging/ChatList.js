@@ -99,7 +99,7 @@ const ChatList = ( props ) => {
     }, [chats])
 
 
-    const handleDeleteChat = (chatId) => {
+    const handleDeleteChat = (event, chatId) => {
         try {
             firestore
             .collection("chats")
@@ -111,6 +111,8 @@ const ChatList = ( props ) => {
         } catch (error) {
             console.error("Error removing document: ", error);
         };
+        event.stopPropagation()
+        props.handleSelectedChat(null)
     }
 
     const currentUserIsLatestSender = (chat) => chat.messages[chat.messages.length-1].sender === currentUser.uid
@@ -125,7 +127,7 @@ const ChatList = ( props ) => {
         return (
             <div key={chat.chatId} id={chat.chatId}>
                 <ListItem selected={props.selectedChatId === chat.chatId} classes={{ root: classes.listItem, selected: classes.selected }}
-                    onClick={() => {props.handleSelectedChat(chat)}}
+                    onClick={() => {props.handleSelectedChat(chat.chatId)}}
                     alignItems='flex-start'
                     >
                     <ListItemAvatar>
@@ -147,7 +149,7 @@ const ChatList = ( props ) => {
                         </ListItemIcon>
                         : null
                     }
-                    <IconButton className={classes.deleteChat} edge="end" color="inherit" onClick={() => handleDeleteChat(chat.chatId)}>
+                    <IconButton className={classes.deleteChat} edge="end" color="inherit" onClick={(event) => handleDeleteChat(event, chat.chatId)}>
                         <DeleteIcon fontSize='large' />
                     </IconButton>
                 </ListItem>

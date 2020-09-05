@@ -8,7 +8,7 @@ import ChatView from './ChatView'
 import NewChatForm from './NewChatForm'
 import MobileChat from './MobileChat'
 
-import { submitMessageExistingChat } from '../../Utilities/chatBase'
+import { submitMessageExistingChat, newChatSubmit } from '../../Utilities/chatBase'
 
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -42,7 +42,7 @@ const Chat = (props) => {
     const [selectedChat, setSelectedChat] = useState(null)
     const [newChatFormVisible, setNewChatFormVisible] = useState(false)
 
-    let selectedChatFind = chats.find(chat => chat.chatId === selectedChatId)
+    //let selectedChatFind = chats.find(chat => chat.chatId === selectedChatId)
 
     const handleNewChat = () => {
         setNewChatFormVisible(true)
@@ -50,13 +50,13 @@ const Chat = (props) => {
         setSelectedChat(null)
     }
 
-    const handleSelectedChat = (chat) => {
+    const handleSelectedChat = (chatId) => {
         setNewChatFormVisible(false)
-        setSelectedChatId(chat.chatId)
-        setSelectedChat(chat)
+        setSelectedChatId(chatId)
+        console.log(selectedChatId)
+        debugger
     }
 
-    
     const messageRead = () => {
         const clickedChatNotSender = (chat) => chat.messages[chat.messages.length-1].sender !== currentUser.uid
         // let chat = chats.find(chat => chat.chatId === selectedChatId)
@@ -78,32 +78,23 @@ const Chat = (props) => {
         }
         return () => isMounted = false
     }, [selectedChat])
-    
+
+    useEffect(() => {
+		setSelectedChat(chats.find(chat => chat.chatId === selectedChatId))
+	}, [chats, selectedChatId]);
+
     const goToExistingChat = async (chatId, message) => {
         setNewChatFormVisible(false)
         setSelectedChatId(chatId)
         await submitMessageExistingChat(chatId, currentUser.firstn, currentUser.uid, message)
     }
 
-
-    
-    const newChatSubmit = async (chatData) => {
-        let chatId = uuidv4()
-        await firestore
-            .collection('chats')
-            .doc(chatId)
-            .set({
-                chatId: chatId,
-                messages: [{
-                    message: chatData.message,
-                    sender: currentUser.uid,
-                    timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
-                    firstName: currentUser.firstn
-                }],
-                receiverHasRead: false,
-                users: [...chatData.userDetails, {email: currentUser.email, firstName: currentUser.firstn, lastName: currentUser.lastn, profileImage: currentUser.user_pic, userId: currentUser.uid}], 
-                usersEmail: [...chatData.recipients, currentUser.email].sort()
-            })
+    const newChatFormSubmit = async (chatData) => {
+        let usersEmail = [...chatData.recipients, currentUser.email].sort()
+        let currentUserDetails = {email: currentUser.email, firstName: currentUser.firstn, lastName: currentUser.lastn, profileImage: currentUser.user_pic, userId: currentUser.uid}
+        let chatUserDetails = [...chatData.userDetails, currentUserDetails]
+        let chatId = await newChatSubmit(currentUser.uid, currentUser.firstn, chatUserDetails, usersEmail, chatData.message)
+        
         setNewChatFormVisible(false)
         await setSelectedChatId(chatId)
     }
@@ -120,8 +111,8 @@ const Chat = (props) => {
                 <ChatList history={props.history} handleSelectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatId={selectedChatId}/> 
             </Grid>
             <Grid container item className={classes.container} md={7} direction="column" justify="flex-start" alignItems='center'>
-                { newChatFormVisible ? null : <ChatView selectedChatId={selectedChatId} selectedChat={selectedChatFind} messageRead={messageRead}/> }
-                { newChatFormVisible ? <NewChatForm newChatSubmit={newChatSubmit} goToExistingChat={goToExistingChat} /> : null }
+                { newChatFormVisible ? null : <ChatView selectedChatId={selectedChatId} selectedChat={selectedChat} messageRead={messageRead}/> }
+                { newChatFormVisible ? <NewChatForm newChatFormSubmit={newChatFormSubmit} goToExistingChat={goToExistingChat} /> : null }
             </Grid>
         </Grid>
     )

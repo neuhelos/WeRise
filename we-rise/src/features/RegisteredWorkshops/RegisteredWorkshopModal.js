@@ -83,8 +83,8 @@ const RegisteredWorkshopModal = ({ handleCloseModal, workshop, ...props }) => {
                 let usersData = {facilitatorDetails, currentUserDetails}
 
                 let existingChatId = await chatExistsCheck(usersEmail)
-                existingChatId ? submitMessageExistingChat(existingChatId, currentUser.firstn, currentUser.uid, message) 
-                : newChatSubmit(message, currentUser.uid, currentUser.firstn, usersData, usersEmail)
+                existingChatId ? submitMessageExistingChat(existingChatId, currentUser.uid, currentUser.firstn, message) 
+                : newChatSubmit(currentUser.uid, currentUser.firstn, usersData, usersEmail, message)
                 
                 dispatch(deleteRegistration(workshop.id))
                 handleCloseModal()

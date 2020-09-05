@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { firestore } from '../../Utilities/firebase'
 import { useSelector } from 'react-redux'
 
-import { chatExistsCheck, submitMessageExistingChat, newChatSubmit} from '../../Utilities/chatBase'
+import { chatExistsCheck } from '../../Utilities/chatBase'
 
 import { makeStyles } from '@material-ui/core/styles';
 import { useInput } from '../../Utilities/CustomHookery'
@@ -89,11 +89,8 @@ const NewChatForm = ( props ) => {
     }
 
     const createChat = async () => {
-        let usersData = await Promise.all(users.map( user => newChatUserData(user)))
-        
-
-        
-        await props.newChatSubmit({
+        let usersData = await Promise.all(users.map( user => newChatUserData(user)))        
+        await props.newChatFormSubmit({
             userDetails: usersData,
             recipients: users,
             message: newChatMessage.value

@@ -12,7 +12,7 @@ export const chatExistsCheck = async (chatUserEmails) => {
     return chatId
 }
 
-export const submitMessageExistingChat = (chatId, currentUserFirstName, currentUserId, message) => {
+export const submitMessageExistingChat = (chatId, currentUserId, currentUserFirstName, message) => {
     firestore
     .collection('chats')
     .doc(chatId)
@@ -27,13 +27,14 @@ export const submitMessageExistingChat = (chatId, currentUserFirstName, currentU
     });
 }
 
-export const newChatSubmit = async (message, currentUserId, currentUserFirstName, chatUserData, chatUsersEmail) => {
+export const newChatSubmit = async (currentUserId, currentUserFirstName, chatUserData, chatUsersEmail, message) => {
     let chatId = uuidv4()
 
     await firestore
         .collection('chats')
         .doc(chatId)
         .set({
+            chatId : chatId,
             messages: [{
                 message: message,
                 sender: currentUserId,
@@ -44,5 +45,6 @@ export const newChatSubmit = async (message, currentUserId, currentUserFirstName
             users: chatUserData, 
             usersEmail: chatUsersEmail
         })
+    return chatId
 }
 

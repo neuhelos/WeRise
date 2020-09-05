@@ -195,8 +195,8 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, ...props }) => {
               sendEmail('nilberremon@pursuit.org', 'WeRise - A User Registered for Your Workshop', message)
 
               let existingChatId = await chatExistsCheck(usersEmail)
-              existingChatId ? submitMessageExistingChat(existingChatId, currentUser.firstn, currentUser.uid, message) 
-              : newChatSubmit(message, currentUser.uid, currentUser.firstn, usersData, usersEmail)
+              existingChatId ? submitMessageExistingChat(existingChatId, currentUser.uid, currentUser.firstn, message) 
+              : newChatSubmit(currentUser.uid, currentUser.firstn, usersData, usersEmail, message)
 
             } catch (error) {
                 throw Error(error)
