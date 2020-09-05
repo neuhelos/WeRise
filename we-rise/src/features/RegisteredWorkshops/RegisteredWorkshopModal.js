@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 import WorkshopDetails from '../WorkshopFeed/WorkshopDetails'
 
-import { chatExistsCheck, submitMessageExistingChat, newChatSubmit} from '../../Utilities/chatBase'
+import { chatExistsCheck, submitMessageExistingChat, newChatSubmit} from '../../Utilities/firestoreChatBase'
 import { sendEmail } from '../../Utilities/emailBase'
 import { deleteRegistration } from './RegisteredWorkshopSlice'
 import { useInput } from '../../Utilities/CustomHookery'

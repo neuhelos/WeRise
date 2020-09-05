@@ -13,7 +13,7 @@ const LoadingComponents = ({children}) => {
     const weRiseLoadingPage = [weRiseLoading, weRiseLoading2,weRiseLoading3,weRiseLoading4 ];
     let random = Math.floor(Math.random()*4);
 
- 
+
     return(
         loading ?
         <div className = 'loading'>

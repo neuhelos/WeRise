@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import { firestore } from '../../Utilities/firebase'
 import { useSelector } from 'react-redux'
 
-import { chatExistsCheck } from '../../Utilities/chatBase'
+import { userExistsCheck, fetchUserData } from '../../Utilities/firestoreUserBase'
+import { chatExistsCheck } from '../../Utilities/firestoreChatBase'
 
 import { makeStyles } from '@material-ui/core/styles';
 import { useInput } from '../../Utilities/CustomHookery'
@@ -71,25 +71,9 @@ const NewChatForm = ( props ) => {
         setUsers(values)
     }
 
-    const userExists = async (user) => {
-        const usersSnapshot = await firestore
-            .collection('users')
-            .get()
-        const exists = usersSnapshot.docs.map( doc => doc.data().email).includes(user);
-        return exists
-    }
-
-    let newChatUserData = async (user) => {
-        let userQuery = await firestore
-            .collection('users')
-            .where('email', '==', user)
-            .get()
-        let userData = userQuery.docs[0].data()
-        return userData
-    }
 
     const createChat = async () => {
-        let usersData = await Promise.all(users.map( user => newChatUserData(user)))        
+        let usersData = await Promise.all(users.map( user => fetchUserData(user)))        
         await props.newChatFormSubmit({
             userDetails: usersData,
             recipients: users,
@@ -106,7 +90,7 @@ const NewChatForm = ( props ) => {
         let usersEmail = [...users, currentUser.email].sort()
 
         if(users.length >= 1 && users.length <= 8){
-            let existingUsers = await users.every(userExists)
+            let existingUsers = await users.every(userExistsCheck)
             if(existingUsers){
                 let existingChat = await chatExistsCheck(usersEmail)
                 existingChat ? displayExistingChat(existingChat) : createChat()

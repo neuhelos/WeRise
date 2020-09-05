@@ -17,7 +17,7 @@ import UserProfilePage from './features/Pages/UserProfilePage'
 import InstantMessagingPage from './features/Pages/MessagingPage'
 import Footer from './features/BaseComponents/Footer'
 import { PublicRoute, ProtectedRoute } from './features/Authentication/AuthRouting'
-import Loading from './features/BaseComponents/Loading'
+import Loading from './features/BaseComponents/loadingComponent'
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';

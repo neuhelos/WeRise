@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import firebase, { firestore } from '../../Utilities/firebase'
-import { v4 as uuidv4 } from 'uuid'
+import { firestore } from '../../Utilities/firebase'
 
 import ChatList from './ChatList'
 import ChatView from './ChatView'
 import NewChatForm from './NewChatForm'
 import MobileChat from './MobileChat'
 
-import { submitMessageExistingChat, newChatSubmit } from '../../Utilities/chatBase'
+import { submitMessageExistingChat, newChatSubmit } from '../../Utilities/firestoreChatBase'
 
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';

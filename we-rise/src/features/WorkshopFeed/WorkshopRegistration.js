@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { chatExistsCheck, submitMessageExistingChat, newChatSubmit} from '../../Utilities/chatBase'
+import { chatExistsCheck, submitMessageExistingChat, newChatSubmit} from '../../Utilities/firestoreChatBase'
 import { sendEmail } from '../../Utilities/emailBase'
 import { useInput } from '../../Utilities/CustomHookery'
 import { addRegistration } from '../RegisteredWorkshops/RegisteredWorkshopSlice'

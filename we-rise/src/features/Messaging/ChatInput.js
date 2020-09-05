@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import { useInput } from '../../Utilities/CustomHookery'
-import { submitMessageExistingChat } from '../../Utilities/chatBase'
+import { submitMessageExistingChat } from '../../Utilities/firestoreChatBase'
 
 
 import { makeStyles } from '@material-ui/core/styles';
