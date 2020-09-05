@@ -54,7 +54,6 @@ const Chat = (props) => {
         setNewChatFormVisible(false)
         setSelectedChatId(chatId)
         console.log(selectedChatId)
-        debugger
     }
 
     const messageRead = () => {
