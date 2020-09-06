@@ -22,11 +22,19 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     width: "100%",
   },
+  gridSection: {
+    padding: theme.spacing(1),
+    height: '100%',
+    width: '100%',
+},
   paper: {
+    width: '50%',
     padding: theme.spacing(2),
-    margin: "auto",
-    maxWidth: 500,
+    margin: theme.spacing(2),
     backgroundColor: "white",
+    margin: "auto",
+    justifyContent: 'left',
+    alignContent: 'center',
     border: '2px solid  #FF0F7B'
 
   },
@@ -81,17 +89,8 @@ const FetchUser = () => {
     <div className="userProfile">
       <Paper className={classes.paper}>
         <Card className={classes.root} onClick={toggleModal}>
-        <Grid
-          container
-          className={classes.root}
-          container
-          display="flex"
-          direction="column"
-          justify="left"
-          alignItems="left"
-          wrap="nowrap"
-        >
-          {/* <Card className="Container" /> */}
+        <Grid className={classes.gridSection}  container item direction="column" justify="flex-start" alignItems="center" sm={12} md={5}>
+        
           <CardHeader
             className={classes.header}
             avatar={

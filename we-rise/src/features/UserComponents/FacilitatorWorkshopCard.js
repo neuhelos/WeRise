@@ -70,6 +70,7 @@ const FacilitatorWorkshopCard = ( { workshop } ) => {
     
     const classes = useStyles();
     return (
+        
         <Paper  className={classes.paper}>
             <Card className={classes.root} onClick={toggleModal}>
                 <CardHeader
