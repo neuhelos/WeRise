@@ -24,16 +24,16 @@ const useStyles = makeStyles((theme) => ({
         width: '25%',
         backgroundColor: '#282828',
         padding: theme.spacing(1),
-        '&:hover': {
-            border: '3px solid  #FF0F7B',
-            cursor: 'pointer'
-        },
         margin: theme.spacing(2)
     },
     paper: { 
         width: '100%',
         backgroundColor: '#666666',
         padding: theme.spacing(1),
+        '&:hover': {
+            border: '3px solid  #FF0F7B',
+            cursor: 'pointer'
+        },
     },
     media: {
         height: 0,

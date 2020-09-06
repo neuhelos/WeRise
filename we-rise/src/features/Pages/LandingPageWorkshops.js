@@ -19,6 +19,11 @@ export const workshops = [
         category: 'Technology, Coding & Programming',
         workshop_img: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FILoveJavascript.png?alt=media&token=3370fe6f-9cd4-469f-84a5-f2e2b567b2bb',
     },
+    // {
+    //     workshop_id: 
+    //     title: '',
+    
+    // },
 
 
 ]
