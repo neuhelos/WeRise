@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
@@ -8,6 +8,9 @@ import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
 
 import PublicNavBar from '../NavBar/PublicNavBar'
+import Modal from '../BaseComponents/Modal'
+import SignUpModal from '../Authentication/SignUpModal'
+import SignInModal from '../Authentication/SignInModal'
 
 import SloganVideoSource from '../../styling/Assets/Media/SloganAnimation.mp4'
 import WeRiseBackground from '../../styling/Assets/Media/WeRiseGradientCircleGridBackground.png'
@@ -72,16 +75,20 @@ const LandingPage = () => {
     
     const classes = useStyles()
 
-    
+    const [openSignIn , setOpenSignIn] = useState(false)
+    const [openSignUp , setOpenSignUp] = useState(false)
 
+    const toggleSignInModal = () => {
+        setOpenSignIn(!openSignIn)
+    }
+    const toggleSignUpModal = () => {
+        setOpenSignUp(!openSignUp)
+    }
 
-
-
-
-    
     return (
+        <>
         <Grid container className={classes.root} display="flex" direction="column" wrap='nowrap'>
-            <PublicNavBar />
+            <PublicNavBar toggleSignInModal={toggleSignInModal} toggleSignUpModal={toggleSignUpModal} />
             
             {/* Section 1 */}
             <Grid className={classes.container} container item display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap' md={12}>
@@ -154,11 +161,20 @@ const LandingPage = () => {
                 <Typography variant='h2' gutterBottom={true} align='center'>
                             Ready to Share in Our Community?
                 </Typography>
-                <Button className={classes.button} variant='contained' onClick={""}>SIGN UP</Button>
+                <Button className={classes.button} variant='contained' onClick={toggleSignUpModal}>SIGN UP</Button>
             </Grid>
 
 
         </Grid>
+
+
+        <Modal open={openSignIn} toggleModal={toggleSignInModal}>
+                    <SignInModal toggleSignUpModal={toggleSignUpModal} toggleModal={toggleSignInModal}/>
+                </Modal>
+                <Modal open={openSignUp} toggleModal={toggleSignUpModal}>
+                    <SignUpModal toggleSignInModal={toggleSignInModal} toggleModal={toggleSignUpModal}/>
+        </Modal>
+        </>
     )
 }
 
