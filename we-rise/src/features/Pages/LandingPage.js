@@ -50,8 +50,8 @@ const useStyles = makeStyles((theme) => ({
         height: '100%'
     },
     logo: {
-        maxWidth: '20rem',
-        maxHeight: '20rem'
+        maxWidth: '25rem',
+        maxHeight: '25rem'
     
     },
     media: {
@@ -59,20 +59,16 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: '25rem',
         borderRadius: '4px',
     },
-    video: {
-        maxWidth: '25rem',
-        maxHeight: '25rem',
-        borderRadius: '4px',
-        border: 'solid 10px #282828',
-        padding: theme.spacing(1),
-        margin: theme.spacing(2),
-    },
     button: {
         fontFamily: 'audiowide',
         width: '25%',
         backgroundColor: '#FFFFFF',
         color: '#FF07FB',
-        fontSize: '2rem'
+        fontSize: '2rem',
+        '&:hover': {
+            border: '3px solid  #F89B29',
+            cursor: 'pointer'
+        },
     }
 }))
 
@@ -120,6 +116,9 @@ const LandingPage = () => {
                             <img className={classes.media} src={ConnectingKnowledgeImage} alt="Connections"/>
                         </Box>
                         <Box p={4} style={{display:'flex', justifyContent:'space-around', flexDirection:'column', alignItems:'flex-start'}}>
+                            <Typography variant='h4' align='center' style={{marginBottom: '2rem'}}>
+                            A Community-Driven Skills Share VideoChat Platform Where You Can...
+                            </Typography>
                             <Typography variant='h4' gutterBottom={true} align='center'>
                             Build Your Skills
                             </Typography>
@@ -130,7 +129,7 @@ const LandingPage = () => {
                             Build Your Community
                             </Typography>
                             <Typography variant='subtitle1' gutterBottom={true} align='center'>
-                            Inspire Folx to Take Action and Learn
+                            Inspire Folx to Learn and Take Action
                             </Typography>
                         </Box>
                     </Grid>
@@ -142,7 +141,7 @@ const LandingPage = () => {
                                 Empower Your Community with Your Skills and Knowledge 
                             </Typography>
                             <Typography variant='subtitle2' gutterBottom={true} align='center' style={{color: '#000000'}}>
-                                Create a workshop 
+                                Create a workshop
                             </Typography>
                         </Paper>
                     </Paper>
