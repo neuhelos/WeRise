@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import WeRiseLogo from '../../styling/Assets/Media/WeRise_Logo.png'
+import WeRiseLogo from '../../styling/Assets/Media/WeRiseLogo.png'
 
 import { useInput } from '../../Utilities/CustomHookery'
 

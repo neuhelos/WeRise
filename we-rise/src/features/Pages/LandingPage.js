@@ -4,11 +4,15 @@ import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
 
 import PublicNavBar from '../NavBar/PublicNavBar'
+
 import SloganVideoSource from '../../styling/Assets/Media/SloganAnimation.mp4'
 import WeRiseBackground from '../../styling/Assets/Media/WeRiseGradientCircleGridBackground.png'
+import WeRiseLogo from '../../styling/Assets/Media/WeRiseLogo.png'
+import VideoChatPartyGif from '../../styling/Assets/Media/VideoChatParty.gif'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,9 +25,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         minHeight: '30rem',
         padding: theme.spacing(2),
-        '& *': {
-            color: '#FFFFFF'
-        }
+        color: '#FFFFFF'
     },
     wrapper : {
         margin: theme.spacing(1)
@@ -31,7 +33,13 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         backgroundColor: '#282828',
         padding: theme.spacing(2),
-        margin: theme.spacing(1)
+        margin: theme.spacing(1),
+        color: '#FFFFFF'
+    },
+    paperWrapper : {
+        padding: theme.spacing(1),
+        width: '49%',
+        backgroundColor: '#282828'
     },
     logo: {
         maxWidth: '20rem',
@@ -50,6 +58,12 @@ const useStyles = makeStyles((theme) => ({
         border: 'solid 10px #282828',
         padding: theme.spacing(1),
         margin: theme.spacing(2),
+    },
+    button: {
+        fontFamily: 'audiowide',
+        width: '20%',
+        backgroundColor: '#FFFFFF',
+        color: '#FF07FB' 
     }
 }))
 
@@ -57,9 +71,6 @@ const LandingPage = () => {
     
     const classes = useStyles()
     
-    let VideoChatPartyGif = 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/appImages%2FVideoChatParty.gif?alt=media&token=2d1bb370-3e81-48b0-9961-30df021fa7d9'
-    let WeRiseLogo = 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/appImages%2FWeRise_Logo.png?alt=media&token=8c93514c-69b8-4dea-973e-159f66720dff'
-
     return (
         <Grid container className={classes.root} display="flex" direction="column" wrap='nowrap'>
             <PublicNavBar />
@@ -102,36 +113,43 @@ const LandingPage = () => {
                     </Grid>
                 </Paper>
                 <Grid className={classes.wrapper} container item display="flex" direction="row" justify='space-between' alignItems='center' wrap='nowrap'>
-                    <Paper style={{backgroundColor: '#121212', display:'flex', justifyContent:'flex-start', flexDirection: 'column', width: '49%'}}>
-                        <Typography variant='h5' gutterBottom={true} align='center'>
-                            Empower Your Community with Your Skills and Knowledge 
-                        </Typography>
-                        <Typography variant='subtitle1' gutterBottom={true} align='center'>
-                            Create a workshop 
-                        </Typography>
+                    <Paper className={classes.paperWrapper}>
+                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem'}}>
+                            <Typography variant='h5' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                                Empower Your Community with Your Skills and Knowledge 
+                            </Typography>
+                            <Typography variant='subtitle1' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                                Create a workshop 
+                            </Typography>
+                        </Paper>
                     </Paper>
-                    <Paper style={{backgroundColor: '#121212', display:'flex', justifyContent:'flex-start', flexDirection: 'column', width: '49%'}}>
-                        <Typography variant='h5' gutterBottom={true} align='center'>
-                           Empower Yourself and Share in Your Commmunity's Collective Knowledge
-                        </Typography>
-                        <Typography variant='subtitle1' gutterBottom={true} align='center'>
-                            Join and participate 
-                        </Typography>
+                    <Paper className={classes.paperWrapper}>
+                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem'}} >
+                            <Typography variant='h5' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                            Empower Yourself and Share in Your Commmunity's Collective Knowledge
+                            </Typography>
+                            <Typography variant='subtitle1' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                                Join and participate 
+                            </Typography>
+                        </Paper>
                     </Paper>
-
-
                 </Grid>
             </Grid>
+                
+            {/* Section 3 */}
+            <Grid className={classes.container} container item style={{backgroundColor: "#282828"}} display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap' md={12}>
 
-            {/* <Grid container item className={classes.container} display="flex" direction="row" justify='space-evenly' alignItems='center' wrap='nowrap' sm={12}>
-                <Grid container item justify='flex-end' alignItems='center' sm={12} md={6}>
-                </Grid>
-                <Grid container item justify='flex-start' alignItems='center' sm={12} md={6}>
-                    <Paper className={classes.paper}>
-                        <img className={classes.media} src={VideoChatPartyGif} alt="Video Chat"/>
-                    </Paper>
-                </Grid>
-            </Grid> */}
+            </Grid>
+            
+            {/* Section 4 */}
+            <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`}} display="flex" direction="column" justify='space-evenly' alignItems='center' wrap='nowrap' md={12}>
+                <Typography variant='h2' gutterBottom={true} align='center'>
+                            Ready to Share in Our Community?
+                </Typography>
+                <Button className={classes.button} variant='contained' size="large" onClick={""}>SIGN UP</Button>
+            </Grid>
+
+
         </Grid>
     )
 }
