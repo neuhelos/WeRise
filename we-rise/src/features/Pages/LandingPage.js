@@ -162,7 +162,10 @@ const LandingPage = () => {
             </Grid>
                 
             {/* Section 3 */}
-            <Grid className={classes.container} container item style={{backgroundColor: "#121212"}} display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap' md={12}>
+            <Grid className={classes.container} container item style={{backgroundColor: "#121212"}} display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={12}>
+                <Typography variant='h4' gutterBottom={true} align='center'>
+                    Experience Upcoming Workshops or Create Your Own
+                </Typography>
                 {workshops.map(workshop => {
                     return <LandingPageWorkshopCard key={workshop.title} workshop={workshop}/>
                 })}
