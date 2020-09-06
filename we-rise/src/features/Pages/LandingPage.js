@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
 import { makeStyles } from '@material-ui/core/styles'
 
 import PublicNavBar from '../NavBar/PublicNavBar'
@@ -130,20 +131,20 @@ const LandingPage = () => {
                 <Grid className={classes.wrapper} container item display="flex" direction="row" justify='space-between' alignItems='center' wrap='nowrap'>
                     <Paper className={classes.paperWrapper}>
                         <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem'}}>
-                            <Typography variant='h5' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                            <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
                                 Empower Your Community with Your Skills and Knowledge 
                             </Typography>
-                            <Typography variant='subtitle1' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                            <Typography variant='subtitle2' gutterBottom={true} align='center' style={{color: '#000000'}}>
                                 Create a workshop 
                             </Typography>
                         </Paper>
                     </Paper>
                     <Paper className={classes.paperWrapper}>
                         <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem'}} >
-                            <Typography variant='h5' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                            <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
                             Empower Yourself and Share in Your Commmunity's Collective Knowledge
                             </Typography>
-                            <Typography variant='subtitle1' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                            <Typography variant='subtitle2' gutterBottom={true} align='center' style={{color: '#000000'}}>
                                 Join and participate 
                             </Typography>
                         </Paper>
@@ -153,13 +154,13 @@ const LandingPage = () => {
                 
             {/* Section 3 */}
             <Grid className={classes.container} container item style={{backgroundColor: "#121212"}} display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap' md={12}>
-
+                
             </Grid>
             
             {/* Section 4 */}
             <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`}} display="flex" direction="column" justify='space-evenly' alignItems='center' wrap='nowrap' md={12}>
-                <Typography variant='h2' gutterBottom={true} align='center'>
-                            Ready to Share in Our Community?
+                <Typography variant='h3' gutterBottom={true} align='center'>
+                            Ready to Share in Your Future Communities?
                 </Typography>
                 <Button className={classes.button} variant='contained' onClick={toggleSignUpModal}>SIGN UP</Button>
             </Grid>
