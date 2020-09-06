@@ -14,10 +14,10 @@ import SignUpModal from '../Authentication/SignUpModal'
 import SignInModal from '../Authentication/SignInModal'
 import LandingPageWorkshopCard from './LandingPageWorkshopCard'
 
-import SloganVideoSource from '../../styling/Assets/Media/SloganAnimation.mp4'
+import VideoChatPartyGif from '../../styling/Assets/Media/VideoChatParty.gif'
 import WeRiseBackground from '../../styling/Assets/Media/WeRiseGradientCircleGridBackground.png'
 import WeRiseLogo from '../../styling/Assets/Media/WeRiseLogo.png'
-import VideoChatPartyGif from '../../styling/Assets/Media/VideoChatParty.gif'
+import ConnectingKnowledgeImage from '../../styling/Assets/Media/ConnectingKnowledge.gif'
 
 import { workshops } from './LandingPageWorkshops'
 
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
         width: '100%',
-        minHeight: '30rem',
+        minHeight: '40rem',
         padding: theme.spacing(2),
         color: '#FFFFFF'
     },
@@ -46,7 +46,8 @@ const useStyles = makeStyles((theme) => ({
     paperWrapper : {
         padding: theme.spacing(1),
         width: '49%',
-        backgroundColor: '#282828'
+        backgroundColor: '#282828',
+        height: '100%'
     },
     logo: {
         maxWidth: '20rem',
@@ -54,13 +55,13 @@ const useStyles = makeStyles((theme) => ({
     
     },
     media: {
-        maxWidth: '30rem',
-        maxHeight: '20rem',
+        maxWidth: '35rem',
+        maxHeight: '25rem',
         borderRadius: '4px',
     },
     video: {
-        maxWidth: '20rem',
-        maxHeight: '20rem',
+        maxWidth: '25rem',
+        maxHeight: '25rem',
         borderRadius: '4px',
         border: 'solid 10px #282828',
         padding: theme.spacing(1),
@@ -112,16 +113,13 @@ const LandingPage = () => {
             </Grid>
 
             {/* Section 2 */}
-            <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`, minHeight: '35rem'}} display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={12}>
+            <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`, minHeight: '45rem'}} display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={12}>
                 <Paper className={classes.paper} style={{width: '100%'}} >
-                    <Grid className={classes.wrapper} container item display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap'>
-                        <Box bgcolor="#121212" style={{display:'flex', justifyContent:'center', width: '50%', borderRadius: '4px'}}>
-                            <video className={classes.video} loop='loop' autoPlay='autoplay' muted>
-                                <source src={SloganVideoSource} type="video/mp4"/>
-                                Your browser does not support this video.
-                            </video>
+                    <Grid className={classes.wrapper} container item display="flex" direction="row" justify='flex-start' alignItems='center' wrap='nowrap'>
+                        <Box bgcolor="#666666" p={2} style={{display:'flex', justifyContent:'center', borderRadius: '4px'}}>
+                            <img className={classes.media} src={ConnectingKnowledgeImage} alt="Connections"/>
                         </Box>
-                        <Box p={4} style={{display:'flex', justifyContent:'space-around', flexDirection:'column', alignItems:'flex-start', width: '50%'}}>
+                        <Box p={4} style={{display:'flex', justifyContent:'space-around', flexDirection:'column', alignItems:'flex-start'}}>
                             <Typography variant='h4' gutterBottom={true} align='center'>
                             Build Your Skills
                             </Typography>
@@ -139,7 +137,7 @@ const LandingPage = () => {
                 </Paper>
                 <Grid className={classes.wrapper} container item display="flex" direction="row" justify='space-between' alignItems='center' wrap='nowrap'>
                     <Paper className={classes.paperWrapper}>
-                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem'}}>
+                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem', height: '100%'}}>
                             <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
                                 Empower Your Community with Your Skills and Knowledge 
                             </Typography>
@@ -149,7 +147,7 @@ const LandingPage = () => {
                         </Paper>
                     </Paper>
                     <Paper className={classes.paperWrapper}>
-                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem'}} >
+                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem',  height: '100%'}} >
                             <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
                             Empower Yourself and Share in Your Commmunity's Collective Knowledge
                             </Typography>
@@ -163,12 +161,14 @@ const LandingPage = () => {
                 
             {/* Section 3 */}
             <Grid className={classes.container} container item style={{backgroundColor: "#121212"}} display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={12}>
-                <Typography variant='h4' gutterBottom={true} align='center'>
+                <Typography variant='h4' gutterBottom={true} align='center' style={{padding: '1rem'}}>
                     Experience Upcoming Workshops or Create Your Own
                 </Typography>
-                {workshops.map(workshop => {
-                    return <LandingPageWorkshopCard key={workshop.title} workshop={workshop}/>
-                })}
+                <Grid container item display="flex" direction="row" justify='space-evenly' alignItems='center' wrap='nowrap' md={12}>
+                    {workshops.map(workshop => {
+                        return <LandingPageWorkshopCard key={workshop.workshop_id} workshop={workshop}/>
+                    })}
+                </Grid>
             </Grid>
             
             {/* Section 4 */}

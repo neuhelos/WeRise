@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#282828',
         padding: theme.spacing(1),
         '&:hover': {
-            border: '2px solid  #FF0F7B',
+            border: '3px solid  #FF0F7B',
             cursor: 'pointer'
         },
         margin: theme.spacing(2)
