@@ -18,4 +18,5 @@ export const categories = [
     "Recreation, Games & Sports",
     "Science & Academics",
     "Technology, Coding & Programming",
+    "Travel & Adventure"
 ]

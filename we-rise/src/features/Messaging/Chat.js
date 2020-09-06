@@ -58,7 +58,7 @@ const Chat = (props) => {
     const messageRead = () => {
         const clickedChatNotSender = (chat) => chat.messages[chat.messages.length-1].sender !== currentUser.uid
         // let chat = chats.find(chat => chat.chatId === selectedChatId)
-        // setSelectedChat(chat)
+        // setSelectedChat(chat)vla
         if(clickedChatNotSender(selectedChat)){
             firestore
             .collection('chats')

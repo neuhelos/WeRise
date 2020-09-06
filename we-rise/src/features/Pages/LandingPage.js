@@ -5,21 +5,20 @@ import Box from '@material-ui/core/Box'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import Card from '@material-ui/core/Card'
 import { makeStyles } from '@material-ui/core/styles'
 
 import PublicNavBar from '../NavBar/PublicNavBar'
 import Modal from '../BaseComponents/Modal'
 import SignUpModal from '../Authentication/SignUpModal'
 import SignInModal from '../Authentication/SignInModal'
-import LandingPageWorkshopCard from './LandingPageWorkshopCard'
+import LandingPageWorkshopCard from '../Landing/LandingPageWorkshopCard'
 
 import VideoChatPartyGif from '../../styling/Assets/Media/VideoChatParty.gif'
 import WeRiseBackground from '../../styling/Assets/Media/WeRiseGradientCircleGridBackground.png'
 import WeRiseLogo from '../../styling/Assets/Media/WeRiseLogo.png'
 import ConnectingKnowledgeImage from '../../styling/Assets/Media/ConnectingKnowledge.gif'
 
-import { workshops } from './LandingPageWorkshops'
+import { workshops } from '../Landing/LandingPageWorkshops'
 
 const useStyles = makeStyles((theme) => ({
     root: {
