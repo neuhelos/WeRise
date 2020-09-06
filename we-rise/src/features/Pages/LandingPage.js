@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     wrapper : {
-        padding: theme.spacing(1)
+        margin: theme.spacing(1)
     },
     paper: {
         backgroundColor: '#282828',
@@ -83,15 +83,15 @@ const LandingPage = () => {
 
             {/* Section 2 */}
             <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`, minHeight: '35rem'}} display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={12}>
-                <Paper className={classes.paper} style={{width: '100%'}}>
-                    <Grid className={classes.wrapper} container item display="flex" direction="row" justify='flex-end' alignItems='center' wrap='nowrap'>
-                        <Box bgcolor="#121212" style={{display:'flex', justifyContent:'center', width: '40%', borderRadius: '4px'}}>
+                <Paper className={classes.paper} style={{width: '100%'}} >
+                    <Grid className={classes.wrapper} container item display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap'>
+                        <Box bgcolor="#121212" style={{display:'flex', justifyContent:'center', width: '50%', borderRadius: '4px'}}>
                             <video className={classes.video} loop='loop' autoPlay='autoplay' muted>
                                 <source src={SloganVideoSource} type="video/mp4"/>
                                 Your browser does not support this video.
                             </video>
                         </Box>
-                        <Box p={4} style={{display:'flex', justifyContent:'center', flexDirection:'column', alignItems:'flex-start', width: '60%', height:'100%'}}>
+                        <Box p={4} style={{display:'flex', justifyContent:'center', flexDirection:'column', alignItems:'flex-start', width: '50%', height:'100%'}}>
                             <Typography variant='h4' gutterBottom={true} align='center'>
                             Build Your Skills
                             </Typography>
@@ -101,21 +101,21 @@ const LandingPage = () => {
                         </Box>
                     </Grid>
                 </Paper>
-                <Grid className={classes.wrapper} container item display="flex" direction="row" justify='flex-start' alignItems='center' wrap='nowrap'>
-                    <Paper className={classes.paper} style={{backgroundColor: '#121212', display:'flex', justify:'flex-end'}}>
-                        <Typography variant='h4' gutterBottom={true} align='center'>
-                           Build Your Skills
+                <Grid className={classes.wrapper} container item display="flex" direction="row" justify='space-between' alignItems='center' wrap='nowrap'>
+                    <Paper style={{backgroundColor: '#121212', display:'flex', justifyContent:'flex-start', flexDirection: 'column', width: '49%'}}>
+                        <Typography variant='h5' gutterBottom={true} align='center'>
+                            Empower Your Community with Your Skills and Knowledge 
                         </Typography>
-                        <Typography variant='h4' gutterBottom={true} align='center'>
-                           Build Your Community
+                        <Typography variant='subtitle1' gutterBottom={true} align='center'>
+                            Create a workshop 
                         </Typography>
                     </Paper>
-                    <Paper className={classes.paper} style={{backgroundColor: '#121212', display:'flex', justify:'flex-end'}}>
-                        <Typography variant='h4' gutterBottom={true} align='center'>
-                           Build Your Skills
+                    <Paper style={{backgroundColor: '#121212', display:'flex', justifyContent:'flex-start', flexDirection: 'column', width: '49%'}}>
+                        <Typography variant='h5' gutterBottom={true} align='center'>
+                           Empower Yourself and Share in Your Commmunity's Collective Knowledge
                         </Typography>
-                        <Typography variant='h4' gutterBottom={true} align='center'>
-                           Build Your Community
+                        <Typography variant='subtitle1' gutterBottom={true} align='center'>
+                            Join and participate 
                         </Typography>
                     </Paper>
 
