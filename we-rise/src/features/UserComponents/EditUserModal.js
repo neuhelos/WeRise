@@ -39,8 +39,8 @@ const EditUserModal = ({ toggleModal}) => {
     // const currentUser = useSelector((state) => state.currentUserSession.uid);
   const classes = useStyles();
   const history = useHistory();
-  const email = useInput("")
-  const password = useInput("")
+  // const email = useInput("")
+  // const password = useInput("")
   const firstName = useInput("")
   const lastName = useInput("")
   const bio = useInput("")
@@ -79,7 +79,7 @@ const EditUserModal = ({ toggleModal}) => {
         // id: currentUser.uid,
         firstn: firstName.value,
         lastn: lastName.value,
-        email: email.value,
+        // email: email.value,
         user_pic: uploadPic,
         bio : bio.value,
         instagram: instagram.value,
@@ -131,11 +131,11 @@ const EditUserModal = ({ toggleModal}) => {
             <Divider className={classes.divider} orientation="vertical" flexItem />
             <TextField  className={classes.input} id="lastName" label="Preferred Last Name" placeholder="Enter Last Name" variant="filled" {...lastName} required/>
           </Grid>
-          <Grid container className={classes.container} display="flex" direction="row" justify="space-evenly" alignItems="center" wrap='nowrap'>
+          {/* <Grid container className={classes.container} display="flex" direction="row" justify="space-evenly" alignItems="center" wrap='nowrap'>
             <TextField className={classes.input} id="email" label="Email" placeholder="Enter Your Email" variant="filled" {...email} required/>
             <Divider className={classes.divider} orientation="vertical" flexItem />
             <TextField className={classes.input} id="password" type="password" label="Password" placeholder="Enter Password" variant="filled" {...password} required/>
-          </Grid>
+          </Grid> */}
           <TextField className={classes.inputFullWidth} inputProps={{style: {textAlign: 'left'}}} id="bio" label="Short Bio" placeholder="Tell Folx About Yourself" variant="filled" multiline rows={4} {...bio} required/>
           <Autocomplete className={classes.inputFullWidth} multiple id="userSkills" options={[]} defaultValue={""} freeSolo
               onChange={handleSkillsTagsChange}
