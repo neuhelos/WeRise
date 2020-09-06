@@ -61,15 +61,23 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         fontFamily: 'audiowide',
-        width: '20%',
+        width: '25%',
         backgroundColor: '#FFFFFF',
-        color: '#FF07FB' 
+        color: '#FF07FB',
+        fontSize: '2rem'
     }
 }))
 
 const LandingPage = () => {
     
     const classes = useStyles()
+
+    
+
+
+
+
+
     
     return (
         <Grid container className={classes.root} display="flex" direction="column" wrap='nowrap'>
@@ -137,7 +145,7 @@ const LandingPage = () => {
             </Grid>
                 
             {/* Section 3 */}
-            <Grid className={classes.container} container item style={{backgroundColor: "#282828"}} display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap' md={12}>
+            <Grid className={classes.container} container item style={{backgroundColor: "#121212"}} display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap' md={12}>
 
             </Grid>
             
@@ -146,7 +154,7 @@ const LandingPage = () => {
                 <Typography variant='h2' gutterBottom={true} align='center'>
                             Ready to Share in Our Community?
                 </Typography>
-                <Button className={classes.button} variant='contained' size="large" onClick={""}>SIGN UP</Button>
+                <Button className={classes.button} variant='contained' onClick={""}>SIGN UP</Button>
             </Grid>
 
 
