@@ -1,12 +1,14 @@
 import React from 'react'
 
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
 import PublicNavBar from '../NavBar/PublicNavBar'
 import SloganVideoSource from '../../styling/Assets/Media/SloganAnimation.mp4'
+import WeRiseBackground from '../../styling/Assets/Media/WeRiseGradientCircleGridBackground.png'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,31 +19,33 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
         width: '100%',
-        height: '100rem',
-        padding: theme.spacing(3),
-        color: '#FFFFFF'
+        minHeight: '30rem',
+        padding: theme.spacing(2),
+        '& *': {
+            color: '#FFFFFF'
+        }
     },
     wrapper : {
-        padding: theme.spacing(2)
+        padding: theme.spacing(1)
     },
     paper: {
         backgroundColor: '#282828',
         padding: theme.spacing(2),
-        margin: theme.spacing(2),
+        margin: theme.spacing(1)
     },
     logo: {
-        maxWidth: '25rem',
-        maxHeight: '25rem'
+        maxWidth: '20rem',
+        maxHeight: '20rem'
     
     },
     media: {
-        maxWidth: '35rem',
-        maxHeight: '25rem',
+        maxWidth: '30rem',
+        maxHeight: '20rem',
         borderRadius: '4px',
     },
     video: {
-        width: '25rem',
-        height: '25rem',
+        maxWidth: '20rem',
+        maxHeight: '20rem',
         borderRadius: '4px',
         border: 'solid 10px #282828',
         padding: theme.spacing(1),
@@ -62,10 +66,10 @@ const LandingPage = () => {
             
             {/* Section 1 */}
             <Grid className={classes.container} container item display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap' md={12}>
-                <Grid className={classes.wrapper} container item display="flex" direction="column" justify='flex-end' alignItems='center' wrap='nowrap' md={6}>
-                    <Paper className={classes.paper} style={{backgroundColor: '#121212', display:'flex', justify:'flex-end'}}>
+                <Grid className={classes.wrapper} container item display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={6}>
+                    <Box bgColor='#282828' style={{display:'flex', justifyContent:'center'}}>
                         <img className={classes.logo} src={WeRiseLogo} alt="Video Chat"/>
-                    </Paper>
+                    </Box>
                     <Typography variant='h4' gutterBottom={true} align='center'>
                         Sharing Knowledge to Build Communities on the Rise
                     </Typography>
@@ -78,23 +82,25 @@ const LandingPage = () => {
             </Grid>
 
             {/* Section 2 */}
-            <Grid className={classes.container} container item style={{backgroundColor: '#A3A3A3'}} display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={12}>
-                <Grid className={classes.wrapper} container item display="flex" direction="row" justify='flex-end' alignItems='center' wrap='nowrap'>
-                    <Paper className={classes.paper} style={{backgroundColor: '#282828', display:'flex', justify:'flex-end'}}>
-                        <video className={classes.video} loop='loop' autoPlay='autoplay' muted>
-                            <source src={SloganVideoSource} type="video/mp4"/>
-                            Your browser does not support this video.
-                        </video>
-                    </Paper>
-                    <Paper className={classes.paper} style={{backgroundColor: '#121212', display:'flex', justify:'flex-end'}}>
-                        <Typography variant='h4' gutterBottom={true} align='center'>
-                           Build Your Skills
-                        </Typography>
-                        <Typography variant='h4' gutterBottom={true} align='center'>
-                           Build Your Community
-                        </Typography>
-                    </Paper>
-                </Grid>
+            <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`, minHeight: '35rem'}} display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={12}>
+                <Paper className={classes.paper} style={{width: '100%'}}>
+                    <Grid className={classes.wrapper} container item display="flex" direction="row" justify='flex-end' alignItems='center' wrap='nowrap'>
+                        <Box bgcolor="#121212" style={{display:'flex', justifyContent:'center', width: '40%', borderRadius: '4px'}}>
+                            <video className={classes.video} loop='loop' autoPlay='autoplay' muted>
+                                <source src={SloganVideoSource} type="video/mp4"/>
+                                Your browser does not support this video.
+                            </video>
+                        </Box>
+                        <Box p={4} style={{display:'flex', justifyContent:'center', flexDirection:'column', alignItems:'flex-start', width: '60%', height:'100%'}}>
+                            <Typography variant='h4' gutterBottom={true} align='center'>
+                            Build Your Skills
+                            </Typography>
+                            <Typography variant='h4' gutterBottom={true} align='center'>
+                            Build Your Community
+                            </Typography>
+                        </Box>
+                    </Grid>
+                </Paper>
                 <Grid className={classes.wrapper} container item display="flex" direction="row" justify='flex-start' alignItems='center' wrap='nowrap'>
                     <Paper className={classes.paper} style={{backgroundColor: '#121212', display:'flex', justify:'flex-end'}}>
                         <Typography variant='h4' gutterBottom={true} align='center'>
