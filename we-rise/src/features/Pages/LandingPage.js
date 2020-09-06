@@ -117,7 +117,7 @@ const LandingPage = () => {
                         </Box>
                         <Box p={4} style={{display:'flex', justifyContent:'space-around', flexDirection:'column', alignItems:'flex-start'}}>
                             <Typography variant='h4' align='center' style={{marginBottom: '2rem'}}>
-                            A Community-Driven Skills Share VideoChat Platform Where You Can...
+                            A Community-Driven Skills Share VideoChat Platform to...
                             </Typography>
                             <Typography variant='h4' gutterBottom={true} align='center'>
                             Build Your Skills
