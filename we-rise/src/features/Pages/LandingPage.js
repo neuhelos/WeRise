@@ -12,11 +12,14 @@ import PublicNavBar from '../NavBar/PublicNavBar'
 import Modal from '../BaseComponents/Modal'
 import SignUpModal from '../Authentication/SignUpModal'
 import SignInModal from '../Authentication/SignInModal'
+import LandingPageWorkshopCard from './LandingPageWorkshopCard'
 
 import SloganVideoSource from '../../styling/Assets/Media/SloganAnimation.mp4'
 import WeRiseBackground from '../../styling/Assets/Media/WeRiseGradientCircleGridBackground.png'
 import WeRiseLogo from '../../styling/Assets/Media/WeRiseLogo.png'
 import VideoChatPartyGif from '../../styling/Assets/Media/VideoChatParty.gif'
+
+import { workshops } from './LandingPageWorkshops'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -118,12 +121,18 @@ const LandingPage = () => {
                                 Your browser does not support this video.
                             </video>
                         </Box>
-                        <Box p={4} style={{display:'flex', justifyContent:'center', flexDirection:'column', alignItems:'flex-start', width: '50%', height:'100%'}}>
+                        <Box p={4} style={{display:'flex', justifyContent:'space-around', flexDirection:'column', alignItems:'flex-start', width: '50%'}}>
                             <Typography variant='h4' gutterBottom={true} align='center'>
                             Build Your Skills
                             </Typography>
+                            <Typography variant='subtitle1' align='center' style={{marginBottom: '2rem'}}>
+                            Explore Workshops that Spark your Horizons 
+                            </Typography>
                             <Typography variant='h4' gutterBottom={true} align='center'>
                             Build Your Community
+                            </Typography>
+                            <Typography variant='subtitle1' gutterBottom={true} align='center'>
+                            Inspire Folx to Take Action and Learn
                             </Typography>
                         </Box>
                     </Grid>
@@ -154,7 +163,9 @@ const LandingPage = () => {
                 
             {/* Section 3 */}
             <Grid className={classes.container} container item style={{backgroundColor: "#121212"}} display="flex" direction="row" justify='center' alignItems='center' wrap='nowrap' md={12}>
-                
+                {workshops.map(workshop => {
+                    return <LandingPageWorkshopCard key={workshop.title} workshop={workshop}/>
+                })}
             </Grid>
             
             {/* Section 4 */}
