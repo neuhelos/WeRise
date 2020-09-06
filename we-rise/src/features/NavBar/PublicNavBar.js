@@ -58,19 +58,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const PublicNavBar = () => {
+const PublicNavBar = ( {toggleSignInModal, toggleSignUpModal}) => {
     const classes = useStyles();
 
-    const [openSignIn , setOpenSignIn] = useState(false)
-    const [openSignUp , setOpenSignUp] = useState(false)
     const dispatch = useDispatch();
 
-    const toggleSignInModal = () => {
-        setOpenSignIn(!openSignIn)
-    }
-    const toggleSignUpModal = () => {
-        setOpenSignUp(!openSignUp)
-    }
 
     const history = useHistory();
 
@@ -102,13 +94,6 @@ const PublicNavBar = () => {
                         <Button className={classes.button} variant='contained' size="large" onClick={handleGuestSignIn}>Guest</Button>
                     </Grid>
                 </Grid>
-
-                <Modal open={openSignIn} toggleModal={toggleSignInModal}>
-                    <SignInModal toggleSignUpModal={toggleSignUpModal} toggleModal={toggleSignInModal}/>
-                </Modal>
-                <Modal open={openSignUp} toggleModal={toggleSignUpModal}>
-                    <SignUpModal toggleSignInModal={toggleSignInModal} toggleModal={toggleSignUpModal}/>
-                </Modal>
             </Toolbar>
         </AppBar>
     );
