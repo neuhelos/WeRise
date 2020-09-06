@@ -116,6 +116,9 @@ const LandingPage = () => {
                             <img className={classes.media} src={ConnectingKnowledgeImage} alt="Connections"/>
                         </Box>
                         <Box p={4} style={{display:'flex', justifyContent:'space-around', flexDirection:'column', alignItems:'flex-start'}}>
+                            <Typography variant='h4' align='center' style={{marginBottom: '2rem'}}>
+                            A Community-Driven Skills Share VideoChat Platform Where You Can...
+                            </Typography>
                             <Typography variant='h4' gutterBottom={true} align='center'>
                             Build Your Skills
                             </Typography>
@@ -138,7 +141,7 @@ const LandingPage = () => {
                                 Empower Your Community with Your Skills and Knowledge 
                             </Typography>
                             <Typography variant='subtitle2' gutterBottom={true} align='center' style={{color: '#000000'}}>
-                                Create a workshop 
+                                Create a workshop
                             </Typography>
                         </Paper>
                     </Paper>
