@@ -82,6 +82,10 @@ VALUES
 ('8uvDSPKzhjU5rllJU1Fy40Gn8x23', 'Danielle', 'Cherry', 'daniellecherry@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FDanielleCherry.png?alt=media&token=d16969cf-fe72-4d92-a2a8-b48802c0354e', '6.4 Pursuit Fellow'),
 ('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FTessaThompson.jpg?alt=media&token=02554b12-bfc8-419f-a1db-36d7cde08770', 'Hi im the Demo Account!'),
 ('E093QRw1swaW4KCQUON44IU2gcy2', 'WeRise', 'Together', 'guest@werise.org','https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FRainbowSmileyDefaultAvatar.png?alt=media&token=379959f1-6d89-43a4-bf01-92a68841c643', 'Hi im the Guest Account!');
+('eokavuu8ObRdvLA47RfSCZ74dI52', 'Samantha', 'Jimenez', 'samanthajimenez@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FSamanthaJimenez.jpeg?alt=media&token=752cf4ee-e663-4520-b7b8-30e5f2798d9a', '6.4 Pursuit Fellow')
+('ORwZBVSWrwW0Nug7HS3UgLl6Me63', 'Marializa', 'Martinez', 'mariamartinez@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FMarializaMartinez.jpeg?alt=media&token=1a4eeaec-0e19-47e6-b5d6-0d456ccfc01c', '6.4 Pursuit Fellow')
+('acKHM3rlo1ZZxwwTVEgC0gzUDBy2', 'Caroline', 'Kang', 'carolinekang@pursuit.org, https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FCarolineKang.jpeg?alt=media&token=6ab4d28f-156b-4267-9df3-a19160ef0045, 'Pursuit 6.4 Program Manager')
+
 
 INSERT INTO created_workshops
 (id, posted, user_id, title, descriptions, start_time, end_time, category, participants, workshop_img)
@@ -96,6 +100,28 @@ VALUES
 ('8', '2020-06-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'MIDI basics', 'Musical Instrument Digital Interface', '2020-11-16 16:00-04', '2020-11-16 18:00-04',  'Dance & Music', 5, 'https://cdn.sparkfun.com/assets/learn_tutorials/4/0/8/daisy-2.png'),
 ('9', '2020-07-13 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'Mics and Speakers', 'Defining quality Mics and Speakers', '2020-11-20 16:00-04', '2020-11-20 18:00-04',  'Dance & Music', 3, 'https://www.fullcompass.com/common/products/lgr/320192.jpg'),
 ('10', '2020-08-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'Classic Films', 'Breaking down great movies', '2020-10-16 10:00-04', '2020-10-16 12:00-04',  'Film, Photography and Theater', 5, 'https://cdn.sparkfun.com/assets/learn_tutorials/4/0/8/daisy-2.png');
+
+(4c94f9ff-c634-4e78-9816-7313b7d6f5b2s, '2020-09-03 16:00-04', 'eokavuu8ObRdvLA47RfSCZ74dI52', 'Radical Wikipedia Editing Workshop', 
+`Join me for a workshop on how to update Wikipedia articles and write new ones.
+I will also share my experience on donating work to Wikipedia and how to contribute to it in a way that helps 
+make marginalized communities more visible. All skill levels are welcome.
+I'm working towards creating a space that encourages people of color and women to join the Wikipedia 
+movement and asks white men to focus on gaps in coverage on Wikipedia.`,
+'2020-9-20 17:00-04', '2020-9-20 19:00-04', 'Technology, Coding & Programming', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWikipediaEditing.jpg?alt=media&token=5412b179-05fd-474d-b66d-f82022e2e6f3'),
+
+(12985d00-a2c5-4c78-86da-b4860648f2f9, '2020-08-26 17:00-04', 'ORwZBVSWrwW0Nug7HS3UgLl6Me63','Reimagine Graphic Design in a Liberatory World', 
+`Learn the bare-bones basics of Illustrator and Indesign, the leading software professionals and non-professionals use to 
+design great posters, flyers and logos. We’ll cover making and editing vectors in Illustrator and basic layout for a poster 
+in Indesign. If you don’t own a copy of the Illustrator and InDesign please download the free 30-day a trial 
+version from Adobe Creative Suite prior to the workshop so you can follow along!`,
+'2020-10-03 17:00-04', '2020-10-03 20:00-04', 'Art & Design', 4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FVisualResistance.png?alt=media&token=664084da-3e75-4c27-be5b-6b2bc0d725a4'),
+
+(f0c950de-d484-418d-b25a-7447cdbace5f, '2020-08-29 18:00-04', 'acKHM3rlo1ZZxwwTVEgC0gzUDBy2', 'Women Know Power Tools', 
+`A series of household DIY tutorials made by women, for women giving instructions on basic DIY power tool enhanced tasks 
+like changing a lightbulb, smashing a window, painting a wall and using a drill.
+You are encouraged to share your power tool sharpened knowledge and create your own workshop`,
+'2020-9-14 16:00-04', '2020-9-14 18:00-04', 'Home Improvement & Garden', 3, https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FDIYWomen.jpg?alt=media&token=050d1114-6e07-4b6f-a2f3-9c26f22375e6),
+
 
 INSERT INTO registered_workshops
 (user_id, workshop_id, workshop_id_user_id)

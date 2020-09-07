@@ -18,13 +18,15 @@ import { dateFormat } from '../../Utilities/dateFormat'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: '100%',
+        width: '100%',
+
         },
     paperWrapper : {
+        flex: 1,
         width: '25%',
         backgroundColor: '#282828',
         padding: theme.spacing(1),
-        margin: theme.spacing(2)
+        margin: theme.spacing(1)
     },
     paper: { 
         width: '100%',
@@ -49,8 +51,8 @@ const useStyles = makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    avatar: {
-
+    text: {
+       
     },
 }));
 
@@ -73,12 +75,14 @@ const LandingPageWorkshopCard = ({workshop, handleSignUpModal} ) => {
         <Paper  className={classes.paperWrapper}>
             <Paper className={classes.paper}>
                 <Card className={classes.root} onClick={handleSignUpModal}>
-                    <CardHeader
+                    <CardHeader style={{width: '100%'}}
                     avatar={
                         <Avatar aria-label="recipe" className={classes.avatar} src={workshop.user_pic} alt={workshop.firstn.toUpperCase()}>
                         </Avatar>
                     }
-                    title={workshop.title}
+                    title={
+                        <Typography className={classes.text} style={{width: '10rem'}} noWrap>{workshop.title}</Typography>
+                    }
                     subheader={
                         <>
                         <Typography className={classes.text}>{`${date}`}</Typography>
@@ -107,6 +111,9 @@ const LandingPageWorkshopCard = ({workshop, handleSignUpModal} ) => {
                     </CardActions>
                     <Collapse in={expanded} timeout="auto" unmountOnExit onClick={handleExpandClick}>
                         <CardContent>
+                            <Typography gutterBottom={true}>
+                                Title: {workshop.title}
+                            </Typography>
                             <Typography gutterBottom={true}>
                                 Category: {workshop.category}
                             </Typography>

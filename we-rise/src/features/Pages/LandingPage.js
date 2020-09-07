@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
         width: '100%',
-        minHeight: '40rem',
         padding: theme.spacing(2),
         color: '#FFFFFF'
     },
@@ -116,7 +115,7 @@ const LandingPage = () => {
             </Grid>
 
             {/* Section 2 */}
-            <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`, minHeight: '45rem'}} display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={12}>
+            <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`}} display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={12}>
                 <Paper className={classes.paper} style={{width: '100%'}} >
                     <Grid className={classes.wrapper} container item display="flex" direction="row" justify='flex-start' alignItems='center' wrap='nowrap'>
                         <Box bgcolor="#666666" p={2} style={{display:'flex', justifyContent:'center', borderRadius: '4px'}}>
@@ -178,7 +177,7 @@ const LandingPage = () => {
             </Grid>
             
             {/* Section 4 */}
-            <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`}} display="flex" direction="column" justify='space-evenly' alignItems='center' wrap='nowrap' md={12}>
+            <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`, minHeight: '30rem'}} display="flex" direction="column" justify='space-evenly' alignItems='center' wrap='nowrap' md={12}>
                 <Typography variant='h3' gutterBottom={true} align='center'>
                             Ready to Share in Your Future Communities?
                 </Typography>
