@@ -80,7 +80,7 @@ const RegisteredWorkshopModal = ({ handleCloseModal, workshop, ...props }) => {
                 let usersEmail = [workshop.email, currentUser.email].sort()
                 let facilitatorDetails = {email: workshop.email, firstName: workshop.firstn, lastName: workshop.lastn, profileImage: workshop.user_pic, userId: workshop.user_id}
                 let currentUserDetails = {email: currentUser.email, firstName: currentUser.firstn, lastName: currentUser.lastn, profileImage: currentUser.user_pic, userId: currentUser.uid}
-                let usersData = {facilitatorDetails, currentUserDetails}
+                let usersData = [facilitatorDetails, currentUserDetails]
 
                 let existingChatId = await chatExistsCheck(usersEmail)
                 existingChatId ? submitMessageExistingChat(existingChatId, currentUser.uid, currentUser.firstn, message) 
