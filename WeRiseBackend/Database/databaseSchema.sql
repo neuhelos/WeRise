@@ -119,7 +119,7 @@ in Indesign. If you don’t own a copy of the Illustrator and InDesign please do
 version from Adobe Creative Suite prior to the workshop so you can follow along!',
 '2020-10-03 17:00-04', '2020-10-03 20:00-04', 'Art & Design', 4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FVisualResistance.png?alt=media&token=664084da-3e75-4c27-be5b-6b2bc0d725a4'),
 
-('f0c950de-d484-418d-b25a-7447cdbace5f', '2020-08-29 18:00-04', 'acKHM3rlo1ZZxwwTVEgC0gzUDBy2', 'Women Know Power Tools', 
+('f0c950de-d484-418d-b25a-7447cdbace5f', '2020-08-22 18:00-04', 'acKHM3rlo1ZZxwwTVEgC0gzUDBy2', 'Women Know Power Tools', 
 'A series of household DIY tutorials made by women, for women giving instructions on basic DIY power tool enhanced tasks 
 like changing a lightbulb, smashing a window, painting a wall and using a drill.
 You are encouraged to share your power tool sharpened knowledge and create your own workshop',
@@ -136,7 +136,7 @@ find a way to fix it, there’s great joy in that. Make your kitchen your labora
 with hacks that will sharpen your culinary skills',
 '2020-11-06 15:00-04', '2020-11-06 16:00-04', 'Food & Culinary Arts', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCookingHacks.jpg?alt=media&token=65faf311-3f80-4ce5-b97a-60b203d93535'),
 
-( '0a317023-8ac4-42c5-ae61-c044eb9e8a7a', '2020-08-29 13:00-04', '5y3iP5DXmMXDslcRues5GaQHbCE3', 'DIY Radical Collaborative Publishing', 
+( '0a317023-8ac4-42c5-ae61-c044eb9e8a7a', '2020-08-30 13:00-04', '5y3iP5DXmMXDslcRues5GaQHbCE3', 'DIY Radical Collaborative Publishing', 
 'This workshop covers the history and contemporary applications of radical independent and collaborative publishing models 
 including Cartoneras, zines, protest posters, prints, mud stencils, social sculptures, art builds, and more.
 Participants will learn effective devices of democratization by creating unique hand-painted, hinge and stab bound 
