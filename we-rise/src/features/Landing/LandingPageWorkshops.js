@@ -49,17 +49,6 @@ export const workshops = [
 
 
 
-// Radical DIY Collabortive Publishing
-// This workshop covers the history and contemporary applications of radical independent and collaborative publishing models 
-// including Cartoneras, zines, protest posters, prints, mud stencils, social sculptures, art builds, and more.
-
-// Participants will learn effective devices of democratization by creating unique hand-painted, hinge and stab bound 
-// structures using cardboard and up-cycled materials. Such structures enable social, political, and artistic expressions 
-// and merge visual and literary forms. The hinge-bound structure can double as a multi tool (“swiss army knife”) of protest posters 
-// — made for and by the people!
-
-// Participants are responsible for sourcing their own supplies from the materials list. 
-// Teaching artists will answer questions about materials in advance of the workshop start date.
 
 // If It’s Broke, Learn How to Fix It: Radical Repair Workshop
 // One of the easiest ways of connecting to new audiences has been to ask questions about objects to which people have a special 
@@ -71,7 +60,3 @@ export const workshops = [
 // made an impact in their lives. Gartrell and Radical Repair Workshop value both the useful and absurd and are using Sonny and pop-up programs to inspire 
 // participants to see, use and appreciate both sculptural and traditional modes of mending.
 
-
-
-// Isaiah 
-// How to get job ready for Tech
