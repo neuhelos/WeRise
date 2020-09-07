@@ -40,13 +40,17 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#282828',
         padding: theme.spacing(2),
         margin: theme.spacing(1),
-        color: '#FFFFFF'
+        color: '#FFFFFF',
     },
     paperWrapper : {
         padding: theme.spacing(1),
         width: '49%',
         backgroundColor: '#282828',
-        height: '100%'
+        height: '100%',
+        '&:hover': {
+            border: '2px solid  #F89B29',
+            cursor: 'pointer'
+            },
     },
     logo: {
         maxWidth: '25rem',
@@ -83,6 +87,10 @@ const LandingPage = () => {
     }
     const toggleSignUpModal = () => {
         setOpenSignUp(!openSignUp)
+    }
+
+    const handleSignUpModal = () => {
+        toggleSignUpModal()
     }
 
     return (
@@ -135,7 +143,7 @@ const LandingPage = () => {
                 </Paper>
                 <Grid className={classes.wrapper} container item display="flex" direction="row" justify='space-between' alignItems='center' wrap='nowrap'>
                     <Paper className={classes.paperWrapper}>
-                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem', height: '100%'}}>
+                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem', height: '100%'}} onClick={handleSignUpModal}>
                             <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
                                 Empower Your Community with Your Skills and Knowledge 
                             </Typography>
@@ -145,7 +153,7 @@ const LandingPage = () => {
                         </Paper>
                     </Paper>
                     <Paper className={classes.paperWrapper}>
-                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem',  height: '100%'}} >
+                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem',  height: '100%'}} onClick={handleSignUpModal}>
                             <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
                             Empower Yourself and Share in Your Commmunity's Collective Knowledge
                             </Typography>
@@ -164,7 +172,7 @@ const LandingPage = () => {
                 </Typography>
                 <Grid container item display="flex" direction="row" justify='space-evenly' alignItems='center' wrap='nowrap' md={12}>
                     {workshops.map(workshop => {
-                        return <LandingPageWorkshopCard key={workshop.workshop_id} workshop={workshop}/>
+                        return <LandingPageWorkshopCard handleSignUpModal={handleSignUpModal} key={workshop.workshop_id} workshop={workshop}/>
                     })}
                 </Grid>
             </Grid>

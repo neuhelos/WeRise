@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -54,13 +54,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const LandingPageWorkshopCard = ({workshop}) => {
+const LandingPageWorkshopCard = ({workshop, handleSignUpModal} ) => {
 
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = useState(false);
 
-    const handleExpandClick = () => {
+
+    const handleExpandClick = (event) => {
         setExpanded(!expanded);
+        event.stopPropagation()
     };
 
     let date = dateFormat(workshop.start_time).date
@@ -70,7 +72,7 @@ const LandingPageWorkshopCard = ({workshop}) => {
 
         <Paper  className={classes.paperWrapper}>
             <Paper className={classes.paper}>
-                <Card className={classes.root}>
+                <Card className={classes.root} onClick={handleSignUpModal}>
                     <CardHeader
                     avatar={
                         <Avatar aria-label="recipe" className={classes.avatar} src={workshop.user_pic} alt={workshop.firstn.toUpperCase()}>
@@ -90,7 +92,7 @@ const LandingPageWorkshopCard = ({workshop}) => {
                     image={workshop.workshop_img}
                     title={workshop.title}
                     />
-                    <CardActions disableSpacing>
+                    <CardActions disableSpacing onClick={handleExpandClick}>
                     <Typography>
                         Read More >
                     </Typography>
@@ -103,7 +105,7 @@ const LandingPageWorkshopCard = ({workshop}) => {
                         <ExpandMoreIcon />
                     </IconButton>
                     </CardActions>
-                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <Collapse in={expanded} timeout="auto" unmountOnExit onClick={handleExpandClick}>
                         <CardContent>
                             <Typography gutterBottom={true}>
                                 Category: {workshop.category}
