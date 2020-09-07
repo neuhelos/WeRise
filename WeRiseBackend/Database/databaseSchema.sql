@@ -101,7 +101,13 @@ VALUES
 ('6', '2020-07-25 18:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Accessorizing Your Wardrobe', 'Its never too much, elevating your style with accessories.', '2020-09-18 18:00-04', '2020-09-18 19:00-04', 'Beauty & Fashion', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FAccessoriesWorkshop.jpg?alt=media&token=32bb8056-961c-4a84-93fc-04f787e96777'),
 ('7', '2020-07-10 15:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Creating Community Change Through Tech', 'Brainstorming strategies for sharing technical know-how and skills for driving social justice in our communities', '2020-10-01 17:00-04', '2020-10-01 20:00-04', 'Community Organizing & Activism', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCommunityRainbow.jpg?alt=media&token=067f5d9f-0b69-42a3-9fa3-811948262065'),
 ('8', '2020-06-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'MIDI basics', 'Musical Instrument Digital Interface', '2020-11-16 16:00-04', '2020-11-16 18:00-04',  'Dance & Music', 5, 'https://cdn.sparkfun.com/assets/learn_tutorials/4/0/8/daisy-2.png'),
-('9', '2020-07-13 13:00-04', 'nB6JehE4RidvMjwTAq31D4EaGDS2', 'Mics and Speakers', 'Defining quality Mics and Speakers', '2020-11-20 16:00-04', '2020-11-20 18:00-04',  'Dance & Music', 3, 'https://www.fullcompass.com/common/products/lgr/320192.jpg'),
+
+('9', '2020-07-13 13:00-04', 'nB6JehE4RidvMjwTAq31D4EaGDS2', 'Live Coding Music with Ruby', 
+'This workshop will introduce you to the basics of Sonic Pi, a software synthesizer which allows anyone to create music as computer code. In addition 
+to receiving a tour of the Sonic Pi platform, you will also be introduced to the basics of programming in Ruby, a popular language for web development. DJ’s, musicians, 
+installation artists, and anyone who wants or likes to play with synthesized audio will find this a powerful tool for creative expression.', 
+'2020-11-20 16:00-04', '2020-11-20 18:00-04',  'Technology, Coding & Programming', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FLiveCodingMusic.jpg?alt=media&token=00ef6f8c-6ee8-4a7b-b173-d739ec00ae4d'),
+
 ('10', '2020-08-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'Classic Films', 'Breaking down great movies', '2020-10-16 10:00-04', '2020-10-16 12:00-04',  'Film, Photography and Theater', 5, 'https://cdn.sparkfun.com/assets/learn_tutorials/4/0/8/daisy-2.png'),
 
 ('4c94f9ff-c634-4e78-9816-7313b7d6f5b2s', '2020-09-03 16:00-04', 'eokavuu8ObRdvLA47RfSCZ74dI52', 'Women, Nonbinary & POC-Centric Wikipedia Editing', 

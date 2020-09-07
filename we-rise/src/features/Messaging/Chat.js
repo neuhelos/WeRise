@@ -109,8 +109,10 @@ const Chat = (props) => {
                 <ChatList history={props.history} handleSelectedChat={handleSelectedChat} newChat={handleNewChat} selectedChatId={selectedChatId}/> 
             </Grid>
             <Grid container item className={classes.container} md={7} direction="column" justify="flex-start" alignItems='center'>
-                { newChatFormVisible ? null : <ChatView selectedChatId={selectedChatId} selectedChat={selectedChat} messageRead={messageRead}/> }
-                { newChatFormVisible ? <NewChatForm newChatFormSubmit={newChatFormSubmit} goToExistingChat={goToExistingChat} /> : null }
+                { newChatFormVisible ? 
+                <NewChatForm newChatFormSubmit={newChatFormSubmit} goToExistingChat={goToExistingChat} /> 
+                : 
+                <ChatView selectedChatId={selectedChatId} selectedChat={selectedChat} messageRead={messageRead}/> }
             </Grid>
         </Grid>
     )
