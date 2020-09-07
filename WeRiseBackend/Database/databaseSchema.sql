@@ -104,11 +104,11 @@ VALUES
 ('9', '2020-07-13 13:00-04', 'nB6JehE4RidvMjwTAq31D4EaGDS2', 'Mics and Speakers', 'Defining quality Mics and Speakers', '2020-11-20 16:00-04', '2020-11-20 18:00-04',  'Dance & Music', 3, 'https://www.fullcompass.com/common/products/lgr/320192.jpg'),
 ('10', '2020-08-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'Classic Films', 'Breaking down great movies', '2020-10-16 10:00-04', '2020-10-16 12:00-04',  'Film, Photography and Theater', 5, 'https://cdn.sparkfun.com/assets/learn_tutorials/4/0/8/daisy-2.png'),
 
-('4c94f9ff-c634-4e78-9816-7313b7d6f5b2s', '2020-09-03 16:00-04', 'eokavuu8ObRdvLA47RfSCZ74dI52', 'Radical Wikipedia Editing Workshop', 
+('4c94f9ff-c634-4e78-9816-7313b7d6f5b2s', '2020-09-03 16:00-04', 'eokavuu8ObRdvLA47RfSCZ74dI52', 'Women, Nonbinary & POC-Centric Wikipedia Editing', 
 'Join me for a workshop on how to update Wikipedia articles and write new ones.
 I will also share my experience on donating work to Wikipedia and how to contribute to it in a way that helps
 make marginalized communities more visible. All skill levels are welcome.
-Im working towards creating a space that encourages people of color and women to join the Wikipedia
+I"m working towards creating a space that encourages people of color and women to join the Wikipedia
 movement and asks white men to focus on gaps in coverage on Wikipedia.',
 '2020-09-20 17:00-04', '2020-09-20 19:00-04', 'Technology, Coding & Programming', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWikipediaEditing.jpg?alt=media&token=5412b179-05fd-474d-b66d-f82022e2e6f3'),
 
@@ -136,7 +136,7 @@ find a way to fix it, there’s great joy in that. Make your kitchen your labora
 with hacks that will sharpen your culinary skills',
 '2020-11-06 15:00-04', '2020-11-06 16:00-04', 'Food & Culinary Arts', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCookingHacks.jpg?alt=media&token=65faf311-3f80-4ce5-b97a-60b203d93535'),
 
-( '0a317023-8ac4-42c5-ae61-c044eb9e8a7a', '2020-08-29 13:00-04', '5y3iP5DXmMXDslcRues5GaQHbCE3', 'Radical DIY Collabortive Publishing', 
+( '0a317023-8ac4-42c5-ae61-c044eb9e8a7a', '2020-08-29 13:00-04', '5y3iP5DXmMXDslcRues5GaQHbCE3', 'DIY Radical Collaborative Publishing', 
 'This workshop covers the history and contemporary applications of radical independent and collaborative publishing models 
 including Cartoneras, zines, protest posters, prints, mud stencils, social sculptures, art builds, and more.
 Participants will learn effective devices of democratization by creating unique hand-painted, hinge and stab bound 
