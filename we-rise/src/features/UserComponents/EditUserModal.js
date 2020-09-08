@@ -60,7 +60,7 @@ const EditUserModal = ({ toggleModal }) => {
   const facebook = useInput("");
   const twitter = useInput("");
   const linkedin = useInput("");
-  const [editing, setEditing] = useState(false);
+ 
   const [user, setUser] = useState({});
   const params = useParams();
   let user_id = params.id;
@@ -109,7 +109,7 @@ const EditUserModal = ({ toggleModal }) => {
         handleCurrentUser();
       }
 
-      setEditing(false);
+     
     } catch (error) {
       console.log(error);
     }
