@@ -204,11 +204,11 @@ const AddWorkshop = ({handleCloseModal}) => {
                             value={participants}
                             onChange={handleParticipantsChange}
                             >
-                            <MenuItem value={1}>1</MenuItem>
-                            <MenuItem value={2}>2</MenuItem>
-                            <MenuItem value={3}>3</MenuItem>
-                            <MenuItem value={4}>4</MenuItem>
-                            <MenuItem value={5}>5</MenuItem>
+                            <MenuItem value={1} style={{fontFamily: 'audiowide'}}>1</MenuItem>
+                            <MenuItem value={2} style={{fontFamily: 'audiowide'}}>2</MenuItem>
+                            <MenuItem value={3} style={{fontFamily: 'audiowide'}}>3</MenuItem>
+                            <MenuItem value={4} style={{fontFamily: 'audiowide'}}>4</MenuItem>
+                            <MenuItem value={5} style={{fontFamily: 'audiowide'}}>5</MenuItem>
                             </Select>
                         </FormControl>
                     </Grid>

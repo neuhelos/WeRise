@@ -35,20 +35,31 @@ const useStyles = makeStyles((theme) => ({
         background: '#36386D'
     },
     select: {
-        fontFamily: 'audiowide',
         height: '3rem',
         margin: theme.spacing(1),
         backgroundColor: 'white',
         borderRadius: '4px',
         width: '50%',
-        textOverflow: 'ellipsis',
     },
     dateRange: {
         margin: theme.spacing(1),
         width: '100%',
         '& .rdrMonth': {
             width: '100%',
-        }
+        },
+        '& *': {
+            fontFamily: 'audiowide'
+        },
+    },
+    text: {
+        '& *': {
+                fontFamily: 'audiowide'
+            },
+        // display: 'block',
+        // width: '25rem',
+        // overflow: 'hidden',
+        // textOverflow: 'ellipsis',
+        // whiteSpace: 'nowrap',
     }
 }))
 
@@ -126,11 +137,11 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                         <Button variant="contained" color="primary" onClick={clearSelectCategories} size='small'>Clear</Button>
                         <Button variant="contained" color="primary" onClick={handleCloseMenu} size='small'>Select</Button>
                     </Grid>
-                    <MenuItem value="" disabled>Categories</MenuItem>
+                    <MenuItem value="" disabled className={classes.text}>Categories</MenuItem>
                     {categories.map((category) => (
-                        <MenuItem key={category} value={category} >
+                        <MenuItem key={category} value={category}>
                             <Checkbox checked={ selectCategories.indexOf(category) > -1  }/>
-                            <ListItemText primary={category}/>
+                            <ListItemText primary={category} className={classes.text}/>
                         </MenuItem>
                     ))}
             </Select>

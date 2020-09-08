@@ -10,8 +10,9 @@ import { categories } from '../BaseComponents/WorkshopCategories'
 const useStyles = makeStyles((theme) => ({
   formControl: {
     width: '100%',
-    marginBottom: theme.spacing(1)
-  }
+    marginBottom: theme.spacing(1),
+    
+  },
 }));
 
 
@@ -23,7 +24,7 @@ const CategoryDropdown = ({category}) => {
     
 
     const categoriesList = categories.map( category => {
-      return <MenuItem key={category} value={category}>{category}</MenuItem>
+      return <MenuItem key={category} value={category} style={{fontFamily: 'audiowide'}}>{category}</MenuItem>
     })
 
     return (
@@ -31,7 +32,7 @@ const CategoryDropdown = ({category}) => {
         <FormControl variant="filled" className={classes.formControl}>
         <InputLabel id="select-filled-label">Workshop Category</InputLabel>
         <Select labelId="select-filled-label" id="select-filled" {...category} >
-            <MenuItem value=""><em>Select a Category</em></MenuItem>
+            <MenuItem style={{fontFamily: 'audiowide'}} value=""><em>Select a Category</em></MenuItem>
             {categoriesList}
         </Select>
         </FormControl>
