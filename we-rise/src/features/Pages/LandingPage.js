@@ -5,21 +5,20 @@ import Box from '@material-ui/core/Box'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import Card from '@material-ui/core/Card'
 import { makeStyles } from '@material-ui/core/styles'
 
 import PublicNavBar from '../NavBar/PublicNavBar'
 import Modal from '../BaseComponents/Modal'
 import SignUpModal from '../Authentication/SignUpModal'
 import SignInModal from '../Authentication/SignInModal'
-import LandingPageWorkshopCard from './LandingPageWorkshopCard'
+import LandingPageWorkshopCard from '../Landing/LandingPageWorkshopCard'
 
 import VideoChatPartyGif from '../../styling/Assets/Media/VideoChatParty.gif'
 import WeRiseBackground from '../../styling/Assets/Media/WeRiseGradientCircleGridBackground.png'
 import WeRiseLogo from '../../styling/Assets/Media/WeRiseLogo.png'
 import ConnectingKnowledgeImage from '../../styling/Assets/Media/ConnectingKnowledge.gif'
 
-import { workshops } from './LandingPageWorkshops'
+import { workshops } from '../Landing/LandingPageWorkshops'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
         width: '100%',
-        minHeight: '40rem',
         padding: theme.spacing(2),
         color: '#FFFFFF'
     },
@@ -41,13 +39,17 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#282828',
         padding: theme.spacing(2),
         margin: theme.spacing(1),
-        color: '#FFFFFF'
+        color: '#FFFFFF',
     },
     paperWrapper : {
         padding: theme.spacing(1),
         width: '49%',
         backgroundColor: '#282828',
-        height: '100%'
+        height: '100%',
+        '&:hover': {
+            border: '2px solid  #F89B29',
+            cursor: 'pointer'
+            },
     },
     logo: {
         maxWidth: '25rem',
@@ -86,6 +88,10 @@ const LandingPage = () => {
         setOpenSignUp(!openSignUp)
     }
 
+    const handleSignUpModal = () => {
+        toggleSignUpModal()
+    }
+
     return (
         <>
         <Grid container className={classes.root} display="flex" direction="column" wrap='nowrap'>
@@ -109,7 +115,7 @@ const LandingPage = () => {
             </Grid>
 
             {/* Section 2 */}
-            <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`, minHeight: '45rem'}} display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={12}>
+            <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`}} display="flex" direction="column" justify='center' alignItems='center' wrap='nowrap' md={12}>
                 <Paper className={classes.paper} style={{width: '100%'}} >
                     <Grid className={classes.wrapper} container item display="flex" direction="row" justify='flex-start' alignItems='center' wrap='nowrap'>
                         <Box bgcolor="#666666" p={2} style={{display:'flex', justifyContent:'center', borderRadius: '4px'}}>
@@ -117,7 +123,7 @@ const LandingPage = () => {
                         </Box>
                         <Box p={4} style={{display:'flex', justifyContent:'space-around', flexDirection:'column', alignItems:'flex-start'}}>
                             <Typography variant='h4' align='center' style={{marginBottom: '2rem'}}>
-                            A Community-Driven Skills Share VideoChat Platform Where You Can...
+                            A Community-Driven Skills Share VideoChat Platform to...
                             </Typography>
                             <Typography variant='h4' gutterBottom={true} align='center'>
                             Build Your Skills
@@ -136,7 +142,7 @@ const LandingPage = () => {
                 </Paper>
                 <Grid className={classes.wrapper} container item display="flex" direction="row" justify='space-between' alignItems='center' wrap='nowrap'>
                     <Paper className={classes.paperWrapper}>
-                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem', height: '100%'}}>
+                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem', height: '100%'}} onClick={handleSignUpModal}>
                             <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
                                 Empower Your Community with Your Skills and Knowledge 
                             </Typography>
@@ -146,7 +152,7 @@ const LandingPage = () => {
                         </Paper>
                     </Paper>
                     <Paper className={classes.paperWrapper}>
-                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem',  height: '100%'}} >
+                        <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem',  height: '100%'}} onClick={handleSignUpModal}>
                             <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
                             Empower Yourself and Share in Your Commmunity's Collective Knowledge
                             </Typography>
@@ -165,13 +171,13 @@ const LandingPage = () => {
                 </Typography>
                 <Grid container item display="flex" direction="row" justify='space-evenly' alignItems='center' wrap='nowrap' md={12}>
                     {workshops.map(workshop => {
-                        return <LandingPageWorkshopCard key={workshop.workshop_id} workshop={workshop}/>
+                        return <LandingPageWorkshopCard handleSignUpModal={handleSignUpModal} key={workshop.workshop_id} workshop={workshop}/>
                     })}
                 </Grid>
             </Grid>
             
             {/* Section 4 */}
-            <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`}} display="flex" direction="column" justify='space-evenly' alignItems='center' wrap='nowrap' md={12}>
+            <Grid className={classes.container} container item style={{backgroundImage: `url(${WeRiseBackground})`, minHeight: '30rem'}} display="flex" direction="column" justify='space-evenly' alignItems='center' wrap='nowrap' md={12}>
                 <Typography variant='h3' gutterBottom={true} align='center'>
                             Ready to Share in Your Future Communities?
                 </Typography>

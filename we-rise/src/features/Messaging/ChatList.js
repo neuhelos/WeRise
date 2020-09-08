@@ -85,6 +85,13 @@ const useStyles = makeStyles((theme) => ({
         },
         divider: {
             backgroundColor: '#A3A3A3'
+        },
+        text: {
+            width: '20rem',
+            display: 'block',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap'
         }
     })
 )
@@ -135,12 +142,12 @@ const ChatList = ( props ) => {
                     </ListItemAvatar>
                     <ListItemText
                         primary={
-                            <Typography style={{overflow: 'ellipsis'}}>
+                            <Typography className={classes.text}>
                                 {chat.usersEmail.length <= 2 ? currentUserChatPeers[0].firstName : currentUserChatPeers.map(user => user.firstName).join(" & ")}
                             </Typography>
                         }
                         secondary={
-                                <Typography style={{overflow: 'ellipsis'}}>
+                                <Typography className={classes.text}>
                                     {chat.messages[chat.messages.length-1].message}
                                 </Typography>
                         }

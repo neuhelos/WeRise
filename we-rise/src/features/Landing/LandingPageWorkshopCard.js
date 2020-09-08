@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -18,13 +18,15 @@ import { dateFormat } from '../../Utilities/dateFormat'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: '100%',
+        width: '100%',
+
         },
     paperWrapper : {
+        flex: 1,
         width: '25%',
         backgroundColor: '#282828',
         padding: theme.spacing(1),
-        margin: theme.spacing(2)
+        margin: theme.spacing(1)
     },
     paper: { 
         width: '100%',
@@ -49,18 +51,20 @@ const useStyles = makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    avatar: {
-
+    text: {
+       
     },
 }));
 
-const LandingPageWorkshopCard = ({workshop}) => {
+const LandingPageWorkshopCard = ({workshop, handleSignUpModal} ) => {
 
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = useState(false);
 
-    const handleExpandClick = () => {
+
+    const handleExpandClick = (event) => {
         setExpanded(!expanded);
+        event.stopPropagation()
     };
 
     let date = dateFormat(workshop.start_time).date
@@ -70,13 +74,15 @@ const LandingPageWorkshopCard = ({workshop}) => {
 
         <Paper  className={classes.paperWrapper}>
             <Paper className={classes.paper}>
-                <Card className={classes.root}>
-                    <CardHeader
+                <Card className={classes.root} onClick={handleSignUpModal}>
+                    <CardHeader style={{width: '100%'}}
                     avatar={
                         <Avatar aria-label="recipe" className={classes.avatar} src={workshop.user_pic} alt={workshop.firstn.toUpperCase()}>
                         </Avatar>
                     }
-                    title={workshop.title}
+                    title={
+                        <Typography className={classes.text} style={{width: '10rem'}} noWrap>{workshop.title}</Typography>
+                    }
                     subheader={
                         <>
                         <Typography className={classes.text}>{`${date}`}</Typography>
@@ -90,7 +96,7 @@ const LandingPageWorkshopCard = ({workshop}) => {
                     image={workshop.workshop_img}
                     title={workshop.title}
                     />
-                    <CardActions disableSpacing>
+                    <CardActions disableSpacing onClick={handleExpandClick}>
                     <Typography>
                         Read More >
                     </Typography>
@@ -103,8 +109,11 @@ const LandingPageWorkshopCard = ({workshop}) => {
                         <ExpandMoreIcon />
                     </IconButton>
                     </CardActions>
-                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <Collapse in={expanded} timeout="auto" unmountOnExit onClick={handleExpandClick}>
                         <CardContent>
+                            <Typography gutterBottom={true}>
+                                Title: {workshop.title}
+                            </Typography>
                             <Typography gutterBottom={true}>
                                 Category: {workshop.category}
                             </Typography>
