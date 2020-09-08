@@ -145,8 +145,12 @@ const EditUserModal = ({ toggleModal }) => {
         alignItems="center"
         pt={30}
       >
+        <br></br>
         <form className={classes.root} onSubmit={handleSubmit}>
-          <Typography className={classes.input} variant="h6">
+          <Typography className={classes.input} variant="h6"
+          >
+
+            <br></br>
             Edit Your We Rise Account
           </Typography>
           <Grid
@@ -164,7 +168,7 @@ const EditUserModal = ({ toggleModal }) => {
               label="Preferred First Name"
               placeholder="Enter First Name"
               variant="filled"
-              {...firstName}
+              {...firstn}
               required
             />
             <Divider
@@ -178,7 +182,7 @@ const EditUserModal = ({ toggleModal }) => {
               label="Preferred Last Name"
               placeholder="Enter Last Name"
               variant="filled"
-              {...lastName}
+              {...lastn}
               required
             />
           </Grid>
