@@ -31,8 +31,10 @@ const useStyles = makeStyles((theme) => ({
     paperWrapper: {
         width: '90%',
         padding: theme.spacing(1),
-        margin: theme.spacing(1),
+        margin: theme.spacing(5),
         backgroundColor: '#282828',
+        justifyContent: 'center',
+        alignContent: 'center',
     },
     paperTitle: {
         width: '100%',
@@ -43,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         fontSize:'40px',
     },
+    text:{
+        justifyContent: 'center',
+        alignContent: 'center',
+    }
 }))
 
  

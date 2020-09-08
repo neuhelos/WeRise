@@ -15,12 +15,14 @@ import Dropzone from '../BaseComponents/FileDropzone'
 import {useInput} from '../../Utilities/CustomHookery'
 import Chip from '@material-ui/core/Chip';
 import {userEditor} from '../../Utilities/FetchFunctions'
-
+import Modal from '@material-ui/core/Modal';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '60%',
-        height: '40%',
+        width: '100%',
+        height: '60%',
+        padding: 'top',
+
         '& *': {
             fontFamily: 'audiowide',
             textAlign: 'center',
@@ -31,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
         grid: {
           height: '50%',
         }
+    },
+    container:{
+      height: '50%',
     },
     image : {
         width:'50%',
@@ -128,9 +133,10 @@ const EditUserModal = ({ toggleModal}) => {
     )
   }
     return (
+      
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
                     <form className={classes.root} onSubmit={handleSubmit}>
-          <Typography className={classes.input} variant="h6">Create Your We Rise Account</Typography>
+          <Typography className={classes.input} variant="h6">Edit Your We Rise Account</Typography>
           <Grid container className={classes.container} display="flex" direction="row" justify="space-evenly" alignItems="center" wrap='nowrap'>
             <TextField className={classes.input} id="firstName" label="Preferred First Name" placeholder="Enter First Name" variant="filled" {...firstName} required />
             <Divider className={classes.divider} orientation="vertical" flexItem />
