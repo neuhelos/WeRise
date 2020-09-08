@@ -1,6 +1,6 @@
 import React, { useState, useSelector } from 'react'
 import axios from 'axios'
-import { useHistory} from 'react-router-dom'
+import { useHistory, useParams} from 'react-router-dom'
 import { apiURL } from '../../Utilities/apiURL'
 import {storage, firestore} from '../../Utilities/firebase'
 import Grid from '@material-ui/core/Grid';
@@ -14,12 +14,13 @@ import { current } from '@reduxjs/toolkit'
 import Dropzone from '../BaseComponents/FileDropzone'
 import {useInput} from '../../Utilities/CustomHookery'
 import Chip from '@material-ui/core/Chip';
-
+import {userEditor} from '../../Utilities/FetchFunctions'
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
+        width: '60%',
+        height: '40%',
         '& *': {
             fontFamily: 'audiowide',
             textAlign: 'center',
@@ -27,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
             border: 'none',
             margin: theme.spacing(1)
         },
+        grid: {
+          height: '50%',
+        }
     },
     image : {
         width:'50%',
@@ -36,11 +40,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 const EditUserModal = ({ toggleModal}) => {
-    // const currentUser = useSelector((state) => state.currentUserSession.uid);
+  // const currentUser = useSelector((state) => state.currentUserSession.uid);
   const classes = useStyles();
   const history = useHistory();
-  // const email = useInput("")
-  // const password = useInput("")
+
   const firstName = useInput("")
   const lastName = useInput("")
   const bio = useInput("")
@@ -51,6 +54,8 @@ const EditUserModal = ({ toggleModal}) => {
   const facebook = useInput("")
   const twitter = useInput("")
   const linkedin = useInput("")
+  const params = useParams();
+  let user_id = params.id;
 
   const handleSkillsTagsChange = (event, values) => {
     setSkills(values)
@@ -62,7 +67,7 @@ const EditUserModal = ({ toggleModal}) => {
     }
   }
 
-  const handleCurrentUser = (currentUser) => {
+  const handleCurrentUser = (user_id) => {
       
     toggleModal()
     
@@ -75,31 +80,31 @@ const EditUserModal = ({ toggleModal}) => {
     try {
   
       
-      let res =  await axios.post(`${apiURL()}/users`, {
-        // id: currentUser.uid,
-        firstn: firstName.value,
-        lastn: lastName.value,
-        // email: email.value,
-        user_pic: uploadPic,
-        bio : bio.value,
-        instagram: instagram.value,
-        facebook: facebook.value,
-        twitter: twitter.value,
-        linkedin: linkedin.value
-      })
+      let res =  await userEditor(user_id)
+      // axios.post(`${apiURL()}/users/`, {
+      //   firstn: firstName.value,
+      //   lastn: lastName.value,
+      //   user_pic: uploadPic,
+      //   bio : bio.value,
+      //   instagram: instagram.value,
+      //   facebook: facebook.value,
+      //   twitter: twitter.value,
+      //   linkedin: linkedin.value
+      // })
+      debugger
       
-      skills.forEach( async (skill) => {
-          let res = await axios.post(`${apiURL}/usersSkills`, {
-            //   currentUser: currentUser,
-              skills: skill.toLowerCase()
-        })
-      })
+      // skills.forEach( async (skill) => {
+      //     let res = await axios.post(`${apiURL}/usersSkills`, {
+      //       //   currentUser: currentUser,
+      //         skills: skill.toLowerCase()
+        // })
+      // })
     } catch (err){
       console.log(err)
       alert(err.message)
       return(<p>{err.message}</p>)
     }
-    history.push(`/Profile/${handleCurrentUser}`)
+    history.patch(`/Profile/${handleCurrentUser}`)
   }
 
     
