@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const UserProfilePage = ({user}) => {
+  const classes = useStyles()
   return (
     <div className="userProfile">
         <FetchUser/>

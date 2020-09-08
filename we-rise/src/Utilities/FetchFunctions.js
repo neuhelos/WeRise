@@ -13,12 +13,12 @@ export const fetchUserById = async(id) => {
     }
   }
 
-//   export const updateUser = async ( userId, data ) => {
-//     const API = apiURL()
-//     try {
-//         let res = await axios.patch(API + `/users/${id}` + data);
-//         return res.data.user;
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+  export const userEditor = async ( id, data ) => {
+    const API = apiURL()
+    try {
+        let res = await axios.patch(API + `/users/${id}` + data);
+        return res.data.user;
+    } catch (error) {
+        console.log(error);
+    }
+}
