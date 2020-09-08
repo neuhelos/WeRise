@@ -29,8 +29,8 @@ export const workshops = [
         start_time: '2020-10-03T17:00:00.000Z',
         descriptions: `Learn the bare-bones basics of Illustrator and Indesign, the leading software professionals and non-professionals use to 
         design great posters, flyers and logos. We’ll cover making and editing vectors in Illustrator and basic layout for a poster 
-        in Indesign. If you don’t own a copy of the Illustrator and InDesign please download the free 30-day a trial 
-        version from Adobe Creative Suite prior to the workshop so you can follow along!`,
+        in Indesign. If you don’t own a copy of the software please download the free 30-day a trial 
+        version from Adobe Creative Suite prior to the workshop.`,
         category: 'Art & Design',
         workshop_img: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FVisualResistance.png?alt=media&token=664084da-3e75-4c27-be5b-6b2bc0d725a4',
     },

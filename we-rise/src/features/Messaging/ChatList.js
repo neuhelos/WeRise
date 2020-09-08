@@ -172,7 +172,7 @@ const ChatList = ( props ) => {
 
     return (
         <Grid container className={classes.root} display="flex" direction="column" justify="flex-start" alignItems="center">
-            <Button className={classes.button} variant='contained' fullWidth onClick={props.newChat}>CREATE NEW CHAT</Button>
+            <Button className={classes.button} variant='contained' fullWidth onClick={props.newChat}>START A CHAT</Button>
             <Box component='div' className={classes.listContainer} p={0}>
                 <List className={classes.list}>
                     { !chatList.length ? null : chatList }

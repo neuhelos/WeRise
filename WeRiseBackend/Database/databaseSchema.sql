@@ -110,25 +110,23 @@ installation artists, and anyone who wants or likes to play with synthesized aud
 
 ('10', '2020-08-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'Classic Films', 'Breaking down great movies', '2020-10-16 10:00-04', '2020-10-16 12:00-04',  'Film, Photography and Theater', 5, 'https://cdn.sparkfun.com/assets/learn_tutorials/4/0/8/daisy-2.png'),
 
-('4c94f9ff-c634-4e78-9816-7313b7d6f5b2s', '2020-09-03 16:00-04', 'eokavuu8ObRdvLA47RfSCZ74dI52', 'Women, Nonbinary & POC-Centric Wikipedia Editing', 
+('4c94f9ff-c634-4e78-9816-7313b7d6f5b2s', '2020-09-03 16:00-04', 'eokavuu8ObRdvLA47RfSCZ74dI52', 'POC-Centric Wikipedia Editing', 
 'Join me for a workshop on how to update Wikipedia articles and write new ones.
 I will also share my experience on donating work to Wikipedia and how to contribute to it in a way that helps
-make marginalized communities more visible. All skill levels are welcome.
-I"m working towards creating a space that encourages people of color and women to join the Wikipedia
-movement and asks white men to focus on gaps in coverage on Wikipedia.',
+make marginalized communities more visible. All skill levels are welcome.',
 '2020-09-20 17:00-04', '2020-09-20 19:00-04', 'Technology, Coding & Programming', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWikipediaEditing.jpg?alt=media&token=5412b179-05fd-474d-b66d-f82022e2e6f3'),
 
 ('12985d00-a2c5-4c78-86da-b4860648f2f9', '2020-08-26 17:00-04', 'ORwZBVSWrwW0Nug7HS3UgLl6Me63','Reimagine Graphic Design in a Liberatory World', 
 'Learn the bare-bones basics of Illustrator and Indesign, the leading software professionals and non-professionals use to 
 design great posters, flyers and logos. We’ll cover making and editing vectors in Illustrator and basic layout for a poster 
-in Indesign. If you don’t own a copy of the Illustrator and InDesign please download the free 30-day a trial 
-version from Adobe Creative Suite prior to the workshop so you can follow along!',
+in Indesign. If you don’t own a copy of the software please download the free 30-day a trial 
+version from Adobe Creative Suite prior to the workshop.',
 '2020-10-03 17:00-04', '2020-10-03 20:00-04', 'Art & Design', 4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FVisualResistance.png?alt=media&token=664084da-3e75-4c27-be5b-6b2bc0d725a4'),
 
 ('f0c950de-d484-418d-b25a-7447cdbace5f', '2020-08-22 18:00-04', 'acKHM3rlo1ZZxwwTVEgC0gzUDBy2', 'Women Know Power Tools', 
 'A series of household DIY tutorials made by women, for women giving instructions on basic DIY power tool enhanced tasks 
 like changing a lightbulb, smashing a window, painting a wall and using a drill.
-You are encouraged to share your power tool sharpened knowledge and create your own workshop',
+You are encouraged to share your power tool sharpened knowledge and create your own workshop.',
 '2020-09-17 16:00-04', '2020-09-17 18:00-04', 'Home Improvement & Garden', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FDIYWomen.jpg?alt=media&token=050d1114-6e07-4b6f-a2f3-9c26f22375e6'),
 
 ( '7e01c9e2-4fed-4a7e-80f2-6a8509ad1417', '2020-09-05 14:00-04', 'ZIRgXopThgcOFwZ5f4ZjVedPnSj1', 'Job Ready in Tech',
@@ -143,13 +141,11 @@ with hacks that will sharpen your culinary skills',
 '2020-11-06 15:00-04', '2020-11-06 16:00-04', 'Food & Culinary Arts', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCookingHacks.jpg?alt=media&token=65faf311-3f80-4ce5-b97a-60b203d93535'),
 
 ( '0a317023-8ac4-42c5-ae61-c044eb9e8a7a', '2020-08-30 13:00-04', '5y3iP5DXmMXDslcRues5GaQHbCE3', 'DIY Radical Collaborative Publishing', 
-'This workshop covers the history and contemporary applications of radical independent and collaborative publishing models 
-including Cartoneras, zines, protest posters, prints, mud stencils, social sculptures, art builds, and more.
+'This workshop covers the history and contemporary applications of radical independent and collaborative publishing models.
 Participants will learn effective devices of democratization by creating unique hand-painted, hinge and stab bound 
 structures using cardboard and up-cycled materials. Such structures enable social, political, and artistic expressions 
 and merge visual and literary forms. The hinge-bound structure can double as a multi tool (“swiss army knife”) of protest posters 
-— made for and by the people! Participants are responsible for sourcing their own supplies from the materials list. 
-Teaching artists will answer questions about materials in advance of the workshop start date.',
+— made for and by the people! Participants are responsible for sourcing their own supplies from the materials list.',
 '2020-12-13 18:00-04', '2020-12-13 21:00-04', 'Creative Writing & Literature', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FHingeandStabBoundStructures.jpg?alt=media&token=7939d795-bd39-4099-bd69-f44fe2f95183');
 
 

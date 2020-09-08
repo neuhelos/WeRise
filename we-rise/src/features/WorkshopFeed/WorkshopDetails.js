@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(2)
     },
     image : {
-        width: '75%',
+        width: '100%',
         //border: '2px solid #666666', 
         borderRadius: '4px'
     },
