@@ -56,7 +56,7 @@ const RegisteredWorkshopModal = ({ handleCloseModal, workshop, ...props }) => {
             <>
                 <WorkshopDetails workshop={workshop} {...props}/>
                 <Grid className={classes.root} container display="flex" direction="row" justify="space-evenly" alignItems="center">
-                    { new Date() >= new Date(workshop.start_time) - 6.048e+8 ? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push(`/videoConference/${workshop.user_id}${workshop.workshop_id}`)}>Join VideoChat</Button> : null}
+                    { new Date() >= new Date(workshop.start_time) - 6.048e+8 ? <Button variant="contained" color="primary" type="submit" onClick = {() => history.push(`/videoConference/${workshop.workshop_id}`)}>Join VideoChat</Button> : null}
                     <Button variant="contained" color="primary" onClick={handleCloseModal}>Close</Button>
                     <Button variant="contained" color="primary" type="submit" onClick={handleNext}>Cancel Registration</Button> 
                 </Grid>

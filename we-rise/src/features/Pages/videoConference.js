@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../Authentication/AuthenticationSlice";
+import { useParams } from 'react-router-dom';
 import Jitsi from '../jitsi/JitsiComponent'
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -53,11 +54,17 @@ const useStyles = makeStyles((theme) => ({
 
 
 const VideoConference = () => {
-   
+    const [registeredWorkshop, SetRegisteredWorkshops] = useState([]);
+    const params = useParams();
+
     return (
         <div className='videoComponent'>
             <h1>Welcome to the Workshop</h1>
+            <h3>Hosted by : Jay Jones</h3>
             <Jitsi></Jitsi>
+
+            <h5>Description</h5>
+            <p>THis workshop is about aslkdflajdbnfjkansjdbkdjsank</p>
         </div>
     )
 }
