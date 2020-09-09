@@ -29,7 +29,7 @@ const Footer = () => {
 
     return (
         <BottomNavigation className={classes.root}>
-            <a href={`https://github.com/neuhelos/WeRise`} className={classes.content}>
+            <a href={`https://github.com/neuhelos/WeRise`} className={classes.content} target="_blank" rel="noopener noreferrer">
                 <GitHubIcon />
 			</a>
             <Typography className={classes.content} align='center'>© 2020 WeRise</Typography>
