@@ -65,7 +65,7 @@ const FetchUser = () => {
   const fetchUser = async () => {
      let res = await fetchUserById(user_id);
     setProfile(res);
-    console.log(setProfile(res.id));
+    // console.log(setProfile(res.id));
     setFirstn(res.firstn);
     setLastn(res.lastn);
     setEmail(res.email);
