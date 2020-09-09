@@ -16,7 +16,7 @@ export const fetchUserById = async(id) => {
   export const userEditor = async ( id, data ) => {
     const API = apiURL()
     try {
-        let res = await axios.patch(API + `/users/${id}` + data);
+        let res = await axios.patch(API + `/users/${id}`, data );
         return res.data.user;
     } catch (error) {
         console.log(error);
