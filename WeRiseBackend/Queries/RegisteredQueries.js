@@ -57,8 +57,7 @@ const getRegisteredWorkshop = async (req, res, next) => {
   const getRegisteredCount = async (req, res, next)=>{
     try {
       const registered = await db.any(
-        'SELECT count(workshop_id) AS workshop_count FROM registered_workshops where workshop_id = $1', req.body
-      );
+        'SELECT count(workshop_id) AS workshop_count FROM registered_workshops where workshop_id = $1', req.params.id);
       res.json({
         status: "success",
         message: 'Workshop Participant Count',
