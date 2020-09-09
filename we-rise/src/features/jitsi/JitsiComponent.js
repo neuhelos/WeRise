@@ -6,21 +6,21 @@ import Jitsi from 'react-jitsi'
 import '../../styling/jitsi.css'
 
         
-        const JedaiVideoConfig = () => {
+        const JedaiVideoConfig = (workshop) => {
             const params = useParams();
-            const currentUser = useSelector( state => state.currentUserSession.email );
-            debugger
+            const currentUser = useSelector( state =>  `${state.currentUserSession.firstn} ${state.currentUserSession.lastn}`);
+            
             const handleAPI = JitsiMeetAPI => {
               JitsiMeetAPI.executeCommand("toggleVideo");
             };
-            let workshopTitle = sessionStorage.getItem("workshopTitle");
+            
             return (
               <>
-                <h2>{workshopTitle}</h2>
+                
                 <Jitsi classname ="videoComponent"
                   domain="meet.jit.si"
                   onAPILoad={handleAPI}
-                  roomName={`WeRiseWorkshop${params.workshopid}`}
+                  roomName={`WeRiseWorkshop${workshop.workshop.user_id}${workshop.workshop.workshop_id}`}
                   displayName={currentUser}
                   interfaceConfig={interfaceConfig}
                   config={config}

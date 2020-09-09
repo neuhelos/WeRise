@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentUser } from "../Authentication/AuthenticationSlice";
+import axios from 'axios'
+import { apiURL } from '../../Utilities/apiURL';
 import { useParams } from 'react-router-dom';
 import Jitsi from '../jitsi/JitsiComponent'
 
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
 import '../../styling/jitsi.css'
 
 const useStyles = makeStyles((theme) => ({
@@ -54,17 +51,33 @@ const useStyles = makeStyles((theme) => ({
 
 
 const VideoConference = () => {
-    const [registeredWorkshop, SetRegisteredWorkshops] = useState([]);
-    const params = useParams();
+    const [registeredWorkshop, setRegisteredWorkshops] = useState([]);
+    
+    const params = useParams(); 
+
+    const getWorkshopInfo = async() =>{
+        try {
+            const videoWorkshop = await axios.get(`${apiURL()}/workshops/videoConference/${params.workshopid}`)
+            setRegisteredWorkshops(videoWorkshop.data.payload[0])
+        } catch (error) {
+            console.log(error)
+            throw Error(error)
+        }
+    }
+    
+    
+    useEffect(() => {
+        getWorkshopInfo();
+    },[])
 
     return (
         <div className='videoComponent'>
-            <h1>Welcome to the Workshop</h1>
-            <h3>Hosted by : Jay Jones</h3>
-            <Jitsi></Jitsi>
+            <h1>Welcome to {registeredWorkshop.title}</h1>
+            <h3>Led by : {registeredWorkshop.firstn} {registeredWorkshop.lastn}</h3>
+            <Jitsi workshop = {registeredWorkshop}/>
 
             <h5>Description</h5>
-            <p>THis workshop is about aslkdflajdbnfjkansjdbkdjsank</p>
+            <p>{registeredWorkshop.descriptions}</p>
         </div>
     )
 }
