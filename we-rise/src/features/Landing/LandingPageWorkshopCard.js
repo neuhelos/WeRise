@@ -98,7 +98,7 @@ const LandingPageWorkshopCard = ({workshop, handleSignUpModal} ) => {
                     />
                     <CardActions disableSpacing onClick={handleExpandClick}>
                     <Typography>
-                        Read More >
+                        Read More
                     </Typography>
                     <IconButton
                         className={clsx(classes.expand, {[classes.expandOpen]: expanded,})}
