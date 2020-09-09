@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import Jitsi from '../jitsi/JitsiComponent'
 
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid'
+
 import '../../styling/jitsi.css'
 
 const useStyles = makeStyles((theme) => ({
@@ -71,14 +73,14 @@ const VideoConference = () => {
     },[])
 
     return (
-        <div className='videoComponent'>
+        <Grid display='flex' direction='column' justify='center' className='videoComponent' alignItems='center'>
             <h1>Welcome to {registeredWorkshop.title}</h1>
             <h3>Led by : {registeredWorkshop.firstn} {registeredWorkshop.lastn}</h3>
             <Jitsi workshop = {registeredWorkshop}/>
 
             <h5>Description</h5>
             <p>{registeredWorkshop.descriptions}</p>
-        </div>
+        </Grid>
     )
 }
 

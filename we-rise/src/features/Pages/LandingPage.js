@@ -143,7 +143,7 @@ const LandingPage = () => {
                 <Grid className={classes.wrapper} container item display="flex" direction="row" justify='space-between' alignItems='center' wrap='nowrap'>
                     <Paper className={classes.paperWrapper}>
                         <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem', height: '100%'}} onClick={handleSignUpModal}>
-                            <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                            <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000', height: '5rem'}}>
                                 Empower Your Community with Your Skills and Knowledge 
                             </Typography>
                             <Typography variant='subtitle1' gutterBottom={true} align='center' style={{color: '#000000'}}>
@@ -156,7 +156,7 @@ const LandingPage = () => {
                     </Paper>
                     <Paper className={classes.paperWrapper}>
                         <Paper style={{backgroundColor: '#F5F5F5', display:'flex', justifyContent:'flex-start', flexDirection: 'column', padding: '0.25rem',  height: '100%'}} onClick={handleSignUpModal}>
-                            <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                            <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000', height: '5rem'}}>
                             Empower Yourself and Share in Your Commmunity's Collective Knowledge
                             </Typography>
                             <Typography variant='subtitle1' gutterBottom={true} align='center' style={{color: '#000000'}}>
