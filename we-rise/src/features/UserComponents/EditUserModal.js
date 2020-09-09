@@ -77,6 +77,7 @@ const EditUserModal = ({ toggleModal }) => {
 
   const handleCurrentUser = (user_id) => {
     dispatch(toggleModal(user_id));
+    
   };
 
   const handleSubmit = async (event) => {
@@ -99,11 +100,12 @@ const EditUserModal = ({ toggleModal }) => {
           bio: bio.value,
           skills: skills.value,
           uploadPic: uploadPic.value,
+          insagram:instagram.value,
+          
         };
         let updated = await userEditor(user_id, data);
-
        
-          history.push("/" + updated);
+          history.push("/Profile/" + updated);
         
 
         handleCurrentUser();
