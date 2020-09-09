@@ -20,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
-        backgroundColor: '#F5F5F5'
+        backgroundColor: '#F5F5F5',
+        '& *': {
+            fontFamily:'audiowide'
+        }
     },
     header: {
         width: '60%'
@@ -37,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     text: {
-        fontFamily:'audiowide'
+
     },
     participants: {
         fontFamily:'audiowide',
@@ -55,9 +58,10 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     profileLink: {
+        display: 'table',
         color: '#FF0F7B',
         '&:hover': {
-            color: '#36386D'
+            color: '#36386D',
         },
     }
     }));
