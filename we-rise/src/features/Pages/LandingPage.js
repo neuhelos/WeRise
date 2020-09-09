@@ -146,8 +146,11 @@ const LandingPage = () => {
                             <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
                                 Empower Your Community with Your Skills and Knowledge 
                             </Typography>
-                            <Typography variant='subtitle2' gutterBottom={true} align='center' style={{color: '#000000'}}>
-                                Create a workshop
+                            <Typography variant='subtitle1' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                                Create a workshop where you can share a skill, specialized knowledge or training, your expertise or
+                                practical life experiences on a one-on-one basis or with a small group, while socially distancing, 
+                                using our videochat platform to help build communities and new virtual spaces for galvanizing
+                                folx with the tools they need for personal growth and creating change.
                             </Typography>
                         </Paper>
                     </Paper>
@@ -158,6 +161,8 @@ const LandingPage = () => {
                             </Typography>
                             <Typography variant='subtitle2' gutterBottom={true} align='center' style={{color: '#000000'}}>
                                 Join and participate 
+                                im
+                                connections
                             </Typography>
                         </Paper>
                     </Paper>
