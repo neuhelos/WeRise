@@ -153,7 +153,7 @@ const SignUpModal = ({toggleModal, toggleSignInModal}) => {
     return (
       <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" maxWidth="sm">
         <form className={classes.root} onSubmit={handleSubmit}>
-          <Typography className={classes.input} variant="h6">Create Your We Rise Account</Typography>
+          <Typography className={classes.input} variant="h6">Create Your WeRise Account</Typography>
           <Grid container className={classes.container} display="flex" direction="row" justify="space-evenly" alignItems="center" wrap='nowrap'>
             <TextField className={classes.input} id="firstName" label="Preferred First Name" placeholder="Enter First Name" variant="filled" {...firstName} required />
             <Divider className={classes.divider} orientation="vertical" flexItem />
@@ -165,7 +165,7 @@ const SignUpModal = ({toggleModal, toggleSignInModal}) => {
             <TextField className={classes.input} id="password" type="password" label="Password" placeholder="Enter Password" variant="filled" {...password} required/>
           </Grid>
           <TextField className={classes.inputFullWidth} inputProps={{style: {textAlign: 'left'}}} id="bio" label="Short Bio" placeholder="Tell Folx About Yourself" variant="filled" multiline rows={4} {...bio} required/>
-          <Autocomplete className={classes.inputFullWidth} multiple id="userSkills" options={[]} defaultValue={""} freeSolo
+          <Autocomplete className={classes.inputFullWidth} multiple id="userSkills" options={[]} defaultValue={""} freeSolo autoSelect
               onChange={handleSkillsTagsChange}
               renderTags={(value, getTagProps) =>
                   value.map((option, index) => (
@@ -189,6 +189,7 @@ const SignUpModal = ({toggleModal, toggleSignInModal}) => {
           </Grid>
           <Dropzone className={classes.container} handleImageChange={handleImageChange} dropzoneText={"Drop or Select Your Profile Image"}/>
           <Grid container display="flex" direction="row" justify="space-evenly" alignItems="center">
+            <Button className={classes.button} variant="contained" color="primary" onClick={() => toggleModal()}> CANCEL </Button>
             <Button className={classes.button} variant="contained" color="primary" onClick={handleCurrentUser}> HAVE AN ACCOUNT? </Button>
             <Button className={classes.button} variant="contained" color="primary" type="submit"> CREATE NEW ACCOUNT </Button>
           </Grid>

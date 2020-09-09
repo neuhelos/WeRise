@@ -146,8 +146,11 @@ const LandingPage = () => {
                             <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
                                 Empower Your Community with Your Skills and Knowledge 
                             </Typography>
-                            <Typography variant='subtitle2' gutterBottom={true} align='center' style={{color: '#000000'}}>
-                                Create a workshop
+                            <Typography variant='subtitle1' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                                Create a workshop where you can share a skill, specialized knowledge or training, your expertise
+                                or practical life experiences on a one-on-one basis or with a small group, while socially distancing, 
+                                using our videochat platform to help build communities and new virtual spaces for galvanizing
+                                folx with the tools they need for personal growth and creating change.
                             </Typography>
                         </Paper>
                     </Paper>
@@ -156,8 +159,13 @@ const LandingPage = () => {
                             <Typography variant='h6' gutterBottom={true} align='center' style={{color: '#000000'}}>
                             Empower Yourself and Share in Your Commmunity's Collective Knowledge
                             </Typography>
-                            <Typography variant='subtitle2' gutterBottom={true} align='center' style={{color: '#000000'}}>
-                                Join and participate 
+                            <Typography variant='subtitle1' gutterBottom={true} align='center' style={{color: '#000000'}}>
+                                Join and participate in interactive and personable workshops, learning a new skill or actualizing
+                                new knowledge that can help you realize personal milestones or overcome common, everyday challenges 
+                                by tapping into the information power and potential of your virtual communities. Create connections
+                                based on shared interests, experiences and destinations and build a virtual community for yourself (Use 
+                                our in-app instant messaging to easily engage with users across the WeRise community). Release the 
+                                potential for your collective development and start connecting.
                             </Typography>
                         </Paper>
                     </Paper>

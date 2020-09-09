@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(1),
         '&:hover': {
             cursor: 'pointer',
-            border: '2px solid  #FF0F7B'
+            border: '2px solid #FF0F7B'
         }
     },
     profileLink: {
