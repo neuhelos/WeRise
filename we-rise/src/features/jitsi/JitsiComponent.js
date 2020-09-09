@@ -3,10 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import Jitsi from 'react-jitsi'
 
+import Grid from '@material-ui/core/Grid'
 import '../../styling/jitsi.css'
 
         
-        const JedaiVideoConfig = (workshop) => {
+        const JitsiVideoConfig = (workshop) => {
             const params = useParams();
             const currentUser = useSelector( state =>  `${state.currentUserSession.firstn} ${state.currentUserSession.lastn}`);
             
@@ -15,9 +16,9 @@ import '../../styling/jitsi.css'
             };
             
             return (
-              <>
+              <Grid container display='flex' direction='column' justify='center' className='videoComponent' alignItems='center'>
                 
-                <Jitsi classname ="videoComponent"
+                <Jitsi className ="videoComponent"
                   domain="meet.jit.si"
                   onAPILoad={handleAPI}
                   roomName={`WeRiseWorkshop${workshop.workshop.user_id}${workshop.workshop.workshop_id}`}
@@ -25,7 +26,7 @@ import '../../styling/jitsi.css'
                   interfaceConfig={interfaceConfig}
                   config={config}
                 />
-              </>
+              </Grid >
             );
           };
           
@@ -69,39 +70,6 @@ import '../../styling/jitsi.css'
             defaultLanguage: "en",
             prejoinPageEnabled: false
           };
-          
 
 
-        // const [room, setRoom] = useState('')
-        // const [name, setName] = useState('')
-        // const [call, setCall] = useState(false)
-      
-        // const handleClick = event => {
-        //   event.preventDefault()
-        //   if (room && name) setCall(true)
-        // }
-      
-        // return call ? (
-        //         <Jitsi
-        //     roomName={room}
-        //     userName={name}
-            
-        //     domain='meet.jit.si/heya'
-        //     containerStyles={{ width: '1200px', height: '800px' }}
-        //     />
-        // ) : (
-        //     <form>
-        //     <input id='room' type='text' placeholder='Room' value={room} onChange={(e) => setRoom(e.target.value)} />
-        //     <input id='name' type='text' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
-        //     <button onClick={handleClick} type='submit'>
-        //       Start / Join
-        //     </button>
-        //   </form>
-        // )
-        
-    
-        
-
-//}
-
-export default JedaiVideoConfig
+export default JitsiVideoConfig
