@@ -73,8 +73,10 @@ const SignInModal = ({toggleModal, toggleSignUpModal}) => {
                 <TextField className={classes.input} id="email" label="Email" placeholder="Enter Your Email" variant="filled" {...email} required/>
                 <TextField className={classes.input} id="password" type="password" label="Password" placeholder="Enter Your Password" variant="filled" {...password} required/>
                 <Grid className={classes.container} container display="flex" direction="row" justify="space-evenly" alignItems="center">
+                    <Button variant="contained" color="primary" onClick={() => toggleModal()}> CANCEL </Button>
                     <Button variant="contained" color="primary" onClick={handleNewUser}> NEW USER? </Button>
                     <Button variant="contained" color="primary" type="submit"> SIGN IN </Button>
+
                 </Grid>
             </Grid>
         </form>

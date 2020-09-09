@@ -189,6 +189,7 @@ const SignUpModal = ({toggleModal, toggleSignInModal}) => {
           </Grid>
           <Dropzone className={classes.container} handleImageChange={handleImageChange} dropzoneText={"Drop or Select Your Profile Image"}/>
           <Grid container display="flex" direction="row" justify="space-evenly" alignItems="center">
+            <Button className={classes.button} variant="contained" color="primary" onClick={() => toggleModal()}> CANCEL </Button>
             <Button className={classes.button} variant="contained" color="primary" onClick={handleCurrentUser}> HAVE AN ACCOUNT? </Button>
             <Button className={classes.button} variant="contained" color="primary" type="submit"> CREATE NEW ACCOUNT </Button>
           </Grid>
