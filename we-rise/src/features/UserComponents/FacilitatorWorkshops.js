@@ -107,7 +107,7 @@ const FacilitatorWorkshops = () => {
         <div className ='FacilitatorWorkshops'>
             <Paper className={classes.paperWrapper}>
                 <Paper className={classes.paperTitle}>
-                    <Typography className={classes.text} variant='subtitle1'>Past Workshop I Facilitated</Typography>
+                    <Typography className={classes.text} variant='subtitle1'>My Past Workshops</Typography>
                 </Paper>
             </Paper>
             {/* <h1>Past Workshop I Facilitated</h1> */}
