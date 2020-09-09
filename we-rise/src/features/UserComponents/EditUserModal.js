@@ -104,7 +104,6 @@ const EditUserModal = ({ toggleModal }) => {
           
         };
         let updated = await userEditor(user_id, data);
-       debugger
        
           history.push("/Profile/" + updated);
         
