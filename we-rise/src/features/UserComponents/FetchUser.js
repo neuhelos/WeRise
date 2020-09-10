@@ -111,7 +111,7 @@ const FetchUser = () => {
           />
           <CardMedia className={classes.media} image={pic} />
           <CardContent value={(firstn, lastn)} image={pic}>
-            <Typography>My Bio: {bio}</Typography>
+            <Typography className={classes.text}>My Bio: {bio}</Typography>
           </CardContent>
         </Grid>
           </Card>

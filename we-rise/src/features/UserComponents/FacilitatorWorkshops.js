@@ -48,6 +48,10 @@ const useStyles = makeStyles((theme) => ({
     text:{
         justifyContent: 'center',
         alignContent: 'center',
+        fontFamily: "audiowide",
+        fontSize: 12,
+        color: "black",
+    
     }
 }))
 
