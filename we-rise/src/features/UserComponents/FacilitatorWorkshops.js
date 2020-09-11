@@ -53,14 +53,14 @@ const useStyles = makeStyles((theme) => ({
 
  
 
-const FacilitatorWorkshops = () => {
+const FacilitatorWorkshops =  () => {
     const classes = useStyles();
     const currentUser = useSelector( state => state.currentUserSession.uid );
     const [UserCreatedWorkshops, setUCWorkshops] = useState([]);
     const [UserPastCreatedWorkshops, setUPCWorkshops] = useState([]); 
     const params = useParams();
     let user_id = params.id;
-
+    
 
     const getWorkshops = async() => {
         try{
@@ -76,8 +76,12 @@ const FacilitatorWorkshops = () => {
     }
     useEffect(() => {
         getWorkshops();
-    },[])
+    },[user_id])
     
+    // if(user_id === currentUser){
+    //     getWorkshops();
+    // }
+
     let currentWorkshops = UserCreatedWorkshops.map(workshop => {
         // debugger
         return <FacilitatorWorkshopCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>
