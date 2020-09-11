@@ -143,9 +143,7 @@ const EditWorkshop = ({ workshop ,handleCloseModal}) => {
         event.preventDefault()
         let id = uuidv4()
         try {
-            let res = await axios.update(`${apiURL()}/workshops`, {
-                id: id,
-                user_id: currentUser,
+            let res = await axios.put(`${apiURL()}/workshops/${workshop.workshop_id}`, {
                 title: title.value,
                 description: description.value,
                 start_time: `${dateFormatter(new Date(selectedDate))} ${time[0]}`,
@@ -156,8 +154,8 @@ const EditWorkshop = ({ workshop ,handleCloseModal}) => {
             })
         
             skills.forEach( async (skill) => {
-                let resSkills = await axios.post(`${apiURL()}/workshopSkills`, {
-                  workshop_Id: id,
+                let resSkills = await axios.put(`${apiURL()}/workshopSkills`, {
+                  workshop_Id: workshop.workshop_id,
                   skill: skill.toLowerCase()
              })
         })
