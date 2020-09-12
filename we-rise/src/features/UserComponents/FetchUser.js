@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import { fetchUserById } from "../../Utilities/FetchFunctions";
+
 import Modal from '../BaseComponents/Modal'
 import EditUserModal from "./EditUserModal";
 import { current } from "@reduxjs/toolkit";
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     padding: theme.spacing(1),
+
     '& *': {
         fontFamily: 'audiowide',
         outlineColor: '#36386D',
@@ -71,10 +73,10 @@ const FetchUser = () => {
   const [pic, setPic] = useState("");
   const params = useParams();
   let user_id = params.id;
-  
 
   const fetchUser = async () => {
-     let res = await fetchUserById(user_id);
+    let res = await fetchUserById(user_id);
+
     setProfile(res);
     // console.log(setProfile(res.id));
     setFirstn(res.firstn);
@@ -88,14 +90,10 @@ const FetchUser = () => {
     fetchUser();
   }, [user_id]);
 
-  const [open , setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const toggleModal = () => {
-      setOpen(!open)
-  }
-
-
-  
-
+    setOpen(!open);
+  };
 
   return (
 
@@ -129,6 +127,8 @@ const FetchUser = () => {
             <Modal open={open} toggleModal={toggleModal}>
                 <EditUserModal handleCloseModal={toggleModal} currentUser={currentUser}/>
             </Modal>
+
+ 
       </Paper>
   );
 };
