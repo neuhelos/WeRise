@@ -1,14 +1,14 @@
-DROP DATABASE IF EXISTS we_rise;
-CREATE DATABASE we_rise;
+-- DROP DATABASE IF EXISTS we_rise;
+-- CREATE DATABASE we_rise;
 
-\c we_rise;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS created_workshops;
-DROP TABLE IF EXISTS registered_workshops;
-DROP TABLE IF EXISTS video_chat;
-DROP TABLE IF EXISTS workshop_skills;
+-- \c we_rise;
 DROP TABLE IF EXISTS users_skills;
+DROP TABLE IF EXISTS workshop_skills;
+DROP TABLE IF EXISTS video_chat;
+DROP TABLE IF EXISTS registered_workshops;
+DROP TABLE IF EXISTS created_workshops;
 DROP TABLE IF EXISTS direct_messages;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users(
     id VARCHAR PRIMARY KEY,

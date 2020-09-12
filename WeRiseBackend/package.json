@@ -12,7 +12,8 @@
     "pg-promise": "^10.5.8"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "devDependencies": {},
   "keywords": [],
