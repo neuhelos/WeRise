@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -11,12 +11,12 @@ import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import { fetchUserById } from "../../Utilities/FetchFunctions";
-import {  useRouteMatch } from "react-router-dom";
-import Modal from '../BaseComponents/Modal'
+import { useRouteMatch } from "react-router-dom";
+import Modal from "../BaseComponents/Modal";
 import EditUserModal from "./EditUserModal";
 import { current } from "@reduxjs/toolkit";
 import axios from "axios";
-import {apiURL} from '../../Utilities/apiURL'
+import { apiURL } from "../../Utilities/apiURL";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -24,20 +24,18 @@ const useStyles = makeStyles((theme) => ({
   },
   gridSection: {
     padding: theme.spacing(1),
-    height: '100%',
-    width: '100%',
- 
-},
+    height: "100%",
+    width: "100%",
+  },
   paper: {
-    width: '50%',
+    width: "50%",
     padding: theme.spacing(2),
     margin: theme.spacing(2),
     backgroundColor: "white",
     margin: "auto",
-    justifyContent: 'left',
-    alignContent: 'center',
-    border: '2px solid  #FF0F7B'
-
+    justifyContent: "left",
+    alignContent: "center",
+    border: "2px solid  #FF0F7B",
   },
   text: {
     fontFamily: "audiowide",
@@ -60,11 +58,10 @@ const FetchUser = () => {
   const [pic, setPic] = useState("");
   const params = useParams();
   let user_id = params.id;
-  
 
   const fetchUser = async () => {
-     let res = await fetchUserById(user_id);
-     debugger
+    let res = await fetchUserById(user_id);
+
     setProfile(res);
     // console.log(setProfile(res.id));
     setFirstn(res.firstn);
@@ -78,48 +75,59 @@ const FetchUser = () => {
     fetchUser();
   }, [user_id]);
 
-  const [open , setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const toggleModal = () => {
-      setOpen(!open)
-  }
-
-
-  
-
+    setOpen(!open);
+  };
 
   return (
     <div className="userProfile">
       <Paper className={classes.paper}>
         <Card className={classes.root} onClick={toggleModal}>
-        <Grid className={classes.gridSection}  container item direction="column" justify="flex-start" alignItems="center" sm={12} md={5}>
-          {/* <Card className="Container" /> */}
-          <CardHeader
-            className={classes.header}
-            avatar={
-              <Avatar aria-label="user" className={classes.avatar} src={pic} />
-            }
-            title={
-              <Typography className={classes.text}>
-                {" "}
-                {firstn} {lastn}
-              </Typography>
-            }
-            subheader={
-              <>
-                <Typography className={classes.text}>{email}</Typography>
-              </>
-            }
+          <Grid
+            className={classes.gridSection}
+            container
+            item
+            direction="column"
+            justify="flex-start"
+            alignItems="center"
+            sm={12}
+            md={5}
+          >
+            {/* <Card className="Container" /> */}
+            <CardHeader
+              className={classes.header}
+              avatar={
+                <Avatar
+                  aria-label="user"
+                  className={classes.avatar}
+                  src={pic}
+                />
+              }
+              title={
+                <Typography className={classes.text}>
+                  {" "}
+                  {firstn} {lastn}
+                </Typography>
+              }
+              subheader={
+                <>
+                  <Typography className={classes.text}>{email}</Typography>
+                </>
+              }
+            />
+            <CardMedia className={classes.media} image={pic} />
+            <CardContent value={(firstn, lastn)} image={pic}>
+              <Typography className={classes.text}>My Bio: {bio}</Typography>
+            </CardContent>
+          </Grid>
+        </Card>
+        <Modal open={open} toggleModal={toggleModal}>
+          <EditUserModal
+            handleCloseModal={toggleModal}
+            currentUser={currentUser}
           />
-          <CardMedia className={classes.media} image={pic} />
-          <CardContent value={(firstn, lastn)} image={pic}>
-            <Typography className={classes.text}>My Bio: {bio}</Typography>
-          </CardContent>
-        </Grid>
-          </Card>
-          <Modal open={open} toggleModal={toggleModal}>
-               
-                <EditUserModal handleCloseModal={toggleModal} currentUser={currentUser}/>
-            </Modal>
+        </Modal>
       </Paper>
     </div>
   );

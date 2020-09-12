@@ -106,7 +106,8 @@ const EditUserModal = ({ toggleModal }) => {
         };
         let updated = await userEditor(user_id, data);
        
-          history.push("/Profile/" + updated);
+        
+          history.push(`/Profile/${updated}`)
         
 
         handleCurrentUser();
