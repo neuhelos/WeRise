@@ -1,0 +1,21 @@
+{
+  "name": "WeRise",
+  "version": "1.0.0",
+  "description": "![WeRise Community Dashboard](we-rise/src/styling/Assets/Media/WeRiseCommunityDashboard.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd WeRiseBackend && npm install && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neuhelos/WeRise.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neuhelos/WeRise/issues"
+  },
+  "homepage": "https://github.com/neuhelos/WeRise#readme"
+}
