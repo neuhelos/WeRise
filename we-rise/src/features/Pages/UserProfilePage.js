@@ -54,33 +54,34 @@ const useStyles = makeStyles((theme) => ({
 
 
 const UserProfilePage = () => {
-  const classes = useStyles()
-  
-  
-  return (
-    
-    <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
-          <Paper className={classes.paper}>
-              <FetchUser />
-          </Paper>
-          <Paper className={classes.paperWrapper}>
-              <Paper className={classes.paperTitle}>
-                  <Typography className={classes.text} variant='h5'>WORKSHOPS I'M FACILITATING</Typography>
-              </Paper>
-          </Paper>
-          <Paper className={classes.paper}>
-              <FacilitatorWorkshops  />
-          </Paper>
-          <Paper className={classes.paperWrapper}>
-              <Paper className={classes.paperTitle}>
-                  <Typography className={classes.text} variant='h5'>PAST WORKSHOPS I FACILITATED</Typography>
-              </Paper>
-          </Paper>
-          <Paper className={classes.paper}>
-              <PastFacilitatorWorkshops  />
-          </Paper>
-    </Grid>
 
-  );
+    const classes = useStyles()
+
+
+    return (
+
+        <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
+                <Paper className={classes.paper} >
+                    <FetchUser />
+                </Paper>
+                <Paper className={classes.paperWrapper}>
+                    <Paper className={classes.paperTitle}>
+                        <Typography className={classes.text} variant='h5'>WORKSHOPS I'M FACILITATING</Typography>
+                    </Paper>
+                </Paper>
+                <Paper className={classes.paper}>
+                    <FacilitatorWorkshops  />
+                </Paper>
+                <Paper className={classes.paperWrapper}>
+                    <Paper className={classes.paperTitle}>
+                        <Typography className={classes.text} variant='h5'>PAST WORKSHOPS I FACILITATED</Typography>
+                    </Paper>
+                </Paper>
+                <Paper className={classes.paper}>
+                    <PastFacilitatorWorkshops  />
+                </Paper>
+        </Grid>
+
+    );
 };
 export default UserProfilePage;
