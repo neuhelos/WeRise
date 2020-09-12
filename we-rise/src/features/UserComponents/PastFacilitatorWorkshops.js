@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
 
+
 const useStyles = makeStyles((theme) => ({
         root: {
             fontFamily: 'audiowide',
@@ -15,40 +16,38 @@ const useStyles = makeStyles((theme) => ({
         },
 }))
 
-
 const FacilitatorWorkshops =  () => {
     
     const classes = useStyles();
-    const [UserCreatedWorkshops, setUCWorkshops] = useState([]);
     
+    const [UserPastCreatedWorkshops, setUPCWorkshops] = useState([]); 
     const params = useParams();
     let user_id = params.id;
     
 
-    const getFacilitatorWorkshops = async() => {
+    const getCurrentUserPastWorkshops = async() => {
         try{
-            let currentWorkshopsRes = await axios.get(`${apiURL()}/workshops/${user_id}`)
-            setUCWorkshops(currentWorkshopsRes.data.payload); 
-        } catch(err){
+            let pastWorkshopsRes = await axios.get(`${apiURL()}/workshops/pastworkshops/${user_id}`)
+            setUPCWorkshops(pastWorkshopsRes.data.payload); 
+        }
+        catch(err){
             console.log(err)
             throw Error(err)
         }
     }
-
     useEffect(() => {
-        getFacilitatorWorkshops();
+        getCurrentUserPastWorkshops();
     },[user_id])
     
 
-    let currentFacilitatorWorkshops = UserCreatedWorkshops.map(workshop => {
+    let pastWorkshops = UserPastCreatedWorkshops.map(workshop => {
         return <FacilitatorWorkshopCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>
     })
-
     
     return (
 
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center" wrap='nowrap'>
-            {currentFacilitatorWorkshops}
+            {pastWorkshops}
         </Grid> 
     )
     

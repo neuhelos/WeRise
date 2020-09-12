@@ -9,6 +9,8 @@ import Container from "@material-ui/core/Container";
 
 import ChatInput from "./ChatInput";
 
+import WeRiseFist from '../../styling/Assets/Media/WeRiseFist.png'
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		width: "100%",
@@ -153,9 +155,6 @@ const ChatView = ({ selectedChatId, selectedChat, messageRead }) => {
         .reduce(( prev, curr ) => [prev, ' & ' , curr])
     }
     
-
-	let WeRiseFist =
-		"https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/appImages%2FWeRiseFist.png?alt=media&token=1feea915-d2b3-4b6c-8b6c-1faf9b4c594f";
 
 	return (
 		<Grid className={classes.root} display="flex">

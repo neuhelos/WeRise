@@ -39,7 +39,7 @@ const FacilitatorModal = ({ handleCloseModal, workshop }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector( state => state.currentUserSession.uid );
   const [open , setOpen] = useState(false)
-debugger
+
   const toggleModal = () => {
     setOpen(!open)
 }
