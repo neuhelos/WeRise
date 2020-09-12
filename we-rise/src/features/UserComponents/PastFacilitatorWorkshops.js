@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useDispatch, useSelector } from "react-redux";
 import { apiURL } from '../../Utilities/apiURL';
 import FacilitatorWorkshopCard from './FacilitatorWorkshopCard'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography';
-import '../../styling/facilitatorCss.css'
+
 
 
 const useStyles = makeStyles((theme) => ({
