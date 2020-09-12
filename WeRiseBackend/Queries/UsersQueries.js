@@ -4,7 +4,7 @@ const createUser = async (req, res, next) => {
   try {
 
     console.log(req.body)
-    let newUser = await database.one(
+    let newUser = await db.one(
      "INSERT INTO users (id, firstn, lastn, email, bio, user_pic) " +
      "VALUES (${id}, ${firstn}, ${lastn}, ${email}, ${bio}, ${user_pic}) " +
      "RETURNING *", req.body 
@@ -44,20 +44,20 @@ const deleteUser = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     console.log(req.params.id)
-    let user = await database.one(
+    let user = await database.any(
       "SELECT * FROM users WHERE id =$1", [
         req.params.id,
       ]
     );
     res.status(200).json({
       status: "success",
-      message: "User Retrieved",
+      message: "found user",
       payload: user
     });
   } catch (error) {
     res.status(404).json({
       status: error,
-      message: "User Not Found",
+      message: "user not found",
       payload: null
     });
   }
@@ -78,52 +78,9 @@ const getAllUsers = async (req, res) => {
     });
   }
 };
-const editUser = async(req, res, next)=>{
-  
-  try {
-    const {firstn, lastn, email, bio, user_pic} = req.body;
-    const {id} =req.params;
-    let user = {}
-    if(firstn){
-      let newInfo = await database.one(
-        `UPDATE users SET firstn=$1 WHERE id=$2 RETURNING *`, [firstn, id])
-        user={...newInfo}
-    }
-    if(lastn){
-      let newInfo = await database.one(
-        `UPDATE users SET lastn=$1 WHERE id=$2 RETURNING *`, [lastn, id])
-        user={...newInfo}
-    }
-    if(email){
-      let newInfo = await database.one(
-        `UPDATE users SET email=$1 WHERE id=$2 RETURNING *`, [email, id])
-        user={...newInfo}
-    }
-    if(bio){
-      let newInfo = await database.one(
-        `UPDATE users SET bio=$1 WHERE id=$2 RETURNING *`, [bio, id])
-        user={...newInfo}
-    }
-    if(user_pic){
-      let newInfo = await database.one(
-        `UPDATE users SET user_pic=$1 WHERE id=$2 RETURNING *`, [user_pic, id])
-        user={...newInfo}
-    }
-
-    res.status(200).json({
-      status: "Success",
-      user,
-      message:"Profile Updated"
-    })
-  } catch (error) {
-    next(error)
-  }
-
-}
 module.exports = {
   createUser,
   deleteUser,
   getUser,
-  getAllUsers,
-  editUser
+  getAllUsers
 };

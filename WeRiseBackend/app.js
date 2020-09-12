@@ -10,11 +10,10 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true }))
 
 const workshopsRoutes = require("./Routes/WorkshopRoutes");
-const registered = require("./Routes/RegisteredWorkshopRoutes");
+const registered = require("./Routes/RegisterWorks");
 const users = require("./Routes/Users");
 const userSkills = require("./Routes/userSkills");
 const recentPosted = require("./Routes/recentPosted");
-const { sendEmail } = require("./Middleware/Mailgun")
 
 
 app.use("/users", users);
@@ -23,7 +22,6 @@ app.use("/registered", registered);
 app.use("/usersSkills", userSkills);
 app.use("/recentPosted", recentPosted);
 
-app.post("/email", sendEmail)
 
 
 app.listen(port, () => console.log(`server is listening at ${port}`));

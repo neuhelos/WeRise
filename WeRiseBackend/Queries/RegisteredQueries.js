@@ -1,46 +1,34 @@
 const db = require('../Database/database');
 
-const {queryColumns} = require('./queryBase')
-
-
 const getRegisteredWorkshop = async (req, res, next) => {
     try {
-      let workshops = await db.any(`SELECT registered_workshops.id, ${queryColumns} 
-      FROM registered_workshops 
-      JOIN created_workshops ON registered_workshops.workshop_id = created_workshops.id 
-      JOIN users ON created_workshops.user_id = users.id  
-      WHERE registered_workshops.user_id = $1 
-      ORDER BY created_workshops.start_time`,
+      let workshop = await db.any("SELECT registered_workshops.id, created_workshops.title, created_workshops.date, created_workshops.start_time, created_workshops.end_time FROM registered_workshops INNER JOIN created_workshops ON registered_workshops.workshop_id = created_workshops.id WHERE registered_workshops.user_id = $1 ORDER BY registered_workshops.id DESC",
       [
         req.params.id,
       ]);
       res.status(200).json({
         status: "success",
-        message: "User Registered Workshops",
-        payload: workshops,
+        message: "All registered workshops for one user",
+        payload: workshop,
       });
     } catch (err) {
-      console.log(err);
       res.status(404).json({
         status: err,
-        message: "No Registered Workshops Found for User",
+        message: "There are no workshop found for the specified user",
         payload: null,
       });
     }
   };
-
-  // const getAllRegistered = async (req, res, next)=>{
+  
+  // const fetchAllRegisteredWorkshop = async (req, res, next)=>{
   //   try {
   //     const registered = await db.any(
-  //       `SELECT registered_workshops.workshop_id, users.firstn, users.lastn FROM registered_workshops 
-  //       INNER JOIN users ON registered_workshops.user_id = users.id 
-  //       WHERE registered_workshops.workshop_id = $1 
-  //       ORDER BY registered_workshops.id DESC`, 
+  //       'SELECT * FROM registeredWorkshops JOIN users ON registeredWorkshops.user_id = users.id WHERE registeredWorkshops.users.id', 
   //       [req.params.id]
   //     );
   //     res.json({
   //       status: "success",
-  //       message: 'users registered for workshop',
+  //       message: 'workshop is registered by user',
   //       payload: registered
   //     })
       
@@ -53,14 +41,17 @@ const getRegisteredWorkshop = async (req, res, next) => {
       
   //   }
   // }
+  
 
-  const getRegisteredCount = async (req, res, next)=>{
+  const getAllRegistered = async (req, res, next)=>{
     try {
       const registered = await db.any(
-        'SELECT count(workshop_id) AS workshop_count FROM registered_workshops where workshop_id = $1', req.params.id);
+        'SELECT registered_workshops.workshop_id, users.firstn, users.lastn FROM registered_workshops INNER JOIN users ON registered_workshops.user_id = users.id WHERE registered_workshops.workshop_id = $1 ORDER BY registered_workshops.id DESC', 
+        [req.params.id]
+      );
       res.json({
         status: "success",
-        message: 'Workshop Participant Count',
+        message: 'users registered for workshop',
         payload: registered
       })
       
@@ -76,17 +67,12 @@ const getRegisteredWorkshop = async (req, res, next) => {
 
   const deleteRegistration = async (req, res) => {
     try {
-
-
-      let resWork = await db.one('DELETE FROM registered_workshops WHERE id = $1 returning workshop_id',req.params.id);
-      let workshop = await db.one(`SELECT ${queryColumns} from users JOIN created_workshops ON created_workshops.user_id = users.id WHERE created_workshops.id =$1`, resWork.workshop_id);
+      await db.none(`DELETE FROM registered_workshops WHERE id = ${req.params.id} RETURNING *`);
       res.status(200).json({
         status: "success",
-        message: "The workshop is unregistered",
-        payload: workshop
+        message: "The workshop is deleted"
       });
     } catch (err) {
-      console.log(err)
       res.status(404).json({
         status: err,
         message: "The workshop was not deleted"
@@ -95,25 +81,25 @@ const getRegisteredWorkshop = async (req, res, next) => {
   };
 
   const createRegistration = async (req, res, next) => {
-    console.log(req.body)
     try {
-        let registration = await db.one('INSERT INTO registered_workshops (user_id, workshop_id, workshop_id_user_id) VALUES( ${user_id}, ${workshop_id}, ${workshop_id_user_id} ) RETURNING *', req.body);
-        let workshop = await db.one(`SELECT ${queryColumns} from users JOIN created_workshops ON created_workshops.user_id = users.id where created_workshops.id =$1`, registration.workshop_id);
-        workshop.id = registration.id
+        let registration = await db.one('INSERT INTO registered_workshops (user_id, workshop_id) VALUES( ${user_id}, ${workshop_id},) RETURNING *', req.body);
         res.status(200).json({
-            status: "Success",
-            message: "Successful Workshop Registration",
-            payload: workshop
+            status: "success",
+            message: "created a new Registration",
+            payload: registration
         })
-    } catch (error){
+    } catch (err){
+        console.log(err)
+        console.log("Hey now",req.body)
         res.status(400).json({
             status: "Error",
             message: "Error",
-            payload: error
+            payload: err
         })
+        next()  
     }
 }
 
   module.exports = {
-    getRegisteredWorkshop, deleteRegistration, createRegistration, getRegisteredCount
+    getRegisteredWorkshop, getAllRegistered, deleteRegistration, createRegistration
   }

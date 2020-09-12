@@ -1,7 +1,7 @@
 const recentPost = require("express").Router();
-const { getRecentPost } = require("../Queries/RecentPostQueries");
+const { getRecentPost } = require("../Queries/getRecentPostQueries");
 
-recentPost.get("/:id", getRecentPost);
+recentPost.get("/", getRecentPost);
 
 
 module.exports = recentPost;
