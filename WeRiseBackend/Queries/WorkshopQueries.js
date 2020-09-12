@@ -110,7 +110,7 @@ const getPastWorkshop = async (req, res) => {
 
 const deleteWorkshop = async (req, res) => {
   try {
-    await database.none(`DELETE FROM created_workshops WHERE id = ${req.params.id} RETURNING *`);
+    await database.any(`DELETE FROM created_workshops WHERE id = ${req.params.id} RETURNING *`);
     res.status(200).json({
       status: "success",
       message: "The workshop is deleted"
