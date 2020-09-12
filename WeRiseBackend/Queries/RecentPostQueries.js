@@ -24,8 +24,9 @@ const getRecentPost = async (req, res) => {
     (SELECT COUNT(workshop_id) FROM registered_workshops WHERE created_workshops.id = registered_workshops.workshop_id) AS workshop_count
     FROM created_workshops 
     INNER JOIN users ON created_workshops.user_id = users.id
-    WHERE created_workshops.start_time >= NOW()
-    ORDER BY created_workshops.posted DESC LIMIT 5`);
+    WHERE created_workshops.start_time >= NOW() AND
+    created_workshops.id NOT IN (SELECT registered_workshops.workshop_id FROM registered_workshops WHERE registered_workshops.user_id = $1 )
+    ORDER BY created_workshops.posted DESC LIMIT 5`, [req.params.id]);
     res.status(200).json({
       status: "Success",
       message: "Workshop Recent Posts Successful",

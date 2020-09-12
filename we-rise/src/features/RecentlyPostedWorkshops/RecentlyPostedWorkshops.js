@@ -9,10 +9,12 @@ import Grid from '@material-ui/core/Grid'
 const RecentlyPostedWorkshops = () => {
     
     const [recentlyPosted, setRecentlyPosted] = useState([]);
+    const currentUser = useSelector( state => state.currentUserSession )
+
 
     const fetchRecentlyPosted = async() => {
         try{
-            let res = await axios.get(`${apiURL()}/recentPosted/`)
+            let res = await axios.get(`${apiURL()}/recentPosted/${currentUser.uid}`)
             setRecentlyPosted(res.data.payload)
         } catch (err){
             console.log(err)
