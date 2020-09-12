@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         backgroundColor: '#666666',
         padding: theme.spacing(1),
-        marginBottom: theme.spacing(1),
+        margin: theme.spacing(1),
         '&:hover': {
             cursor: 'pointer',
             border: '2px solid  #FF0F7B'

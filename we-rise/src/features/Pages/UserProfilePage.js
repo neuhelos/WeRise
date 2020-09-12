@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         width: '100%',
-        padding: theme.spacing(1)
+        padding: theme.spacing(2)
     },
     paper: {
         width: '100%',
         padding: theme.spacing(2),
-        margin: theme.spacing(2),
+        margin: theme.spacing(1),
         backgroundColor: '#282828',
         color: 'white',
         display: 'flex',
