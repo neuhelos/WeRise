@@ -88,15 +88,14 @@ const NewChatForm = ( props ) => {
     const handleSubmitNewChat = async ( event ) => {
         event.preventDefault()
         let usersEmail = [...users, currentUser.email].sort()
-
         if(users.length >= 1 && users.length <= 8){
-            let existingUsers = await users.every(userExistsCheck)
-            if(existingUsers){
-                let existingChat = await chatExistsCheck(usersEmail)
-                existingChat ? displayExistingChat(existingChat) : createChat()
-            } else {
-                setError('A User Does Not Exist')
-            }
+                let existingUsers = await users.every(userExistsCheck)
+                if(existingUsers){
+                    let existingChat = await chatExistsCheck(usersEmail)
+                    existingChat ? displayExistingChat(existingChat) : createChat()
+                } else {
+                    setError('A User Does Not Exist')
+                }
         } else {
             setError('Max Users Exceeded')
         }
