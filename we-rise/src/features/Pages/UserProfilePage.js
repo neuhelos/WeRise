@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const UserProfilePage = ({user}) => {
+const UserProfilePage = () => {
   const classes = useStyles()
   
   
@@ -61,7 +61,7 @@ const UserProfilePage = ({user}) => {
     
     <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
           <Paper className={classes.paper}>
-              <FetchUser/>
+              <FetchUser />
           </Paper>
           <Paper className={classes.paperWrapper}>
               <Paper className={classes.paperTitle}>
