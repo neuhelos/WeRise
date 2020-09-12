@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const Chat = (props) => {
     
     const theme = useTheme();
-    const mobileMediaQuery = useMediaQuery(theme.breakpoints.down('sm'));
+    const mobileMediaQuery = useMediaQuery(theme.breakpoints.down('xs'));
     const classes = useStyles()
 
     const currentUser = useSelector( state => state.currentUserSession )
