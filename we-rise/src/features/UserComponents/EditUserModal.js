@@ -92,8 +92,9 @@ const EditUserModal = ({ toggleModal }) => {
         instagram.value ||
         facebook.value ||
         linkedin.value ||
-        twitter.value
-      ) {
+        twitter.value 
+      ) 
+      {
         const data = {
           firstn: firstn.value,
           lastn: lastn.value,
