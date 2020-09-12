@@ -58,20 +58,18 @@ const useStyles = makeStyles((theme) => ({
  
 
 const FacilitatorWorkshops =  () => {
+    
     const classes = useStyles();
-    const currentUser = useSelector( state => state.currentUserSession.uid );
     const [UserCreatedWorkshops, setUCWorkshops] = useState([]);
-    const [UserPastCreatedWorkshops, setUPCWorkshops] = useState([]); 
+    
     const params = useParams();
     let user_id = params.id;
     
 
-    const getWorkshops = async() => {
+    const getFacilitatorWorkshops = async() => {
         try{
-           let currentWorkshopsRes = await axios.get(`${apiURL()}/workshops/${user_id}`)
-           let pastWorkshopsRes = await axios.get(`${apiURL()}/workshops/pastworkshops/${user_id}`)
+            let currentWorkshopsRes = await axios.get(`${apiURL()}/workshops/${user_id}`)
             setUCWorkshops(currentWorkshopsRes.data.payload); 
-            setUPCWorkshops(pastWorkshopsRes.data.payload); 
         }
         catch(err){
             console.log(err)
@@ -79,7 +77,7 @@ const FacilitatorWorkshops =  () => {
         }
     }
     useEffect(() => {
-        getWorkshops();
+        getFacilitatorWorkshops();
     },[user_id])
     
     // if(user_id === currentUser){
@@ -87,14 +85,9 @@ const FacilitatorWorkshops =  () => {
     // }
 
     let currentWorkshops = UserCreatedWorkshops.map(workshop => {
-        // debugger
         return <FacilitatorWorkshopCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>
     })
 
-    let pastWorkshops = UserPastCreatedWorkshops.map(workshop => {
-        // debugger
-        return <FacilitatorWorkshopCard key={workshop.workshop_id} id={workshop.workshop_id} workshop={workshop}/>
-    })
     
     return (
         <>

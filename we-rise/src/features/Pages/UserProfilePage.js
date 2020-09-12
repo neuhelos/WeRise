@@ -10,35 +10,77 @@ import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import "../../styling/UserProfilePage.css";
+
+
 import FetchUser from "../UserComponents/FetchUser";
+
+import PastFacilitatorWorkshops from '../UserComponents/PastFacilitatorWorkshops'
+
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    width: "100%"
-  },
-  paper: {
-    padding: theme.spacing(2),
-    margin: 'auto',
-    maxWidth: 500,
-    backgroundColor: 'grey'
-  },
-  text: {
-    fontFamily: "audiowide",
-    fontSize: 18,
-    color: 'white',
-  },
-  avatar: {
-    width: theme.spacing(15),
-    height: theme.spacing(15),
-  },
-}));
+    root: {
+        flexGrow: 1,
+        width: '100%',
+        padding: theme.spacing(1)
+    },
+    paper: {
+        width: '100%',
+        padding: theme.spacing(2),
+        margin: theme.spacing(2),
+        backgroundColor: '#282828',
+        color: 'white',
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: 'center',
+    },
+    paperWrapper: {
+        width: '100%',
+        padding: theme.spacing(1),
+        margin: theme.spacing(1),
+        backgroundColor: '#282828',
+    },
+    paperTitle: {
+        width: '100%',
+        backgroundColor: '#666666',
+        color: '#FFFFFF',
+        padding: theme.spacing(1),
+        display: 'flex',
+        justifyContent: 'center',
+        
+    },
+    text: {
+        fontFamily: 'audiowide'
+    }
+}))
+
+
 const UserProfilePage = ({user}) => {
   const classes = useStyles()
+  
+  
   return (
-    <div className="userProfile">
-        <FetchUser/>
-      <FacilitatorWorkshops  />
-    </div>
+    
+    <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
+          <Paper className={classes.paper}>
+              <FetchUser/>
+          </Paper>
+          <Paper className={classes.paperWrapper}>
+              <Paper className={classes.paperTitle}>
+                  <Typography className={classes.text} variant='h5'>WORKSHOPS I'M FACILITATING</Typography>
+              </Paper>
+          </Paper>
+          <Paper className={classes.paper}>
+              <FacilitatorWorkshops  />
+          </Paper>
+          <Paper className={classes.paperWrapper}>
+              <Paper className={classes.paperTitle}>
+                  <Typography className={classes.text} variant='h5'>PAST WORKSHOPS I FACILITATED</Typography>
+              </Paper>
+          </Paper>
+          <Paper className={classes.paper}>
+              <PastFacilitatorWorkshops  />
+          </Paper>
+    </Grid>
+
   );
 };
 export default UserProfilePage;
