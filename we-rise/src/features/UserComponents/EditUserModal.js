@@ -92,8 +92,9 @@ const EditUserModal = ({ toggleModal }) => {
         instagram.value ||
         facebook.value ||
         linkedin.value ||
-        twitter.value
-      ) {
+        twitter.value 
+      ) 
+      {
         const data = {
           firstn: firstn.value,
           lastn: lastn.value,
@@ -105,7 +106,8 @@ const EditUserModal = ({ toggleModal }) => {
         };
         let updated = await userEditor(user_id, data);
        
-          history.push("/Profile/" + updated);
+        
+          history.push(`/Profile/${updated}`)
         
 
         handleCurrentUser();
