@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import FacilitatorModal from './FacilitatorModal'
-// import WorkshopRegistration from './WorkshopRegistration'
+
 import { useHistory} from 'react-router-dom'
 import { DateTime } from 'luxon'
+
+import { dateFormat } from '../../Utilities/dateFormat'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -43,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         backgroundColor: '#666666',
         padding: theme.spacing(1),
-        marginBottom: theme.spacing(1),
+        margin: theme.spacing(1),
         '&:hover': {
             cursor: 'pointer',
             border: '2px solid  #FF0F7B'
@@ -53,13 +55,8 @@ const useStyles = makeStyles((theme) => ({
 
 const FacilitatorWorkshopCard = ( { workshop } ) => {
     
-    let date = `${DateTime.fromISO(workshop.start_time).toFormat('EEE')}, 
-    ${DateTime.fromISO(workshop.start_time).toFormat('MMM')} 
-    ${DateTime.fromISO(workshop.start_time).toFormat('d')},  
-    ${DateTime.fromISO(workshop.start_time).toFormat('y')}`
-
-    let time = `${DateTime.fromISO(workshop.start_time).toFormat('T')} ${DateTime.fromISO(workshop.start_time).toFormat('ZZZZ')}`
-
+    let date = dateFormat(workshop.start_time).date
+    let time = dateFormat(workshop.start_time).time
 
     const [open , setOpen] = useState(false)
     const toggleModal = () => {

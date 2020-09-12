@@ -4,51 +4,66 @@ import { useParams } from "react-router-dom";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import { fetchUserById } from "../../Utilities/FetchFunctions";
-import { useRouteMatch } from "react-router-dom";
-import Modal from "../BaseComponents/Modal";
+
+import Modal from '../BaseComponents/Modal'
 import EditUserModal from "./EditUserModal";
 import { current } from "@reduxjs/toolkit";
 import axios from "axios";
-import { apiURL } from "../../Utilities/apiURL";
+import {apiURL} from '../../Utilities/apiURL'
+import Button from '@material-ui/core/Button';
+
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+
+import WeRiseTogether from '../../styling/Assets/Media/WeRiseTogetherProfileHeader.gif'
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
     width: "100%",
-  },
-  gridSection: {
     padding: theme.spacing(1),
-    height: "100%",
-    width: "100%",
+
+    '& *': {
+        fontFamily: 'audiowide',
+        outlineColor: '#36386D',
+    },
+  },
+  paperWrapper: {
+    width: '100%',
+    padding: theme.spacing(1),
+    background: 'linear-gradient(90deg, hsla(238, 34%, 32%, 1) 0%, hsla(333, 100%, 53%, 1) 50%, hsla(33, 94%, 57%, 1) 100%)',
   },
   paper: {
-    width: "50%",
-    padding: theme.spacing(2),
-    margin: theme.spacing(2),
-    backgroundColor: "white",
-    margin: "auto",
-    justifyContent: "left",
-    alignContent: "center",
-    border: "2px solid  #FF0F7B",
+    backgroundImage: `url(${WeRiseTogether})`,
+    backgroundPosition: 'center',
+    backgroundSize: '50%'
+  },
+  opacity: {
+    backgroundColor: 'rgba(255,255,255,0.75)'
   },
   text: {
-    fontFamily: "audiowide",
-    fontSize: 18,
     color: "black",
   },
   avatar: {
-    width: theme.spacing(15),
-    height: theme.spacing(15),
+    width: theme.spacing(16),
+    height: theme.spacing(16),
+    margin: theme.spacing(1),
+    border: '4px solid  #F89B29',
+  },
+  icon : {
+    color: '#FF0F7B',
+    '&:hover': {
+      color: '#F89B29',
+      cursor: 'pointer'
+    },
   },
 }));
 const FetchUser = () => {
-  const currentUser = useSelector((state) => state.currentUserSession.uid);
+  const currentUser = useSelector((state) => state.currentUserSession);
   const classes = useStyles();
   const [profile, setProfile] = useState([]);
   const [firstn, setFirstn] = useState("");
@@ -81,55 +96,40 @@ const FetchUser = () => {
   };
 
   return (
-    <div className="userProfile">
-      <Paper className={classes.paper}>
-        <Card className={classes.root} onClick={toggleModal}>
-          <Grid
-            className={classes.gridSection}
-            container
-            item
-            direction="column"
-            justify="flex-start"
-            alignItems="center"
-            sm={12}
-            md={5}
-          >
-            {/* <Card className="Container" /> */}
-            <CardHeader
-              className={classes.header}
-              avatar={
-                <Avatar
-                  aria-label="user"
-                  className={classes.avatar}
-                  src={pic}
-                />
-              }
-              title={
-                <Typography className={classes.text}>
-                  {" "}
-                  {firstn} {lastn}
-                </Typography>
-              }
-              subheader={
-                <>
-                  <Typography className={classes.text}>{email}</Typography>
-                </>
-              }
-            />
-            <CardMedia className={classes.media} image={pic} />
-            <CardContent value={(firstn, lastn)} image={pic}>
-              <Typography className={classes.text}>My Bio: {bio}</Typography>
-            </CardContent>
-          </Grid>
-        </Card>
-        <Modal open={open} toggleModal={toggleModal}>
-          <EditUserModal
-            handleCloseModal={toggleModal}
-            currentUser={currentUser}
-          />
-        </Modal>
+
+      
+      <Paper className={classes.paperWrapper}>
+          <Paper className={classes.paper}>
+            <Paper className={classes.opacity}>
+              <Grid className={classes.root}  container direction="row" justify="center" alignItems="center">
+                <Grid container item direction="row" justify="flex-start" alignItems="center" xs={6}>
+                  <Avatar aria-label="user" className={classes.avatar} src={pic} />
+                  <Grid direction="column" justify="flex-start" alignItems="center">
+                    <Typography variant='h5' gutterBottom={true}>{firstn} {lastn}</Typography>
+                    <Grid direction="row" justify="flex-start" alignItems="center">
+                      <FacebookIcon className={classes.icon} fontSize='large'/>
+                      <InstagramIcon className={classes.icon} fontSize='large'/>
+                      <TwitterIcon className={classes.icon} fontSize='large'/>
+                      <LinkedInIcon className={classes.icon} fontSize='large'/>
+                    </Grid>
+                    {user_id === currentUser.uid ? 
+                      <Button variant="contained" color="disabled" type="submit" onClick = {toggleModal}>Edit Your Profile</Button> 
+                      : <Button variant="contained" color="primary" type="submit" onClick = {""}>Contact Me</Button>}
+                  </Grid>
+                </Grid>
+                <Grid container item direction="row" justify="flex-end" alignItems="center" xs={6}>
+                  <Typography variant='subtitle1' className={classes.text} gutterBottom={true}>My Bio: {bio}</Typography>
+                </Grid>
+              </Grid>
+            </Paper>
+        </Paper>
+
+            <Modal open={open} toggleModal={toggleModal}>
+                <EditUserModal handleCloseModal={toggleModal} currentUser={currentUser}/>
+            </Modal>
+
+ 
       </Paper>
-    </div>
   );
 };
 export default FetchUser;

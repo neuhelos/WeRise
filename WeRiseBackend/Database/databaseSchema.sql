@@ -160,6 +160,7 @@ and merge visual and literary forms. The hinge-bound structure can double as a m
 '2020-12-13 18:00-04', '2020-12-13 21:00-04', 'Creative Writing & Literature', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FHingeandStabBoundStructures.jpg?alt=media&token=7939d795-bd39-4099-bd69-f44fe2f95183');
 
 
+
 INSERT INTO registered_workshops
 (user_id, workshop_id, workshop_id_user_id)
 VALUES

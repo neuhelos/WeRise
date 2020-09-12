@@ -117,7 +117,7 @@ const WorkshopFeedCard = ( props ) => {
             </Card>
 
             <Modal open={open} toggleModal={toggleModal}>
-                <WorkshopRegistration handleCloseModal={toggleModal} dateTime={{date: date, time: time}} participantsData={participantsData} {...props} />
+                <WorkshopRegistration handleCloseModal={toggleModal} participantsData={participantsData} {...props} />
             </Modal>
 
         </Paper>
