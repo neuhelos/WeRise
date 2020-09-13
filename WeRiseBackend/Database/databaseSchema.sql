@@ -181,14 +181,23 @@ building a successful and profitable business in alignment with your values.',
 INSERT INTO registered_workshops
 (user_id, workshop_id, workshop_id_user_id)
 VALUES
-('4BoeoW9pLWdNKD2WKq8Widdxmkj2', '3','4BoeoW9pLWdNKD2WKq8Widdxmkj23'),
-('QYkHDRiXmATQFHQS4wKcjKhqUGa2', '1','QYkHDRiXmATQFHQS4wKcjKhqUGa21'),
-('otmKzEboQMby4tLzx6X8vC33ve83', '2','otmKzEboQMby4tLzx6X8vC33ve832'),
-('ilFicLgXB5O9utKaS8WCn4UaQh53', '2', 'ilFicLgXB5O9utKaS8WCn4UaQh532'),
-('ilFicLgXB5O9utKaS8WCn4UaQh53', '3', 'ilFicLgXB5O9utKaS8WCn4UaQh533'),
-('ilFicLgXB5O9utKaS8WCn4UaQh53', '5', 'ilFicLgXB5O9utKaS8WCn4UaQh535'),
-('E093QRw1swaW4KCQUON44IU2gcy2', '3','E093QRw1swaW4KCQUON44IU2gcy23'),
-('E093QRw1swaW4KCQUON44IU2gcy2', '4','E093QRw1swaW4KCQUON44IU2gcy24'),
+('4BoeoW9pLWdNKD2WKq8Widdxmkj2', '3','34BoeoW9pLWdNKD2WKq8Widdxmkj2'),
+('QYkHDRiXmATQFHQS4wKcjKhqUGa2', '1','1QYkHDRiXmATQFHQS4wKcjKhqUGa2'),
+('otmKzEboQMby4tLzx6X8vC33ve83', '2','2otmKzEboQMby4tLzx6X8vC33ve83'),
+('ilFicLgXB5O9utKaS8WCn4UaQh53', '2', '2ilFicLgXB5O9utKaS8WCn4UaQh53'),
+('ilFicLgXB5O9utKaS8WCn4UaQh53', '3', '3ilFicLgXB5O9utKaS8WCn4UaQh53'),
+('ilFicLgXB5O9utKaS8WCn4UaQh53', '5', '5ilFicLgXB5O9utKaS8WCn4UaQh53'),
+('E093QRw1swaW4KCQUON44IU2gcy2', '3','3E093QRw1swaW4KCQUON44IU2gcy2'),
+('E093QRw1swaW4KCQUON44IU2gcy2', '4','4E093QRw1swaW4KCQUON44IU2gcy2'),
+('eokavuu8ObRdvLA47RfSCZ74dI52', '6','6eokavuu8ObRdvLA47RfSCZ74dI52'),
+('ORwZBVSWrwW0Nug7HS3UgLl6Me63','7','7ORwZBVSWrwW0Nug7HS3UgLl6Me63'),
+('acKHM3rlo1ZZxwwTVEgC0gzUDBy2','8','8acKHM3rlo1ZZxwwTVEgC0gzUDBy2'),
+('ZIRgXopThgcOFwZ5f4ZjVedPnSj1','9','9ZIRgXopThgcOFwZ5f4ZjVedPnSj1'),
+('nB6JehE4RidvMjwTAq31D4EaGDS2','6','6nB6JehE4RidvMjwTAq31D4EaGDS2'),
+('C3vMD8SYhoOPP1mccTTW5adBkow1','7','7C3vMD8SYhoOPP1mccTTW5adBkow1'),
+('5y3iP5DXmMXDslcRues5GaQHbCE3','8','85y3iP5DXmMXDslcRues5GaQHbCE3'),
+('ORwZBVSWrwW0Nug7HS3UgLl6Me63','9','9ORwZBVSWrwW0Nug7HS3UgLl6Me63'),
+('acKHM3rlo1ZZxwwTVEgC0gzUDBy2','9','9acKHM3rlo1ZZxwwTVEgC0gzUDBy2'),
 ('E093QRw1swaW4KCQUON44IU2gcy2', '5','E093QRw1swaW4KCQUON44IU2gcy25');
 
 
