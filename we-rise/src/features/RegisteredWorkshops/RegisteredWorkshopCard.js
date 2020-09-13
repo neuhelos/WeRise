@@ -45,7 +45,9 @@ const useStyles = makeStyles((theme) => ({
 const RegisteredWorkshopCard = ( { workshop } ) => {
     
     let date = dateFormat(workshop.start_time).date
-    let time = dateFormat(workshop.start_time).time
+    let startTime = dateFormat(workshop.start_time).time
+    let endTime = dateFormat(workshop.end_time).time
+    let timezone = dateFormat(workshop.start_time).timezone
 
 
     const [open , setOpen] = useState(false)
@@ -68,7 +70,7 @@ const RegisteredWorkshopCard = ( { workshop } ) => {
                 subheader = {
                     <>
                     <Typography className={classes.text}>{`${date}`}</Typography>
-                    <Typography className={classes.text}>{`${time}`}</Typography>
+                    <Typography className={classes.text}>{`${startTime}-${endTime} ${timezone}`}</Typography>
                     </>
                 }
                 />
@@ -80,7 +82,7 @@ const RegisteredWorkshopCard = ( { workshop } ) => {
             </Card>
 
             <Modal open={open} toggleModal={toggleModal}>
-                <RegisteredWorkshopModal handleCloseModal={toggleModal} workshop={workshop} dateTime={{date: date, time: time}} participantsData={participantsData}/>
+                <RegisteredWorkshopModal handleCloseModal={toggleModal} workshop={workshop} participantsData={participantsData}/>
             </Modal>
 
         </Paper>

@@ -57,7 +57,9 @@ const WorkshopDetails = ( { workshop, dateTime, participantsData } ) => {
     const classes = useStyles();
 
     let date = dateFormat(workshop.start_time).date
-    let time = dateFormat(workshop.start_time).time
+    let startTime = dateFormat(workshop.start_time).time
+    let endTime = dateFormat(workshop.end_time).time
+    let timezone = dateFormat(workshop.start_time).timezone
 
     return (
             <>
@@ -71,7 +73,8 @@ const WorkshopDetails = ( { workshop, dateTime, participantsData } ) => {
                             <Typography align='left' className={classes.text} variant='subtitle1' gutterBottom={true} style={{ marginLeft: '1rem' }}>{`   ${workshop.firstn} ${workshop.lastn}` }</Typography>
                             </Link>
                         </div>
-                        <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >{`${date} ${time}`}</Typography>
+                        <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >{`${date}`}</Typography>
+                        <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >{`Time: ${startTime}-${endTime} ${timezone}`}</Typography>
                         <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >Category: {workshop.category}</Typography>
                         <Typography align='left' variant='body1' gutterBottom={true}  className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
                         <Typography align='left' className={classes.description} variant='body1' gutterBottom={true} >Description: {workshop.descriptions}</Typography>

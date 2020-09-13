@@ -74,7 +74,9 @@ const WorkshopFeedCard = ( props ) => {
     const { workshop } = props
 
     let date = dateFormat(workshop.start_time).date
-    let time = dateFormat(workshop.start_time).time
+    let startTime = dateFormat(workshop.start_time).time
+    let endTime = dateFormat(workshop.end_time).time
+    let timezone = dateFormat(workshop.start_time).timezone
 
     const [open , setOpen] = useState(false)
     const toggleModal = () => {
@@ -104,7 +106,7 @@ const WorkshopFeedCard = ( props ) => {
                         <Typography className={classes.text}>{`${workshop.firstn} ${workshop.lastn}`}</Typography>
 				    </Link>
                     <Typography className={classes.text}>{`${date}`}</Typography>
-                    <Typography className={classes.text}>{`${time}`}</Typography>
+                    <Typography className={classes.text}>{`${startTime}-${endTime} ${timezone}`}</Typography>
                     <Typography className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
                     </>
                 }

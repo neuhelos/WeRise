@@ -68,12 +68,12 @@ const ParticipantsModal = ({ handleCloseModal, workshop, handleBack }) => {
 
     return (
         <>
-        <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center">
+        <Grid className={classes.root} container display="flex" direction="row" justify="center" alignItems="center">
             {WorkshopParticipants.map(participant => {
                 return(
-                    <Grid className={classes.participant} onClick={userProfileLink} display="flex" direction="column" justify="center" alignItems="center">
+                    <Grid className={classes.participant} container onClick={userProfileLink} display="flex" direction="column" justify="center" alignItems="center">
                         <Avatar src= {participant.user_pic} className={classes.avatar} onClick={userProfileLink}/>
-                        <Typography onClick={userProfileLink} className={classes.text}>{participant.firstn} {participant.lastn}</Typography> 
+                        <Typography align='center' onClick={userProfileLink} className={classes.text}>{participant.firstn} {participant.lastn}</Typography> 
                     </Grid>
                 )})}
         </Grid>
