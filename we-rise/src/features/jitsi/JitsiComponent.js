@@ -24,6 +24,7 @@ const JitsiVideoConfig = (workshop) => {
     const handleAPI = JitsiMeetAPI => {
       JitsiMeetAPI.executeCommand("toggleVideo");
     };
+    debugger
     
     return (
       <Grid className={classes.root} container display='flex' direction='column' justify='center' alignItems='center'>
@@ -32,7 +33,7 @@ const JitsiVideoConfig = (workshop) => {
           containerStyle={{padding: '8px', border: '3px solid #FF0F7B', borderRadius: '4px', backgroundColor: '#282828'}} 
           domain="meet.jit.si"
           onAPILoad={handleAPI}
-          roomName={`WeRiseWorkshop${workshop.workshop.user_id}${workshop.workshop.workshop_id}`}
+          roomName={`WeRiseWorkshop`}
           displayName={currentUser}
           interfaceConfig={interfaceConfig}
           config={config}
