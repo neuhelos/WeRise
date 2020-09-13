@@ -4,6 +4,7 @@ import { DropzoneArea } from 'material-ui-dropzone'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
+    
     overrides: {
         MuiDropzoneArea: {
             root: {
