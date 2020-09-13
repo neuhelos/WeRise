@@ -50,7 +50,12 @@ const useStyles = makeStyles((theme) => ({
             cursor: 'pointer',
             border: '2px solid  #FF0F7B'
         }
-    }
+    },
+    participants: {
+        fontFamily:'audiowide',
+        color: '#FF0F7B',
+        fontWeight: 700
+    },
     }));
 
 const FacilitatorWorkshopCard = ( { workshop } ) => {
