@@ -1,7 +1,7 @@
--- DROP DATABASE IF EXISTS we_rise;
--- CREATE DATABASE we_rise;
+DROP DATABASE IF EXISTS we_rise;
+CREATE DATABASE we_rise;
 
--- \c we_rise;
+\c we_rise;
 DROP TABLE IF EXISTS users_skills;
 DROP TABLE IF EXISTS workshop_skills;
 DROP TABLE IF EXISTS video_chat;
@@ -80,8 +80,8 @@ VALUES
 ('QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Nilber', 'Remon', 'nilberremon@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FNilberRemon.png?alt=media&token=35d9a08c-a430-4843-9988-e6582d0443cf', '6.4 Pursuit Fellow'),
 ('rVOVAIwKwdUchSqjZl0xh3qqe0q1', 'Uduakabasi', 'Abasiurua', 'uduakabasiabasiurua@pursuit.org','https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FUduakabasiAbasiurua.jpeg?alt=media&token=4d85a760-0c46-4cb6-a8ae-aa0d3a857281', '6.4 Pursuit Fellow'),
 ('8uvDSPKzhjU5rllJU1Fy40Gn8x23', 'Danielle', 'Cherry', 'daniellecherry@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FDanielleCherry.png?alt=media&token=d16969cf-fe72-4d92-a2a8-b48802c0354e', '6.4 Pursuit Fellow'),
-('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FTessaThompson.jpg?alt=media&token=02554b12-bfc8-419f-a1db-36d7cde08770', 'Hi im the Demo Account!'),
-('E093QRw1swaW4KCQUON44IU2gcy2', 'WeRise', 'Together', 'guest@werise.org','https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FRainbowSmileyDefaultAvatar.png?alt=media&token=379959f1-6d89-43a4-bf01-92a68841c643', 'Hi im the Guest Account!' ),
+('ilFicLgXB5O9utKaS8WCn4UaQh53', 'Demo', 'Account', 'demo@nilber.dev', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FTessaThompson.jpg?alt=media&token=02554b12-bfc8-419f-a1db-36d7cde08770', 'Hi Im the Demo Account!'),
+('E093QRw1swaW4KCQUON44IU2gcy2', 'WeRise', 'Together', 'guest@werise.org','https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FRainbowSmileyDefaultAvatar.png?alt=media&token=379959f1-6d89-43a4-bf01-92a68841c643', 'Hi Im the Guest Account!'),
 ('eokavuu8ObRdvLA47RfSCZ74dI52', 'Samantha', 'Jimenez', 'samanthajimenez@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FSamanthaJimenez.jpeg?alt=media&token=752cf4ee-e663-4520-b7b8-30e5f2798d9a', '6.4 Pursuit Fellow'),
 ('ORwZBVSWrwW0Nug7HS3UgLl6Me63', 'Marializa', 'Martinez', 'mariamartinez@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FMarializaMartinez.jpeg?alt=media&token=1a4eeaec-0e19-47e6-b5d6-0d456ccfc01c', '6.4 Pursuit Fellow'),
 ('acKHM3rlo1ZZxwwTVEgC0gzUDBy2', 'Caroline', 'Kang', 'carolinekang@pursuit.org', 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FCarolineKang.jpeg?alt=media&token=6ab4d28f-156b-4267-9df3-a19160ef0045', 'Pursuit 6.4 Program Manager'),
@@ -111,7 +111,7 @@ High heels are encouraged but not mandatory.',
 'Style is an attitude, a fantasy, a way of living. Its never too much, elevating your style with accessories.', 
 '2020-09-18 18:00-04', '2020-09-18 19:00-04', 'Beauty & Fashion', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FAccessoriesWorkshop.jpg?alt=media&token=32bb8056-961c-4a84-93fc-04f787e96777'),
 ('7', '2020-07-10 15:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Creating Community Change Through Tech', 'Brainstorming strategies for sharing technical know-how and skills for driving social justice in our communities', '2020-10-01 17:00-04', '2020-10-01 20:00-04', 'Community Organizing & Activism', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCommunityRainbow.jpg?alt=media&token=067f5d9f-0b69-42a3-9fa3-811948262065'),
-('8', '2020-06-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'MIDI basics', 'Musical Instrument Digital Interface', '2020-08-16 16:00-04', '2020-08-16 18:00-04',  'Dance & Music', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FMidiController.jpg?alt=media&token=34233b00-6254-4431-9496-3317e5e9aaf3'),
+('8', '2020-06-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'MIDI Basics', 'Musical Instrument Digital Interface', '2020-08-16 16:00-04', '2020-08-16 18:00-04',  'Dance & Music', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FMidiController.jpg?alt=media&token=34233b00-6254-4431-9496-3317e5e9aaf3'),
 
 ('9', '2020-08-30 13:00-04', 'nB6JehE4RidvMjwTAq31D4EaGDS2', 'Live Coding Music with Ruby', 
 'This workshop will introduce you to the basics of Sonic Pi, a software synthesizer which allows anyone to create music as computer code. In addition 
@@ -125,7 +125,7 @@ of Welles, Coppola, Antonioni, Kurosawa, and other nonblack directors. Films lik
 Untied, and Fruitvale Station deserve to be considered alongside the artistic masterpieces of the past century in cinema. But you 
 should also consider a broader notion of what constitutes a “great” film—after all, many of the movies 
 that have shaped black culture (and the broader American culture) don’t easily fit into the templates of auteurist, art house, or 
-studio “quality” favored by the typical list-makers. Consider genre work, micro-budget indies, underground documentaries, comedies starring 
+studio quality favored by the typical list-makers. Consider genre work, micro-budget indies, underground documentaries, comedies starring 
 rappers. Read, watch, stream an unfamiliar movie or two, argue, and recognize the art of black filmmakers.', 
 '2020-09-10 18:00-04', '2020-09-10 20:00-04',  'Film, Photography and Theater', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FBlackFilms.jpg?alt=media&token=fa42b6f8-8482-4aa9-8f2e-f575c51e822c'),
 
@@ -159,7 +159,7 @@ find a way to fix it, there’s great joy in that. Make your kitchen your labora
 with hacks that will sharpen your culinary skills',
 '2020-11-06 15:00-04', '2020-11-06 16:00-04', 'Food & Culinary Arts', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCookingHacks.jpg?alt=media&token=65faf311-3f80-4ce5-b97a-60b203d93535'),
 
-( '0a317023-8ac4-42c5-ae61-c044eb9e8a7a', '2020-08-26 13:00-04', '5y3iP5DXmMXDslcRues5GaQHbCE3', 'DIY Radical Collaborative Publishing', 
+('0a317023-8ac4-42c5-ae61-c044eb9e8a7a', '2020-08-26 13:00-04', '5y3iP5DXmMXDslcRues5GaQHbCE3', 'DIY Radical Collaborative Publishing', 
 'This workshop covers the history and contemporary applications of radical independent and collaborative publishing models.
 Participants will learn effective devices of democratization by creating unique hand-painted, hinge and stab bound 
 structures using cardboard and up-cycled materials. Such structures enable social, political, and artistic expressions 
