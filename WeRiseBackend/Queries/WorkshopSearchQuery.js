@@ -21,7 +21,7 @@ const searchWorkshops = async (req, res) => {
             WHERE (${categoriesQuery}) AND (created_workshops.title ILIKE $1 OR created_workshops.descriptions ILIKE $1
             OR workshop_skills.skills ILIKE $1) AND
             (created_workshops.start_time >= $2 AND created_workshops.end_time <= $3) AND
-            created_workshops.start_time >= NOW() AND 
+            created_workshops.end_time >= NOW() AND 
             created_workshops.user_id != $4 AND
             created_workshops.id NOT IN (SELECT registered_workshops.workshop_id FROM registered_workshops WHERE registered_workshops.user_id = $4 )
             ORDER BY created_workshops.id, created_workshops.start_time`,

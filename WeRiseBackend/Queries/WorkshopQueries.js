@@ -27,7 +27,7 @@ const getWorkshop = async (req, res) => {
       FROM created_workshops  
       INNER JOIN users 
       ON created_workshops.user_id = users.id  
-      WHERE user_id = $1 AND created_workshops.start_time > NOW()` ,
+      WHERE user_id = $1 AND created_workshops.end_time > NOW()` ,
       req.params.id
     );
     res.status(200).json({
@@ -80,7 +80,7 @@ const getPastWorkshop = async (req, res) => {
       FROM created_workshops  
       INNER JOIN users 
       ON created_workshops.user_id = users.id  
-      WHERE user_id = $1 AND created_workshops.start_time < NOW()` ,
+      WHERE user_id = $1 AND created_workshops.end_time < NOW()` ,
       req.params.id
     );
     res.status(200).json({
@@ -120,7 +120,7 @@ const getAllWorkshops = async (req, res) => {
       `SELECT ${queryColumns} 
       FROM created_workshops
       JOIN users ON created_workshops.user_id = users.id
-      WHERE created_workshops.start_time >= NOW() AND 
+      WHERE created_workshops.end_time >= NOW() AND 
       created_workshops.user_id != $1 AND
       created_workshops.id NOT IN (SELECT registered_workshops.workshop_id FROM registered_workshops WHERE registered_workshops.user_id = $1 )
       ORDER BY created_workshops.start_time`,
