@@ -83,7 +83,7 @@ const WorkshopFeedCard = ( props ) => {
         setOpen(!open)
     }
 
-    let participantsData = workshop.participants !== workshop.workshop_count? `Participants: ${workshop.workshop_count} / ${workshop.participants}` : `WORKSHOP FULL`
+    let participantsData = workshop.participants !== Number(workshop.workshop_count) ? `Participants: ${workshop.workshop_count} / ${workshop.participants}` : `WORKSHOP FULL`
 
     const userProfileLink = () => {
         history.push(`/Profile/${workshop.user_id}`)
@@ -107,7 +107,7 @@ const WorkshopFeedCard = ( props ) => {
 				    </Link>
                     <Typography className={classes.text}>{`${date}`}</Typography>
                     <Typography className={classes.text}>{`${startTime}-${endTime} ${timezone}`}</Typography>
-                    <Typography className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
+                    <Typography className={workshop.participants !== Number(workshop.workshop_count) ? classes.text : classes.participants}>{participantsData}</Typography>
                     </>
                 }
                 />
