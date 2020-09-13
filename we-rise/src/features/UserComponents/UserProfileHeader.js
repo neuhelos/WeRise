@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import { fetchUserById } from "../../Utilities/FetchFunctions";
+
 import Modal from '../BaseComponents/Modal'
 import EditUserModal from "./EditUserModal";
 import axios from "axios";
@@ -24,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     padding: theme.spacing(1),
+
     '& *': {
         fontFamily: 'audiowide',
         outlineColor: '#36386D',
@@ -98,7 +100,7 @@ const FetchUser = () => {
     fetchUserSkills()
   }, [user_id]);
 
-  const [open , setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const toggleModal = () => {
       setOpen(!open)
   }
@@ -140,6 +142,8 @@ const FetchUser = () => {
             <Modal open={open} toggleModal={toggleModal}>
                 <EditUserModal handleCloseModal={toggleModal} currentUser={currentUser}/>
             </Modal>
+
+
       </Paper>
   );
 };
