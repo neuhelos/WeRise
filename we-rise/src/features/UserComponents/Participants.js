@@ -24,20 +24,18 @@ const useStyles = makeStyles((theme) => ({
             outlineColor: '#36386D',
             border: 'none',
         },
-        avatar: {
-            width: theme.spacing(10),
-            height: theme.spacing(10),
-            '&:hover': {
-                border: '3px solid #F89B29'
-            }
-        },
-        text: {
-
-        },
-        participants: {
-            fontFamily:'audiowide',
-            color: '#FF0F7B',
-            fontWeight: 700
+    },
+    avatar: {
+        width: theme.spacing(10),
+        height: theme.spacing(10),
+        '&:hover': {
+            border: '3px solid #F89B29'
+        }
+    },
+    participant: {
+        width: '20%',
+        '&:hover': {
+            cursor: 'pointer'
         },
     },
 }))
@@ -70,16 +68,15 @@ const ParticipantsModal = ({ handleCloseModal, workshop, handleBack }) => {
 
     return (
         <>
-        {WorkshopParticipants.map(participant => {
-            return(
-                <Grid onClick={userProfileLink} className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
-
-                    <Avatar src= {participant.user_pic} className={classes.avatar} onClick={userProfileLink}/>
-                    <Typography onClick={userProfileLink} className={classes.text}>{participant.firstn} {participant.lastn}</Typography> 
-                
-                </Grid>
-
-        )})}
+        <Grid className={classes.root} container display="flex" direction="row" justify="space-around" alignItems="center">
+            {WorkshopParticipants.map(participant => {
+                return(
+                    <Grid className={classes.participant} onClick={userProfileLink} display="flex" direction="column" justify="center" alignItems="center">
+                        <Avatar src= {participant.user_pic} className={classes.avatar} onClick={userProfileLink}/>
+                        <Typography onClick={userProfileLink} className={classes.text}>{participant.firstn} {participant.lastn}</Typography> 
+                    </Grid>
+                )})}
+        </Grid>
         <Button variant="contained" color="primary" onClick={handleBack}>Back</Button>
         </>
     )

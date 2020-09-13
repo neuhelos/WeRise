@@ -51,7 +51,7 @@ const FacilitatorModal = ({ handleCloseModal, workshop, participantsData }) => {
 
         return (
             <>
-            <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
+            <Grid className={classes.root} display="flex" direction="column" justify="center" alignItems="center">
                 <WorkshopDetails workshop={workshop} participantsData={participantsData}/>
                     {workshop.user_id === currentUser ? 
                         <Grid className={classes.root} item container display="flex" direction="row" justify="space-around" alignItems="center">
