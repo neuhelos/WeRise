@@ -9,6 +9,7 @@ import Modal from '../BaseComponents/Modal'
 
 import EditWorkshop from './editWorkshop'
 import WorkshopDetails from '../WorkshopFeed/WorkshopDetails'
+import ParticipantsModal from './Participants';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,36 +24,76 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const FacilitatorModal = ({ handleCloseModal, workshop }) => {
+const FacilitatorModal = ({ handleCloseModal, workshop, participantsData }) => {
     
     const history = useHistory();
     const classes = useStyles();
 
     const currentUser = useSelector( state => state.currentUserSession.uid );
+
+    const [activeModalView, setActiveModalView] = useState(0);
+    const handleNext = () => {
+        setActiveModalView((prevActiveModalView) => prevActiveModalView + 1);
+        };
     
-    const [open , setOpen] = useState(false)
-    const toggleModal = () => {
-        setOpen(!open)
+    const handleBack = () => {
+        setActiveModalView((prevActiveModalView) => prevActiveModalView - 1);
+        };
+    
+    
+    
+ 
+    const FacilitatorWorkshopModal = () => {
+        const [open , setOpen] = useState(false)
+        const toggleModal = () => {
+            setOpen(!open)
+        }
+
+        return (
+            <>
+            <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
+                <WorkshopDetails workshop={workshop} participantsData={participantsData}/>
+                    {workshop.user_id === currentUser ? 
+                        <Grid className={classes.root} item container display="flex" direction="row" justify="space-around" alignItems="center">
+                            <Button variant="contained" color="primary" type="submit" onClick = {() => history.push(`/videoConference/${workshop.workshop_id}`)}>Join VideoChat</Button>
+                            <Button variant="contained" color="disabled" type="submit" onClick = {toggleModal} >Edit Workshop</Button>
+                            <Button variant="contained" color="secondary" type="submit">Cancel Workshop</Button>
+                            <Button variant="contained" color="primary" type="submit" onClick = {handleNext} >See Participants</Button>
+                        </Grid>
+                        : 
+                        <Button variant="contained" color="primary" type="submit" onClick = {handleNext} >See Participants</Button>
+    }
+            </Grid>
+    
+            <Modal open={open} toggleModal={toggleModal}>
+                <EditWorkshop workshop={workshop} handleCloseModal={toggleModal} />
+            </Modal>
+    
+    
+           
+            </>
+        )
+    }
+
+    const getModalContent = (activeModalView) => {
+        switch (activeModalView) {
+            case 0:
+            return <FacilitatorWorkshopModal />
+            case 1:
+            return <ParticipantsModal workshop={workshop} handleBack={handleBack}/>
+            default:
+            return 'Unknown View';
+        }
     }
 
     return (
-        <>
+
         <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
-            <WorkshopDetails workshop={workshop} />
-                {workshop.user_id === currentUser ? 
-                    <Grid className={classes.root} item container display="flex" direction="row" justify="space-around" alignItems="center">
-                        <Button variant="contained" color="primary" type="submit" onClick = {() => history.push(`/videoConference/${workshop.workshop_id}`)}>Join VideoChat</Button>
-                        <Button variant="contained" color="disabled" type="submit" onClick = {toggleModal} >Edit Workshop</Button>
-                        <Button variant="contained" color="secondary" type="submit">Cancel Workshop</Button>
-                    </Grid>
-                    : null}
+            {getModalContent(activeModalView)}
         </Grid>
 
-        <Modal open={open} toggleModal={toggleModal}>
-            <EditWorkshop workshop={workshop} handleCloseModal={toggleModal} />
-        </Modal>
-        </>
     )
+    
 }
 
 export default FacilitatorModal;
