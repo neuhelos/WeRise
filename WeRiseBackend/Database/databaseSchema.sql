@@ -167,14 +167,14 @@ and merge visual and literary forms. The hinge-bound structure can double as a m
 — made for and by the people! Participants are responsible for sourcing their own supplies from the materials list.',
 '2020-12-13 18:00-04', '2020-12-13 21:00-04', 'Creative Writing & Literature', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FHingeandStabBoundStructures.jpg?alt=media&token=7939d795-bd39-4099-bd69-f44fe2f95183'),
 
-('30295b84-7c3b-43dc-9ee8-c0a4c991b0d5', '2020-08-01 10:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2d', 'Business Finance for Anti-Capitalists',
+('30295b84-7c3b-43dc-9ee8-c0a4c991b0d5', '2020-08-01 10:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'Business Finance for Anti-Capitalists',
 'Is there a middle ground between being a broke idealist and being a morally bankrupt success? In this workshop we will explore 
 money myths, personal money stories, and cover the basics of business finance, the tools you need, and why profit matters for every type of business.
 You will learn the practicals of profit & loss sheets, the different expense levers in your business, and how to think about 
 building a successful and profitable business in alignment with your values.',
 '2020-12-10 17:00-04', '2020-12-10 19:00-04', 'Business & Finance', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FBusinessFinanceLiteracy.jpg?alt=media&token=0bd791ce-bb23-4ce0-97b9-56cc5ba1fe40'),
 
-('b408ec82-b9c4-493d-aea8-98650e8b7b3d', '2020-08-05 18:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2d', 'COVID-19 & Remote Learning',
+('b408ec82-b9c4-493d-aea8-98650e8b7b3d', '2020-08-05 18:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'COVID-19 & Remote Learning',
 'Tips for Parents navigating the new realities of online learning and social distancing', 
 '2020-12-05 16:00-04', '2020-12-05 18:00-04', 'Family, Parenting & Relationships', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCOVIDRemoteLearning.jpg?alt=media&token=70e5c113-9294-455a-996f-a47c09a145a9');
 
