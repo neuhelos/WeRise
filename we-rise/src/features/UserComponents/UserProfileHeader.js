@@ -119,7 +119,7 @@ const FetchUser = () => {
           <Paper className={classes.paper}>
             <Paper className={classes.opacity}>
               <Grid className={classes.root}  container direction="row" justify="center" alignItems="center">
-                <Grid container item direction="row" justify="flex-start" alignItems="center" xs={6}>
+                <Grid container item direction="row" justify="flex-start" alignItems="center" xs={5}>
                   <Avatar aria-label="user" className={classes.avatar} src={pic} />
                   <Grid direction="column" justify="flex-start" alignItems="center">
                     <Typography variant='h5' gutterBottom={true}>{firstn} {lastn}</Typography>
@@ -142,7 +142,7 @@ const FetchUser = () => {
                       : <Button variant="contained" color="primary" type="submit" onClick = {""}>Contact Me</Button>}
                   </Grid>
                 </Grid>
-                <Grid container item direction="column" justify="center" alignItems="flex-start" xs={6}>
+                <Grid container item direction="column" justify="center" alignItems="flex-start" xs={7}>
                   <Typography variant='h6' className={classes.text} gutterBottom={true}>Bio</Typography>
                   <Typography variant='subtitle1' className={classes.text} gutterBottom={true}>{bio}</Typography>
                   <Typography variant='h6' className={classes.text} gutterBottom={true}>Skills</Typography>

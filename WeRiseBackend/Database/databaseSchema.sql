@@ -105,12 +105,12 @@ The practice is an inclusive and welcoming space for all people who would like t
 Ballroom culture and voguing, learn the history and context of the artform, and the foundations of the main voguing styles.
 This is a safe, no-pressure space for people of all abilities, backgrounds & experiences to discover Ballroom and discover themselves.
 High heels are encouraged but not mandatory.',
-'2020-09-15 20:00-04', '2020-09-15 22:00-04', 'Dance & Music', 5,'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWerqitVogue.jpg?alt=media&token=931e1304-a1a2-45ad-813c-7f35b67cae5b'),
+'2020-09-15 22:00-04', '2020-09-15 24:00-04', 'Dance & Music', 5,'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWerqitVogue.jpg?alt=media&token=931e1304-a1a2-45ad-813c-7f35b67cae5b'),
 
 ('6', '2020-07-25 18:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Accessorizing Your Wardrobe', 
 'Style is an attitude, a fantasy, a way of living. Its never too much, elevating your style with accessories.', 
 '2020-09-18 18:00-04', '2020-09-18 19:00-04', 'Beauty & Fashion', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FAccessoriesWorkshop.jpg?alt=media&token=32bb8056-961c-4a84-93fc-04f787e96777'),
-('7', '2020-07-10 15:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Creating Community Change Through Tech', 'Brainstorming strategies for sharing technical know-how and skills for driving social justice in our communities', '2020-10-01 17:00-04', '2020-10-01 20:00-04', 'Community Organizing & Activism', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCommunityRainbow.jpg?alt=media&token=067f5d9f-0b69-42a3-9fa3-811948262065'),
+('7', '2020-07-10 15:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Creating Community Change Through Tech', 'Brainstorming strategies for sharing technical know-how and skills for driving social justice in our communities', '2020-09-01 17:00-04', '2020-09-01 20:00-04', 'Community Organizing & Activism', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCommunityRainbow.jpg?alt=media&token=067f5d9f-0b69-42a3-9fa3-811948262065'),
 ('8', '2020-06-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'MIDI Basics', 'Musical Instrument Digital Interface', '2020-08-16 16:00-04', '2020-08-16 18:00-04',  'Dance & Music', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FMidiController.jpg?alt=media&token=34233b00-6254-4431-9496-3317e5e9aaf3'),
 
 ('9', '2020-08-30 13:00-04', 'nB6JehE4RidvMjwTAq31D4EaGDS2', 'Live Coding Music with Ruby', 
@@ -172,11 +172,11 @@ and merge visual and literary forms. The hinge-bound structure can double as a m
 money myths, personal money stories, and cover the basics of business finance, the tools you need, and why profit matters for every type of business.
 You will learn the practicals of profit & loss sheets, the different expense levers in your business, and how to think about 
 building a successful and profitable business in alignment with your values.',
-'2020-12-10 17:00-04', '2020-12-10 19:00-04', 'Business & Finance', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FBusinessFinanceLiteracy.jpg?alt=media&token=0bd791ce-bb23-4ce0-97b9-56cc5ba1fe40'),
+'2020-12-10 17:00-04', '2020-12-10 19:00-04', 'Business & Finance', 4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FBusinessFinanceLiteracy.jpg?alt=media&token=0bd791ce-bb23-4ce0-97b9-56cc5ba1fe40'),
 
 ('b408ec82-b9c4-493d-aea8-98650e8b7b3d', '2020-08-05 18:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'COVID-19 & Remote Learning',
 'Tips for Parents navigating the new realities of online learning and social distancing', 
-'2020-12-05 16:00-04', '2020-12-05 18:00-04', 'Family, Parenting & Relationships', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCOVIDRemoteLearning.jpg?alt=media&token=70e5c113-9294-455a-996f-a47c09a145a9');
+'2020-12-05 16:00-04', '2020-12-05 18:00-04', 'Family, Parenting & Relationships', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCOVIDRemoteLearning.jpg?alt=media&token=70e5c113-9294-455a-996f-a47c09a145a9');
 
 INSERT INTO registered_workshops
 (user_id, workshop_id, workshop_id_user_id)
