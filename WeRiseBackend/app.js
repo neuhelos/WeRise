@@ -14,7 +14,7 @@ const registered = require("./Routes/RegisteredWorkshopRoutes");
 const users = require("./Routes/UsersRoutes");
 const usersSkills = require("./Routes/UsersSkillsRoutes");
 const recentlyPosted = require("./Routes/RecentlyPostedRoutes");
-const { sendEmail } = require("./middleware/Mailgun");
+const { sendEmail } = require("./Middleware/Mailgun");
 
 app.use("/users", users);
 app.use("/workshops", workshopsRoutes);
