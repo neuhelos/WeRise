@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 const JitsiVideoConfig = (workshop) => {
     
     const classes = useStyles()
-    
+    const weRiseRoom = `WeRiseWorkshop${workshop.workshop.user_id}`
     const params = useParams();
     const currentUser = useSelector( state =>  `${state.currentUserSession.firstn} ${state.currentUserSession.lastn}`);
     
@@ -33,7 +33,7 @@ const JitsiVideoConfig = (workshop) => {
           containerStyle={{padding: '8px', border: '3px solid #FF0F7B', borderRadius: '4px', backgroundColor: '#282828'}} 
           domain="meet.jit.si"
           onAPILoad={handleAPI}
-          roomName={`WeRiseWorkshop`}
+          roomName={`weRiseRoom${params.workshopid}`}
           displayName={currentUser}
           interfaceConfig={interfaceConfig}
           config={config}
