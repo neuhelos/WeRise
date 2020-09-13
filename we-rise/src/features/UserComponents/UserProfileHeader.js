@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundImage: `url(${WeRiseTogether})`,
     backgroundPosition: 'center',
-    backgroundSize: '50%'
+    backgroundSize: '40%'
   },
   opacity: {
     backgroundColor: 'rgba(255,255,255,0.75)'

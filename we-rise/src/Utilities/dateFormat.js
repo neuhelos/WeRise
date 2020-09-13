@@ -6,7 +6,8 @@ export const dateFormat = (dateInput) => {
         ${DateTime.fromISO(dateInput).toFormat('d')},  
         ${DateTime.fromISO(dateInput).toFormat('y')}`
 
-    let time = `${DateTime.fromISO(dateInput).toFormat('T')} ${DateTime.fromISO(dateInput).toFormat('ZZZZ')}`
+    let time = `${DateTime.fromISO(dateInput).toFormat('T')}`
+    let timezone = `${DateTime.fromISO(dateInput).toFormat('ZZZZ')}`
 
-    return {date, time}
+    return {date, time, timezone}
 }
