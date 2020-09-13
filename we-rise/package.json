@@ -39,7 +39,7 @@
     "uuid": "^8.2.0"
   },
   "scripts": {
-    "start": "cd WeRiseBackend && npm install && npm start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

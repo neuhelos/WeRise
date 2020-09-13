@@ -76,6 +76,12 @@ const FetchUser = () => {
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
   const [pic, setPic] = useState("");
+
+  const [facebook, setFacebook] = useState("")
+  const [instagram, seInstagram] = useState("")
+  const [twitter, setTwitter] = useState("")
+  const [linkedin, setLinkedin] = useState("")
+
   const [skills, setSkills] = useState([])
 
   
@@ -109,7 +115,6 @@ const FetchUser = () => {
 
   return (
 
-      
       <Paper className={classes.paperWrapper}>
           <Paper className={classes.paper}>
             <Paper className={classes.opacity}>
@@ -119,10 +124,18 @@ const FetchUser = () => {
                   <Grid direction="column" justify="flex-start" alignItems="center">
                     <Typography variant='h5' gutterBottom={true}>{firstn} {lastn}</Typography>
                     <Grid direction="row" justify="flex-start" alignItems="center">
-                      <FacebookIcon className={classes.icon} fontSize='large'/>
-                      <InstagramIcon className={classes.icon} fontSize='large'/>
-                      <TwitterIcon className={classes.icon} fontSize='large'/>
-                      <LinkedInIcon className={classes.icon} fontSize='large'/>
+                      <a href={`https://www.instagram.com/${instagram}`} target="_blank" rel="noopener noreferrer">
+                        <InstagramIcon className={classes.icon} fontSize='large'/>
+			                </a>
+                      <a href={`https://www.facebook.com/${facebook}`} target="_blank" rel="noopener noreferrer">
+                        <FacebookIcon className={classes.icon} fontSize='large'/>
+			                </a>
+                      <a href={`https://www.twitter.com/${twitter}`} target="_blank" rel="noopener noreferrer">
+                        <TwitterIcon className={classes.icon} fontSize='large'/>
+			                </a>
+                      <a href={`https://www.linkedin.com/in/${linkedin}`} target="_blank" rel="noopener noreferrer">
+                        <LinkedInIcon className={classes.icon} fontSize='large'/>
+			                </a>
                     </Grid>
                     {user_id === currentUser.uid ? 
                       <Button variant="contained" color="disabled" type="submit" onClick = {toggleModal}>Edit Your Profile</Button> 
