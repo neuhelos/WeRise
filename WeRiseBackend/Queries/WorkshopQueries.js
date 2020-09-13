@@ -23,12 +23,7 @@ const createWorkshop = async (req, res) => {
 const getWorkshop = async (req, res) => {
   try {
     let workshop = await database.any(
-      `SELECT created_workshops.id AS workshop_id, 
-      created_workshops.user_id AS user_id, created_workshops.title, 
-      created_workshops.descriptions, created_workshops.start_time, 
-      created_workshops.end_time, created_workshops.category, 
-      created_workshops.participants, created_workshops.workshop_img, 
-      USERs.firstn, users.lastn, users.email, users.user_pic 
+      `SELECT ${queryColumns} 
       FROM created_workshops  
       INNER JOIN users 
       ON created_workshops.user_id = users.id  
@@ -81,12 +76,7 @@ const getSingleWorkshop = async (req, res) => {
 const getPastWorkshop = async (req, res) => {
   try {
     let workshop = await database.any(
-      `SELECT created_workshops.id AS workshop_id, 
-      created_workshops.user_id AS user_id, created_workshops.title, 
-      created_workshops.descriptions, created_workshops.start_time, 
-      created_workshops.end_time, created_workshops.category, 
-      created_workshops.participants, created_workshops.workshop_img, 
-      USERs.firstn, users.lastn, users.email, users.user_pic 
+      `SELECT ${queryColumns} 
       FROM created_workshops  
       INNER JOIN users 
       ON created_workshops.user_id = users.id  
@@ -110,7 +100,7 @@ const getPastWorkshop = async (req, res) => {
 
 const deleteWorkshop = async (req, res) => {
   try {
-    await database.any(`DELETE FROM created_workshops WHERE id = ${req.params.id} RETURNING *`);
+    await database.none(`DELETE FROM created_workshops WHERE id = ${req.params.id} RETURNING *`);
     res.status(200).json({
       status: "success",
       message: "The workshop is deleted"

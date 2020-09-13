@@ -57,6 +57,7 @@ const FacilitatorWorkshopCard = ( { workshop } ) => {
     
     let date = dateFormat(workshop.start_time).date
     let time = dateFormat(workshop.start_time).time
+    let participantsData = workshop.participants !== workshop.workshop_count? `Participants: ${workshop.workshop_count} / ${workshop.participants}` : `WORKSHOP FULL`;
 
     const [open , setOpen] = useState(false)
     const toggleModal = () => {
@@ -79,6 +80,7 @@ const FacilitatorWorkshopCard = ( { workshop } ) => {
                     <>
                     <Typography className={classes.text}>{`${date}`}</Typography>
                     <Typography className={classes.text}>{`${time}`}</Typography>
+                    <Typography className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
                     </>
                 }
                 />
@@ -91,7 +93,7 @@ const FacilitatorWorkshopCard = ( { workshop } ) => {
 
             <Modal open={open} toggleModal={toggleModal}>
                 {/* <WorkshopRegistration handleCloseModal={toggleModal} {...workshop} /> */}
-                <FacilitatorModal handleCloseModal={toggleModal} workshop={workshop}/>
+                <FacilitatorModal handleCloseModal={toggleModal} workshop={workshop} participantsData={participantsData}/>
             </Modal>
 
         </Paper>
