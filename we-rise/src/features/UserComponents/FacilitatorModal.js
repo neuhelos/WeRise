@@ -60,9 +60,7 @@ const FacilitatorModal = ({ handleCloseModal, workshop, participantsData }) => {
                             <Button variant="contained" color="secondary" type="submit">Cancel Workshop</Button>
                             <Button variant="contained" color="primary" type="submit" onClick = {handleNext} >See Participants</Button>
                         </Grid>
-                        : 
-                        <Button variant="contained" color="primary" type="submit" onClick = {handleNext} >See Participants</Button>
-    }
+                        : null}
             </Grid>
     
             <Modal open={open} toggleModal={toggleModal}>
