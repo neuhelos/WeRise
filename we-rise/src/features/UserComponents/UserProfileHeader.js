@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
-import { makeStyles, withTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
@@ -9,7 +9,6 @@ import Typography from "@material-ui/core/Typography";
 import { fetchUserById } from "../../Utilities/FetchFunctions";
 import Modal from '../BaseComponents/Modal'
 import EditUserModal from "./EditUserModal";
-import { current } from "@reduxjs/toolkit";
 import axios from "axios";
 import {apiURL} from '../../Utilities/apiURL'
 import Button from '@material-ui/core/Button';
@@ -61,22 +60,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const FetchUser = () => {
+  
   const currentUser = useSelector((state) => state.currentUserSession);
+  
+  const params = useParams();
+  let user_id = params.id;
+  
   const classes = useStyles();
-  const [profile, setProfile] = useState([]);
+  
+  const [profile, setProfile] = useState(null)
   const [firstn, setFirstn] = useState("");
   const [lastn, setLastn] = useState("");
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
   const [pic, setPic] = useState("");
-  const params = useParams();
-  let user_id = params.id;
+  const [skills, setSkills] = useState([])
+
   
 
   const fetchUser = async () => {
-     let res = await fetchUserById(user_id);
-    setProfile(res);
-    // console.log(setProfile(res.id));
+    let res = await fetchUserById(user_id);
+    setProfile(res)
     setFirstn(res.firstn);
     setLastn(res.lastn);
     setEmail(res.email);
@@ -84,8 +88,14 @@ const FetchUser = () => {
     setPic(res.user_pic);
   };
 
+  const fetchUserSkills = async () => {
+    let res = await axios.get(`${apiURL()}/usersSkills/${user_id}`)
+    setSkills(res.data.payload)
+  }
+
   useEffect(() => {
     fetchUser();
+    fetchUserSkills()
   }, [user_id]);
 
   const [open , setOpen] = useState(false)
@@ -93,9 +103,7 @@ const FetchUser = () => {
       setOpen(!open)
   }
 
-
-  
-
+  const usersSkills = skills.map(skill => skill.skills).join(' | ')
 
   return (
 
@@ -119,8 +127,11 @@ const FetchUser = () => {
                       : <Button variant="contained" color="primary" type="submit" onClick = {""}>Contact Me</Button>}
                   </Grid>
                 </Grid>
-                <Grid container item direction="row" justify="flex-end" alignItems="center" xs={6}>
-                  <Typography variant='subtitle1' className={classes.text} gutterBottom={true}>My Bio: {bio}</Typography>
+                <Grid container item direction="column" justify="center" alignItems="flex-start" xs={6}>
+                  <Typography variant='h6' className={classes.text} gutterBottom={true}>Bio</Typography>
+                  <Typography variant='subtitle1' className={classes.text} gutterBottom={true}>{bio}</Typography>
+                  <Typography variant='h6' className={classes.text} gutterBottom={true}>Skills</Typography>
+                  <Typography variant='subtitle1' className={classes.text} gutterBottom={true}>{usersSkills}</Typography>
                 </Grid>
               </Grid>
             </Paper>

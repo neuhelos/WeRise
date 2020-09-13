@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import "../../styling/UserProfilePage.css";
 
 
-import FetchUser from "../UserComponents/FetchUser";
+import UserProfileHeader from "../UserComponents/UserProfileHeader";
 
 import PastFacilitatorWorkshops from '../UserComponents/PastFacilitatorWorkshops'
 
@@ -62,7 +62,7 @@ const UserProfilePage = () => {
 
         <Grid container className={classes.root} display="flex" direction="row" justify="center" alignItems="center">
                 <Paper className={classes.paper} >
-                    <FetchUser />
+                    <UserProfileHeader />
                 </Paper>
                 <Paper className={classes.paperWrapper}>
                     <Paper className={classes.paperTitle}>

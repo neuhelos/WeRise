@@ -11,17 +11,17 @@ app.use(express.urlencoded({extended: true }))
 
 const workshopsRoutes = require("./Routes/WorkshopRoutes");
 const registered = require("./Routes/RegisteredWorkshopRoutes");
-const users = require("./Routes/Users");
-const userSkills = require("./Routes/userSkills");
-const recentPosted = require("./Routes/recentPosted");
+const users = require("./Routes/UsersRoutes");
+const usersSkills = require("./Routes/UsersSkillsRoutes");
+const recentlyPosted = require("./Routes/RecentlyPostedRoutes");
 const { sendEmail } = require("./Middleware/Mailgun")
 
 
 app.use("/users", users);
 app.use("/workshops", workshopsRoutes);
 app.use("/registered", registered);
-app.use("/usersSkills", userSkills);
-app.use("/recentPosted", recentPosted);
+app.use("/usersSkills", usersSkills);
+app.use("/recentPosted", recentlyPosted);
 
 app.post("/email", sendEmail)
 
