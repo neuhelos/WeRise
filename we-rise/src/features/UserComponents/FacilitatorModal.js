@@ -58,7 +58,7 @@ const FacilitatorModal = ({ handleCloseModal, workshop, participantsData }) => {
                             <Button variant="contained" color="primary" type="submit" onClick = {() => history.push(`/videoConference/${workshop.workshop_id}`)}>Join VideoChat</Button>
                             <Button variant="contained" color="disabled" type="submit" onClick = {toggleModal} >Edit Workshop</Button>
                             <Button variant="contained" color="secondary" type="submit">Cancel Workshop</Button>
-                            <Button variant="contained" color="primary" type="submit" onClick = {handleNext} >See Participants</Button>
+                            {workshop.workshop_count ?  <Button variant="contained" color="primary" type="submit" onClick = {handleNext} >See Participants</Button> : null }
                         </Grid>
                         : null}
             </Grid>
