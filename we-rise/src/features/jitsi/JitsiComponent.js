@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Jitsi from 'react-jitsi'
 
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -19,7 +18,7 @@ const JitsiVideoConfig = ({workshop}) => {
     const classes = useStyles()
     const weRiseRoom = `${workshop.user_id}${workshop.workshop_id}`
     const params = useParams();
-    const currentUser = useSelector( state =>  `${state.currentUserSession.firstn} ${state.currentUserSession.lastn}`);
+    const currentUser = useSelector( state =>  `${state.currentUserSession.firstn}`);
     
     const handleAPI = JitsiMeetAPI => {
       JitsiMeetAPI.executeCommand("toggleVideo");

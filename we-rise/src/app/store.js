@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
+//import logger from 'redux-logger';
 
 import authenticationReducer from '../features/Authentication/AuthenticationSlice';
 import workshopFeedReducer from '../features/WorkshopFeed/WorkshopFeedSlice'
@@ -16,6 +16,6 @@ export default configureStore({
     loading: loadingReducer
   },
   middleware: [
-    ...getDefaultMiddleware(), logger
+    ...getDefaultMiddleware()
   ],
 });

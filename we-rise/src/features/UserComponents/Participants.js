@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import  { useSelector } from 'react-redux'
 import { useHistory} from 'react-router-dom'
 import axios from 'axios';
 import { apiURL } from '../../Utilities/apiURL';
@@ -9,11 +8,7 @@ import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from '../BaseComponents/Modal'
 
-
-import EditWorkshop from './editWorkshop'
-import WorkshopDetails from '../WorkshopFeed/WorkshopDetails'
 
 
 const useStyles = makeStyles((theme) => ({

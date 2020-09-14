@@ -1,8 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+//import {Link} from 'react-router-dom'
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+//import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import Typography from '@material-ui/core/Typography'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import { makeStyles } from '@material-ui/core/styles'

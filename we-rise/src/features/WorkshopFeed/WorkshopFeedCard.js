@@ -14,7 +14,6 @@ import Paper from '@material-ui/core/Paper'
 import { Link } from 'react-router-dom'
 import Modal from '../BaseComponents/Modal'
 import WorkshopRegistration from './WorkshopRegistration'
-import { current } from '@reduxjs/toolkit';
 
 const useStyles = makeStyles((theme) => ({
     root: {
