@@ -62,7 +62,7 @@ const FacilitatorWorkshopCard = ( props ) => {
     
     const currentUser = useSelector( state => state.currentUserSession.uid );
 
-        const { workshop } = props
+    const { workshop } = props
 
     let date = dateFormat(workshop.start_time).date
     let startTime = dateFormat(workshop.start_time).time
