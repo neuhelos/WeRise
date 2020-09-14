@@ -228,9 +228,9 @@ VALUES
 INSERT INTO users_skills
 (id, user_id, skills)
 VALUES
-('1','E093QRw1swaW4KCQUON44IU2gcy2', 'javascript'),
+('1','E093QRw1swaW4KCQUON44IU2gcy2', 'defeating COVID-19'),
 ('2','E093QRw1swaW4KCQUON44IU2gcy2', 'cooking cajun'),
-('3','E093QRw1swaW4KCQUON44IU2gcy2', 'ballet'),
+('3','E093QRw1swaW4KCQUON44IU2gcy2', 'spreading knowledge'),
 ('4', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'styling and fashion design'),
 ('5', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'community activism'),
 ('6','QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'dance');
