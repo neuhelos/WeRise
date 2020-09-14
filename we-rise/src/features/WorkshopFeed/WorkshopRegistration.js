@@ -166,7 +166,7 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, ...props }) => {
                     <Button variant="contained" color="primary" onClick={handleCloseModal}> RETURN TO WORKSHOPS </Button>
                     <Button variant="contained" color="primary" onClick={handleNext}> BEGIN REGISTRATION </Button> 
                   </Grid>
-                : <Button variant="contained" color="primary" onClick={handleCloseModal}> AT CAPACITY : RETURN TO SEARCH </Button>}
+                : <Button variant="contained" color="primary" onClick={handleCloseModal}> AT CAPACITY : RETURN TO WORKSHOPS </Button>}
           </Grid>
       )
     }
