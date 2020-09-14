@@ -7,54 +7,22 @@ import Jitsi from '../jitsi/JitsiComponent'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
 
-import '../../styling/jitsi.css'
-
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
-        [theme.breakpoints.down('sm')]: {
-            flexDirection: 'column',
-            flexWrap: 'nowrap'
-        }
-    },
-    gridSection: {
-        padding: theme.spacing(1),
-        height: '100%',
+        textAlign: 'center',
         width: '100%',
+        '& *': {
+            fontFamily: 'audiowide'
+        },
     },
-    paper: {
-        width: '90%',
-        padding: theme.spacing(2),
-        margin: theme.spacing(2),
-        backgroundColor: '#282828',
-        color: 'white',
-        display: 'flex',
-        justifyContent: 'center',
-        alignContent: 'center',
-    },
-    paperWrapper: {
-        width: '90%',
-        padding: theme.spacing(1),
-        margin: theme.spacing(1),
-        backgroundColor: '#282828',
-    },
-    paperTitle: {
-        width: '100%',
-        backgroundColor: '#666666',
-        color: '#FFFFFF',
-        padding: theme.spacing(1),
-        display: 'flex',
-        justifyContent: 'center',
-    },
-    text: {
-        fontFamily: 'audiowide'
-    }
 }))
 
 
 const VideoConference = () => {
     const [registeredWorkshop, setRegisteredWorkshops] = useState([]);
     
+    const classes = useStyles()
+
     const params = useParams(); 
 
     const getWorkshopInfo = async() =>{
@@ -73,7 +41,7 @@ const VideoConference = () => {
     },[])
 
     return (
-        <Grid display='flex' direction='column' justify='center' className='videoComponent' alignItems='center'>
+        <Grid className={classes.root} display='flex' direction='column' justify='center' alignItems='center'>
             <h1>Welcome to {registeredWorkshop.title}</h1>
             <h3>Led by : {registeredWorkshop.firstn} {registeredWorkshop.lastn}</h3>
             <Jitsi workshop = {registeredWorkshop}/>

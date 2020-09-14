@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { dateFormat } from '../../Utilities/dateFormat'
 
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 
@@ -52,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     }))
 
 
-const WorkshopDetails = ( { workshop, dateTime, participantsData } ) => {
+const WorkshopDetails = ( { workshop, participantsData } ) => {
     
     const classes = useStyles();
 
@@ -65,7 +64,6 @@ const WorkshopDetails = ( { workshop, dateTime, participantsData } ) => {
             <>
                 <Typography align='center' style={{color: '#FF0F7B'}} className={classes.text} gutterBottom={true} variant='h5'>{workshop.title}</Typography>
                 <Box className={classes.root} >
-                    {/* <Grid className={classes.container} container display="flex" direction="column" justify="flex-start" alignItems="center"> */}
                         <img className={classes.image} src={workshop.workshop_img} alt={workshop.title} />
                         <div className={classes.text} style={{display: 'flex'}}>
                             <Typography align='left' variant='subtitle1' gutterBottom={true}>Facilitator:</Typography>
@@ -78,9 +76,6 @@ const WorkshopDetails = ( { workshop, dateTime, participantsData } ) => {
                         <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >Category: {workshop.category}</Typography>
                         <Typography align='left' variant='body1' gutterBottom={true}  className={workshop.participants !== Number(workshop.workshop_count) ? classes.text : classes.participants}>{participantsData}</Typography>
                         <Typography align='left' className={classes.description} variant='body1' gutterBottom={true} >Description: {workshop.descriptions}</Typography>
-                    {/* </Grid> */}
-                    {/* <Grid className={classes.container} container display="flex" direction='row' justify="center" alignItems="center">
-                    </Grid> */}
                 </Box>
             </>
     )

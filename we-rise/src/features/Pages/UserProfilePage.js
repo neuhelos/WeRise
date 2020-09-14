@@ -1,15 +1,9 @@
 import React from "react";
-import { makeStyles, withTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import FacilitatorWorkshops from "../UserComponents/FacilitatorWorkshops";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
-import "../../styling/UserProfilePage.css";
 
 
 import UserProfileHeader from "../UserComponents/UserProfileHeader";
