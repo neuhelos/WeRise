@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import FacilitatorModal from './FacilitatorModal'
+import { useSelector } from 'react-redux'
 
-import { useHistory} from 'react-router-dom'
-import { DateTime } from 'luxon'
+import WorkshopRegistration from '../WorkshopFeed/WorkshopRegistration'
+import FacilitatorModal from './FacilitatorModal'
 
 import { dateFormat } from '../../Utilities/dateFormat'
 
@@ -58,8 +58,12 @@ const useStyles = makeStyles((theme) => ({
     },
     }));
 
-const FacilitatorWorkshopCard = ( { workshop } ) => {
+const FacilitatorWorkshopCard = ( props ) => {
     
+    const currentUser = useSelector( state => state.currentUserSession.uid );
+
+        const { workshop } = props
+
     let date = dateFormat(workshop.start_time).date
     let startTime = dateFormat(workshop.start_time).time
     let endTime = dateFormat(workshop.end_time).time
@@ -100,8 +104,9 @@ const FacilitatorWorkshopCard = ( { workshop } ) => {
             </Card>
 
             <Modal open={open} toggleModal={toggleModal}>
-                {/* <WorkshopRegistration handleCloseModal={toggleModal} {...workshop} /> */}
+                {workshop.user_id === currentUser || new Date(workshop.end_time) <= new Date() ?
                 <FacilitatorModal handleCloseModal={toggleModal} workshop={workshop} participantsData={participantsData}/>
+                : <WorkshopRegistration handleCloseModal={toggleModal} participantsData={participantsData} {...props} />}
             </Modal>
 
         </Paper>

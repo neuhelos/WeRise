@@ -56,9 +56,13 @@ const FacilitatorModal = ({ handleCloseModal, workshop, participantsData }) => {
                 <WorkshopDetails workshop={workshop} participantsData={participantsData}/>
                     {workshop.user_id === currentUser ? 
                         <Grid className={classes.root} item container display="flex" direction="row" justify="space-around" alignItems="center">
-                            <Button variant="contained" color="primary" type="submit" onClick = {() => history.push(`/videoConference/${workshop.workshop_id}`)}>Join VideoChat</Button>
+                            {new Date(workshop.end_time) >= new Date() ?
+                            <>
+                                <Button variant="contained" color="primary" type="submit" onClick = {() => history.push(`/videoConference/${workshop.workshop_id}`)}>Join VideoChat</Button>
+                                <Button variant="contained" color="secondary" type="submit">Cancel Workshop</Button>
+                            </>
+                            : null}
                             <Button variant="contained" color="disabled" type="submit" onClick = {toggleModal} >Edit Workshop</Button>
-                            <Button variant="contained" color="secondary" type="submit">Cancel Workshop</Button>
                             {workshop.workshop_count ?  <Button variant="contained" color="primary" type="submit" onClick = {handleNext} >See Participants</Button> : null }
                         </Grid>
                         : null}
