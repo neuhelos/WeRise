@@ -121,9 +121,9 @@ const FetchUser = () => {
               <Grid className={classes.root}  container direction="row" justify="center" alignItems="center">
                 <Grid container item direction="row" justify="flex-start" alignItems="center" xs={5}>
                   <Avatar aria-label="user" className={classes.avatar} src={pic} />
-                  <Grid direction="column" justify="flex-start" alignItems="center">
+                  <Grid container display="flex" direction='column' justify="center" alignItems="flex-start" style={{width: 'auto'}}>
                     <Typography variant='h5' gutterBottom={true}>{firstn} {lastn}</Typography>
-                    <Grid direction="row" justify="flex-start" alignItems="center">
+                    <Grid container display="flex" direction="row" justify="flex-start" alignItems="center" style={{width: 'auto'}}>
                       <a href={`https://www.instagram.com/${instagram}`} target="_blank" rel="noopener noreferrer">
                         <InstagramIcon className={classes.icon} fontSize='large'/>
 			                </a>
@@ -139,7 +139,7 @@ const FetchUser = () => {
                     </Grid>
                     {user_id === currentUser.uid ? 
                       <Button variant="contained" color="disabled" type="submit" onClick = {toggleModal}>Edit Your Profile</Button> 
-                      : <Button variant="contained" color="primary" type="submit" onClick = {""}>Contact Me</Button>}
+                      : <Button variant="contained" color="primary" type="submit">Contact Me</Button>}
                   </Grid>
                 </Grid>
                 <Grid container item direction="column" justify="center" alignItems="flex-start" xs={7}>
