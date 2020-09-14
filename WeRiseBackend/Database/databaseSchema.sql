@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS we_rise;
-CREATE DATABASE we_rise;
+-- DROP DATABASE IF EXISTS we_rise;
+-- CREATE DATABASE we_rise;
 
-\c we_rise;
+-- \c we_rise;
 DROP TABLE IF EXISTS users_skills;
 DROP TABLE IF EXISTS workshop_skills;
 DROP TABLE IF EXISTS video_chat;
