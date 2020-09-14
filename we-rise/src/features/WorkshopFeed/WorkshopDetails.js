@@ -76,7 +76,7 @@ const WorkshopDetails = ( { workshop, dateTime, participantsData } ) => {
                         <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >{`${date}`}</Typography>
                         <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >{`Time: ${startTime}-${endTime} ${timezone}`}</Typography>
                         <Typography align='left' className={classes.text} variant='body1' gutterBottom={true} >Category: {workshop.category}</Typography>
-                        <Typography align='left' variant='body1' gutterBottom={true}  className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
+                        <Typography align='left' variant='body1' gutterBottom={true}  className={workshop.participants !== Number(workshop.workshop_count) ? classes.text : classes.participants}>{participantsData}</Typography>
                         <Typography align='left' className={classes.description} variant='body1' gutterBottom={true} >Description: {workshop.descriptions}</Typography>
                     {/* </Grid> */}
                     {/* <Grid className={classes.container} container display="flex" direction='row' justify="center" alignItems="center">

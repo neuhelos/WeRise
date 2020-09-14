@@ -50,7 +50,12 @@ const useStyles = makeStyles((theme) => ({
             cursor: 'pointer',
             border: '2px solid  #FF0F7B'
         }
-    }
+    },
+    participants: {
+        fontFamily:'audiowide',
+        color: '#FF0F7B',
+        fontWeight: 700
+    },
     }));
 
 const FacilitatorWorkshopCard = ( { workshop } ) => {
@@ -60,7 +65,7 @@ const FacilitatorWorkshopCard = ( { workshop } ) => {
     let endTime = dateFormat(workshop.end_time).time
     let timezone = dateFormat(workshop.start_time).timezone
 
-    let participantsData = workshop.participants !== workshop.workshop_count? `Participants: ${workshop.workshop_count} / ${workshop.participants}` : `WORKSHOP FULL`;
+    let participantsData = workshop.participants !== Number(workshop.workshop_count) ? `Participants: ${workshop.workshop_count} / ${workshop.participants}` : `WORKSHOP FULL`;
 
     const [open , setOpen] = useState(false)
     const toggleModal = () => {
@@ -83,7 +88,7 @@ const FacilitatorWorkshopCard = ( { workshop } ) => {
                     <>
                     <Typography className={classes.text}>{`${date}`}</Typography>
                     <Typography className={classes.text}>{`${startTime}-${endTime} ${timezone}`}</Typography>
-                    <Typography className={workshop.participants !== workshop.workshop_count ? classes.text : classes.participants}>{participantsData}</Typography>
+                    <Typography className={workshop.participants !== Number(workshop.workshop_count) ? classes.text : classes.participants}>{participantsData}</Typography>
                     </>
                 }
                 />

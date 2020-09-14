@@ -161,12 +161,12 @@ const WorkshopRegistration = ({ workshop, handleCloseModal, ...props }) => {
       return (
           <Grid className={classes.root} container display="flex" direction="column" justify="center" alignItems="center">
               <WorkshopDetails workshop={workshop} {...props}/>
-              {workshop.participants !== workshop.workshop_count ?
+              {workshop.participants !== Number(workshop.workshop_count) ?
                   <Grid className={classes.root} item container display="flex" direction="row" justify="space-around" alignItems="center">
                     <Button variant="contained" color="primary" onClick={handleCloseModal}> RETURN TO WORKSHOPS </Button>
                     <Button variant="contained" color="primary" onClick={handleNext}> BEGIN REGISTRATION </Button> 
                   </Grid>
-                : <Button variant="contained" color="primary" onClick={handleCloseModal}> AT CAPACITY : RETURN TO SEARCH </Button>}
+                : <Button variant="contained" color="primary" onClick={handleCloseModal}> AT CAPACITY : RETURN TO WORKSHOPS </Button>}
           </Grid>
       )
     }
