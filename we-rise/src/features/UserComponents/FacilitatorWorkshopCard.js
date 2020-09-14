@@ -104,7 +104,7 @@ const FacilitatorWorkshopCard = ( props ) => {
             </Card>
 
             <Modal open={open} toggleModal={toggleModal}>
-                {workshop.user_id === currentUser ?
+                {workshop.user_id === currentUser || new Date(workshop.end_time) <= new Date() ?
                 <FacilitatorModal handleCloseModal={toggleModal} workshop={workshop} participantsData={participantsData}/>
                 : <WorkshopRegistration handleCloseModal={toggleModal} participantsData={participantsData} {...props} />}
             </Modal>
