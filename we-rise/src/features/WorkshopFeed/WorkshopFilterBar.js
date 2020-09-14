@@ -129,14 +129,21 @@ const WorkshopFilterBar = ({dateRange, handleDateChange, selectCategories, handl
                 onChange={handleSelectChange}
                 onClick={handleOpenMenu}
                 input={<Input style={{fontSize: '0.8125rem', textAlign: 'center'}}/>}
-                renderValue={(selected) => selected.length > 1 ? "Multiple" : selected.length === 1 ? `${selected[0].slice(0,15)}...` : "CATEGORIES" }
+                renderValue={(selected) => 
+                        {  
+                            
+                            return selected.length > 1 ? "Multiple" : selected.length === 1 ? `${selected[0].slice(0,15)}...` : "CATEGORIES" 
+                        }
+                        }
                 MenuProps={MenuProps}
                 >
-                    <Grid className={classes.dateRange} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>
-                        <Button variant="contained" color="primary" onClick={selectAllCategories} size='small'>All</Button>
-                        <Button variant="contained" color="primary" onClick={clearSelectCategories} size='small'>Clear</Button>
-                        <Button variant="contained" color="primary" onClick={handleCloseMenu} size='small'>Select</Button>
-                    </Grid>
+                    <MenuItem value="CATEGORIES">
+                        <Grid className={classes.dateRange} container display="flex" direction="row" justify="space-around" alignItems="center" wrap='nowrap'>
+                            <Button variant="contained" color="primary" onClick={selectAllCategories} size='small'>All</Button>
+                            <Button variant="contained" color="primary" onClick={clearSelectCategories} size='small'>Clear</Button>
+                            <Button variant="contained" color="primary" onClick={handleCloseMenu} size='small'>Select</Button>
+                        </Grid>
+                    </MenuItem>
                     <MenuItem value="" disabled className={classes.text}>Categories</MenuItem>
                     {categories.map((category) => (
                         <MenuItem key={category} value={category}>
