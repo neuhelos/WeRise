@@ -93,7 +93,7 @@ INSERT INTO created_workshops
 (id, posted, user_id, title, descriptions, start_time, end_time, category, participants, workshop_img)
 VALUES
 ('1', '2020-08-22 10:00-04', '4BoeoW9pLWdNKD2WKq8Widdxmkj2', 'SQL Tutorial', 'An Intro to Mastering SQL', '2020-09-24 10:00-04', '2020-09-24 12:00-04', 'Technology, Coding & Programming',  4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FSQLTutorial.png?alt=media&token=4a05132b-d42c-4375-988c-56029054a8a2'),
-('2', '2020-06-22 15:00-04', 'otmKzEboQMby4tLzx6X8vC33ve83', 'Get Your Cardio On', 'Burn those Love Handles and Get Fit in Quarantine', '2020-09-22 15:00-04', '2020-09-22 16:00-04' , 'Health, Fitness & Wellness', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCardioWorkout.jpg?alt=media&token=cec95c60-464b-4c5c-a12c-690e9e329dc1'),
+('2', '2020-06-22 15:00-04', 'otmKzEboQMby4tLzx6X8vC33ve83', 'Get Your Cardio On', 'Burn those Love Handles and Get Fit in Quarantine', '2020-09-29 15:00-04', '2020-09-29 16:00-04' , 'Health, Fitness & Wellness', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCardioWorkout.jpg?alt=media&token=cec95c60-464b-4c5c-a12c-690e9e329dc1'),
 ('3', '2020-06-23 18:00-04', '8uvDSPKzhjU5rllJU1Fy40Gn8x23', 'Drama Therapy in COVID Times', 'Express Yourself while Socially Distancing', '2020-09-23 18:00-04', '2020-09-23 19:00-04' , 'Film, Photography & Theatre', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FDramaTherapy.jpg?alt=media&token=07f82c15-ec78-41cc-95a1-1bb6195c72d1'),
 ('4', '2020-07-01 17:00-04', 'rVOVAIwKwdUchSqjZl0xh3qqe0q1', 'I Love Javascript', 'Start Your Coding Journey with a Bit of JS Basics', '2020-10-01 17:00-04', '2020-10-01 18:00-04' ,'Technology, Coding & Programming', 2, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FILoveJavascript.png?alt=media&token=3370fe6f-9cd4-469f-84a5-f2e2b567b2bb'),
 
@@ -104,7 +104,7 @@ The practice is an inclusive and welcoming space for all people who would like t
 Ballroom culture and voguing, learn the history and context of the artform, and the foundations of the main voguing styles.
 This is a safe, no-pressure space for people of all abilities, backgrounds & experiences to discover Ballroom and discover themselves.
 High heels are encouraged but not mandatory.',
-'2020-09-15 22:00-04', '2020-09-15 24:00-04', 'Dance & Music', 5,'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWerqitVogue.jpg?alt=media&token=931e1304-a1a2-45ad-813c-7f35b67cae5b'),
+'2020-09-22 22:00-04', '2020-09-22 24:00-04', 'Dance & Music', 5,'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWerqitVogue.jpg?alt=media&token=931e1304-a1a2-45ad-813c-7f35b67cae5b'),
 
 ('6', '2020-07-25 18:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Accessorizing Your Wardrobe', 
 'Style is an attitude, a fantasy, a way of living. Its never too much, elevating your style with accessories.', 
@@ -145,7 +145,7 @@ version from Adobe Creative Suite prior to the workshop.',
 'A series of household DIY tutorials made by women, for women giving instructions on basic DIY power tool enhanced tasks 
 like changing a lightbulb, smashing a window, painting a wall and using a drill.
 You are encouraged to share your power tool sharpened knowledge and create your own workshop.',
-'2020-09-17 16:00-04', '2020-09-17 18:00-04', 'Home Improvement & Garden', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FDIYWomen.jpg?alt=media&token=050d1114-6e07-4b6f-a2f3-9c26f22375e6'),
+'2020-09-22 16:00-04', '2020-09-22 18:00-04', 'Home Improvement & Garden', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FDIYWomen.jpg?alt=media&token=050d1114-6e07-4b6f-a2f3-9c26f22375e6'),
 
 ('7e01c9e2-4fed-4a7e-80f2-6a8509ad1417', '2020-09-05 14:00-04', 'ZIRgXopThgcOFwZ5f4ZjVedPnSj1', 'Job Ready in Tech',
 'Becoming job ready in the pursuit of a career in the tech field. From DSA-intensive technical interviews to resume building and
