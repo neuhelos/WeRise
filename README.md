@@ -33,9 +33,9 @@ How will WeRise realize this vision?:
 WeRise Primary Features:
 
    - Virtual Workshops conducted using VideoChat with In-Video Messaging & Screen-sharing
-   - Workshop Feed with a Feature-Rich Search Engine
-   - User Profiles for Engaging Your Community
-   - User Real-time Communication: Instant Messaging
+   - Workshop Feed with a Feature-Rich Search Engine for Discovering and Registering for Workshops
+   - User Profiles for Engaging other Users and Managing Workshops Being Facilitated
+   - User Real-time Communication with In-App Instant Messaging
 
 ----------------------------
 
