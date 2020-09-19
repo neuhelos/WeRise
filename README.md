@@ -14,6 +14,7 @@
 ### User Profile Page View
 ![WeRise User Profile](we-rise/src/styling/Assets/Media/WeRiseUserProfile.png)
 
+----------------------------
 
 ## How To
 
@@ -35,6 +36,8 @@ WeRise Primary Features:
    - Workshop Feed with a Feature-Rich Search Engine
    - User Profiles for Engaging Your Community
    - User Real-time Communication: Instant Messaging
+
+----------------------------
 
 
 ## Technical Base
