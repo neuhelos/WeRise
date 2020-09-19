@@ -1,11 +1,9 @@
-# WeRise
-## Community Skills-Share VideoChat Platform
-
+# WeRise - A Community Skills-Share VideoChat Platform
 ### Sharing Knowledge to Build Communities on the Rise
 
 ----------------------------
-
-### [Live Demo - Web-Ready Only](https://werise.netlify.app/)
+### [Live Demo (Web-Ready Only)](https://werise.netlify.app/)
+----------------------------
 
 ### Community Dashboard Page View
 ![WeRise Community Dashboard](we-rise/src/styling/Assets/Media/WeRiseCommunityDashboard.png)
