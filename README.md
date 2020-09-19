@@ -16,7 +16,7 @@
 
 ----------------------------
 
-## How To
+## About
 
 WeRise envisions building a community-driven platform where:
 
