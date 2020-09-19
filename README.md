@@ -42,7 +42,7 @@ WeRise Primary Features:
 
 ## Technical Base
 
-WeRise was built using a tech stack comprising PostgreSQL, Firebase's Firestore NoSQL Cloud Database, Express, NodeJS and React. Material-UI was implemented as the base for designing and styling the UI/UX framework. 
+WeRise was built using a tech stack comprised of PostgreSQL, Firebase's Firestore NoSQL Cloud Database, Express, NodeJS and React. Material-UI was implemented as the base for designing and styling the UI/UX framework. 
 
 ### Future Specifications
 
