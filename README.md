@@ -1,4 +1,4 @@
-# WeRise - A Community Skills-Share VideoChat Platform
+# WeRise
 ### Sharing Knowledge to Build Communities on the Rise
 
 ----------------------------
