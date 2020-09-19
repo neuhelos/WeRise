@@ -51,4 +51,4 @@ WeRise was built using a tech stack comprising PostgreSQL, Firebase's Firestore 
    - User Reviews, Rewards & Badges
    - User Subscriptions to Workshop Facilitators
    - User-Defined Interest Categories for Customized Default Feed
-   - Tool for Donations to Facilitators and Users
+   - Feature Facilitating Donations to Facilitators and Users
