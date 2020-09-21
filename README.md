@@ -1,4 +1,4 @@
-# WeRise
+![WeRise Logo](we-rise/src/styling/Assets/Media/WeRiseLogo.png)
 ### Sharing Knowledge to Build Communities on the Rise
 
 ----------------------------
