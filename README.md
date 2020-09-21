@@ -1,7 +1,6 @@
 ![WeRise Logo](we-rise/src/styling/Assets/Media/WeRiseLogo.png)
-### Sharing Knowledge to Build Communities on the Rise
 
-----------------------------
+### Sharing Knowledge to Build Communities on the Rise
 ### [Live Demo](https://werise.netlify.app/) (Web-Ready Only)
 ----------------------------
 
