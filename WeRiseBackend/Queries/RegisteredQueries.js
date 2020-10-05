@@ -3,7 +3,7 @@ const db = require('../Database/database');
 const {queryColumns} = require('./queryBase')
 
 
-const getRegisteredWorkshop = async (req, res, next) => {
+const getAllRegisteredWorkshops = async (req, res, next) => {
     try {
       let workshops = await db.any(`SELECT registered_workshops.id, ${queryColumns} 
       FROM registered_workshops 
@@ -115,5 +115,5 @@ const getRegisteredWorkshop = async (req, res, next) => {
 }
 
   module.exports = {
-    getRegisteredWorkshop, deleteRegistration, createRegistration, getRegisteredCount, getAllWhoRegistered
+    getAllRegisteredWorkshops, deleteRegistration, createRegistration, getRegisteredCount, getAllWhoRegistered
   }
