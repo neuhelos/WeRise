@@ -9,7 +9,8 @@ const getAllRegisteredWorkshops = async (req, res, next) => {
       FROM registered_workshops 
       JOIN created_workshops ON registered_workshops.workshop_id = created_workshops.id 
       JOIN users ON created_workshops.user_id = users.id  
-      WHERE registered_workshops.user_id = $1 
+      WHERE registered_workshops.user_id = $1 AND
+      WHERE created_workshops.end_time >= NOW() 
       ORDER BY created_workshops.start_time`,
       [
         req.params.id,
