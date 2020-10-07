@@ -1,13 +1,13 @@
 const registered = require("express").Router();
 const {
-  getRegisteredWorkshop,
+  getAllRegisteredWorkshops,
   deleteRegistration,
   createRegistration,
   getRegisteredCount,
   getAllWhoRegistered
 } = require("../Queries/RegisteredQueries");
 
-registered.get("/:id", getRegisteredWorkshop);
+registered.get("/:id", getAllRegisteredWorkshops);
 registered.delete("/:id", deleteRegistration);
 registered.get("/all/:id", getAllWhoRegistered);
 registered.get("/count/:id", getRegisteredCount);

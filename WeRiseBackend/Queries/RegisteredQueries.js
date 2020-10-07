@@ -3,13 +3,14 @@ const db = require('../Database/database');
 const {queryColumns} = require('./queryBase')
 
 
-const getRegisteredWorkshop = async (req, res, next) => {
+const getAllRegisteredWorkshops = async (req, res, next) => {
     try {
       let workshops = await db.any(`SELECT registered_workshops.id, ${queryColumns} 
       FROM registered_workshops 
       JOIN created_workshops ON registered_workshops.workshop_id = created_workshops.id 
       JOIN users ON created_workshops.user_id = users.id  
-      WHERE registered_workshops.user_id = $1 
+      WHERE registered_workshops.user_id = $1 AND
+      created_workshops.end_time >= NOW() 
       ORDER BY created_workshops.start_time`,
       [
         req.params.id,
@@ -115,5 +116,5 @@ const getRegisteredWorkshop = async (req, res, next) => {
 }
 
   module.exports = {
-    getRegisteredWorkshop, deleteRegistration, createRegistration, getRegisteredCount, getAllWhoRegistered
+    getAllRegisteredWorkshops, deleteRegistration, createRegistration, getRegisteredCount, getAllWhoRegistered
   }
