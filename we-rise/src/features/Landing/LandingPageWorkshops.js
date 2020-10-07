@@ -13,6 +13,17 @@ export const workshops = [
         workshop_img: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FDIYWomen.jpg?alt=media&token=050d1114-6e07-4b6f-a2f3-9c26f22375e6',
     },
     {
+        workshop_id: 4,
+        title: 'Werq it Vogue',
+        firstn: 'Nilber',
+        user_pic: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FNilberRemon.png?alt=media&token=35d9a08c-a430-4843-9988-e6582d0443cf',
+        start_time: '2020-10-08T02:00:00.000Z',
+        end_time: '2020-10-08T04:00:00.000Z',
+        descriptions: 'Learn how to burn the runway with your vogue moves',
+        category: 'Dance & Music',
+        workshop_img: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWerqitVogue.jpg?alt=media&token=931e1304-a1a2-45ad-813c-7f35b67cae5b',
+    },
+    {
         workshop_id: 5,
         title: 'I Love Javascript',
         firstn: 'Uduakabasi',
@@ -36,17 +47,6 @@ export const workshops = [
         version from Adobe Creative Suite prior to the workshop.`,
         category: 'Art & Design',
         workshop_img: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FVisualResistance.png?alt=media&token=664084da-3e75-4c27-be5b-6b2bc0d725a4',
-    },
-    {
-        workshop_id: 4,
-        title: 'Werq it Vogue',
-        firstn: 'Nilber',
-        user_pic: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FNilberRemon.png?alt=media&token=35d9a08c-a430-4843-9988-e6582d0443cf',
-        start_time: '2020-10-08T02:00:00.000Z',
-        end_time: '2020-10-08T04:00:00.000Z',
-        descriptions: 'Learn how to burn the runway with your vogue moves',
-        category: 'Dance & Music',
-        workshop_img: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWerqitVogue.jpg?alt=media&token=931e1304-a1a2-45ad-813c-7f35b67cae5b',
     },
 ]
 

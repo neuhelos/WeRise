@@ -183,7 +183,7 @@ const NavBar = () => {
                   <Dashboard style={{ fontSize: 50 }} />
               </IconButton>
             </Tooltip>
-              <Tooltip title="Instant Messaging">
+            <Tooltip title="Instant Messaging">
               <IconButton className={classes.iconButton}  aria-label="unread messages" color="inherit" onClick={navMessaging} >
                 <Badge badgeContent={unreadCount} classes={{ badge: classes.badge }} overlap='circle' showZero>
                   <MailIcon style={{ fontSize: 50 }} />
