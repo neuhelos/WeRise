@@ -2,7 +2,7 @@
 
 ### Sharing Knowledge to Build Communities on the Rise
 ### [Live Demo](https://werise.netlify.app/) (Web-Ready Only)
-#### [Slide Deck Deep Dive](https://docs.google.com/presentation/d/1ljPnM5T7UcN4eZXAA4aSxHjCIO60VJ1ItBtv-bdXiCA/edit?usp=sharing)
+### [Slide Deck Deep Dive](https://docs.google.com/presentation/d/1ljPnM5T7UcN4eZXAA4aSxHjCIO60VJ1ItBtv-bdXiCA/edit?usp=sharing)
 ----------------------------
 
 ### Community Dashboard Page View
