@@ -92,25 +92,25 @@ VALUES
 INSERT INTO created_workshops
 (id, posted, user_id, title, descriptions, start_time, end_time, category, participants, workshop_img)
 VALUES
-('1', '2021-08-22 10:00-04', '4BoeoW9pLWdNKD2WKq8Widdxmkj2', 'SQL Tutorial', 'An Intro to Mastering SQL', '2021-11-24 10:00-04', '2021-11-24 12:00-04', 'Technology, Coding & Programming',  4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FSQLTutorial.png?alt=media&token=4a05132b-d42c-4375-988c-56029054a8a2'),
+('1', '2020-08-22 10:00-04', '4BoeoW9pLWdNKD2WKq8Widdxmkj2', 'SQL Tutorial', 'An Intro to Mastering SQL', '2021-11-24 10:00-04', '2021-11-24 12:00-04', 'Technology, Coding & Programming',  4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FSQLTutorial.png?alt=media&token=4a05132b-d42c-4375-988c-56029054a8a2'),
 ('2', '2021-06-22 15:00-04', 'otmKzEboQMby4tLzx6X8vC33ve83', 'Get Your Cardio On', 'Burn those Love Handles and Get Fit in Quarantine', '2021-11-28 15:00-04', '2021-11-28 16:00-04' , 'Health, Fitness & Wellness', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCardioWorkout.jpg?alt=media&token=cec95c60-464b-4c5c-a12c-690e9e329dc1'),
 ('3', '2021-06-23 18:00-04', '8uvDSPKzhjU5rllJU1Fy40Gn8x23', 'Drama Therapy in COVID Times', 'Express Yourself while Socially Distancing', '2021-10-10 18:00-04', '2021-10-10 19:00-04' , 'Film, Photography & Theatre', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FDramaTherapy.jpg?alt=media&token=07f82c15-ec78-41cc-95a1-1bb6195c72d1'),
 ('4', '2021-07-01 17:00-04', 'rVOVAIwKwdUchSqjZl0xh3qqe0q1', 'I Love Javascript', 'Start Your Coding Journey with a Bit of JS Basics', '2021-10-15 17:00-04', '2021-10-15 18:00-04' ,'Technology, Coding & Programming', 2, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FILoveJavascript.png?alt=media&token=3370fe6f-9cd4-469f-84a5-f2e2b567b2bb'),
 
-('5', '2020-08-02 16:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Werq it Vogue', 
+('5', '2021-02-25 16:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Werq it Vogue', 
 'Learn how to burn the the runway on the dance floor with your vogue moves. Voguing is an underground dance-based art form created 
 by the Black and Latinx LGBT communities, to promote liberation and community building through performance, self-determination, and Ballroom House culture. 
 The practice is an inclusive and welcoming space for all people who would like to discover authentic 
 Ballroom culture and voguing, learn the history and context of the artform, and the foundations of the main voguing styles.
 This is a safe, no-pressure space for people of all abilities, backgrounds & experiences to discover Ballroom and discover themselves.
 High heels are encouraged but not mandatory.',
-'2020-12-12 22:00-04', '2020-12-12 24:00-04', 'Dance & Music', 5,'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWerqitVogue.jpg?alt=media&token=931e1304-a1a2-45ad-813c-7f35b67cae5b'),
+'2021-02-25 22:00-04', '2021-02-25 24:00-04', 'Dance & Music', 5,'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWerqitVogue.jpg?alt=media&token=931e1304-a1a2-45ad-813c-7f35b67cae5b'),
 
 ('6', '2021-07-25 18:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Accessorizing Your Wardrobe', 
 'Style is an attitude, a fantasy, a way of living. Its never too much, elevating your style with accessories.', 
 '2021-10-15 18:00-04', '2021-10-15 19:00-04', 'Beauty & Fashion', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FAccessoriesWorkshop.jpg?alt=media&token=32bb8056-961c-4a84-93fc-04f787e96777'),
 ('7', '2021-07-10 15:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Creating Community Change Through Tech', 'Brainstorming strategies for sharing technical know-how and skills for driving social justice in our communities', '2021-09-16 17:00-04', '2021-09-16 20:00-04', 'Community Organizing & Activism', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCommunityRainbow.jpg?alt=media&token=067f5d9f-0b69-42a3-9fa3-811948262065'),
-('8', '2021-06-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'MIDI Basics', 'Musical Instrument Digital Interface', '2021-08-16 16:00-04', '2021-08-16 18:00-04',  'Dance & Music', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FMidiController.jpg?alt=media&token=34233b00-6254-4431-9496-3317e5e9aaf3'),
+('8', '2020-06-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'MIDI Basics', 'Musical Instrument Digital Interface', '2020-08-16 16:00-04', '2020-08-16 18:00-04',  'Dance & Music', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FMidiController.jpg?alt=media&token=34233b00-6254-4431-9496-3317e5e9aaf3'),
 
 ('9', '2021-08-30 13:00-04', 'nB6JehE4RidvMjwTAq31D4EaGDS2', 'Live Coding Music with Ruby', 
 'This workshop will introduce you to the basics of Sonic Pi, a software synthesizer which allows anyone to create music as computer code. In addition 
