@@ -67,7 +67,7 @@ const NewChatForm = ( props ) => {
     const [users, setUsers] = useState([])
     const [error, setError] = useState("")
     
-    const handleChatUsers = (event, values) => {
+    const handleChatUsers = (values) => {
         setUsers(values)
     }
 

@@ -4,8 +4,8 @@ export const workshops = [
         title: 'Women Know Power Tools',
         firstn: 'Caroline',
         user_pic: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FCarolineKang.jpeg?alt=media&token=6ab4d28f-156b-4267-9df3-a19160ef0045',
-        start_time: '2020-10-06T21:00:00.000Z',
-        end_time:'2020-10-06T24:00:00.000Z', 
+        start_time: '2021-10-06T21:00:00.000Z',
+        end_time:'2021-10-06T24:00:00.000Z', 
         descriptions: `A series of household DIY tutorials made by women, for women giving instructions on basic DIY power tool enhanced tasks 
         like changing a lightbulb, smashing a window, painting a wall and using a drill.
         You are encouraged to share your power tool sharpened knowledge and create your own workshop`,
@@ -17,8 +17,8 @@ export const workshops = [
         title: 'Werq it Vogue',
         firstn: 'Nilber',
         user_pic: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FNilberRemon.png?alt=media&token=35d9a08c-a430-4843-9988-e6582d0443cf',
-        start_time: '2020-10-08T02:00:00.000Z',
-        end_time: '2020-10-08T04:00:00.000Z',
+        start_time: '2021-10-08T02:00:00.000Z',
+        end_time: '2021-10-08T04:00:00.000Z',
         descriptions: 'Learn how to burn the runway with your vogue moves',
         category: 'Dance & Music',
         workshop_img: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWerqitVogue.jpg?alt=media&token=931e1304-a1a2-45ad-813c-7f35b67cae5b',
@@ -28,8 +28,8 @@ export const workshops = [
         title: 'I Love Javascript',
         firstn: 'Uduakabasi',
         user_pic: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FUduakabasiAbasiurua.jpeg?alt=media&token=4d85a760-0c46-4cb6-a8ae-aa0d3a857281',
-        start_time: '2020-10-15T21:00:00.000Z',
-        end_time: '2020-10-15T22:00:00.000Z',
+        start_time: '2021-10-15T21:00:00.000Z',
+        end_time: '2021-10-15T22:00:00.000Z',
         descriptions: 'Start Your Coding Journey with a Bit of JS Basics',
         category: 'Technology, Coding & Programming',
         workshop_img: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FILoveJavascript.png?alt=media&token=3370fe6f-9cd4-469f-84a5-f2e2b567b2bb',
@@ -39,8 +39,8 @@ export const workshops = [
         title: 'Reimagine Graphic Design in a Liberatory World',
         firstn: 'Marializa',
         user_pic: 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/image%2FMarializaMartinez.jpeg?alt=media&token=1a4eeaec-0e19-47e6-b5d6-0d456ccfc01c',
-        start_time: '2020-11-03T21:00:00.000Z',
-        end_time: '2020-11-03T24:00:00.000Z',
+        start_time: '2021-11-03T21:00:00.000Z',
+        end_time: '2021-11-03T24:00:00.000Z',
         descriptions: `Learn the bare-bones basics of Illustrator and Indesign, the leading software professionals and non-professionals use to 
         design great posters, flyers and logos. We’ll cover making and editing vectors in Illustrator and basic layout for a poster 
         in Indesign. If you don’t own a copy of the software please download the free 30-day a trial 
