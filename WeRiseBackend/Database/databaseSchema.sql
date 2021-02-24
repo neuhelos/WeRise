@@ -92,10 +92,10 @@ VALUES
 INSERT INTO created_workshops
 (id, posted, user_id, title, descriptions, start_time, end_time, category, participants, workshop_img)
 VALUES
-('1', '2020-08-22 10:00-04', '4BoeoW9pLWdNKD2WKq8Widdxmkj2', 'SQL Tutorial', 'An Intro to Mastering SQL', '2020-11-24 10:00-04', '2020-11-24 12:00-04', 'Technology, Coding & Programming',  4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FSQLTutorial.png?alt=media&token=4a05132b-d42c-4375-988c-56029054a8a2'),
-('2', '2020-06-22 15:00-04', 'otmKzEboQMby4tLzx6X8vC33ve83', 'Get Your Cardio On', 'Burn those Love Handles and Get Fit in Quarantine', '2020-11-28 15:00-04', '2020-11-28 16:00-04' , 'Health, Fitness & Wellness', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCardioWorkout.jpg?alt=media&token=cec95c60-464b-4c5c-a12c-690e9e329dc1'),
-('3', '2020-06-23 18:00-04', '8uvDSPKzhjU5rllJU1Fy40Gn8x23', 'Drama Therapy in COVID Times', 'Express Yourself while Socially Distancing', '2020-10-10 18:00-04', '2020-10-10 19:00-04' , 'Film, Photography & Theatre', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FDramaTherapy.jpg?alt=media&token=07f82c15-ec78-41cc-95a1-1bb6195c72d1'),
-('4', '2020-07-01 17:00-04', 'rVOVAIwKwdUchSqjZl0xh3qqe0q1', 'I Love Javascript', 'Start Your Coding Journey with a Bit of JS Basics', '2020-10-15 17:00-04', '2020-10-15 18:00-04' ,'Technology, Coding & Programming', 2, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FILoveJavascript.png?alt=media&token=3370fe6f-9cd4-469f-84a5-f2e2b567b2bb'),
+('1', '2021-08-22 10:00-04', '4BoeoW9pLWdNKD2WKq8Widdxmkj2', 'SQL Tutorial', 'An Intro to Mastering SQL', '2021-11-24 10:00-04', '2021-11-24 12:00-04', 'Technology, Coding & Programming',  4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FSQLTutorial.png?alt=media&token=4a05132b-d42c-4375-988c-56029054a8a2'),
+('2', '2021-06-22 15:00-04', 'otmKzEboQMby4tLzx6X8vC33ve83', 'Get Your Cardio On', 'Burn those Love Handles and Get Fit in Quarantine', '2021-11-28 15:00-04', '2021-11-28 16:00-04' , 'Health, Fitness & Wellness', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCardioWorkout.jpg?alt=media&token=cec95c60-464b-4c5c-a12c-690e9e329dc1'),
+('3', '2021-06-23 18:00-04', '8uvDSPKzhjU5rllJU1Fy40Gn8x23', 'Drama Therapy in COVID Times', 'Express Yourself while Socially Distancing', '2021-10-10 18:00-04', '2021-10-10 19:00-04' , 'Film, Photography & Theatre', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FDramaTherapy.jpg?alt=media&token=07f82c15-ec78-41cc-95a1-1bb6195c72d1'),
+('4', '2021-07-01 17:00-04', 'rVOVAIwKwdUchSqjZl0xh3qqe0q1', 'I Love Javascript', 'Start Your Coding Journey with a Bit of JS Basics', '2021-10-15 17:00-04', '2021-10-15 18:00-04' ,'Technology, Coding & Programming', 2, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FILoveJavascript.png?alt=media&token=3370fe6f-9cd4-469f-84a5-f2e2b567b2bb'),
 
 ('5', '2020-08-02 16:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Werq it Vogue', 
 'Learn how to burn the the runway on the dance floor with your vogue moves. Voguing is an underground dance-based art form created 
@@ -104,21 +104,21 @@ The practice is an inclusive and welcoming space for all people who would like t
 Ballroom culture and voguing, learn the history and context of the artform, and the foundations of the main voguing styles.
 This is a safe, no-pressure space for people of all abilities, backgrounds & experiences to discover Ballroom and discover themselves.
 High heels are encouraged but not mandatory.',
-'2020-10-08 22:00-04', '2020-10-08 24:00-04', 'Dance & Music', 5,'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWerqitVogue.jpg?alt=media&token=931e1304-a1a2-45ad-813c-7f35b67cae5b'),
+'2020-12-12 22:00-04', '2020-12-12 24:00-04', 'Dance & Music', 5,'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWerqitVogue.jpg?alt=media&token=931e1304-a1a2-45ad-813c-7f35b67cae5b'),
 
-('6', '2020-07-25 18:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Accessorizing Your Wardrobe', 
+('6', '2021-07-25 18:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Accessorizing Your Wardrobe', 
 'Style is an attitude, a fantasy, a way of living. Its never too much, elevating your style with accessories.', 
-'2020-10-15 18:00-04', '2020-10-15 19:00-04', 'Beauty & Fashion', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FAccessoriesWorkshop.jpg?alt=media&token=32bb8056-961c-4a84-93fc-04f787e96777'),
-('7', '2020-07-10 15:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Creating Community Change Through Tech', 'Brainstorming strategies for sharing technical know-how and skills for driving social justice in our communities', '2020-09-16 17:00-04', '2020-09-16 20:00-04', 'Community Organizing & Activism', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCommunityRainbow.jpg?alt=media&token=067f5d9f-0b69-42a3-9fa3-811948262065'),
-('8', '2020-06-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'MIDI Basics', 'Musical Instrument Digital Interface', '2020-08-16 16:00-04', '2020-08-16 18:00-04',  'Dance & Music', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FMidiController.jpg?alt=media&token=34233b00-6254-4431-9496-3317e5e9aaf3'),
+'2021-10-15 18:00-04', '2021-10-15 19:00-04', 'Beauty & Fashion', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FAccessoriesWorkshop.jpg?alt=media&token=32bb8056-961c-4a84-93fc-04f787e96777'),
+('7', '2021-07-10 15:00-04', 'QYkHDRiXmATQFHQS4wKcjKhqUGa2', 'Creating Community Change Through Tech', 'Brainstorming strategies for sharing technical know-how and skills for driving social justice in our communities', '2021-09-16 17:00-04', '2021-09-16 20:00-04', 'Community Organizing & Activism', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCommunityRainbow.jpg?alt=media&token=067f5d9f-0b69-42a3-9fa3-811948262065'),
+('8', '2021-06-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'MIDI Basics', 'Musical Instrument Digital Interface', '2021-08-16 16:00-04', '2021-08-16 18:00-04',  'Dance & Music', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FMidiController.jpg?alt=media&token=34233b00-6254-4431-9496-3317e5e9aaf3'),
 
-('9', '2020-08-30 13:00-04', 'nB6JehE4RidvMjwTAq31D4EaGDS2', 'Live Coding Music with Ruby', 
+('9', '2021-08-30 13:00-04', 'nB6JehE4RidvMjwTAq31D4EaGDS2', 'Live Coding Music with Ruby', 
 'This workshop will introduce you to the basics of Sonic Pi, a software synthesizer which allows anyone to create music as computer code. In addition 
 to receiving a tour of the Sonic Pi platform, you will also be introduced to the basics of programming in Ruby, a popular language for web development. DJ’s, musicians, 
 installation artists, and anyone who wants or likes to play with synthesized audio will find this a powerful tool for creative expression.', 
-'2020-11-20 16:00-04', '2020-11-20 18:00-04',  'Technology, Coding & Programming', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FLiveCodingMusic.jpg?alt=media&token=00ef6f8c-6ee8-4a7b-b173-d739ec00ae4d'),
+'2021-11-20 16:00-04', '2021-11-20 18:00-04',  'Technology, Coding & Programming', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FLiveCodingMusic.jpg?alt=media&token=00ef6f8c-6ee8-4a7b-b173-d739ec00ae4d'),
 
-('10', '2020-08-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'Classic Black Films', 
+('10', '2021-08-25 13:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'Classic Black Films', 
 'Black filmmakers have produced art on screen that is just as daring, original, influential, and essential as the heralded works 
 of Welles, Coppola, Antonioni, Kurosawa, and other nonblack directors. Films like Daughters of the Dust, Killer of Sheep, Tongues 
 Untied, and Fruitvale Station deserve to be considered alongside the artistic masterpieces of the past century in cinema. But you 
@@ -126,56 +126,56 @@ should also consider a broader notion of what constitutes a “great” film—a
 that have shaped black culture (and the broader American culture) don’t easily fit into the templates of auteurist, art house, or 
 studio quality favored by the typical list-makers. Consider genre work, micro-budget indies, underground documentaries, comedies starring 
 rappers. Read, watch, stream an unfamiliar movie or two, argue, and recognize the art of black filmmakers.', 
-'2020-09-10 18:00-04', '2020-09-10 20:00-04',  'Film, Photography and Theater', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FBlackFilms.jpg?alt=media&token=fa42b6f8-8482-4aa9-8f2e-f575c51e822c'),
+'2021-09-10 18:00-04', '2021-09-10 20:00-04',  'Film, Photography and Theater', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FBlackFilms.jpg?alt=media&token=fa42b6f8-8482-4aa9-8f2e-f575c51e822c'),
 
-('4c94f9ff-c634-4e78-9816-7313b7d6f5b2s', '2020-09-03 16:00-04', 'eokavuu8ObRdvLA47RfSCZ74dI52', 'POC-Centric Wikipedia Editing', 
+('4c94f9ff-c634-4e78-9816-7313b7d6f5b2s', '2021-09-03 16:00-04', 'eokavuu8ObRdvLA47RfSCZ74dI52', 'POC-Centric Wikipedia Editing', 
 'Join me for a workshop on how to update Wikipedia articles and write new ones.
 I will also share my experience on donating work to Wikipedia and how to contribute to it in a way that helps
 make marginalized communities more visible. All skill levels are welcome.',
-'2020-10-20 17:00-04', '2020-10-20 19:00-04', 'Technology, Coding & Programming', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWikipediaEditing.jpg?alt=media&token=5412b179-05fd-474d-b66d-f82022e2e6f3'),
+'2021-10-20 17:00-04', '2021-10-20 19:00-04', 'Technology, Coding & Programming', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FWikipediaEditing.jpg?alt=media&token=5412b179-05fd-474d-b66d-f82022e2e6f3'),
 
-('12985d00-a2c5-4c78-86da-b4860648f2f9', '2020-07-28 17:00-04', 'ORwZBVSWrwW0Nug7HS3UgLl6Me63','Reimagine Graphic Design in a Liberatory World', 
+('12985d00-a2c5-4c78-86da-b4860648f2f9', '2021-07-28 17:00-04', 'ORwZBVSWrwW0Nug7HS3UgLl6Me63','Reimagine Graphic Design in a Liberatory World', 
 'Learn the bare-bones basics of Illustrator and Indesign, the leading software professionals and non-professionals use to 
 design great posters, flyers and logos. We’ll cover making and editing vectors in Illustrator and basic layout for a poster 
 in Indesign. If you don’t own a copy of the software please download the free 30-day a trial 
 version from Adobe Creative Suite prior to the workshop.',
-'2020-11-03 17:00-04', '2020-11-03 20:00-04', 'Art & Design', 4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FVisualResistance.png?alt=media&token=664084da-3e75-4c27-be5b-6b2bc0d725a4'),
+'2021-11-03 17:00-04', '2021-11-03 20:00-04', 'Art & Design', 4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FVisualResistance.png?alt=media&token=664084da-3e75-4c27-be5b-6b2bc0d725a4'),
 
-('f0c950de-d484-418d-b25a-7447cdbace5f', '2020-08-22 18:00-04', 'acKHM3rlo1ZZxwwTVEgC0gzUDBy2', 'Women Know Power Tools', 
+('f0c950de-d484-418d-b25a-7447cdbace5f', '2021-08-22 18:00-04', 'acKHM3rlo1ZZxwwTVEgC0gzUDBy2', 'Women Know Power Tools', 
 'A series of household DIY tutorials made by women, for women giving instructions on basic DIY power tool enhanced tasks 
 like changing a lightbulb, smashing a window, painting a wall and using a drill.
 You are encouraged to share your power tool sharpened knowledge and create your own workshop.',
-'2020-10-06 16:00-04', '2020-10-06 18:00-04', 'Home Improvement & Garden', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FDIYWomen.jpg?alt=media&token=050d1114-6e07-4b6f-a2f3-9c26f22375e6'),
+'2021-10-06 16:00-04', '2021-10-06 18:00-04', 'Home Improvement & Garden', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FDIYWomen.jpg?alt=media&token=050d1114-6e07-4b6f-a2f3-9c26f22375e6'),
 
-('7e01c9e2-4fed-4a7e-80f2-6a8509ad1417', '2020-09-05 14:00-04', 'ZIRgXopThgcOFwZ5f4ZjVedPnSj1', 'Job Ready in Tech',
+('7e01c9e2-4fed-4a7e-80f2-6a8509ad1417', '2021-09-05 14:00-04', 'ZIRgXopThgcOFwZ5f4ZjVedPnSj1', 'Job Ready in Tech',
 'Becoming job ready in the pursuit of a career in the tech field. From DSA-intensive technical interviews to resume building and
 building and developing portfolio-ready projects for showcasing to recruiters', 
-'2020-11-20 16:00-04', '2020-11-20 18:00-04', 'Job Readiness & Professional Development', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FJobReady.jpeg?alt=media&token=6fab506d-5a14-4cde-9bd2-ec0c4e3e907d'),
+'2021-11-20 16:00-04', '2021-11-20 18:00-04', 'Job Readiness & Professional Development', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FJobReady.jpeg?alt=media&token=6fab506d-5a14-4cde-9bd2-ec0c4e3e907d'),
 
-( 'c542f259-f4de-4bb4-bcc9-80f03c615362', '2020-09-05 14:00-04', 'C3vMD8SYhoOPP1mccTTW5adBkow1', 'Cooking Hacks You Should Know',
+( 'c542f259-f4de-4bb4-bcc9-80f03c615362', '2021-09-05 14:00-04', 'C3vMD8SYhoOPP1mccTTW5adBkow1', 'Cooking Hacks You Should Know',
 'A hack is a celebration of a certain amount of acquired understanding. When you understand a problem in a certain way and can 
 find a way to fix it, there’s great joy in that. Make your kitchen your laboratory and experience the thrill of experimentation
 with hacks that will sharpen your culinary skills',
-'2020-11-06 15:00-04', '2020-11-06 16:00-04', 'Food & Culinary Arts', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCookingHacks.jpg?alt=media&token=65faf311-3f80-4ce5-b97a-60b203d93535'),
+'2021-11-06 15:00-04', '2021-11-06 16:00-04', 'Food & Culinary Arts', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCookingHacks.jpg?alt=media&token=65faf311-3f80-4ce5-b97a-60b203d93535'),
 
-('0a317023-8ac4-42c5-ae61-c044eb9e8a7a', '2020-08-26 13:00-04', '5y3iP5DXmMXDslcRues5GaQHbCE3', 'DIY Radical Collaborative Publishing', 
+('0a317023-8ac4-42c5-ae61-c044eb9e8a7a', '2021-08-26 13:00-04', '5y3iP5DXmMXDslcRues5GaQHbCE3', 'DIY Radical Collaborative Publishing', 
 'This workshop covers the history and contemporary applications of radical independent and collaborative publishing models.
 Participants will learn effective devices of democratization by creating unique hand-painted, hinge and stab bound 
 structures using cardboard and up-cycled materials. Such structures enable social, political, and artistic expressions 
 and merge visual and literary forms. The hinge-bound structure can double as a multi tool (“swiss army knife”) of protest posters 
 — made for and by the people! Participants are responsible for sourcing their own supplies from the materials list.',
-'2020-12-13 18:00-04', '2020-12-13 21:00-04', 'Creative Writing & Literature', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FHingeandStabBoundStructures.jpg?alt=media&token=7939d795-bd39-4099-bd69-f44fe2f95183'),
+'2021-12-13 18:00-04', '2021-12-13 21:00-04', 'Creative Writing & Literature', 5, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FHingeandStabBoundStructures.jpg?alt=media&token=7939d795-bd39-4099-bd69-f44fe2f95183'),
 
-('30295b84-7c3b-43dc-9ee8-c0a4c991b0d5', '2020-08-01 10:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'Business Finance for Anti-Capitalists',
+('30295b84-7c3b-43dc-9ee8-c0a4c991b0d5', '2021-08-01 10:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'Business Finance for Anti-Capitalists',
 'Is there a middle ground between being a broke idealist and being a morally bankrupt success? In this workshop we will explore 
 money myths, personal money stories, and cover the basics of business finance, the tools you need, and why profit matters for every type of business.
 You will learn the practicals of profit & loss sheets, the different expense levers in your business, and how to think about 
 building a successful and profitable business in alignment with your values.',
-'2020-12-10 17:00-04', '2020-12-10 19:00-04', 'Business & Finance', 4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FBusinessFinanceLiteracy.jpg?alt=media&token=0bd791ce-bb23-4ce0-97b9-56cc5ba1fe40'),
+'2021-12-10 17:00-04', '2021-12-10 19:00-04', 'Business & Finance', 4, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FBusinessFinanceLiteracy.jpg?alt=media&token=0bd791ce-bb23-4ce0-97b9-56cc5ba1fe40'),
 
-('b408ec82-b9c4-493d-aea8-98650e8b7b3d', '2020-08-05 18:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'COVID-19 & Remote Learning',
+('b408ec82-b9c4-493d-aea8-98650e8b7b3d', '2021-08-05 18:00-04', 'E093QRw1swaW4KCQUON44IU2gcy2', 'COVID-19 & Remote Learning',
 'Tips for Parents navigating the new realities of online learning and social distancing', 
-'2020-12-05 16:00-04', '2020-12-05 18:00-04', 'Family, Parenting & Relationships', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCOVIDRemoteLearning.jpg?alt=media&token=70e5c113-9294-455a-996f-a47c09a145a9');
+'2021-12-05 16:00-04', '2021-12-05 18:00-04', 'Family, Parenting & Relationships', 3, 'https://firebasestorage.googleapis.com/v0/b/werise-c999a.appspot.com/o/Workshop%2FCOVIDRemoteLearning.jpg?alt=media&token=70e5c113-9294-455a-996f-a47c09a145a9');
 
 INSERT INTO registered_workshops
 (user_id, workshop_id, workshop_id_user_id)
