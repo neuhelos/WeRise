@@ -21,7 +21,7 @@
     "firekit": "^1.0.34",
     "luxon": "^1.24.1",
     "material-ui-dropzone": "^3.3.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-add-to-calendar-hoc": "^1.0.10",
